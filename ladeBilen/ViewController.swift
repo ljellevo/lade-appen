@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import MapKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var mapWindow: MKMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +21,12 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func favButton(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "toFavorites", sender: self)
+
+        
     }
 
 

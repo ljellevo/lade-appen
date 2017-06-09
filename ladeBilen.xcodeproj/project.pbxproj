@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83469A881EEB0DF400D9AFC1 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83469A871EEB0DF400D9AFC1 /* homeViewController.swift */; };
+		83469A8A1EEB0E0600D9AFC1 /* favoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83469A891EEB0E0600D9AFC1 /* favoritesViewController.swift */; };
+		83498D1C1EEB0B8300C3D92A /* navViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83498D1B1EEB0B8300C3D92A /* navViewController.swift */; };
 		83F354771EEB0696001A278A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354761EEB0696001A278A /* AppDelegate.swift */; };
 		83F354791EEB0696001A278A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354781EEB0696001A278A /* ViewController.swift */; };
 		83F3547C1EEB0696001A278A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547A1EEB0696001A278A /* Main.storyboard */; };
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83469A871EEB0DF400D9AFC1 /* homeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
+		83469A891EEB0E0600D9AFC1 /* favoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = favoritesViewController.swift; sourceTree = "<group>"; };
+		83498D1B1EEB0B8300C3D92A /* navViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navViewController.swift; sourceTree = "<group>"; };
 		83F354731EEB0696001A278A /* ladeBilen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ladeBilen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F354761EEB0696001A278A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F354781EEB0696001A278A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +80,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83469A861EEB0DDC00D9AFC1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				83469A871EEB0DF400D9AFC1 /* homeViewController.swift */,
+				83469A891EEB0E0600D9AFC1 /* favoritesViewController.swift */,
+				83498D1B1EEB0B8300C3D92A /* navViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
 		83F3546A1EEB0696001A278A = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +113,7 @@
 		83F354751EEB0696001A278A /* ladeBilen */ = {
 			isa = PBXGroup;
 			children = (
+				83469A861EEB0DDC00D9AFC1 /* Home */,
 				83F354761EEB0696001A278A /* AppDelegate.swift */,
 				83F354781EEB0696001A278A /* ViewController.swift */,
 				83F3547A1EEB0696001A278A /* Main.storyboard */,
@@ -264,6 +281,9 @@
 			files = (
 				83F354791EEB0696001A278A /* ViewController.swift in Sources */,
 				83F354771EEB0696001A278A /* AppDelegate.swift in Sources */,
+				83498D1C1EEB0B8300C3D92A /* navViewController.swift in Sources */,
+				83469A881EEB0DF400D9AFC1 /* homeViewController.swift in Sources */,
+				83469A8A1EEB0E0600D9AFC1 /* favoritesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +534,7 @@
 				83F3549D1EEB0697001A278A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83F3549E1EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilenTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +543,7 @@
 				83F354A01EEB0697001A278A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83F354A11EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilenUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +552,7 @@
 				83F354A31EEB0697001A278A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
