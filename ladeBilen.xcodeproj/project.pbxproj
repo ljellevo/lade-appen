@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		83469A881EEB0DF400D9AFC1 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83469A871EEB0DF400D9AFC1 /* homeViewController.swift */; };
 		83469A8A1EEB0E0600D9AFC1 /* favoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83469A891EEB0E0600D9AFC1 /* favoritesViewController.swift */; };
+		83469AA61EEB1F1E00D9AFC1 /* Location_Icon_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83469AA31EEB1F1E00D9AFC1 /* Location_Icon_2x.png */; };
+		83469AA71EEB1F1E00D9AFC1 /* Love_Neutral_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83469AA41EEB1F1E00D9AFC1 /* Love_Neutral_3x.png */; };
+		83469AA81EEB1F1E00D9AFC1 /* Magnifier_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */; };
+		83469AAA1EEB22E900D9AFC1 /* PICOL_icon_Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */; };
 		83498D1C1EEB0B8300C3D92A /* navViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83498D1B1EEB0B8300C3D92A /* navViewController.swift */; };
 		83F354771EEB0696001A278A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354761EEB0696001A278A /* AppDelegate.swift */; };
 		83F354791EEB0696001A278A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354781EEB0696001A278A /* ViewController.swift */; };
@@ -39,6 +43,10 @@
 /* Begin PBXFileReference section */
 		83469A871EEB0DF400D9AFC1 /* homeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
 		83469A891EEB0E0600D9AFC1 /* favoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = favoritesViewController.swift; sourceTree = "<group>"; };
+		83469AA31EEB1F1E00D9AFC1 /* Location_Icon_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Location_Icon_2x.png; path = Resources/Icons/Location_Icon_2x.png; sourceTree = SOURCE_ROOT; };
+		83469AA41EEB1F1E00D9AFC1 /* Love_Neutral_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Love_Neutral_3x.png; path = Resources/Icons/Love_Neutral_3x.png; sourceTree = SOURCE_ROOT; };
+		83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Magnifier_3x.png; path = Resources/Icons/Magnifier_3x.png; sourceTree = SOURCE_ROOT; };
+		83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PICOL_icon_Settings.png; path = ../../../../../Icons/PICOL_icon_Settings.png; sourceTree = "<group>"; };
 		83498D1B1EEB0B8300C3D92A /* navViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navViewController.swift; sourceTree = "<group>"; };
 		83F354731EEB0696001A278A /* ladeBilen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ladeBilen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F354761EEB0696001A278A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +98,17 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
+		83469A9A1EEB190200D9AFC1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */,
+				83469AA31EEB1F1E00D9AFC1 /* Location_Icon_2x.png */,
+				83469AA41EEB1F1E00D9AFC1 /* Love_Neutral_3x.png */,
+				83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		83F3546A1EEB0696001A278A = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +132,7 @@
 		83F354751EEB0696001A278A /* ladeBilen */ = {
 			isa = PBXGroup;
 			children = (
+				83469A9A1EEB190200D9AFC1 /* Resources */,
 				83469A861EEB0DDC00D9AFC1 /* Home */,
 				83F354761EEB0696001A278A /* AppDelegate.swift */,
 				83F354781EEB0696001A278A /* ViewController.swift */,
@@ -252,9 +272,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83469AAA1EEB22E900D9AFC1 /* PICOL_icon_Settings.png in Resources */,
 				83F354811EEB0696001A278A /* LaunchScreen.storyboard in Resources */,
+				83469AA61EEB1F1E00D9AFC1 /* Location_Icon_2x.png in Resources */,
 				83F3547E1EEB0696001A278A /* Assets.xcassets in Resources */,
+				83469AA81EEB1F1E00D9AFC1 /* Magnifier_3x.png in Resources */,
 				83F3547C1EEB0696001A278A /* Main.storyboard in Resources */,
+				83469AA71EEB1F1E00D9AFC1 /* Love_Neutral_3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

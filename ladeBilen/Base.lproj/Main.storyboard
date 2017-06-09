@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,59 +44,78 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1OD-l0-du2">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
-                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ViX-th-36a">
-                                <rect key="frame" x="0.0" y="600" width="375" height="67"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fHQ-m9-XD3">
+                                <rect key="frame" x="289" y="429" width="70" height="230"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="130" translatesAutoresizingMaskIntoConstraints="NO" id="uYj-IG-EbJ">
-                                        <rect key="frame" x="21" y="14" width="333" height="39"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdq-Zv-OUM">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="39"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <state key="normal" title="Instillinger">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4Z-tT-ZtB">
-                                                <rect key="frame" x="230" y="0.0" width="103" height="39"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <state key="normal" title="Nærmeste">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxl-Wi-fdj">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                        <color key="backgroundColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="foQ-yN-9ex"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" image="Magnifier_3x.png">
+                                            <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osS-WZ-IEe">
+                                        <rect key="frame" x="0.0" y="80" width="70" height="70"/>
+                                        <color key="backgroundColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="yPp-hq-1tA"/>
+                                        </constraints>
+                                        <state key="normal" image="Love_Neutral_3x.png">
+                                            <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCO-2u-frz">
+                                        <rect key="frame" x="0.0" y="160" width="70" height="70"/>
+                                        <color key="backgroundColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" image="Location_Icon_2x.png">
+                                            <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="uYj-IG-EbJ" firstAttribute="top" secondItem="ViX-th-36a" secondAttribute="top" constant="14" id="bEn-CN-aky"/>
-                                    <constraint firstAttribute="bottom" secondItem="uYj-IG-EbJ" secondAttribute="bottom" constant="14" id="c6r-N1-Dm7"/>
-                                    <constraint firstAttribute="trailing" secondItem="uYj-IG-EbJ" secondAttribute="trailing" constant="21" id="c8y-Qe-MCZ"/>
-                                    <constraint firstItem="uYj-IG-EbJ" firstAttribute="leading" secondItem="ViX-th-36a" secondAttribute="leading" constant="21" id="sPv-UC-kYd"/>
-                                </constraints>
-                            </view>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bf6-yv-U6G">
+                                <rect key="frame" x="16" y="589" width="70" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nW3-tb-xY7">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                        <color key="backgroundColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="Oie-gM-iai"/>
+                                            <constraint firstAttribute="height" constant="70" id="tyO-e5-OM2"/>
+                                        </constraints>
+                                        <state key="normal" image="PICOL_icon_Settings.png">
+                                            <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ViX-th-36a" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="1A4-XV-PDI"/>
-                            <constraint firstItem="ViX-th-36a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DTk-3Y-ZL7"/>
-                            <constraint firstItem="ViX-th-36a" firstAttribute="leading" secondItem="1OD-l0-du2" secondAttribute="leading" id="MCu-r6-qZc"/>
-                            <constraint firstItem="ViX-th-36a" firstAttribute="trailing" secondItem="1OD-l0-du2" secondAttribute="trailing" id="Mrk-4O-ogt"/>
-                            <constraint firstItem="ViX-th-36a" firstAttribute="bottom" secondItem="1OD-l0-du2" secondAttribute="bottom" id="Nfh-Q8-1Rw"/>
-                            <constraint firstItem="1OD-l0-du2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="RIv-Ol-SJS"/>
+                            <constraint firstAttribute="trailing" secondItem="1OD-l0-du2" secondAttribute="trailing" id="2BL-Hl-Jqo"/>
+                            <constraint firstItem="bf6-yv-U6G" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7lW-Rg-FPY"/>
+                            <constraint firstItem="fHQ-m9-XD3" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="7wM-qv-5Zk"/>
+                            <constraint firstItem="1OD-l0-du2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Eue-aY-peW"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bf6-yv-U6G" secondAttribute="bottom" constant="8" id="FgU-C3-nVc"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fHQ-m9-XD3" secondAttribute="bottom" constant="8" id="YDB-vL-KXf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fHQ-m9-XD3" secondAttribute="bottom" constant="8" id="aE2-Wm-H6L"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1OD-l0-du2" secondAttribute="bottom" id="qmD-PH-4UL"/>
+                            <constraint firstItem="1OD-l0-du2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ul6-01-xS7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ladestasjoner" id="vwX-8P-S8t">
                         <barButtonItem key="backBarButtonItem" title="Kart" id="nHy-K6-z2I"/>
-                        <barButtonItem key="rightBarButtonItem" title="Favoritter" id="Whe-dx-CAb">
-                            <color key="tintColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="favButton:" destination="BYZ-38-t0r" id="PpL-5C-eb5"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="favouritesButton" destination="osS-WZ-IEe" id="e9L-Ia-GiE"/>
                         <outlet property="mapWindow" destination="1OD-l0-du2" id="8Dn-T7-jLi"/>
+                        <outlet property="nearestButton" destination="FCO-2u-frz" id="J9J-eI-Vc3"/>
+                        <outlet property="searchButton" destination="Uxl-Wi-fdj" id="WEY-wH-bJa"/>
+                        <outlet property="settingsButton" destination="nW3-tb-xY7" id="n3A-xf-VNV"/>
                         <segue destination="ZbR-Sg-P2l" kind="show" identifier="toFavorites" id="ZlF-2i-wgp"/>
                     </connections>
                 </viewController>
@@ -121,4 +141,10 @@
             <point key="canvasLocation" x="-628" y="188"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Location_Icon_2x.png" width="70" height="70"/>
+        <image name="Love_Neutral_3x.png" width="60" height="54"/>
+        <image name="Magnifier_3x.png" width="30" height="30"/>
+        <image name="PICOL_icon_Settings.png" width="2000" height="2000"/>
+    </resources>
 </document>
