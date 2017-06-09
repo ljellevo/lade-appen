@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		83F354771EEB0696001A278A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354761EEB0696001A278A /* AppDelegate.swift */; };
+		83F354791EEB0696001A278A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354781EEB0696001A278A /* ViewController.swift */; };
+		83F3547C1EEB0696001A278A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547A1EEB0696001A278A /* Main.storyboard */; };
+		83F3547E1EEB0696001A278A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547D1EEB0696001A278A /* Assets.xcassets */; };
+		83F354811EEB0696001A278A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547F1EEB0696001A278A /* LaunchScreen.storyboard */; };
+		83F3548C1EEB0697001A278A /* ladeBilenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3548B1EEB0697001A278A /* ladeBilenTests.swift */; };
+		83F354971EEB0697001A278A /* ladeBilenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354961EEB0697001A278A /* ladeBilenUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		83F354881EEB0697001A278A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83F3546B1EEB0696001A278A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83F354721EEB0696001A278A;
+			remoteInfo = ladeBilen;
+		};
+		83F354931EEB0697001A278A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83F3546B1EEB0696001A278A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83F354721EEB0696001A278A;
+			remoteInfo = ladeBilen;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		83F354731EEB0696001A278A /* ladeBilen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ladeBilen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83F354761EEB0696001A278A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		83F354781EEB0696001A278A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		83F3547B1EEB0696001A278A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		83F3547D1EEB0696001A278A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		83F354801EEB0696001A278A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		83F354821EEB0696001A278A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83F354871EEB0697001A278A /* ladeBilenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ladeBilenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83F3548B1EEB0697001A278A /* ladeBilenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ladeBilenTests.swift; sourceTree = "<group>"; };
+		83F3548D1EEB0697001A278A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83F354921EEB0697001A278A /* ladeBilenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ladeBilenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83F354961EEB0697001A278A /* ladeBilenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ladeBilenUITests.swift; sourceTree = "<group>"; };
+		83F354981EEB0697001A278A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		83F354701EEB0696001A278A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83F354841EEB0697001A278A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83F3548F1EEB0697001A278A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		83F3546A1EEB0696001A278A = {
+			isa = PBXGroup;
+			children = (
+				83F354751EEB0696001A278A /* ladeBilen */,
+				83F3548A1EEB0697001A278A /* ladeBilenTests */,
+				83F354951EEB0697001A278A /* ladeBilenUITests */,
+				83F354741EEB0696001A278A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		83F354741EEB0696001A278A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83F354731EEB0696001A278A /* ladeBilen.app */,
+				83F354871EEB0697001A278A /* ladeBilenTests.xctest */,
+				83F354921EEB0697001A278A /* ladeBilenUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		83F354751EEB0696001A278A /* ladeBilen */ = {
+			isa = PBXGroup;
+			children = (
+				83F354761EEB0696001A278A /* AppDelegate.swift */,
+				83F354781EEB0696001A278A /* ViewController.swift */,
+				83F3547A1EEB0696001A278A /* Main.storyboard */,
+				83F3547D1EEB0696001A278A /* Assets.xcassets */,
+				83F3547F1EEB0696001A278A /* LaunchScreen.storyboard */,
+				83F354821EEB0696001A278A /* Info.plist */,
+			);
+			path = ladeBilen;
+			sourceTree = "<group>";
+		};
+		83F3548A1EEB0697001A278A /* ladeBilenTests */ = {
+			isa = PBXGroup;
+			children = (
+				83F3548B1EEB0697001A278A /* ladeBilenTests.swift */,
+				83F3548D1EEB0697001A278A /* Info.plist */,
+			);
+			path = ladeBilenTests;
+			sourceTree = "<group>";
+		};
+		83F354951EEB0697001A278A /* ladeBilenUITests */ = {
+			isa = PBXGroup;
+			children = (
+				83F354961EEB0697001A278A /* ladeBilenUITests.swift */,
+				83F354981EEB0697001A278A /* Info.plist */,
+			);
+			path = ladeBilenUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		83F354721EEB0696001A278A /* ladeBilen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83F3549B1EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilen" */;
+			buildPhases = (
+				83F3546F1EEB0696001A278A /* Sources */,
+				83F354701EEB0696001A278A /* Frameworks */,
+				83F354711EEB0696001A278A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ladeBilen;
+			productName = ladeBilen;
+			productReference = 83F354731EEB0696001A278A /* ladeBilen.app */;
+			productType = "com.apple.product-type.application";
+		};
+		83F354861EEB0697001A278A /* ladeBilenTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83F3549E1EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilenTests" */;
+			buildPhases = (
+				83F354831EEB0697001A278A /* Sources */,
+				83F354841EEB0697001A278A /* Frameworks */,
+				83F354851EEB0697001A278A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83F354891EEB0697001A278A /* PBXTargetDependency */,
+			);
+			name = ladeBilenTests;
+			productName = ladeBilenTests;
+			productReference = 83F354871EEB0697001A278A /* ladeBilenTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		83F354911EEB0697001A278A /* ladeBilenUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83F354A11EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilenUITests" */;
+			buildPhases = (
+				83F3548E1EEB0697001A278A /* Sources */,
+				83F3548F1EEB0697001A278A /* Frameworks */,
+				83F354901EEB0697001A278A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83F354941EEB0697001A278A /* PBXTargetDependency */,
+			);
+			name = ladeBilenUITests;
+			productName = ladeBilenUITests;
+			productReference = 83F354921EEB0697001A278A /* ladeBilenUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83F3546B1EEB0696001A278A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Ludvig Ellevold";
+				TargetAttributes = {
+					83F354721EEB0696001A278A = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2X8N6D5K7V;
+						ProvisioningStyle = Automatic;
+					};
+					83F354861EEB0697001A278A = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2X8N6D5K7V;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 83F354721EEB0696001A278A;
+					};
+					83F354911EEB0697001A278A = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2X8N6D5K7V;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 83F354721EEB0696001A278A;
+					};
+				};
+			};
+			buildConfigurationList = 83F3546E1EEB0696001A278A /* Build configuration list for PBXProject "ladeBilen" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 83F3546A1EEB0696001A278A;
+			productRefGroup = 83F354741EEB0696001A278A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				83F354721EEB0696001A278A /* ladeBilen */,
+				83F354861EEB0697001A278A /* ladeBilenTests */,
+				83F354911EEB0697001A278A /* ladeBilenUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		83F354711EEB0696001A278A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83F354811EEB0696001A278A /* LaunchScreen.storyboard in Resources */,
+				83F3547E1EEB0696001A278A /* Assets.xcassets in Resources */,
+				83F3547C1EEB0696001A278A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83F354851EEB0697001A278A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83F354901EEB0697001A278A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		83F3546F1EEB0696001A278A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83F354791EEB0696001A278A /* ViewController.swift in Sources */,
+				83F354771EEB0696001A278A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83F354831EEB0697001A278A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83F3548C1EEB0697001A278A /* ladeBilenTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83F3548E1EEB0697001A278A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83F354971EEB0697001A278A /* ladeBilenUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		83F354891EEB0697001A278A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83F354721EEB0696001A278A /* ladeBilen */;
+			targetProxy = 83F354881EEB0697001A278A /* PBXContainerItemProxy */;
+		};
+		83F354941EEB0697001A278A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83F354721EEB0696001A278A /* ladeBilen */;
+			targetProxy = 83F354931EEB0697001A278A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		83F3547A1EEB0696001A278A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83F3547B1EEB0696001A278A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		83F3547F1EEB0696001A278A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83F354801EEB0696001A278A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		83F354991EEB0697001A278A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		83F3549A1EEB0697001A278A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		83F3549C1EEB0697001A278A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2X8N6D5K7V;
+				INFOPLIST_FILE = ladeBilen/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilen;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		83F3549D1EEB0697001A278A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2X8N6D5K7V;
+				INFOPLIST_FILE = ladeBilen/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilen;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		83F3549F1EEB0697001A278A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 2X8N6D5K7V;
+				INFOPLIST_FILE = ladeBilenTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilenTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladeBilen.app/ladeBilen";
+			};
+			name = Debug;
+		};
+		83F354A01EEB0697001A278A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 2X8N6D5K7V;
+				INFOPLIST_FILE = ladeBilenTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilenTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladeBilen.app/ladeBilen";
+			};
+			name = Release;
+		};
+		83F354A21EEB0697001A278A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 2X8N6D5K7V;
+				INFOPLIST_FILE = ladeBilenUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilenUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = ladeBilen;
+			};
+			name = Debug;
+		};
+		83F354A31EEB0697001A278A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 2X8N6D5K7V;
+				INFOPLIST_FILE = ladeBilenUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilenUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = ladeBilen;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		83F3546E1EEB0696001A278A /* Build configuration list for PBXProject "ladeBilen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83F354991EEB0697001A278A /* Debug */,
+				83F3549A1EEB0697001A278A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83F3549B1EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83F3549C1EEB0697001A278A /* Debug */,
+				83F3549D1EEB0697001A278A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		83F3549E1EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilenTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83F3549F1EEB0697001A278A /* Debug */,
+				83F354A01EEB0697001A278A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		83F354A11EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilenUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83F354A21EEB0697001A278A /* Debug */,
+				83F354A31EEB0697001A278A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83F3546B1EEB0696001A278A /* Project object */;
+}
