@@ -7,29 +7,77 @@
 //
 
 import UIKit
+import MapKit
+
 
 class homeViewController: UIViewController {
-
+    
+    @IBOutlet weak var mapWindow: MKMapView!
+    
+    @IBOutlet weak var favoritesButton: UIButton!
+    
+    @IBOutlet weak var searchButton: UIButton!
+    
+    @IBOutlet weak var nearestButton: UIButton!
+    
+    
+    @IBOutlet weak var settingsButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        initializeButtons()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func initializeButtons(){
+        searchButton.layer.cornerRadius = 25
+        searchButton.clipsToBounds = true
+        searchButton.imageEdgeInsets = UIEdgeInsetsMake(24, 24, 24, 24)
+        
+        favoritesButton.layer.cornerRadius = 25
+        favoritesButton.clipsToBounds = true
+        favoritesButton.imageEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20)
+        
+        nearestButton.layer.cornerRadius = 25
+        nearestButton.clipsToBounds = true
+        nearestButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+        
+        settingsButton.layer.cornerRadius = 25
+        settingsButton.clipsToBounds = true
+        settingsButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
     }
-    */
+    
+    override func viewWillLayoutSubviews() {
+        positionLegalMapLabel()
+    }
+    
+    func positionLegalMapLabel() {
+        //Må høre med apple om man kan flytte "Legal" linken til et separert view. Typ "About/legal" view elns. Nedenfor er metoden for å hente ut labelen + for å flytte den.
+        let legalMapLabel = self.mapWindow.subviews[1]
+        
+        //legalMapLabel.frame.origin = CGPoint(x: 20, y: 20)
+        
+        legalMapLabel.frame.origin = CGPoint(x: self.mapWindow.bounds.size.width / 2, y: legalMapLabel.frame.origin.y)
+    }
+    
+    @IBAction func searchButtonClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "toSearch", sender: self)
 
+    }
+    
+    @IBAction func favoritesButtonClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "toFavorites", sender: self)
+    }
+    
+    @IBAction func nearestButtonClicked(_ sender: Any) {
+    }
+    
+    @IBAction func settingsButtonClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "toSettings", sender: self)
+    }
+    
+    
+    
+    
+    
 }

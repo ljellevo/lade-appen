@@ -10,29 +10,72 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favoritter-->
-        <scene sceneID="m1D-54-fOw">
+        <!--Søk-->
+        <scene sceneID="bYD-Tn-jMK">
             <objects>
-                <viewController storyboardIdentifier="Favoritter" id="ZbR-Sg-P2l" customClass="favoritesViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5jP-Hz-Cw6"/>
-                        <viewControllerLayoutGuide type="bottom" id="M07-Je-K6B"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Glh-QJ-cgu">
+                <tableViewController storyboardIdentifier="Search" id="Nkx-Pl-Pqa" customClass="searchViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Dge-dy-sAG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Favoritter" id="kLD-Pf-irO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="urn-u3-xSi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fRH-ko-fYn">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fRH-ko-fYn" id="yWS-CX-31q">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Nkx-Pl-Pqa" id="8x1-Sm-A5z"/>
+                            <outlet property="delegate" destination="Nkx-Pl-Pqa" id="Z1x-U3-Muk"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Søk" id="3vW-Hc-1Vj">
+                        <barButtonItem key="backBarButtonItem" title="Søk" id="Nqj-eT-ffy"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9hX-cQ-sqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1092" y="188"/>
+            <point key="canvasLocation" x="1318" y="-527"/>
+        </scene>
+        <!--Favoritter-->
+        <scene sceneID="PhT-Bx-KyI">
+            <objects>
+                <tableViewController storyboardIdentifier="Favorites" id="fgi-mH-r0M" customClass="favoritesViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ybf-04-FuQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="OoI-uf-bh9">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OoI-uf-bh9" id="1hN-e0-lW5">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fgi-mH-r0M" id="9p0-WS-if4"/>
+                            <outlet property="delegate" destination="fgi-mH-r0M" id="3Zb-DL-KHP"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Favoritter" id="oLJ-Ls-cK8">
+                        <barButtonItem key="backBarButtonItem" title="Favoritter" id="YXB-Ft-IFN"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l4E-kh-WLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1318" y="188"/>
         </scene>
         <!--Ladestasjoner-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="Home" id="BYZ-38-t0r" customClass="ViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Home" id="BYZ-38-t0r" customClass="homeViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -57,6 +100,9 @@
                                         <state key="normal" image="Magnifier_3x.png">
                                             <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="searchButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pk0-gU-Uwj"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osS-WZ-IEe">
                                         <rect key="frame" x="0.0" y="80" width="70" height="70"/>
@@ -67,6 +113,9 @@
                                         <state key="normal" image="Love_Neutral_3x.png">
                                             <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="favoritesButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xPr-cG-YXx"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCO-2u-frz">
                                         <rect key="frame" x="0.0" y="160" width="70" height="70"/>
@@ -74,6 +123,9 @@
                                         <state key="normal" image="Location_Icon_2x.png">
                                             <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="nearestButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H8U-1z-Jx7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -90,6 +142,9 @@
                                         <state key="normal" image="PICOL_icon_Settings.png">
                                             <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="settingsButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yiU-R5-KTK"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -111,26 +166,53 @@
                         <barButtonItem key="backBarButtonItem" title="Kart" id="nHy-K6-z2I"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="favouritesButton" destination="osS-WZ-IEe" id="e9L-Ia-GiE"/>
-                        <outlet property="mapWindow" destination="1OD-l0-du2" id="8Dn-T7-jLi"/>
-                        <outlet property="nearestButton" destination="FCO-2u-frz" id="J9J-eI-Vc3"/>
-                        <outlet property="searchButton" destination="Uxl-Wi-fdj" id="WEY-wH-bJa"/>
-                        <outlet property="settingsButton" destination="nW3-tb-xY7" id="n3A-xf-VNV"/>
-                        <segue destination="ZbR-Sg-P2l" kind="show" identifier="toFavorites" id="ZlF-2i-wgp"/>
+                        <outlet property="favoritesButton" destination="osS-WZ-IEe" id="cJo-s1-SeT"/>
+                        <outlet property="mapWindow" destination="1OD-l0-du2" id="BPu-Cb-JTh"/>
+                        <outlet property="nearestButton" destination="FCO-2u-frz" id="XlY-Fy-q1T"/>
+                        <outlet property="searchButton" destination="Uxl-Wi-fdj" id="InO-bf-Rn6"/>
+                        <outlet property="settingsButton" destination="nW3-tb-xY7" id="J0y-hB-XJp"/>
+                        <segue destination="wS9-Sx-GST" kind="show" identifier="toSettings" id="WV6-le-jGK"/>
+                        <segue destination="fgi-mH-r0M" kind="show" identifier="toFavorites" id="zWI-EP-Fph"/>
+                        <segue destination="Nkx-Pl-Pqa" kind="show" identifier="toSearch" id="BYj-hY-cVP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="240.80000000000001" y="187.55622188905548"/>
         </scene>
+        <!--Instillinger-->
+        <scene sceneID="wW6-cf-0Ei">
+            <objects>
+                <viewController storyboardIdentifier="Settings" id="wS9-Sx-GST" customClass="settingsViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6xH-mk-42k"/>
+                        <viewControllerLayoutGuide type="bottom" id="mpQ-LF-O3H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4P8-ay-MUU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Instillinger" id="1Qr-eH-hoZ">
+                        <barButtonItem key="backBarButtonItem" title="Instillinger" id="NOL-oc-rsS"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oXv-NI-zdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="241" y="892"/>
+        </scene>
         <!--Nav View Controller-->
         <scene sceneID="kDh-qe-Vi4">
             <objects>
                 <navigationController id="XCX-Ed-eow" customClass="navViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hjp-FY-YWZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Hjp-FY-YWZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.23305154519999999" green="0.77393712290000005" blue="0.21476158910000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="HUc-Q9-zEk"/>
