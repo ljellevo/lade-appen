@@ -12,21 +12,30 @@ import MapKit
 
 class homeViewController: UIViewController {
     
+    let defaults = UserDefaults.standard
+    
     @IBOutlet weak var mapWindow: MKMapView!
-    
     @IBOutlet weak var favoritesButton: UIButton!
-    
     @IBOutlet weak var searchButton: UIButton!
-    
     @IBOutlet weak var nearestButton: UIButton!
-    
-    
     @IBOutlet weak var settingsButton: UIButton!
+    
+    @IBOutlet weak var buttonStackConstraintTrailing: NSLayoutConstraint!
+    @IBOutlet weak var buttonStackConstraintLeading: NSLayoutConstraint!
+    @IBOutlet weak var settingsStackConstraintTrailing: NSLayoutConstraint!
+    @IBOutlet weak var settingsStackConstraintLeading: NSLayoutConstraint!
+    
+    @IBOutlet weak var buttonsStack: UIStackView!
+    @IBOutlet weak var settingsStack: UIStackView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeButtons()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkButtonFlip()
     }
     
     func initializeButtons(){
@@ -76,8 +85,26 @@ class homeViewController: UIViewController {
         self.performSegue(withIdentifier: "toSettings", sender: self)
     }
     
-    
-    
-    
-    
+    func checkButtonFlip(){
+        print("Sjekker buttonStack posisjonen")
+        if (defaults.integer(forKey: "flip") == 2){
+            //Hvis button er satt til venstre er value i flip 2 og dermed så aktiverer den de constrintene som flytter stacken
+            
+            buttonStackConstraintTrailing.isActive = false
+            buttonStackConstraintLeading.isActive = true
+            
+            settingsStackConstraintTrailing.isActive = true
+            settingsStackConstraintLeading.isActive = false
+
+        } else {
+            //Hvis den er enten 0 eller 1 så står/flyttes de på/til default possisjon
+            
+            buttonStackConstraintTrailing.isActive = true
+            buttonStackConstraintLeading.isActive = false
+            
+            settingsStackConstraintTrailing.isActive = false
+            settingsStackConstraintLeading.isActive = true
+
+        }
+    }
 }

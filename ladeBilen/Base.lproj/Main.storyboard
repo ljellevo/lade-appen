@@ -87,7 +87,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1OD-l0-du2">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fHQ-m9-XD3">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fHQ-m9-XD3" userLabel="Buttons Stack">
                                 <rect key="frame" x="289" y="429" width="70" height="230"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxl-Wi-fdj">
@@ -129,7 +129,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bf6-yv-U6G">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bf6-yv-U6G" userLabel="Settings Stack">
                                 <rect key="frame" x="16" y="589" width="70" height="70"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nW3-tb-xY7">
@@ -156,21 +156,34 @@
                             <constraint firstItem="fHQ-m9-XD3" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="7wM-qv-5Zk"/>
                             <constraint firstItem="1OD-l0-du2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Eue-aY-peW"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bf6-yv-U6G" secondAttribute="bottom" constant="8" id="FgU-C3-nVc"/>
+                            <constraint firstItem="fHQ-m9-XD3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="KEs-6v-AnL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bf6-yv-U6G" secondAttribute="trailing" id="PuQ-ev-O0g"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fHQ-m9-XD3" secondAttribute="bottom" constant="8" id="YDB-vL-KXf"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fHQ-m9-XD3" secondAttribute="bottom" constant="8" id="aE2-Wm-H6L"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1OD-l0-du2" secondAttribute="bottom" id="qmD-PH-4UL"/>
                             <constraint firstItem="1OD-l0-du2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ul6-01-xS7"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="PuQ-ev-O0g"/>
+                                <exclude reference="KEs-6v-AnL"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Ladestasjoner" id="vwX-8P-S8t">
                         <barButtonItem key="backBarButtonItem" title="Kart" id="nHy-K6-z2I"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonStackConstraintLeading" destination="KEs-6v-AnL" id="PUZ-xK-9Im"/>
+                        <outlet property="buttonStackConstraintTrailing" destination="7wM-qv-5Zk" id="Z4w-Js-YVF"/>
+                        <outlet property="buttonsStack" destination="fHQ-m9-XD3" id="62c-gv-JOa"/>
                         <outlet property="favoritesButton" destination="osS-WZ-IEe" id="cJo-s1-SeT"/>
                         <outlet property="mapWindow" destination="1OD-l0-du2" id="BPu-Cb-JTh"/>
                         <outlet property="nearestButton" destination="FCO-2u-frz" id="XlY-Fy-q1T"/>
                         <outlet property="searchButton" destination="Uxl-Wi-fdj" id="InO-bf-Rn6"/>
                         <outlet property="settingsButton" destination="nW3-tb-xY7" id="J0y-hB-XJp"/>
+                        <outlet property="settingsStack" destination="bf6-yv-U6G" id="atf-dG-eLk"/>
+                        <outlet property="settingsStackConstraintLeading" destination="7lW-Rg-FPY" id="QCL-BP-Nbf"/>
+                        <outlet property="settingsStackConstraintTrailing" destination="PuQ-ev-O0g" id="FyB-Om-ysQ"/>
                         <segue destination="wS9-Sx-GST" kind="show" identifier="toSettings" id="WV6-le-jGK"/>
                         <segue destination="fgi-mH-r0M" kind="show" identifier="toFavorites" id="zWI-EP-Fph"/>
                         <segue destination="Nkx-Pl-Pqa" kind="show" identifier="toSearch" id="BYj-hY-cVP"/>
@@ -191,6 +204,17 @@
                     <view key="view" contentMode="scaleToFill" id="4P8-ay-MUU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehU-qy-hVo">
+                                <rect key="frame" x="135" y="160" width="105" height="134"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="Flip"/>
+                                <connections>
+                                    <action selector="flipButtonsStackButton:" destination="wS9-Sx-GST" eventType="touchUpInside" id="Dkl-dX-cVU"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Instillinger" id="1Qr-eH-hoZ">
@@ -199,13 +223,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXv-NI-zdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="241" y="892"/>
+            <point key="canvasLocation" x="240.80000000000001" y="891.90404797601207"/>
         </scene>
         <!--Nav View Controller-->
         <scene sceneID="kDh-qe-Vi4">
             <objects>
                 <navigationController id="XCX-Ed-eow" customClass="navViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Hjp-FY-YWZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hjp-FY-YWZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>

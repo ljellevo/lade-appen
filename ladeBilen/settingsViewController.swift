@@ -9,12 +9,16 @@
 import UIKit
 
 class settingsViewController: UIViewController {
+    
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -22,14 +26,23 @@ class settingsViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
+    func flipButtonStack(){
+        if (defaults.integer(forKey: "flip") == 0 || defaults.integer(forKey: "flip") == 1){
+            //Flytter buttonsStack til venstre
+            defaults.set(2, forKey: "flip")
+        } else {
+            //Flytter buttonsStack til høyre
+            defaults.set(1, forKey: "flip")
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        }
+        
     }
-    */
+    @IBAction func flipButtonsStackButton(_ sender: UIButton) {
+        flipButtonStack()
+        print(defaults.integer(forKey: "flip"))
+        
+    }
+    
+    
 
 }
