@@ -32,9 +32,12 @@ class homeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeButtons()
+        checkButtonFlip()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print(defaults.integer(forKey: "flip"))
         checkButtonFlip()
     }
     
@@ -86,25 +89,23 @@ class homeViewController: UIViewController {
     }
     
     func checkButtonFlip(){
-        print("Sjekker buttonStack posisjonen")
         if (defaults.integer(forKey: "flip") == 2){
             //Hvis button er satt til venstre er value i flip 2 og dermed så aktiverer den de constrintene som flytter stacken
-            
             buttonStackConstraintTrailing.isActive = false
             buttonStackConstraintLeading.isActive = true
             
             settingsStackConstraintTrailing.isActive = true
             settingsStackConstraintLeading.isActive = false
+            self.view.layoutIfNeeded()
 
         } else {
             //Hvis den er enten 0 eller 1 så står/flyttes de på/til default possisjon
-            
             buttonStackConstraintTrailing.isActive = true
             buttonStackConstraintLeading.isActive = false
             
             settingsStackConstraintTrailing.isActive = false
             settingsStackConstraintLeading.isActive = true
-
+            self.view.layoutIfNeeded()
         }
     }
 }

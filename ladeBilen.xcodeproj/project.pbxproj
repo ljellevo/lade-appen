@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		417FB3657C7BE2ABB8E032E3 /* Pods_ladeBilen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBE7FF5E7AF48C454404FE8B /* Pods_ladeBilen.framework */; };
 		8314E2301EF435CF00F98E3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8314E22F1EF435CF00F98E3F /* GoogleService-Info.plist */; };
+		8314E2321EF44DA300F98E3F /* styleExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314E2311EF44DA300F98E3F /* styleExtentions.swift */; };
+		8314E2351EF44E3400F98E3F /* welcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314E2341EF44E3400F98E3F /* welcomeViewController.swift */; };
 		8342E17E1EED87010079888F /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17D1EED87010079888F /* settingsViewController.swift */; };
 		8342E1801EED87170079888F /* searchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17F1EED87170079888F /* searchViewController.swift */; };
 		83469A881EEB0DF400D9AFC1 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83469A871EEB0DF400D9AFC1 /* homeViewController.swift */; };
@@ -52,6 +54,8 @@
 		56C3BD95A982F1DB28336552 /* Pods-ladeBilen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilen/Pods-ladeBilen.debug.xcconfig"; sourceTree = "<group>"; };
 		71177A21211319348367BC64 /* Pods-ladeBilenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8314E22F1EF435CF00F98E3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8314E2311EF44DA300F98E3F /* styleExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = styleExtentions.swift; sourceTree = "<group>"; };
+		8314E2341EF44E3400F98E3F /* welcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcomeViewController.swift; sourceTree = "<group>"; };
 		8342E17D1EED87010079888F /* settingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
 		8342E17F1EED87170079888F /* searchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchViewController.swift; sourceTree = "<group>"; };
 		83469A871EEB0DF400D9AFC1 /* homeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +113,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8314E2331EF44E1100F98E3F /* Login/Register */ = {
+			isa = PBXGroup;
+			children = (
+				8314E2341EF44E3400F98E3F /* welcomeViewController.swift */,
+			);
+			name = Login/Register;
+			sourceTree = "<group>";
+		};
 		83469A861EEB0DDC00D9AFC1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +140,7 @@
 				83469AA31EEB1F1E00D9AFC1 /* Location_Icon_2x.png */,
 				83469AA41EEB1F1E00D9AFC1 /* Love_Neutral_3x.png */,
 				83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */,
+				8314E2311EF44DA300F98E3F /* styleExtentions.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -158,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				83469A9A1EEB190200D9AFC1 /* Resources */,
+				8314E2331EF44E1100F98E3F /* Login/Register */,
 				83469A861EEB0DDC00D9AFC1 /* Home */,
 				83F354761EEB0696001A278A /* AppDelegate.swift */,
 				83F354781EEB0696001A278A /* ViewController.swift */,
@@ -502,6 +516,8 @@
 			files = (
 				8342E1801EED87170079888F /* searchViewController.swift in Sources */,
 				83F354791EEB0696001A278A /* ViewController.swift in Sources */,
+				8314E2321EF44DA300F98E3F /* styleExtentions.swift in Sources */,
+				8314E2351EF44E3400F98E3F /* welcomeViewController.swift in Sources */,
 				83F354771EEB0696001A278A /* AppDelegate.swift in Sources */,
 				83498D1C1EEB0B8300C3D92A /* navViewController.swift in Sources */,
 				83469A881EEB0DF400D9AFC1 /* homeViewController.swift in Sources */,
