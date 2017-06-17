@@ -7,6 +7,8 @@ target 'ladeBilen' do
 
   # Pods for ladeBilen
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
   target 'ladeBilenTests' do
     inherit! :search_paths

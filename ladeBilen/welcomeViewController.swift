@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class welcomeViewController: UIViewController, UITextFieldDelegate {
     
     var firstname: String = ""
     var email: String = ""
+    var password: String = ""
+    var retypePassword: String = ""
 
     
     var registrationCounter = 0
@@ -44,6 +49,15 @@ class welcomeViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+            if user != nil {
+                self.performSegue(withIdentifier: "toHome", sender: self)
+                print("User is logged in")
+            } else {
+                print("User is not logged in")
+            }
+        }
+        //checkIfUserIsLoggedIn()
         setupButtons()
         addObservers()
         initialConfig()
@@ -89,6 +103,12 @@ class welcomeViewController: UIViewController, UITextFieldDelegate {
         registrationTextFieldStack.isHidden = true
         registrationButtonStack.isHidden = true
         backButton.isHidden = true
+    }
+    
+    func checkIfUserIsLoggedIn(){
+        if (FIRAuth.auth()?.currentUser?.uid != nil){
+            self.performSegue(withIdentifier: "toHome", sender: self)
+        }
     }
     
     func hideInitialView(){
@@ -189,6 +209,9 @@ class welcomeViewController: UIViewController, UITextFieldDelegate {
             registrationInputTwo.placeholder = "E-Post"
             registrationInputOne.text = firstname
             registrationInputTwo.text = email
+            registrationInputOne.isSecureTextEntry = false
+            registrationInputTwo.isSecureTextEntry = false
+            registrationInputOne.autocapitalizationType = .words
             registerButton.setTitle("Neste", for: .normal)
             // Bytt til fornavn/etternavn og sett inn informasjonen
         }
@@ -200,14 +223,18 @@ class welcomeViewController: UIViewController, UITextFieldDelegate {
             emailTextField.resignFirstResponder()
             passwordTextField.becomeFirstResponder()
         } else if (passwordTextField.isFirstResponder){
+            passwordTextField.resignFirstResponder()
             //Logg inn metode kalles her
+            loginUserFunc()
             print("login")
         } else if (registrationInputOne.isFirstResponder) {
             registrationInputOne.resignFirstResponder()
             registrationInputTwo.becomeFirstResponder()
         } else if (registrationInputTwo.isFirstResponder && registrationCounter < 1) {
-            registrationInputTwo.resignFirstResponder()
+            registerButtonFunc()
             registrationInputOne.becomeFirstResponder()
+            registrationInputTwo.resignFirstResponder()
+            
         } else if (registrationInputTwo.isFirstResponder && registrationCounter == 1) {
             registrationInputTwo.resignFirstResponder()
             //Registrer og logg inn
@@ -217,14 +244,22 @@ class welcomeViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginButton(_ sender: UIButton) {
-        if (emailTextField.text != "" && passwordTextField.text != "" ){
-            //Prøv å logg inn
-        }
-        
+        loginUserFunc()
     }
     
+    func loginUserFunc(){
+        if (emailTextField.text != "" && passwordTextField.text != "" ){
+            email = emailTextField.text!
+            password = passwordTextField.text!
+            loginUser()
+        }
+    }
     
     @IBAction func registerButton(_ sender: UIButton) {
+        registerButtonFunc()
+    }
+    
+    func registerButtonFunc(){
         if (registrationCounter == 0) {
             if (registrationInputOne.text != "" && registrationInputTwo.text != ""){
                 firstname = registrationInputOne.text!
@@ -232,6 +267,11 @@ class welcomeViewController: UIViewController, UITextFieldDelegate {
                 registrationCounter += 1
                 registrationInputOne.text = ""
                 registrationInputTwo.text = ""
+                registrationInputOne.isSecureTextEntry = true
+                registrationInputTwo.isSecureTextEntry = true
+                registrationInputOne.autocapitalizationType = .none
+                registrationInputOne.becomeFirstResponder()
+                registrationInputTwo.resignFirstResponder()
                 
                 registrationInputOne.placeholder = "Passord"
                 registrationInputTwo.placeholder = "Bekreft passord"
@@ -240,20 +280,59 @@ class welcomeViewController: UIViewController, UITextFieldDelegate {
             
             //Bytt til passord/retype passord
         } else if (registrationCounter == 1) {
-            var password = ""
-            var retypePassword = ""
+            
             if (registrationInputOne.text != "" && registrationInputTwo.text != ""){
                 password = registrationInputOne.text!
                 retypePassword = registrationInputTwo.text!
                 if (password == retypePassword){
-                    print("Registrer bruker")
                     //Prøv å registre og logg inn
-                    
+                    registerUserInDatabase()
                 }
             }
-            
-            
         }
+    }
+    
+    func registerUserInDatabase(){
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+            if error != nil {
+                //Feil under registrering av bruker
+                print("Error creating user")
+            } else {
+                //Suksess
+                print("Success creating user")
+                self.registerUserInfoInDatabase()
+                //self.loginUser()
+            }
+        })
+    }
+    
+    func registerUserInfoInDatabase(){
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        let ref = FIRDatabase.database().reference()
+        let values = ["First name" : firstname, "Email" : email]
+        
+        ref.child("User_Info").child(uid as String!).updateChildValues(values) { (error, ref) in
+            if (error != nil){
+                print("Error saving info in database")
+            } else {
+                print("Registration successfull")
+                self.loginUser()
+            }
+        }
+    }
+    
+    func loginUser(){
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+            if (error != nil) {
+                //Feil under innloggig
+                print("Error when signing in")
+            } else {
+                //Suksess
+                print("User signed in successfully")
+                self.performSegue(withIdentifier: "toHome", sender: self)
+
+            }
+        })
     }
     
     

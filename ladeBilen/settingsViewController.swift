@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class settingsViewController: UIViewController {
     
     let defaults = UserDefaults.standard
+    var window: UIWindow?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,21 @@ class settingsViewController: UIViewController {
     @IBAction func flipButtonsStackButton(_ sender: UIButton) {
         flipButtonStack()
     }
+    
+    @IBAction func logoutButtonClicked(_ sender: UIButton) {
+        do {
+            try FIRAuth.auth()?.signOut()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            // vc is the Storyboard ID that you added
+            // as! ... Add your ViewController class name that you want to navigate to
+            let controller = storyboard.instantiateViewController(withIdentifier: "Welcome") as! welcomeViewController
+            self.present(controller, animated: false, completion: { () -> Void in
+            })
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+    
     
     
 

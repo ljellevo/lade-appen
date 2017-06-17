@@ -214,8 +214,23 @@
                                     <action selector="flipButtonsStackButton:" destination="wS9-Sx-GST" eventType="touchUpInside" id="Dkl-dX-cVU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1q-Ig-mvG">
+                                <rect key="frame" x="108" y="380" width="146" height="49"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <state key="normal" title="Logg ut">
+                                    <color key="titleColor" red="1" green="0.028078071959999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutButtonClicked:" destination="wS9-Sx-GST" eventType="touchUpInside" id="mCL-v7-MlO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mpQ-LF-O3H" firstAttribute="top" secondItem="j1q-Ig-mvG" secondAttribute="bottom" constant="238" id="Szr-Ao-i2u"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="j1q-Ig-mvG" secondAttribute="trailing" constant="105" id="vTh-b6-bqL"/>
+                            <constraint firstItem="j1q-Ig-mvG" firstAttribute="leading" secondItem="4P8-ay-MUU" secondAttribute="leadingMargin" constant="92" id="zMf-H6-Qaw"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Instillinger" id="1Qr-eH-hoZ">
                         <barButtonItem key="backBarButtonItem" title="Instillinger" id="NOL-oc-rsS"/>
@@ -223,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXv-NI-zdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="240.80000000000001" y="891.90404797601207"/>
+            <point key="canvasLocation" x="-1489" y="963"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="QhJ-aH-wFP">
@@ -290,12 +305,15 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CDt-b4-Mw5" userLabel="Login Button Stack">
-                                <rect key="frame" x="59.5" y="272" width="256" height="86"/>
+                                <rect key="frame" x="59.5" y="272" width="256.5" height="86"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="433-3x-qWB">
-                                        <rect key="frame" x="0.0" y="0.0" width="256" height="46"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="433-3x-qWB">
+                                        <rect key="frame" x="0.0" y="0.0" width="256.5" height="46"/>
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="r1f-ki-3c4"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="28"/>
                                         <state key="normal" title="Logg inn">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -304,7 +322,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gyk-GT-pZH">
-                                        <rect key="frame" x="0.0" y="56" width="256" height="30"/>
+                                        <rect key="frame" x="0.0" y="56" width="256.5" height="30"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <state key="normal" title="Glemt Passord?"/>
                                     </button>
                                 </subviews>
@@ -319,12 +338,12 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oMM-Ke-oWy" userLabel="Registration Button Stack">
-                                <rect key="frame" x="59" y="272" width="257" height="86"/>
+                                <rect key="frame" x="59" y="272" width="257" height="46"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSL-Ph-zYg">
                                         <rect key="frame" x="0.0" y="0.0" width="257" height="46"/>
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="28"/>
                                         <state key="normal" title="Registrer">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -332,23 +351,16 @@
                                             <action selector="registerButton:" destination="LZi-9k-sUV" eventType="touchUpInside" id="VGN-zk-Hdr"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2y4-1x-15X">
-                                        <rect key="frame" x="0.0" y="56" width="257" height="30"/>
-                                        <state key="normal" title="Allerede bruker?"/>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="qSL-Ph-zYg" secondAttribute="trailing" id="837-io-mPE"/>
-                                    <constraint firstAttribute="bottom" secondItem="2y4-1x-15X" secondAttribute="bottom" id="9Vu-eu-FPU"/>
                                     <constraint firstItem="qSL-Ph-zYg" firstAttribute="leading" secondItem="oMM-Ke-oWy" secondAttribute="leading" id="Bnb-YW-J8d"/>
-                                    <constraint firstItem="2y4-1x-15X" firstAttribute="leading" secondItem="oMM-Ke-oWy" secondAttribute="leading" id="QLc-0D-wQZ"/>
                                     <constraint firstItem="qSL-Ph-zYg" firstAttribute="top" secondItem="oMM-Ke-oWy" secondAttribute="top" id="aYH-2E-cGQ"/>
-                                    <constraint firstAttribute="height" constant="86" id="noH-qw-Rsh"/>
-                                    <constraint firstAttribute="trailing" secondItem="2y4-1x-15X" secondAttribute="trailing" id="qMa-5o-lBJ"/>
+                                    <constraint firstAttribute="height" constant="46" id="noH-qw-Rsh"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="A6m-Ua-d7O" userLabel="Banner Stack">
-                                <rect key="frame" x="40" y="225" width="295" height="217.5"/>
+                                <rect key="frame" x="40" y="220" width="295" height="227.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cL3-1s-u9H">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="105.5"/>
@@ -357,9 +369,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xtU-JG-KyR">
-                                        <rect key="frame" x="0.0" y="115.5" width="295" height="46"/>
+                                        <rect key="frame" x="0.0" y="115.5" width="295" height="51"/>
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="28"/>
                                         <state key="normal" title="Logg inn">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -368,9 +380,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hb-fD-R1H">
-                                        <rect key="frame" x="0.0" y="171.5" width="295" height="46"/>
+                                        <rect key="frame" x="0.0" y="176.5" width="295" height="51"/>
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="28"/>
                                         <state key="normal" title="Registrer">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -424,7 +436,6 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="allreadyUserButton" destination="2y4-1x-15X" id="Y5G-sN-LJi"/>
                         <outlet property="backButton" destination="19l-2g-soc" id="3Kn-Dn-Mj5"/>
                         <outlet property="bannerStack" destination="A6m-Ua-d7O" id="tRH-Kp-cyT"/>
                         <outlet property="bannerStackCenterConstraint" destination="NdO-3U-mjQ" id="4Bj-db-Pgx"/>
@@ -442,11 +453,12 @@
                         <outlet property="registrationInputOne" destination="wyw-vE-BhV" id="Iit-Mz-jL2"/>
                         <outlet property="registrationInputTwo" destination="c3M-Em-otp" id="MfJ-xf-Zx3"/>
                         <outlet property="registrationTextFieldStack" destination="Yrp-hP-gdy" id="xN9-oi-PzD"/>
+                        <segue destination="XCX-Ed-eow" kind="show" identifier="toHome" animates="NO" id="BpD-1f-p3h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hvV-R9-LWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-636" y="-511.39430284857576"/>
+            <point key="canvasLocation" x="-628" y="-674"/>
         </scene>
         <!--Nav View Controller-->
         <scene sceneID="kDh-qe-Vi4">
