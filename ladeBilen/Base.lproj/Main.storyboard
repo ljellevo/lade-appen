@@ -273,16 +273,16 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Etternavn" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c3M-Em-otp">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-post" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c3M-Em-otp">
                                         <rect key="frame" x="0.0" y="45" width="280" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="ZHE-Me-zzW"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -299,6 +299,9 @@
                                         <state key="normal" title="Logg inn">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="loginButton:" destination="LZi-9k-sUV" eventType="touchUpInside" id="NvU-zU-aeJ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gyk-GT-pZH">
                                         <rect key="frame" x="0.0" y="56" width="256" height="30"/>
@@ -325,6 +328,9 @@
                                         <state key="normal" title="Registrer">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="registerButton:" destination="LZi-9k-sUV" eventType="touchUpInside" id="VGN-zk-Hdr"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2y4-1x-15X">
                                         <rect key="frame" x="0.0" y="56" width="257" height="30"/>
@@ -374,6 +380,20 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="igO-xV-WbJ">
+                                <rect key="frame" x="16" y="20" width="50" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19l-2g-soc">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                        <state key="normal" title="Tilbake">
+                                            <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backButton:" destination="LZi-9k-sUV" eventType="touchUpInside" id="1Sf-Kg-hlr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -389,11 +409,13 @@
                             <constraint firstItem="Yrp-hP-gdy" firstAttribute="leading" secondItem="fWQ-4t-hfE" secondAttribute="leadingMargin" constant="20" id="ToV-Bb-N0U"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oMM-Ke-oWy" secondAttribute="trailing" constant="43" id="Uy4-om-hh6"/>
                             <constraint firstItem="CDt-b4-Mw5" firstAttribute="top" secondItem="JP3-Fh-5Vr" secondAttribute="bottom" constant="27" id="Zlw-Eq-M1S"/>
+                            <constraint firstItem="igO-xV-WbJ" firstAttribute="top" secondItem="ViZ-Ek-uzS" secondAttribute="bottom" id="bdK-hp-cvO"/>
                             <constraint firstAttribute="trailing" secondItem="A6m-Ua-d7O" secondAttribute="trailing" constant="40" id="jMT-IG-Nbq"/>
                             <constraint firstItem="oMM-Ke-oWy" firstAttribute="leading" secondItem="fWQ-4t-hfE" secondAttribute="leadingMargin" constant="43" id="kw5-PL-EGl"/>
                             <constraint firstItem="CDt-b4-Mw5" firstAttribute="leading" secondItem="fWQ-4t-hfE" secondAttribute="leadingMargin" constant="43" id="lTy-tD-yoQ"/>
                             <constraint firstItem="Yrp-hP-gdy" firstAttribute="top" secondItem="ViZ-Ek-uzS" secondAttribute="bottom" constant="145" id="suF-M3-R3b"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Yrp-hP-gdy" secondAttribute="trailing" constant="43" id="yQP-Ld-2bc"/>
+                            <constraint firstItem="igO-xV-WbJ" firstAttribute="leading" secondItem="fWQ-4t-hfE" secondAttribute="leadingMargin" id="ypH-yO-bJm"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -403,17 +425,18 @@
                     </view>
                     <connections>
                         <outlet property="allreadyUserButton" destination="2y4-1x-15X" id="Y5G-sN-LJi"/>
+                        <outlet property="backButton" destination="19l-2g-soc" id="3Kn-Dn-Mj5"/>
                         <outlet property="bannerStack" destination="A6m-Ua-d7O" id="tRH-Kp-cyT"/>
                         <outlet property="bannerStackCenterConstraint" destination="NdO-3U-mjQ" id="4Bj-db-Pgx"/>
                         <outlet property="bannerStackTopConstraint" destination="Ob5-ac-au9" id="F3h-bk-rfd"/>
                         <outlet property="emailTextField" destination="EIg-iO-QRk" id="alh-4E-H31"/>
                         <outlet property="forgotPasswordButton" destination="Gyk-GT-pZH" id="3nH-8z-Lk7"/>
-                        <outlet property="loginButton" destination="CDt-b4-Mw5" id="Hmb-sn-SVa"/>
+                        <outlet property="loginButton" destination="433-3x-qWB" id="zwm-4C-MaE"/>
                         <outlet property="loginButtonStack" destination="CDt-b4-Mw5" id="lsx-Ht-luS"/>
                         <outlet property="loginInitialButton" destination="xtU-JG-KyR" id="bkT-bk-uir"/>
                         <outlet property="loginTextFieldStack" destination="JP3-Fh-5Vr" id="7eY-ak-LLO"/>
                         <outlet property="passwordTextField" destination="1Ns-BJ-SHV" id="ltY-1z-THv"/>
-                        <outlet property="registerButton" destination="qSL-Ph-zYg" id="s4I-Vc-W6f"/>
+                        <outlet property="registerButton" destination="qSL-Ph-zYg" id="BRm-ng-YXl"/>
                         <outlet property="registerInitalButton" destination="5hb-fD-R1H" id="X6h-l8-b3P"/>
                         <outlet property="registrationButtonStack" destination="oMM-Ke-oWy" id="e5e-Z2-QAy"/>
                         <outlet property="registrationInputOne" destination="wyw-vE-BhV" id="Iit-Mz-jL2"/>
