@@ -10,24 +10,35 @@ import UIKit
 
 class welcomeViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var retypePasswordTextField: UITextField!
+    @IBOutlet weak var loginTextFieldStack: UIStackView!
+        @IBOutlet weak var emailTextField: UITextField!
+        @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var loginOptionButton: UIButton!
-    @IBOutlet weak var registrationOptionButton: UIButton!
-    @IBOutlet weak var loginRegisterAccountButton: UIButton!
+    @IBOutlet weak var loginButtonStack: UIStackView!
+        @IBOutlet weak var loginButton: UIStackView!
+        @IBOutlet weak var forgotPasswordButton: UIButton!
+    
+    @IBOutlet weak var registrationTextFieldStack: UIStackView!
+        @IBOutlet weak var registrationInputOne: UITextField!
+        @IBOutlet weak var registrationInputTwo: UITextField!
+    
+    @IBOutlet weak var registrationButtonStack: UIStackView!
+        @IBOutlet weak var registerButton: UIButton!
+        @IBOutlet weak var allreadyUserButton: UIButton!
+    
+    @IBOutlet weak var bannerStack: UIStackView!
+        @IBOutlet weak var bannerStackTopConstraint: NSLayoutConstraint!
+        @IBOutlet weak var bannerStackCenterConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var loginInitialButton: UIButton!
+    @IBOutlet weak var registerInitalButton: UIButton!
 
-    
-    @IBOutlet weak var loginButtonBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var statusBackgroundHeightConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var textfieldStackHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtons()
         addObservers()
+        initialConfig()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -49,81 +60,61 @@ class welcomeViewController: UIViewController, UITextFieldDelegate {
     func setupButtons(){
         emailTextField.setBottomBorder()
         passwordTextField.setBottomBorder()
-        retypePasswordTextField.setBottomBorder()
     }
     
-    
-    
-    
-    
-    
-    @IBAction func loginOptionButton(_ sender: UIButton) {
-        loadLoginConfig()
+    func initialConfig(){
+        bannerStackTopConstraint.isActive = false
+        loginTextFieldStack.isHidden = true
+        loginButtonStack.isHidden = true
+        registrationTextFieldStack.isHidden = true
+        registrationButtonStack.isHidden = true
     }
     
-    
-    @IBAction func registrationOptionButton(_ sender: UIButton) {
-        loadRegistrationConfig()
-    }
-    
-    func loadLoginConfig(){
-        retypePasswordTextField.isHidden = true
-        textfieldStackHeightConstraint.constant = 110
-        
-        
-        self.view.layoutIfNeeded()
-        removeCover()
-    }
-    
-    func loadRegistrationConfig(){
-        loginRegisterAccountButton.setTitle("Next", for: .normal)
-        removeCover()
-        
-    }
-    
-    func removeCover(){
-        loginOptionButton.isHidden = true
-        registrationOptionButton.isHidden = true
-        statusBackgroundHeightConstraint.constant = 40
+    func hideInitialView(){
+        loginInitialButton.isHidden = true
+        registerInitalButton.isHidden = true
+        bannerStackTopConstraint.isActive = true
+        bannerStackCenterConstraint.isActive = false
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    func keyboardWillShow(notification: NSNotification){
-        //Flytter login button slik at den ligger ovenfor keyboard når keyboard blir aktivert
-        print("Keyboard will show")
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.loginButtonBottomConstraint.constant += keyboardSize.height
+    func loadLoginConfig(){
+        self.loginTextFieldStack.isHidden = false
+        self.loginButtonStack.isHidden = false
+        self.loginTextFieldStack.alpha = 0.0
+        self.loginButtonStack.alpha = 0.0
+
+        hideInitialView()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500) ) {
             UIView.animate(withDuration: 0.5) {
-                self.view.layoutIfNeeded()
+                self.loginTextFieldStack.alpha = 1.0
+                self.loginButtonStack.alpha = 1.0
             }
         }
+    }
+    
+    func loadRegistrationConfig(){
+        self.registrationTextFieldStack.isHidden = false
+        self.registrationButtonStack.isHidden = false
+        self.registrationTextFieldStack.alpha = 0.0
+        self.registrationButtonStack.alpha = 0.0
+    
+        
+        hideInitialView()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500) ) {
+            UIView.animate(withDuration: 0.5) {
+                self.registrationTextFieldStack.alpha = 1.0
+                self.registrationButtonStack.alpha = 1.0
+            }
+        }
+    }
+
+    func keyboardWillShow(notification: NSNotification){
+        print("Keyboard will show")
     }
     
     func keyboardWillHide(){
@@ -131,9 +122,15 @@ class welcomeViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    @IBAction func loginInitalButton(_ sender: UIButton) {
+        loadLoginConfig()
+    }
     
-    @IBAction func loginRegisterAccountButton(_ sender: UIButton) {
+    @IBAction func registerInitalButton(_ sender: UIButton) {
+        registerButton.setTitle("Neste", for: .normal)
+        loadRegistrationConfig()
         
     }
+    
     
 }
