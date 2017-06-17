@@ -36,7 +36,6 @@ class welcomeViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var registrationButtonStack: UIStackView!
         @IBOutlet weak var registerButton: UIButton!
-        @IBOutlet weak var allreadyUserButton: UIButton!
     
     @IBOutlet weak var bannerStack: UIStackView!
         @IBOutlet weak var bannerStackTopConstraint: NSLayoutConstraint!
