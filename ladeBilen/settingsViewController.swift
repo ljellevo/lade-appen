@@ -11,9 +11,7 @@ import FirebaseAuth
 
 class settingsViewController: UITableViewController {
     
-    let sections = ["Søke instillinger", "Bruker", "Utsene", "Om oss"]
-    let options = [["Type stasjoner", "Type støpsel", "Eier", "Status"], ["Endre E-Post", "Endre Passord"], ["Flytte knappene"], ["Brukeravtale", "Sammarbeidspartnere"]]
-    let settingsOptions = ["Søke instillinger", "Bruker", "Utsene", "Om oss", "Logg ut"]
+    let options = ["Søke instillinger", "Bruker", "Utsene", "Om oss", "Logg ut"]
     
     let defaults = UserDefaults.standard
     var window: UIWindow?
@@ -21,7 +19,6 @@ class settingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -30,30 +27,21 @@ class settingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
-        cell.textLabel?.text = self.settingsOptions[indexPath.row]
+        cell.textLabel?.text = self.options[indexPath.row]
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.settingsOptions.count
+        return self.options.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (indexPath.row == 0) {
-            //Naviger til "Søke instillinger"
-            print("0")
-        } else if (indexPath.row == 1) {
-            //Naviger til "Bruker"
-            print("1")
-        } else if (indexPath.row == 2) {
-            //Naviger til "Utsene"
-            print("2")
-        } else if (indexPath.row == 3) {
-            //Naviger til "Om oss"
-            print("3")
+        if (indexPath.row < 4) {
+            print(indexPath.row)
+            segue()
         } else if (indexPath.row == 4) {
-            //Logg ut
-            print("4")
+            print(indexPath.row)
+            logoutUser()
         }
     }
     
@@ -65,6 +53,68 @@ class settingsViewController: UITableViewController {
             }
         }
     }
+    
+    func segue(){
+        self.performSegue(withIdentifier: "toDetailedSettings", sender: self)
+    }
+    
+    func logoutUser(){
+        do {
+            try FIRAuth.auth()?.signOut()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "Welcome") as! welcomeViewController
+            self.present(controller, animated: false, completion: { () -> Void in
+            })
+        } catch let signOutError as NSError {
+            print ("Error signing out: ", signOutError)
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
+    
+    func flipButtonStack(){
+        if (defaults.integer(forKey: "flip") == 0 || defaults.integer(forKey: "flip") == 1){
+            //Flytter buttonsStack til venstre
+            defaults.set(2, forKey: "flip")
+        } else {
+            //Flytter buttonsStack til høyre
+            defaults.set(1, forKey: "flip")
+        }
+        
+    }
+    @IBAction func flipButtonsStackButton(_ sender: UIButton) {
+        flipButtonStack()
+    }
+    
+    @IBAction func logoutButtonClicked(_ sender: UIButton) {
+        do {
+            try FIRAuth.auth()?.signOut()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            // vc is the Storyboard ID that you added
+            // as! ... Add your ViewController class name that you want to navigate to
+            let controller = storyboard.instantiateViewController(withIdentifier: "Welcome") as! welcomeViewController
+            self.present(controller, animated: false, completion: { () -> Void in
+            })
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+ */
     
     
     
