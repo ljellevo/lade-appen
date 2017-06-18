@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fRH-ko-fYn" id="yWS-CX-31q">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -54,7 +54,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OoI-uf-bh9" id="1hN-e0-lW5">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -184,9 +184,10 @@
                         <outlet property="settingsStack" destination="bf6-yv-U6G" id="atf-dG-eLk"/>
                         <outlet property="settingsStackConstraintLeading" destination="7lW-Rg-FPY" id="QCL-BP-Nbf"/>
                         <outlet property="settingsStackConstraintTrailing" destination="PuQ-ev-O0g" id="FyB-Om-ysQ"/>
-                        <segue destination="wS9-Sx-GST" kind="show" identifier="toSettings" id="WV6-le-jGK"/>
+                        <segue destination="wS9-Sx-GST" kind="show" identifier="toSettingsTable" id="WV6-le-jGK"/>
                         <segue destination="fgi-mH-r0M" kind="show" identifier="toFavorites" id="zWI-EP-Fph"/>
                         <segue destination="Nkx-Pl-Pqa" kind="show" identifier="toSearch" id="BYj-hY-cVP"/>
+                        <segue destination="lWp-aQ-DjM" kind="show" identifier="toSettings" id="FmI-36-dy1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -238,7 +239,66 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXv-NI-zdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1489" y="963"/>
+            <point key="canvasLocation" x="241" y="950"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="FYA-gw-bJQ">
+            <objects>
+                <tableViewController id="lWp-aQ-DjM" customClass="settingsViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="R6b-M2-7iL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" rowHeight="75" id="ZdS-NH-5gJ">
+                                <rect key="frame" x="0.0" y="28" width="375" height="75"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZdS-NH-5gJ" id="C82-DQ-Tna">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lWp-aQ-DjM" id="kq7-6q-aYj"/>
+                            <outlet property="delegate" destination="lWp-aQ-DjM" id="EMX-sm-tQP"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="fnR-P6-b5v" kind="show" identifier="toDetailedSettings" animates="NO" id="F5X-zK-FMg"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4P6-Fg-GXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="949.60000000000002" y="948.57571214392806"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="CKY-My-EoI">
+            <objects>
+                <tableViewController id="fnR-P6-b5v" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MC8-DB-iNK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cxa-p3-ecA">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxa-p3-ecA" id="nB9-8E-jBV">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fnR-P6-b5v" id="9lD-2l-jVP"/>
+                            <outlet property="delegate" destination="fnR-P6-b5v" id="ep1-fE-GkS"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tLF-Ja-uFb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1788" y="949"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="QhJ-aH-wFP">
@@ -313,7 +373,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="46" id="r1f-ki-3c4"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="28"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
                                         <state key="normal" title="Logg inn">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -343,7 +403,10 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSL-Ph-zYg">
                                         <rect key="frame" x="0.0" y="0.0" width="257" height="46"/>
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="Fdm-gk-wFg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
                                         <state key="normal" title="Registrer">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -359,8 +422,8 @@
                                     <constraint firstAttribute="height" constant="46" id="noH-qw-Rsh"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="A6m-Ua-d7O" userLabel="Banner Stack">
-                                <rect key="frame" x="40" y="220" width="295" height="227.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="A6m-Ua-d7O" userLabel="Banner Stack">
+                                <rect key="frame" x="40" y="210" width="295" height="247.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cL3-1s-u9H">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="105.5"/>
@@ -369,9 +432,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xtU-JG-KyR">
-                                        <rect key="frame" x="0.0" y="115.5" width="295" height="51"/>
+                                        <rect key="frame" x="0.0" y="125.5" width="295" height="51"/>
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="ffX-1x-F8Z"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
                                         <state key="normal" title="Logg inn">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -380,9 +446,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hb-fD-R1H">
-                                        <rect key="frame" x="0.0" y="176.5" width="295" height="51"/>
+                                        <rect key="frame" x="0.0" y="196.5" width="295" height="51"/>
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="mex-WZ-iOo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
                                         <state key="normal" title="Registrer">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>

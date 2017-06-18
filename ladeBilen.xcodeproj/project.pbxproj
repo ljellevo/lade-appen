@@ -20,6 +20,7 @@
 		83469AA81EEB1F1E00D9AFC1 /* Magnifier_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */; };
 		83469AAA1EEB22E900D9AFC1 /* PICOL_icon_Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */; };
 		83498D1C1EEB0B8300C3D92A /* navViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83498D1B1EEB0B8300C3D92A /* navViewController.swift */; };
+		83B720221EF7068F00AD00DE /* detailedSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B720211EF7068F00AD00DE /* detailedSettingsTableViewController.swift */; };
 		83F354771EEB0696001A278A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354761EEB0696001A278A /* AppDelegate.swift */; };
 		83F354791EEB0696001A278A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354781EEB0696001A278A /* ViewController.swift */; };
 		83F3547C1EEB0696001A278A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547A1EEB0696001A278A /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 		83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Magnifier_3x.png; path = Resources/Icons/Magnifier_3x.png; sourceTree = SOURCE_ROOT; };
 		83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PICOL_icon_Settings.png; path = ../../../../../Icons/PICOL_icon_Settings.png; sourceTree = "<group>"; };
 		83498D1B1EEB0B8300C3D92A /* navViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navViewController.swift; sourceTree = "<group>"; };
+		83B720211EF7068F00AD00DE /* detailedSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedSettingsTableViewController.swift; sourceTree = "<group>"; };
 		83F354731EEB0696001A278A /* ladeBilen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ladeBilen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F354761EEB0696001A278A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F354781EEB0696001A278A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				83498D1B1EEB0B8300C3D92A /* navViewController.swift */,
 				8342E17D1EED87010079888F /* settingsViewController.swift */,
 				8342E17F1EED87170079888F /* searchViewController.swift */,
+				83B720211EF7068F00AD00DE /* detailedSettingsTableViewController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 			files = (
 				8342E1801EED87170079888F /* searchViewController.swift in Sources */,
 				83F354791EEB0696001A278A /* ViewController.swift in Sources */,
+				83B720221EF7068F00AD00DE /* detailedSettingsTableViewController.swift in Sources */,
 				8314E2321EF44DA300F98E3F /* styleExtentions.swift in Sources */,
 				8314E2351EF44E3400F98E3F /* welcomeViewController.swift in Sources */,
 				83F354771EEB0696001A278A /* AppDelegate.swift in Sources */,
