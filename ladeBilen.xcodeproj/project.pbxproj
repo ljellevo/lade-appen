@@ -20,6 +20,9 @@
 		83469AA81EEB1F1E00D9AFC1 /* Magnifier_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */; };
 		83469AAA1EEB22E900D9AFC1 /* PICOL_icon_Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */; };
 		83498D1C1EEB0B8300C3D92A /* navViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83498D1B1EEB0B8300C3D92A /* navViewController.swift */; };
+		83ADDDE91EF801A2006A6D2D /* clouds.png in Resources */ = {isa = PBXBuildFile; fileRef = 83ADDDE81EF801A2006A6D2D /* clouds.png */; };
+		83ADDDEB1EF803E9006A6D2D /* welcomeNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ADDDEA1EF803E9006A6D2D /* welcomeNewViewController.swift */; };
+		83ADDDED1EF80721006A6D2D /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = 83ADDDEC1EF80721006A6D2D /* car.png */; };
 		83B720221EF7068F00AD00DE /* detailedSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B720211EF7068F00AD00DE /* detailedSettingsTableViewController.swift */; };
 		83B720241EF7119B00AD00DE /* editSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B720231EF7119B00AD00DE /* editSettingsViewController.swift */; };
 		83B7202D1EF723EC00AD00DE /* CCS.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B720261EF723EC00AD00DE /* CCS.png */; };
@@ -74,6 +77,9 @@
 		83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Magnifier_3x.png; path = Resources/Icons/Magnifier_3x.png; sourceTree = SOURCE_ROOT; };
 		83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PICOL_icon_Settings.png; path = ../../../../../Icons/PICOL_icon_Settings.png; sourceTree = "<group>"; };
 		83498D1B1EEB0B8300C3D92A /* navViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navViewController.swift; sourceTree = "<group>"; };
+		83ADDDE81EF801A2006A6D2D /* clouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clouds.png; sourceTree = "<group>"; };
+		83ADDDEA1EF803E9006A6D2D /* welcomeNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcomeNewViewController.swift; sourceTree = "<group>"; };
+		83ADDDEC1EF80721006A6D2D /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
 		83B720211EF7068F00AD00DE /* detailedSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedSettingsTableViewController.swift; sourceTree = "<group>"; };
 		83B720231EF7119B00AD00DE /* editSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editSettingsViewController.swift; sourceTree = "<group>"; };
 		83B720261EF723EC00AD00DE /* CCS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CCS.png; sourceTree = "<group>"; };
@@ -135,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				8314E2341EF44E3400F98E3F /* welcomeViewController.swift */,
+				83ADDDEA1EF803E9006A6D2D /* welcomeNewViewController.swift */,
 			);
 			name = Login/Register;
 			sourceTree = "<group>";
@@ -153,6 +160,8 @@
 		83469A9A1EEB190200D9AFC1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				83ADDDEC1EF80721006A6D2D /* car.png */,
+				83ADDDE81EF801A2006A6D2D /* clouds.png */,
 				83B720261EF723EC00AD00DE /* CCS.png */,
 				83B720271EF723EC00AD00DE /* CHAdeMO.png */,
 				83B720281EF723EC00AD00DE /* IEC_60309_3-pin_type_1.png */,
@@ -379,6 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83ADDDED1EF80721006A6D2D /* car.png in Resources */,
 				83B720331EF723EC00AD00DE /* Type_2.png in Resources */,
 				83B720311EF723EC00AD00DE /* Schuko_CEE_7_4.png in Resources */,
 				83469AAA1EEB22E900D9AFC1 /* PICOL_icon_Settings.png in Resources */,
@@ -386,6 +396,7 @@
 				83F354811EEB0696001A278A /* LaunchScreen.storyboard in Resources */,
 				83B7202D1EF723EC00AD00DE /* CCS.png in Resources */,
 				83469AA61EEB1F1E00D9AFC1 /* Location_Icon_2x.png in Resources */,
+				83ADDDE91EF801A2006A6D2D /* clouds.png in Resources */,
 				83F3547E1EEB0696001A278A /* Assets.xcassets in Resources */,
 				83B7202F1EF723EC00AD00DE /* IEC_60309_3-pin_type_1.png in Resources */,
 				83469AA81EEB1F1E00D9AFC1 /* Magnifier_3x.png in Resources */,
@@ -562,6 +573,7 @@
 				8314E2321EF44DA300F98E3F /* styleExtentions.swift in Sources */,
 				8314E2351EF44E3400F98E3F /* welcomeViewController.swift in Sources */,
 				83F354771EEB0696001A278A /* AppDelegate.swift in Sources */,
+				83ADDDEB1EF803E9006A6D2D /* welcomeNewViewController.swift in Sources */,
 				83498D1C1EEB0B8300C3D92A /* navViewController.swift in Sources */,
 				83469A881EEB0DF400D9AFC1 /* homeViewController.swift in Sources */,
 				83469A8A1EEB0E0600D9AFC1 /* favoritesViewController.swift in Sources */,
