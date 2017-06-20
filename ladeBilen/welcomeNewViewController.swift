@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class welcomeNewViewController: UIViewController, UITextFieldDelegate {
+    
+    var keyboardIsShown: Bool = false
+    
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
@@ -30,6 +35,8 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
         @IBOutlet weak var grassStackHeightConstraint: NSLayoutConstraint!
         @IBOutlet weak var grassStackTopConstraint: NSLayoutConstraint!
     
+
+    
     @IBOutlet weak var loginStack: UIStackView!
         @IBOutlet weak var emailTextField: UITextField!
         @IBOutlet weak var passwordTextField: UITextField!
@@ -43,12 +50,11 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
         @IBOutlet weak var whitePanelStackTrailingConstraint: NSLayoutConstraint!
         @IBOutlet weak var whitePanelStackLeadingConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var statusBarStackView: UIStackView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initialButtonSetup()
+        initialViewSetup()
         addObservers()
     }
     
@@ -57,45 +63,68 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
     }
     
     func addObservers(){
-        print("Adding Observers")
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func removeObservers(){
-        print("Removing Observers")
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
+    
 
-    func initialButtonSetup() {
+    func initialViewSetup() {
+        initializeWhitePanelStack()
+        initializeBannerStack()
+        initializeIconStack()
+        initializeGrassStack()
+        initalizeInitButtonStack()
+        initializeLoginTextFieldStack()
+    }
+    
+    func initalizeInitButtonStack() {
         initialButtonStackTrailingConstraint.isActive = false
-        grassStackTopConstraint.isActive = false
-        whitePanelStackTopConstraint.isActive = false
-        loginStackTopConstraint.isActive = false
-        statusBarStackView.isHidden = true
-        bannerStackTopConstraint.constant = 188
-        iconStackLeadingConstraint.constant = -60
-        grassStackHeightConstraint.constant = 120
-        whitePannelStackHeightConstraint.constant = 0
-        whitePanel.layer.cornerRadius = 20
-
-
-        
         loginButton.layer.shadowOpacity = 0.2
         registerButton.layer.shadowOpacity = 0.2
         loginButton.layer.shadowOffset = CGSize(width: 5.0, height: 5.0)
         registerButton.layer.shadowOffset = CGSize(width: 5.0, height: 5.0)
-        
+    }
+    
+    func initializeLoginTextFieldStack() {
+        loginStackTopConstraint.isActive = false
         emailTextField.setBottomBorderGray()
         passwordTextField.setBottomBorderGray()
         loginStack.alpha = 0.0
         loginStack.isHidden = true
     }
+    
+    func initializeGrassStack() {
+        grassStackHeightConstraint.isActive = true
+        grassStackTopConstraint.isActive = false
+        grassStackHeightConstraint.constant = 120
+    }
+    
+    func initializeWhitePanelStack() {
+        whitePanelStackTopConstraint.isActive = false
+        whitePannelStackHeightConstraint.constant = 0
+        whitePanel.layer.cornerRadius = 20
+    }
+    
+    func initializeBannerStack() {
+        bannerStackTopConstraint.constant = 188
+    }
+    
+    func initializeIconStack() {
+        iconStackLeadingConstraint.constant = -60
+    }
+    
+    
+    
 
     @IBAction func initialLoginButtonClicked(_ sender: UIButton) {
-       loadLoginConfig()
+        loadLoginConfig()
     }
+    
     
     func loadLoginConfig(){
         initialButtonStackCenterConstraint.isActive = false
@@ -104,14 +133,10 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
-        
-        iconStackLeadingConstraint.constant = 400
-        UIView.animate(withDuration: 1.25) {
-            self.view.layoutIfNeeded()
-        }
-        self.loginStack.isHidden = false
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1250)) {
+        self.loginStack.isHidden = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250)) {
             self.grassStackHeightConstraint.constant = 300
             self.whitePannelStackHeightConstraint.constant = 287
             UIView.animate(withDuration: 0.5) {
@@ -120,37 +145,88 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
                     UIView.animate(withDuration: 0.5) {
                         self.loginStack.alpha = 1.0
                     }
-
                 })
             }
         }
     }
     
     func keyboardWillShow(notification: NSNotification){
-        print("Keyboard will show")
+        if (!keyboardIsShown){
+            keyboardIsShown = true
+            activateGrassStack()
+            activateWhitePanelStack()
+            activateLoginStack()
+            UIView.animate(withDuration: 0.5) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    func activateGrassStack() {
         grassStackHeightConstraint.isActive = false
         grassStackTopConstraint.isActive = true
-        grassStackTopConstraint.constant = 0
+        grassStackTopConstraint.constant = -20
+    }
+    
+    func activateWhitePanelStack() {
         whitePannelStackHeightConstraint.isActive = false
         whitePanelStackTopConstraint.isActive = true
         whitePanelStackTopConstraint.constant = 0
         whitePanelStackLeadingConstraint.constant = 0
         whitePanelStackTrailingConstraint.constant = 0
+    }
+    
+    func activateLoginStack() {
         loginStackBottomConstraint.isActive = false
         loginStackTopConstraint.isActive = true
         loginStackTopConstraint.constant = 150
-        
-        UIView.animate(withDuration: 0.5) { 
-            self.view.layoutIfNeeded()
-        }
-        statusBarStackView.isHidden = false
-        
-        
-        
     }
     
     func keyboardWillHide(){
         print("Keyboard will hide")
+        keyboardIsShown = false
         
     }
+    
+    @IBAction func loginButtonClicked(_ sender: UIButton) {
+        
+        
+    }
+    
+    
+    @IBAction func dragToDismiss(_ sender: UIPanGestureRecognizer) {
+        let gesture = sender.translation(in: view)
+        print("x: ", gesture.x)
+        print("y: ", gesture.y)
+        
+            //Swipe nedover
+        self.view.endEditing(true)
+        //grassStack.center = CGPoint(x:view.center.x, y:view.center.y + gesture.y)
+        //whitePanelStack.center = CGPoint(x:view.center.x, y:view.center.y + gesture.y)
+        whitePanelStackTopConstraint.constant = gesture.y
+        //loginStack.center = CGPoint(x:view.center.x, y:view.center.y + gesture.y)
+        
+        if sender.state == UIGestureRecognizerState.ended {
+            print("Ended")
+            if (whitePanelStackTopConstraint.constant > 20) {
+                initializeGrassStack()
+                initializeWhitePanelStack()
+                loadLoginConfig()
+            }
+        
+        
+        }
+
+        
+            
+        
+        //sender.setTranslation(CGPoint.zero, in: self.view)
+
+
+    }
+    
+    func deacvtivateLoginStack() {
+        
+    }
+    
 }
