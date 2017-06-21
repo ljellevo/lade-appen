@@ -13,6 +13,12 @@ import FirebaseAuth
 class welcomeNewViewController: UIViewController, UITextFieldDelegate {
     
     var keyboardIsShown: Bool = false
+    var grassStackTopOffset: CGFloat = 0.0
+    var loginStackBottomOffset: CGFloat = 0.0
+    var whiteStackLeadingOffset: CGFloat = 0.0
+    var whiteStackTrailingOffset: CGFloat = 0.0
+
+
     
 
     @IBOutlet weak var loginButton: UIButton!
@@ -23,32 +29,32 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
         @IBOutlet weak var initialButtonStackTrailingConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var bannerStack: UIStackView!
-        @IBOutlet weak var bannerStackCenterConstraint: NSLayoutConstraint!
-        @IBOutlet weak var bannerStackTrailingConstraint: NSLayoutConstraint!
-        @IBOutlet weak var bannerStackTopConstraint: NSLayoutConstraint!
+        @IBOutlet var bannerStackCenterConstraint: NSLayoutConstraint!
+        @IBOutlet var bannerStackTrailingConstraint: NSLayoutConstraint!
+        @IBOutlet var bannerStackTopConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var iconStack: UIStackView!
-        @IBOutlet weak var iconStackLeadingConstraint: NSLayoutConstraint!
-        @IBOutlet weak var iconStackCenterConstraint: NSLayoutConstraint!
+        @IBOutlet var iconStackLeadingConstraint: NSLayoutConstraint!
+        @IBOutlet var iconStackCenterConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var grassStack: UIStackView!
-        @IBOutlet weak var grassStackHeightConstraint: NSLayoutConstraint!
-        @IBOutlet weak var grassStackTopConstraint: NSLayoutConstraint!
+    @IBOutlet var grassStack: UIStackView!
+        @IBOutlet var grassStackHeightConstraint: NSLayoutConstraint!
+        @IBOutlet var grassStackTopConstraint: NSLayoutConstraint!
     
 
     
-    @IBOutlet weak var loginStack: UIStackView!
-        @IBOutlet weak var emailTextField: UITextField!
-        @IBOutlet weak var passwordTextField: UITextField!
-        @IBOutlet weak var loginStackBottomConstraint: NSLayoutConstraint!
-        @IBOutlet weak var loginStackTopConstraint: NSLayoutConstraint!
+    @IBOutlet var loginStack: UIStackView!
+        @IBOutlet var emailTextField: UITextField!
+        @IBOutlet var passwordTextField: UITextField!
+        @IBOutlet var loginStackBottomConstraint: NSLayoutConstraint!
+        @IBOutlet var loginStackTopConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var whitePanelStack: UIStackView!
-        @IBOutlet weak var whitePanel: UIView!
-        @IBOutlet weak var whitePannelStackHeightConstraint: NSLayoutConstraint!
-        @IBOutlet weak var whitePanelStackTopConstraint: NSLayoutConstraint!
-        @IBOutlet weak var whitePanelStackTrailingConstraint: NSLayoutConstraint!
-        @IBOutlet weak var whitePanelStackLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet var whitePanelStack: UIStackView!
+        @IBOutlet var whitePanel: UIView!
+        @IBOutlet var whitePannelStackHeightConstraint: NSLayoutConstraint!
+        @IBOutlet var whitePanelStackTopConstraint: NSLayoutConstraint!
+        @IBOutlet var whitePanelStackTrailingConstraint: NSLayoutConstraint!
+        @IBOutlet var whitePanelStackLeadingConstraint: NSLayoutConstraint!
     
     
     
@@ -56,6 +62,7 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         initialViewSetup()
         addObservers()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -105,6 +112,7 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
     }
     
     func initializeWhitePanelStack() {
+        whitePannelStackHeightConstraint.isActive = true
         whitePanelStackTopConstraint.isActive = false
         whitePannelStackHeightConstraint.constant = 0
         whitePanel.layer.cornerRadius = 20
@@ -130,6 +138,8 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
         initialButtonStackCenterConstraint.isActive = false
         initialButtonStackTrailingConstraint.isActive = true
         bannerStackTopConstraint.constant = 40
+        whitePanelStackLeadingConstraint.constant = 16
+        whitePanelStackTrailingConstraint.constant = 16
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
@@ -148,6 +158,9 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
                 })
             }
         }
+        
+        whiteStackLeadingOffset = whitePanelStackLeadingConstraint.constant
+        whiteStackTrailingOffset = whitePanelStackTrailingConstraint.constant
     }
     
     func keyboardWillShow(notification: NSNotification){
@@ -156,6 +169,9 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
             activateGrassStack()
             activateWhitePanelStack()
             activateLoginStack()
+            
+            
+
             UIView.animate(withDuration: 0.5) {
                 self.view.layoutIfNeeded()
             }
@@ -166,6 +182,7 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
         grassStackHeightConstraint.isActive = false
         grassStackTopConstraint.isActive = true
         grassStackTopConstraint.constant = -20
+        grassStackTopOffset = grassStackTopConstraint.constant
     }
     
     func activateWhitePanelStack() {
@@ -180,6 +197,7 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
         loginStackBottomConstraint.isActive = false
         loginStackTopConstraint.isActive = true
         loginStackTopConstraint.constant = 150
+        loginStackBottomOffset = loginStackBottomConstraint.constant
     }
     
     func keyboardWillHide(){
@@ -196,37 +214,40 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func dragToDismiss(_ sender: UIPanGestureRecognizer) {
         let gesture = sender.translation(in: view)
-        print("x: ", gesture.x)
-        print("y: ", gesture.y)
-        
-            //Swipe nedover
         self.view.endEditing(true)
-        //grassStack.center = CGPoint(x:view.center.x, y:view.center.y + gesture.y)
-        //whitePanelStack.center = CGPoint(x:view.center.x, y:view.center.y + gesture.y)
+
+        grassStackTopConstraint.constant = gesture.y + grassStackTopOffset
         whitePanelStackTopConstraint.constant = gesture.y
-        //loginStack.center = CGPoint(x:view.center.x, y:view.center.y + gesture.y)
+        
+        whitePanelStackLeadingConstraint.constant = whitePanelStackTopConstraint.constant/whiteStackLeadingOffset
+        whitePanelStackTrailingConstraint.constant = whitePanelStackTopConstraint.constant/whiteStackTrailingOffset
+        loginStackTopConstraint.constant = whitePanelStackTopConstraint.constant 
         
         if sender.state == UIGestureRecognizerState.ended {
             print("Ended")
             if (whitePanelStackTopConstraint.constant > 20) {
-                initializeGrassStack()
-                initializeWhitePanelStack()
+                deactivateGrassStack()
+                deactivateWhitePanelStack()
+                deacvtivateLoginStack()
                 loadLoginConfig()
+                sender.setTranslation(CGPoint.zero, in: self.view)
             }
-        
-        
         }
-
-        
-            
-        
-        //sender.setTranslation(CGPoint.zero, in: self.view)
-
-
     }
     
     func deacvtivateLoginStack() {
-        
+        loginStackTopConstraint.isActive = false
+        loginStackBottomConstraint.isActive = true
+    }
+    
+    func deactivateGrassStack() {
+        grassStackTopConstraint.isActive = false
+        grassStackHeightConstraint.isActive = true
+    }
+    
+    func deactivateWhitePanelStack() {
+        whitePanelStackTopConstraint.isActive = false
+        whitePannelStackHeightConstraint.isActive = true
     }
     
 }
