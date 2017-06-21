@@ -860,7 +860,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="66a-aW-ZUS">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
-                                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.23305154519999999" green="0.77393712290000005" blue="0.21476158910000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -941,7 +941,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lhI-b4-SuX">
                                         <rect key="frame" x="0.0" y="0.0" width="168.5" height="105.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="77"/>
-                                        <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -996,7 +996,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.94186372009999997" blue="0.84976238559999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.23305154519999999" green="0.77393712290000005" blue="0.21476158910000001" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="qeN-NF-1Wj" firstAttribute="leading" secondItem="aUA-Yg-Efj" secondAttribute="leading" id="37G-kd-5sF"/>
@@ -1026,12 +1026,12 @@
                                 <exclude reference="qeN-NF-1Wj"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Bki-E0-Vvs"/>
                                 <exclude reference="LJA-2P-J8v"/>
                                 <exclude reference="jBr-jY-gQf"/>
                                 <exclude reference="QKG-jw-bLF"/>
                                 <exclude reference="n2M-AZ-YnO"/>
                                 <exclude reference="Gn3-7M-YO4"/>
-                                <exclude reference="Bki-E0-Vvs"/>
                             </mask>
                         </variation>
                         <connections>

@@ -166,15 +166,19 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
     func keyboardWillShow(notification: NSNotification){
         if (!keyboardIsShown){
             keyboardIsShown = true
-            activateGrassStack()
-            activateWhitePanelStack()
-            activateLoginStack()
-            
-            
-
-            UIView.animate(withDuration: 0.5) {
-                self.view.layoutIfNeeded()
-            }
+            activateLoginConfig()
+        }
+    }
+    
+    func activateLoginConfig() {
+        activateGrassStack()
+        activateWhitePanelStack()
+        activateLoginStack()
+        
+        
+        
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -219,18 +223,24 @@ class welcomeNewViewController: UIViewController, UITextFieldDelegate {
         grassStackTopConstraint.constant = gesture.y + grassStackTopOffset
         whitePanelStackTopConstraint.constant = gesture.y
         
-        whitePanelStackLeadingConstraint.constant = whitePanelStackTopConstraint.constant/whiteStackLeadingOffset
-        whitePanelStackTrailingConstraint.constant = whitePanelStackTopConstraint.constant/whiteStackTrailingOffset
-        loginStackTopConstraint.constant = whitePanelStackTopConstraint.constant 
-        
+        if (whitePanelStackLeadingConstraint.constant < whiteStackLeadingOffset && whitePanelStackTrailingConstraint.constant < whiteStackTrailingOffset) {
+            whitePanelStackLeadingConstraint.constant = whitePanelStackTopConstraint.constant/whiteStackLeadingOffset
+            whitePanelStackTrailingConstraint.constant = whitePanelStackTopConstraint.constant/whiteStackTrailingOffset
+        }
+        if (whitePanelStackTopConstraint.constant > 150) {
+            loginStackTopConstraint.constant = whitePanelStackTopConstraint.constant + 20
+
+        }
         if sender.state == UIGestureRecognizerState.ended {
             print("Ended")
-            if (whitePanelStackTopConstraint.constant > 20) {
+            if (whitePanelStackTopConstraint.constant > self.view.bounds.height/4) {
                 deactivateGrassStack()
                 deactivateWhitePanelStack()
                 deacvtivateLoginStack()
                 loadLoginConfig()
                 sender.setTranslation(CGPoint.zero, in: self.view)
+            } else {
+                activateLoginConfig()
             }
         }
     }
