@@ -11,7 +11,6 @@
 		8314E2301EF435CF00F98E3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8314E22F1EF435CF00F98E3F /* GoogleService-Info.plist */; };
 		8314E2321EF44DA300F98E3F /* styleExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314E2311EF44DA300F98E3F /* styleExtentions.swift */; };
 		8314E2351EF44E3400F98E3F /* welcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314E2341EF44E3400F98E3F /* welcomeViewController.swift */; };
-		833FB90D1EF9878A0037BD98 /* playgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833FB90C1EF9878A0037BD98 /* playgroundViewController.swift */; };
 		8342E17E1EED87010079888F /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17D1EED87010079888F /* settingsViewController.swift */; };
 		8342E1801EED87170079888F /* searchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17F1EED87170079888F /* searchViewController.swift */; };
 		83469A881EEB0DF400D9AFC1 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83469A871EEB0DF400D9AFC1 /* homeViewController.swift */; };
@@ -21,7 +20,10 @@
 		83469AA81EEB1F1E00D9AFC1 /* Magnifier_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */; };
 		83469AAA1EEB22E900D9AFC1 /* PICOL_icon_Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */; };
 		83498D1C1EEB0B8300C3D92A /* navViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83498D1B1EEB0B8300C3D92A /* navViewController.swift */; };
+		8385F8C21F00614400619110 /* swipeControllerRefrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8385F8C11F00614400619110 /* swipeControllerRefrence.swift */; };
+		8385F8C71F008C8700619110 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8385F8C51F007ABC00619110 /* loginViewController.swift */; };
 		838B03421EF99AD300E78B87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547A1EEB0696001A278A /* Main.storyboard */; };
+		838F70911F005E230076019A /* playgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838F70901F005E230076019A /* playgroundViewController.swift */; };
 		83ADDDE91EF801A2006A6D2D /* clouds.png in Resources */ = {isa = PBXBuildFile; fileRef = 83ADDDE81EF801A2006A6D2D /* clouds.png */; };
 		83ADDDEB1EF803E9006A6D2D /* welcomeNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ADDDEA1EF803E9006A6D2D /* welcomeNewViewController.swift */; };
 		83ADDDED1EF80721006A6D2D /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = 83ADDDEC1EF80721006A6D2D /* car.png */; };
@@ -69,7 +71,6 @@
 		8314E22F1EF435CF00F98E3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8314E2311EF44DA300F98E3F /* styleExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = styleExtentions.swift; sourceTree = "<group>"; };
 		8314E2341EF44E3400F98E3F /* welcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcomeViewController.swift; sourceTree = "<group>"; };
-		833FB90C1EF9878A0037BD98 /* playgroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playgroundViewController.swift; sourceTree = "<group>"; };
 		8342E17D1EED87010079888F /* settingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
 		8342E17F1EED87170079888F /* searchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchViewController.swift; sourceTree = "<group>"; };
 		83469A871EEB0DF400D9AFC1 /* homeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +80,9 @@
 		83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Magnifier_3x.png; path = Resources/Icons/Magnifier_3x.png; sourceTree = SOURCE_ROOT; };
 		83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PICOL_icon_Settings.png; path = ../../../../../Icons/PICOL_icon_Settings.png; sourceTree = "<group>"; };
 		83498D1B1EEB0B8300C3D92A /* navViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navViewController.swift; sourceTree = "<group>"; };
+		8385F8C11F00614400619110 /* swipeControllerRefrence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = swipeControllerRefrence.swift; sourceTree = "<group>"; };
+		8385F8C51F007ABC00619110 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		838F70901F005E230076019A /* playgroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playgroundViewController.swift; sourceTree = "<group>"; };
 		83ADDDE81EF801A2006A6D2D /* clouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clouds.png; sourceTree = "<group>"; };
 		83ADDDEA1EF803E9006A6D2D /* welcomeNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcomeNewViewController.swift; sourceTree = "<group>"; };
 		83ADDDEC1EF80721006A6D2D /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
@@ -148,14 +152,6 @@
 			name = Login/Register;
 			sourceTree = "<group>";
 		};
-		833FB90B1EF987760037BD98 /* Playground */ = {
-			isa = PBXGroup;
-			children = (
-				833FB90C1EF9878A0037BD98 /* playgroundViewController.swift */,
-			);
-			name = Playground;
-			sourceTree = "<group>";
-		};
 		83469A861EEB0DDC00D9AFC1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,8 +180,18 @@
 				83469AA41EEB1F1E00D9AFC1 /* Love_Neutral_3x.png */,
 				83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */,
 				8314E2311EF44DA300F98E3F /* styleExtentions.swift */,
+				8385F8C11F00614400619110 /* swipeControllerRefrence.swift */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		838F708F1F005E0E0076019A /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				838F70901F005E230076019A /* playgroundViewController.swift */,
+				8385F8C51F007ABC00619110 /* loginViewController.swift */,
+			);
+			name = Playground;
 			sourceTree = "<group>";
 		};
 		83B720251EF7119F00AD00DE /* Settings */ = {
@@ -223,7 +229,7 @@
 		83F354751EEB0696001A278A /* ladeBilen */ = {
 			isa = PBXGroup;
 			children = (
-				833FB90B1EF987760037BD98 /* Playground */,
+				838F708F1F005E0E0076019A /* Playground */,
 				83469A9A1EEB190200D9AFC1 /* Resources */,
 				8314E2331EF44E1100F98E3F /* Login/Register */,
 				83469A861EEB0DDC00D9AFC1 /* Home */,
@@ -587,10 +593,12 @@
 				83ADDDEB1EF803E9006A6D2D /* welcomeNewViewController.swift in Sources */,
 				83498D1C1EEB0B8300C3D92A /* navViewController.swift in Sources */,
 				83469A881EEB0DF400D9AFC1 /* homeViewController.swift in Sources */,
-				833FB90D1EF9878A0037BD98 /* playgroundViewController.swift in Sources */,
+				838F70911F005E230076019A /* playgroundViewController.swift in Sources */,
 				83469A8A1EEB0E0600D9AFC1 /* favoritesViewController.swift in Sources */,
 				8342E17E1EED87010079888F /* settingsViewController.swift in Sources */,
 				83B720241EF7119B00AD00DE /* editSettingsViewController.swift in Sources */,
+				8385F8C21F00614400619110 /* swipeControllerRefrence.swift in Sources */,
+				8385F8C71F008C8700619110 /* loginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
