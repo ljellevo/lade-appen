@@ -153,6 +153,7 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         
         if (bannerStackTopConstraint.constant < 40) {
             bannerStackTopConstraint.constant = (gesture.y/bannerStackTopOffset!)*4
+            bannerStackTopConstraint.constant += 20
         }
         
         if (gesture.y > 104) {
