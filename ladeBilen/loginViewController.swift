@@ -85,87 +85,21 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         initializeLoginInputStack()
         isViewActive = false
     }
+    
     @IBAction func actionButtonClicked(_ sender: UIButton) {
-        if (isLoginActive == true) {
-            //Try to log in
-        } else {
-            if (hasRegistrationBegun == false){
-                //Present next registration view
-
-            } else {
-                //try to registrate user
-            }
-            //Check registration stages
-        }
+        
     }
+    
+    
+    
     
     @IBAction func switchButtonClicked(_ sender: UIButton) {
-        if (isViewActive == true) {
-            if (isLoginActive == true){
-                //Forgot password
-            }
-            else {
-                if (hasRegistrationBegun == false) {
-                    //Already user
-                } else {
-                    //Navigate back
-                }
-            }
-        } else {
-            switchView()
-        }
         
     }
     
-    func switchView() {
-        loginInputStackBottomConstraint.constant = -214
-        whitePanelStackHeightConstraint.constant = 0
-        UIView.animate(withDuration: 0.4) {
-            self.view.layoutIfNeeded()
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500) ) {
-            self.initializeBannerStack()
-            self.initializeWhitePanelStack()
-            self.initializeLoginInputStack()
-            if (self.isLoginActive == true){
-                self.handleInputFieldsDisplayText(status: 2)
-            } else {
-                self.handleInputFieldsDisplayText(status: 1)
-            }
-            UIView.animate(withDuration: 0.5) {
-                self.view.layoutIfNeeded()
-            }
-        }
-    }
     
-    func handleInputFieldsDisplayText(status: Int){
-        if (status == 1){
-            inputOneTextField.text = email
-            inputTwoTextField.text = ""
-            inputOneTextField.placeholder = "E-Post"
-            inputTwoTextField.placeholder = "Password"
-            loginButton.setTitle("Logg inn", for: .normal)
-            switchViewButton.setTitle("Opprette bruker?", for: .normal)
-            self.isLoginActive = true
-        } else if (status == 2) {
-            inputOneTextField.text = firstname
-            inputTwoTextField.text = email
-            inputOneTextField.placeholder = "Fornavn"
-            inputTwoTextField.placeholder = "E-Post"
-            loginButton.setTitle("Neste", for: .normal)
-            switchViewButton.setTitle("Allerede bruker?", for: .normal)
-            self.isLoginActive = false
-        } else if (status == 3) {
-            inputOneTextField.text = ""
-            inputTwoTextField.text = ""
-            inputOneTextField.placeholder = "Passord"
-            inputTwoTextField.placeholder = "Gjenta passord"
-            loginButton.setTitle("Registrer", for: .normal)
-            switchViewButton.setTitle("Tilbake", for: .normal)
-            self.isLoginActive = false
-        }
-    }
+    
+    
     
     func initializeBannerStack() {
         bannerStackTopConstraint.isActive = true
@@ -192,11 +126,7 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         loginInputStackTrailingConstraint.constant = 36
         loginInputStackBottomConstraint.constant = 40
         loginInputStackTopConstraint.constant = 144
-        if (isLoginActive == true){
-            switchViewButton.setTitle("Opprette bruker?", for: .normal)
-        } else {
-            switchViewButton.setTitle("Allerede bruker?", for: .normal)
-        }
+        
     }
     
     func keyboardWillShow() {
@@ -228,18 +158,6 @@ class loginViewController: UIViewController, UITextFieldDelegate {
     func activateLoginInputStack() {
         loginInputStackBottomConstraint.isActive = false
         loginInputStackTopConstraint.isActive = true
-        if (isLoginActive == true){
-            //Forgot password
-            switchViewButton.setTitle("Glemt passord?", for: .normal)
-        } else {
-            if (hasRegistrationBegun == false) {
-                //Already user
-                switchViewButton.setTitle("", for: .normal)
-            } else {
-                //Navigate back
-                switchViewButton.setTitle("Tilbake", for: .normal)
-            }
-        }
     }
     
     
