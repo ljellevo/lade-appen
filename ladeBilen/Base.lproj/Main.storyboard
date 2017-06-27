@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hCR-ms-NTp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Bmc-2K-3Mi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1177,13 +1177,17 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="actionButtonClicked:" destination="Bmc-2K-3Mi" eventType="touchUpInside" id="yoM-8v-yRJ"/>
                                             <action selector="loginButtonClicked:" destination="QoN-08-zTd" eventType="touchUpInside" id="zKh-Jh-EZX"/>
                                             <action selector="loginInitalButton:" destination="LZi-9k-sUV" eventType="touchUpInside" id="hJP-eD-lSP"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvo-vd-ehQ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecn-97-AXO">
                                         <rect key="frame" x="0.0" y="170" width="303" height="30"/>
-                                        <state key="normal" title="Oprette bruker?"/>
+                                        <state key="normal" title="Opprette bruker?"/>
+                                        <connections>
+                                            <action selector="switchButtonClicked:" destination="Bmc-2K-3Mi" eventType="touchUpInside" id="7w8-8K-2h7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -1227,7 +1231,8 @@
                     <connections>
                         <outlet property="bannerStack" destination="H1C-gT-7Of" id="Luc-tw-Foq"/>
                         <outlet property="bannerStackTopConstraint" destination="zwr-sD-LO9" id="gK1-z4-V9j"/>
-                        <outlet property="emailInputField" destination="vvj-SA-Di2" id="E1B-VU-won"/>
+                        <outlet property="inputOneTextField" destination="vvj-SA-Di2" id="ZVv-YG-h1q"/>
+                        <outlet property="inputTwoTextField" destination="biG-nU-Jfy" id="ayd-gJ-cFc"/>
                         <outlet property="loginButton" destination="Sxu-iS-2MX" id="ZTT-uZ-KKq"/>
                         <outlet property="loginInputStack" destination="3XJ-Ec-5pH" id="Bav-za-T8T"/>
                         <outlet property="loginInputStackBottomConstraint" destination="pbf-x4-KHE" id="r1H-lz-NNR"/>
@@ -1235,8 +1240,7 @@
                         <outlet property="loginInputStackTopConstraint" destination="VMb-so-Xtc" id="G7l-w8-gqZ"/>
                         <outlet property="loginInputStackTrailingConstraint" destination="aMb-Uy-fuD" id="gEH-Gz-3Ee"/>
                         <outlet property="logo" destination="Ciq-oO-3ms" id="ObT-TJ-6aa"/>
-                        <outlet property="notUserButton" destination="tvo-vd-ehQ" id="1kY-qj-jkQ"/>
-                        <outlet property="passwordInputField" destination="biG-nU-Jfy" id="cKT-Qh-QY5"/>
+                        <outlet property="switchViewButton" destination="ecn-97-AXO" id="dRn-fX-Qc3"/>
                         <outlet property="whitePanel" destination="LgQ-ir-el0" id="eUM-Oa-1xh"/>
                         <outlet property="whitePanelStack" destination="eeN-Rv-Lm4" id="f5y-3o-YVM"/>
                         <outlet property="whitePanelStackBottomConstraint" destination="ouI-eW-9xF" id="rKY-Vs-iOK"/>

@@ -43,14 +43,12 @@ class testApiViewController: UIViewController {
 
         // insert json data to the request
         request.httpBody = jsonData
-
-
     }
     
     
     
     func php(){
-        let urlPhp = URL(string: "http://nobil.no/api/server/search.php?apikey=5aeda7ca3cdef320f824f1b2a93859f0&apiversion=3&action=search&type=id&id=NOR_00171")!
+        let urlPhp = URL(string:"http://nobil.no/api/server/search.php?apikey=5aeda7ca3cdef320f824f1b2a93859f0&apiversion=3&action=search&type=near&lat=59.91673&long=10.74782&distance=2000&limit=10")!
         
         let requestPhp = URLRequest(url: urlPhp)
         
@@ -66,9 +64,4 @@ class testApiViewController: UIViewController {
         }
         task.resume()
     }
-    
-    
-    
-
-
 }
