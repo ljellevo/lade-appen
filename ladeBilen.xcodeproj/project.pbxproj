@@ -20,6 +20,8 @@
 		83469AA81EEB1F1E00D9AFC1 /* Magnifier_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */; };
 		83469AAA1EEB22E900D9AFC1 /* PICOL_icon_Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */; };
 		83498D1C1EEB0B8300C3D92A /* navViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83498D1B1EEB0B8300C3D92A /* navViewController.swift */; };
+		8381A7401F20DFC200F093A6 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 8381A73F1F20DFC200F093A6 /* no_image.png */; };
+		8381A7421F20E6C700F093A6 /* stationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8381A7411F20E6C700F093A6 /* stationsViewController.swift */; };
 		8385F8C21F00614400619110 /* swipeControllerRefrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8385F8C11F00614400619110 /* swipeControllerRefrence.swift */; };
 		8385F8C71F008C8700619110 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8385F8C51F007ABC00619110 /* loginViewController.swift */; };
 		838B03421EF99AD300E78B87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547A1EEB0696001A278A /* Main.storyboard */; };
@@ -37,6 +39,7 @@
 		83B720321EF723EC00AD00DE /* Type_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B7202B1EF723EC00AD00DE /* Type_1.png */; };
 		83B720331EF723EC00AD00DE /* Type_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B7202C1EF723EC00AD00DE /* Type_2.png */; };
 		83CB041E1F0199C600466503 /* testApiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CB041D1F0199C600466503 /* testApiViewController.swift */; };
+		83D4C7A01F062894004DB649 /* appicon_test.png in Resources */ = {isa = PBXBuildFile; fileRef = 83D4C79F1F062894004DB649 /* appicon_test.png */; };
 		83F354771EEB0696001A278A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354761EEB0696001A278A /* AppDelegate.swift */; };
 		83F354791EEB0696001A278A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354781EEB0696001A278A /* ViewController.swift */; };
 		83F3547E1EEB0696001A278A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547D1EEB0696001A278A /* Assets.xcassets */; };
@@ -81,6 +84,8 @@
 		83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Magnifier_3x.png; path = Resources/Icons/Magnifier_3x.png; sourceTree = SOURCE_ROOT; };
 		83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PICOL_icon_Settings.png; path = ../../../../../Icons/PICOL_icon_Settings.png; sourceTree = "<group>"; };
 		83498D1B1EEB0B8300C3D92A /* navViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navViewController.swift; sourceTree = "<group>"; };
+		8381A73F1F20DFC200F093A6 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image.png; sourceTree = "<group>"; };
+		8381A7411F20E6C700F093A6 /* stationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stationsViewController.swift; sourceTree = "<group>"; };
 		8385F8C11F00614400619110 /* swipeControllerRefrence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = swipeControllerRefrence.swift; sourceTree = "<group>"; };
 		8385F8C51F007ABC00619110 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		838F70901F005E230076019A /* playgroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playgroundViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +102,7 @@
 		83B7202B1EF723EC00AD00DE /* Type_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Type_1.png; sourceTree = "<group>"; };
 		83B7202C1EF723EC00AD00DE /* Type_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Type_2.png; sourceTree = "<group>"; };
 		83CB041D1F0199C600466503 /* testApiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testApiViewController.swift; sourceTree = "<group>"; };
+		83D4C79F1F062894004DB649 /* appicon_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon_test.png; sourceTree = "<group>"; };
 		83F354731EEB0696001A278A /* ladeBilen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ladeBilen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F354761EEB0696001A278A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F354781EEB0696001A278A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +167,7 @@
 				83469A891EEB0E0600D9AFC1 /* favoritesViewController.swift */,
 				83498D1B1EEB0B8300C3D92A /* navViewController.swift */,
 				8342E17F1EED87170079888F /* searchViewController.swift */,
+				8381A7411F20E6C700F093A6 /* stationsViewController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -168,6 +175,8 @@
 		83469A9A1EEB190200D9AFC1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8381A73F1F20DFC200F093A6 /* no_image.png */,
+				83D4C79F1F062894004DB649 /* appicon_test.png */,
 				83ADDDEC1EF80721006A6D2D /* car.png */,
 				83ADDDE81EF801A2006A6D2D /* clouds.png */,
 				83B720261EF723EC00AD00DE /* CCS.png */,
@@ -414,6 +423,8 @@
 				83469AAA1EEB22E900D9AFC1 /* PICOL_icon_Settings.png in Resources */,
 				8314E2301EF435CF00F98E3F /* GoogleService-Info.plist in Resources */,
 				83F354811EEB0696001A278A /* LaunchScreen.storyboard in Resources */,
+				8381A7401F20DFC200F093A6 /* no_image.png in Resources */,
+				83D4C7A01F062894004DB649 /* appicon_test.png in Resources */,
 				838B03421EF99AD300E78B87 /* Main.storyboard in Resources */,
 				83B7202D1EF723EC00AD00DE /* CCS.png in Resources */,
 				83469AA61EEB1F1E00D9AFC1 /* Location_Icon_2x.png in Resources */,
@@ -600,6 +611,7 @@
 				83469A8A1EEB0E0600D9AFC1 /* favoritesViewController.swift in Sources */,
 				8342E17E1EED87010079888F /* settingsViewController.swift in Sources */,
 				83B720241EF7119B00AD00DE /* editSettingsViewController.swift in Sources */,
+				8381A7421F20E6C700F093A6 /* stationsViewController.swift in Sources */,
 				8385F8C21F00614400619110 /* swipeControllerRefrence.swift in Sources */,
 				8385F8C71F008C8700619110 /* loginViewController.swift in Sources */,
 				83CB041E1F0199C600466503 /* testApiViewController.swift in Sources */,

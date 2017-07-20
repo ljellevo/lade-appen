@@ -48,7 +48,7 @@ class testApiViewController: UIViewController {
     
     
     func php(){
-        let urlPhp = URL(string:"http://nobil.no/api/server/search.php?apikey=5aeda7ca3cdef320f824f1b2a93859f0&apiversion=3&action=search&type=near&lat=59.91673&long=10.74782&distance=2000&limit=10")!
+        let urlPhp = URL(string:"http://nobil.no/api/server/search.php?apikey=5aeda7ca3cdef320f824f1b2a93859f0&apiversion=3&action=search&type=stats_AllDetailsByCountyId&id=11&countrycode=NOR")!
         
         let requestPhp = URLRequest(url: urlPhp)
         
