@@ -102,7 +102,7 @@
                                 </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cZY-aI-50A">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cZY-aI-50A" userLabel="Collection View">
                                 <rect key="frame" x="0.0" y="64" width="320" height="182"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UAy-xZ-VGd">
@@ -208,7 +208,7 @@
                                     <constraint firstAttribute="height" constant="182" id="c0D-BH-hgA"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZyS-rX-N03">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZyS-rX-N03" userLabel="Info Labels">
                                 <rect key="frame" x="16" y="254" width="288" height="131.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IKEA slependen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq5-3q-dLi">
@@ -252,27 +252,13 @@
                                     <constraint firstAttribute="height" constant="131.5" id="AgL-qn-AVl"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="s2E-48-SLs">
-                                <rect key="frame" x="16" y="393" width="288" height="61"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tre plasser i felt N i p-hus P1, rett ved inngangen. 2 plasser på toppen av P-Huset" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Plz-kG-sxw">
-                                        <rect key="frame" x="0.0" y="0.0" width="288" height="61"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AZO-Bq-HpF" firstAttribute="top" secondItem="HiP-C2-6jX" secondAttribute="bottom" id="0Zh-mc-ate"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="s2E-48-SLs" secondAttribute="trailing" id="4YK-cq-ias"/>
-                            <constraint firstItem="s2E-48-SLs" firstAttribute="leading" secondItem="Bbf-T3-bOS" secondAttribute="leadingMargin" id="7fj-Wk-AlL"/>
                             <constraint firstAttribute="trailing" secondItem="cZY-aI-50A" secondAttribute="trailing" id="7ze-jZ-qIj"/>
                             <constraint firstItem="XQL-VH-zt1" firstAttribute="leading" secondItem="Bbf-T3-bOS" secondAttribute="leading" id="8gr-QQ-i2w"/>
                             <constraint firstItem="AZO-Bq-HpF" firstAttribute="leading" secondItem="Bbf-T3-bOS" secondAttribute="leading" id="8qT-p3-PaR"/>
-                            <constraint firstItem="s2E-48-SLs" firstAttribute="top" secondItem="ZyS-rX-N03" secondAttribute="bottom" constant="7" id="GMi-D5-gIL"/>
                             <constraint firstItem="XQL-VH-zt1" firstAttribute="top" secondItem="HiP-C2-6jX" secondAttribute="bottom" id="IJc-X2-hR7"/>
                             <constraint firstItem="ZyS-rX-N03" firstAttribute="leading" secondItem="Bbf-T3-bOS" secondAttribute="leadingMargin" id="Jv5-p1-qWe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZyS-rX-N03" secondAttribute="trailing" id="PWk-et-hbh"/>
