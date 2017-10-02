@@ -333,7 +333,4 @@ class welcomeViewController: UIViewController, UITextFieldDelegate {
             }
         })
     }
-    
-    
-    
 }

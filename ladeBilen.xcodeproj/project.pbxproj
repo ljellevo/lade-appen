@@ -153,27 +153,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8314E2331EF44E1100F98E3F /* Login/Register */ = {
-			isa = PBXGroup;
-			children = (
-				8314E2341EF44E3400F98E3F /* welcomeViewController.swift */,
-				83ADDDEA1EF803E9006A6D2D /* welcomeNewViewController.swift */,
-			);
-			name = Login/Register;
-			sourceTree = "<group>";
-		};
-		83469A861EEB0DDC00D9AFC1 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				83469A871EEB0DF400D9AFC1 /* homeViewController.swift */,
-				83469A891EEB0E0600D9AFC1 /* favoritesViewController.swift */,
-				83498D1B1EEB0B8300C3D92A /* navViewController.swift */,
-				8342E17F1EED87170079888F /* searchViewController.swift */,
-				8381A7411F20E6C700F093A6 /* stationsViewController.swift */,
-			);
-			name = Home;
-			sourceTree = "<group>";
-		};
 		83469A9A1EEB190200D9AFC1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,14 +188,35 @@
 			path = Playground;
 			sourceTree = "<group>";
 		};
-		83B720251EF7119F00AD00DE /* Settings */ = {
+		835413491F82EFDB000A70CB /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				8314E2341EF44E3400F98E3F /* welcomeViewController.swift */,
+				83ADDDEA1EF803E9006A6D2D /* welcomeNewViewController.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		8354134A1F82F01E000A70CB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				83469A871EEB0DF400D9AFC1 /* homeViewController.swift */,
+				83469A891EEB0E0600D9AFC1 /* favoritesViewController.swift */,
+				83498D1B1EEB0B8300C3D92A /* navViewController.swift */,
+				8342E17F1EED87170079888F /* searchViewController.swift */,
+				8381A7411F20E6C700F093A6 /* stationsViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8354134D1F82F04A000A70CB /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				8342E17D1EED87010079888F /* settingsViewController.swift */,
 				83B720211EF7068F00AD00DE /* detailedSettingsTableViewController.swift */,
 				83B720231EF7119B00AD00DE /* editSettingsViewController.swift */,
 			);
-			name = Settings;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		83F3546A1EEB0696001A278A = {
@@ -244,11 +244,11 @@
 		83F354751EEB0696001A278A /* ladeBilen */ = {
 			isa = PBXGroup;
 			children = (
+				8354134D1F82F04A000A70CB /* Settings */,
+				8354134A1F82F01E000A70CB /* Home */,
+				835413491F82EFDB000A70CB /* Welcome */,
 				835413351F82EB86000A70CB /* Playground */,
 				83469A9A1EEB190200D9AFC1 /* Resources */,
-				8314E2331EF44E1100F98E3F /* Login/Register */,
-				83469A861EEB0DDC00D9AFC1 /* Home */,
-				83B720251EF7119F00AD00DE /* Settings */,
 				83F354761EEB0696001A278A /* AppDelegate.swift */,
 				83F354781EEB0696001A278A /* ViewController.swift */,
 				83F3547A1EEB0696001A278A /* Main.storyboard */,
