@@ -83,7 +83,7 @@
 		83469AA31EEB1F1E00D9AFC1 /* Location_Icon_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Location_Icon_2x.png; path = Resources/Icons/Location_Icon_2x.png; sourceTree = SOURCE_ROOT; };
 		83469AA41EEB1F1E00D9AFC1 /* Love_Neutral_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Love_Neutral_3x.png; path = Resources/Icons/Love_Neutral_3x.png; sourceTree = SOURCE_ROOT; };
 		83469AA51EEB1F1E00D9AFC1 /* Magnifier_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Magnifier_3x.png; path = Resources/Icons/Magnifier_3x.png; sourceTree = SOURCE_ROOT; };
-		83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PICOL_icon_Settings.png; path = ../../../../../Icons/PICOL_icon_Settings.png; sourceTree = "<group>"; };
+		83469AA91EEB22E900D9AFC1 /* PICOL_icon_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PICOL_icon_Settings.png; path = ../Resources/Icons/PICOL_icon_Settings.png; sourceTree = "<group>"; };
 		83498D1B1EEB0B8300C3D92A /* navViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navViewController.swift; sourceTree = "<group>"; };
 		8381A73F1F20DFC200F093A6 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image.png; sourceTree = "<group>"; };
 		8381A7411F20E6C700F093A6 /* stationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stationsViewController.swift; sourceTree = "<group>"; };
