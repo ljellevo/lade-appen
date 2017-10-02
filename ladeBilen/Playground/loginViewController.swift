@@ -92,12 +92,9 @@ class loginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func switchButtonClicked(_ sender: UIButton) {
         if(isViewActive == true){
-            //Login er aktivert, glemt passord
             print("Glemt passord")
         } else {
-            //Login er ikke akrivert. Gå til registrering
             print("Opprett bruker")
-
         }
     }
     
