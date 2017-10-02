@@ -153,15 +153,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		83469A9A1EEB190200D9AFC1 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				8314E2311EF44DA300F98E3F /* styleExtentions.swift */,
-				8385F8C11F00614400619110 /* swipeControllerRefrence.swift */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		835413351F82EB86000A70CB /* Playground */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +217,15 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
+		835413831F82F6B9000A70CB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8314E2311EF44DA300F98E3F /* styleExtentions.swift */,
+				8385F8C11F00614400619110 /* swipeControllerRefrence.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		83F3546A1EEB0696001A278A = {
 			isa = PBXGroup;
 			children = (
@@ -251,12 +251,12 @@
 		83F354751EEB0696001A278A /* ladeBilen */ = {
 			isa = PBXGroup;
 			children = (
+				835413831F82F6B9000A70CB /* Resources */,
 				8354134E1F82F0A6000A70CB /* Icons */,
 				8354134D1F82F04A000A70CB /* Settings */,
 				8354134A1F82F01E000A70CB /* Home */,
 				835413491F82EFDB000A70CB /* Welcome */,
 				835413351F82EB86000A70CB /* Playground */,
-				83469A9A1EEB190200D9AFC1 /* Resources */,
 				83F354761EEB0696001A278A /* AppDelegate.swift */,
 				83F354781EEB0696001A278A /* ViewController.swift */,
 				83F3547A1EEB0696001A278A /* Main.storyboard */,

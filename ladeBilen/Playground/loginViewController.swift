@@ -70,8 +70,6 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
-
-    
     func initializeApperance() {
         whitePanel.layer.cornerRadius = 20
         loginButton.layer.cornerRadius = 20
@@ -84,22 +82,24 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         initializeWhitePanelStack()
         initializeLoginInputStack()
         isViewActive = false
+        switchViewButton.setTitle("Opprette bruker?", for: .normal)
+
     }
     
     @IBAction func actionButtonClicked(_ sender: UIButton) {
         
     }
     
-    
-    
-    
     @IBAction func switchButtonClicked(_ sender: UIButton) {
-        
+        if(isViewActive == true){
+            //Login er aktivert, glemt passord
+            print("Glemt passord")
+        } else {
+            //Login er ikke akrivert. Gå til registrering
+            print("Opprett bruker")
+
+        }
     }
-    
-    
-    
-    
     
     func initializeBannerStack() {
         bannerStackTopConstraint.isActive = true
@@ -126,7 +126,6 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         loginInputStackTrailingConstraint.constant = 36
         loginInputStackBottomConstraint.constant = 40
         loginInputStackTopConstraint.constant = 144
-        
     }
     
     func keyboardWillShow() {
@@ -136,6 +135,7 @@ class loginViewController: UIViewController, UITextFieldDelegate {
     
     func activateLoginView() {
         isViewActive = true
+        switchViewButton.setTitle("Glemt passord?", for: .normal)
         activateBannerStack()
         activateWhitePanelStack()
         activateLoginInputStack()
@@ -168,18 +168,20 @@ class loginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
         let gesture = sender.translation(in: view)
         self.view.endEditing(true)
-        print(gesture.y)
         gestureWhitePanel = gesture.y/whitePanelLeadingOffset!
         gestureBanner = (gesture.y/bannerStackTopOffset!)*4
         
         whitePanelStackTopConstraint.constant = gesture.y
+        
 
         if (gestureWhitePanel! < whitePanelLeadingOffset! && isViewActive == true){
+            //Styrer øking/redusering av sidene til white panel
             whitePanelStackLeadingConstraint.constant = gesture.y/whitePanelLeadingOffset!
             whitePanelStackTrailingConstraint.constant = gesture.y/whitePanelTrailingOffset!
         }
         
         if (gestureBanner! < 40 && isViewActive == true) {
+            //Styrer banner bevegelse
             bannerStackTopConstraint.constant = (gesture.y/bannerStackTopOffset!)*4
             bannerStackTopConstraint.constant += 20
         }
@@ -205,7 +207,6 @@ class loginViewController: UIViewController, UITextFieldDelegate {
                 })
             }
             sender.setTranslation(CGPoint.zero, in: self.view)
-
         }
     }
 }
