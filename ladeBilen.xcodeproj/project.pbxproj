@@ -199,14 +199,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		838F708F1F005E0E0076019A /* Playground */ = {
+		835413351F82EB86000A70CB /* Playground */ = {
 			isa = PBXGroup;
 			children = (
 				838F70901F005E230076019A /* playgroundViewController.swift */,
 				8385F8C51F007ABC00619110 /* loginViewController.swift */,
 				83CB041D1F0199C600466503 /* testApiViewController.swift */,
 			);
-			name = Playground;
+			path = Playground;
 			sourceTree = "<group>";
 		};
 		83B720251EF7119F00AD00DE /* Settings */ = {
@@ -244,7 +244,7 @@
 		83F354751EEB0696001A278A /* ladeBilen */ = {
 			isa = PBXGroup;
 			children = (
-				838F708F1F005E0E0076019A /* Playground */,
+				835413351F82EB86000A70CB /* Playground */,
 				83469A9A1EEB190200D9AFC1 /* Resources */,
 				8314E2331EF44E1100F98E3F /* Login/Register */,
 				83469A861EEB0DDC00D9AFC1 /* Home */,
