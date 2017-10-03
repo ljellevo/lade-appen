@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class loginViewController: UIViewController, UITextFieldDelegate {
     
@@ -51,9 +52,12 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         inputOneTextField.delegate = self
         inputTwoTextField.delegate = self
-        initializeApperance()
         initialLoginView()
         addObservers()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        initializeApperance()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,11 +87,25 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         initializeLoginInputStack()
         isViewActive = false
         switchViewButton.setTitle("Opprette bruker?", for: .normal)
-
     }
     
     @IBAction func actionButtonClicked(_ sender: UIButton) {
-        
+        if inputOneTextField.text!.isEmpty || inputTwoTextField.text!.isEmpty {
+            if(inputOneTextField.text!.isEmpty){
+                inputOneTextField.setBottomBorderRed()
+            } else {
+                inputTwoTextField.setBottomBorderRed()
+            }
+        } else {
+            FIRAuth.auth()?.signIn(withEmail: inputOneTextField.text!, password: inputTwoTextField.text!, completion: { (user, error) in
+                if (error != nil) {
+                    self.inputOneTextField.setBottomBorderRed()
+                    self.inputTwoTextField.setBottomBorderRed()
+                } else {
+                    self.performSegue(withIdentifier: "toHome", sender: self)
+                }
+            })
+        }
     }
     
     @IBAction func switchButtonClicked(_ sender: UIButton) {
@@ -182,7 +200,7 @@ class loginViewController: UIViewController, UITextFieldDelegate {
             bannerStackTopConstraint.constant = (gesture.y/bannerStackTopOffset!)*4
             bannerStackTopConstraint.constant += 20
         }
-        
+                
         if (gesture.y > 104) {
             loginInputStackTopConstraint.constant = gesture.y
             loginInputStackTopConstraint.constant += 20
@@ -206,4 +224,5 @@ class loginViewController: UIViewController, UITextFieldDelegate {
             sender.setTranslation(CGPoint.zero, in: self.view)
         }
     }
+    
 }
