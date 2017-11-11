@@ -16,13 +16,12 @@ class Login: UIViewController, UITextFieldDelegate {
     var bannerStackTopOffset: CGFloat?
     var gestureWhitePanel: CGFloat?
     var gestureBanner: CGFloat?
-    var isLoginActive: Bool? = true
     var isViewActive: Bool? = false
-    var hasRegistrationBegun: Bool? = false
     var email: String? = ""
-    var firstname: String? = ""
+    var username: String? = ""
     var password: String? = ""
     var retypePeassword: String? = ""
+    var loginViewIsPresented: Bool = true
     
     
     @IBOutlet var bannerStack: UIStackView!
@@ -42,8 +41,9 @@ class Login: UIViewController, UITextFieldDelegate {
         @IBOutlet var loginInputStackTopConstraint: NSLayoutConstraint!
         @IBOutlet var inputOneTextField: UITextField!
         @IBOutlet var inputTwoTextField: UITextField!
-
-        @IBOutlet var loginButton: UIButton!
+        @IBOutlet var inputThreeTextField: UITextField!
+    
+    @IBOutlet var loginButton: UIButton!
         @IBOutlet var switchViewButton: UIButton!
 
     override func viewDidLoad() {
@@ -77,14 +77,7 @@ class Login: UIViewController, UITextFieldDelegate {
         loginButton.layer.cornerRadius = 20
         inputOneTextField.setBottomBorderGray()
         inputTwoTextField.setBottomBorderGray()
-    }
-    
-    func initialLoginView() {
-        initializeBannerStack()
-        initializeWhitePanelStack()
-        initializeLoginInputStack()
-        isViewActive = false
-        switchViewButton.setTitle("Opprette bruker?", for: .normal)
+        inputThreeTextField.setBottomBorderGray()
     }
     
     @IBAction func actionButtonClicked(_ sender: UIButton) {
@@ -94,15 +87,32 @@ class Login: UIViewController, UITextFieldDelegate {
             } else {
                 inputTwoTextField.setBottomBorderRed()
             }
-        } else {
+        } else if(loginViewIsPresented){
             FIRAuth.auth()?.signIn(withEmail: inputOneTextField.text!, password: inputTwoTextField.text!, completion: { (user, error) in
                 if (error != nil) {
                     self.inputOneTextField.setBottomBorderRed()
                     self.inputTwoTextField.setBottomBorderRed()
                 } else {
+                    print("Bruker ble suksessfult logget inn")
                     self.performSegue(withIdentifier: "toHome", sender: self)
                 }
             })
+        } else {
+            if(inputTwoTextField.text == inputThreeTextField.text){
+                FIRAuth.auth()?.createUser(withEmail: inputOneTextField.text!, password: inputTwoTextField.text!) { (user, error) in
+                    if (error != nil){
+                        self.inputOneTextField.setBottomBorderRed()
+                        self.inputTwoTextField.setBottomBorderRed()
+                        self.inputThreeTextField.setBottomBorderRed()
+                    } else {
+                        print("Bruker ble suksessfult opprettet")
+                        self.performSegue(withIdentifier: "toHome", sender: self)
+                    }
+                }
+            } else {
+                inputTwoTextField.setBottomBorderRed()
+                inputThreeTextField.setBottomBorderRed()
+            }
         }
     }
     
@@ -110,30 +120,62 @@ class Login: UIViewController, UITextFieldDelegate {
         if(isViewActive == true){
             print("Glemt passord")
         } else {
-            print("Opprett bruker")
+            if(loginViewIsPresented){
+                loginViewIsPresented = false
+                print("Opprett bruker")
+                loginButton.setTitle("Register", for: .normal)
+                switchViewButton.setTitle("Allerede bruker?", for: .normal)
+                inputOneTextField.placeholder = "E-Post"
+                inputTwoTextField.placeholder = "Passord"
+                inputThreeTextField.isHidden = false
+            } else {
+                loginViewIsPresented = true
+                print("Logge inn")
+                loginButton.setTitle("Logg inn", for: .normal)
+                switchViewButton.setTitle("Opprette bruker?", for: .normal)
+                inputOneTextField.placeholder = "E-Post"
+                inputTwoTextField.placeholder = "Passord"
+                inputThreeTextField.isHidden = true
+
+            }
         }
     }
+
     
-    func initializeBannerStack() {
+    func initialLoginView() {
+        if(loginViewIsPresented){
+            loginButton.setTitle("Logg inn", for: .normal)
+            switchViewButton.setTitle("Opprette bruker?", for: .normal)
+            inputOneTextField.placeholder = "E-Post"
+            inputTwoTextField.placeholder = "Passord"
+            inputThreeTextField.isHidden = true
+
+        } else {
+            loginButton.setTitle("Register", for: .normal)
+            switchViewButton.setTitle("Allerede bruker?", for: .normal)
+            inputOneTextField.placeholder = "E-Post"
+            inputTwoTextField.placeholder = "Passord"
+            inputThreeTextField.isHidden = false
+
+        }
+        
+        isViewActive = false
         bannerStackTopConstraint.isActive = true
         bannerStackTopConstraint.constant = 40
         bannerStackTopOffset = bannerStackTopConstraint.constant
-    }
-    
-    func initializeWhitePanelStack() {
-        whitePanelStackTopConstraint.constant = self.view.bounds.height/2
+        
+        whitePanelStackTopConstraint.constant = UIScreen.main.bounds.height * 0.45
         whitePanelStackLeadingConstraint.constant = 16
         whitePanelStackTrailingConstraint.constant = 16
         whitePanelStackBottomConstraint.constant = -17
         whitePanelLeadingOffset = whitePanelStackLeadingConstraint.constant
         whitePanelTrailingOffset = whitePanelStackTrailingConstraint.constant
-    }
-    
-    func initializeLoginInputStack() {
+        
         loginInputStackLeadingConstraint.constant = 36
         loginInputStackTrailingConstraint.constant = 36
-        loginInputStackTopConstraint.constant = UIScreen.main.bounds.height * 0.55
+        loginInputStackTopConstraint.constant = UIScreen.main.bounds.height * 0.50
     }
+
     
     func keyboardWillShow() {
         print("Keyboard will show")
@@ -141,28 +183,23 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     
     func activateLoginView() {
-        isViewActive = true
-        switchViewButton.setTitle("Glemt passord?", for: .normal)
-        activateBannerStack()
-        activateWhitePanelStack()
-        activateLoginInputStack()
-        UIView.animate(withDuration: 0.5) {
-            self.view.layoutIfNeeded()
+        if(loginViewIsPresented){
+            switchViewButton.setTitle("Glemt passord?", for: .normal)
+        } else {
+            switchViewButton.setTitle("Allerede bruker?", for: .normal)
         }
-    }
-    
-    func activateBannerStack() {
+        
+        isViewActive = true
         bannerStackTopConstraint.constant = 20
-    }
-    
-    func activateWhitePanelStack() {
+        
         whitePanelStackTopConstraint.constant = 0
         whitePanelStackLeadingConstraint.constant = 0
         whitePanelStackTrailingConstraint.constant = 0
-    }
-    
-    func activateLoginInputStack() {
+        
         loginInputStackTopConstraint.constant = 120
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     

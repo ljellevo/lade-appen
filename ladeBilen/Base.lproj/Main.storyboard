@@ -1093,12 +1093,11 @@
                         <outlet property="registrationInputOne" destination="wyw-vE-BhV" id="Iit-Mz-jL2"/>
                         <outlet property="registrationInputTwo" destination="c3M-Em-otp" id="MfJ-xf-Zx3"/>
                         <outlet property="registrationTextFieldStack" destination="Yrp-hP-gdy" id="xN9-oi-PzD"/>
-                        <segue destination="XCX-Ed-eow" kind="show" identifier="toHome" animates="NO" id="BpD-1f-p3h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hvV-R9-LWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-628" y="-674"/>
+            <point key="canvasLocation" x="529" y="-917"/>
         </scene>
         <!--Login-->
         <scene sceneID="aaR-rd-QIn">
@@ -1128,7 +1127,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3XJ-Ec-5pH" userLabel="Login Input Stack">
-                                <rect key="frame" x="36" y="417" width="248" height="200"/>
+                                <rect key="frame" x="36" y="417" width="248" height="245"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-Post" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vvj-SA-Di2">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="35"/>
@@ -1148,15 +1147,24 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gjenta Passord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b8L-FK-wSo">
+                                        <rect key="frame" x="0.0" y="90" width="248" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="rGk-Ch-LmE"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                    </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hR-0J-rIK">
-                                        <rect key="frame" x="0.0" y="90" width="248" height="10"/>
+                                        <rect key="frame" x="0.0" y="135" width="248" height="10"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="GmG-84-qoy"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxu-iS-2MX">
-                                        <rect key="frame" x="0.0" y="110" width="248" height="50"/>
+                                        <rect key="frame" x="0.0" y="155" width="248" height="50"/>
                                         <color key="backgroundColor" red="0.23305154519999999" green="0.77393712290000005" blue="0.21476158910000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Uck-Qa-y7J"/>
@@ -1171,7 +1179,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecn-97-AXO">
-                                        <rect key="frame" x="0.0" y="170" width="248" height="30"/>
+                                        <rect key="frame" x="0.0" y="215" width="248" height="30"/>
                                         <state key="normal" title="Opprette bruker?"/>
                                         <connections>
                                             <action selector="switchButtonClicked:" destination="Bmc-2K-3Mi" eventType="touchUpInside" id="7w8-8K-2h7"/>
@@ -1213,6 +1221,7 @@
                         <outlet property="bannerStack" destination="H1C-gT-7Of" id="Luc-tw-Foq"/>
                         <outlet property="bannerStackTopConstraint" destination="zwr-sD-LO9" id="gK1-z4-V9j"/>
                         <outlet property="inputOneTextField" destination="vvj-SA-Di2" id="ZVv-YG-h1q"/>
+                        <outlet property="inputThreeTextField" destination="b8L-FK-wSo" id="L4D-yN-pnL"/>
                         <outlet property="inputTwoTextField" destination="biG-nU-Jfy" id="ayd-gJ-cFc"/>
                         <outlet property="loginButton" destination="Sxu-iS-2MX" id="ZTT-uZ-KKq"/>
                         <outlet property="loginInputStack" destination="3XJ-Ec-5pH" id="Bav-za-T8T"/>
@@ -1227,6 +1236,7 @@
                         <outlet property="whitePanelStackLeadingConstraint" destination="Gey-eI-v3L" id="bOV-6f-Q3C"/>
                         <outlet property="whitePanelStackTopConstraint" destination="gK7-uc-hPU" id="fNW-xb-zRF"/>
                         <outlet property="whitePanelStackTrailingConstraint" destination="mGz-tv-D9F" id="91Y-vA-rqq"/>
+                        <segue destination="XCX-Ed-eow" kind="show" identifier="toHome" id="6Kj-WQ-zth"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LuC-7K-wpv" userLabel="First Responder" sceneMemberID="firstResponder"/>

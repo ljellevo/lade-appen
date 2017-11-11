@@ -62,7 +62,7 @@ class settingsViewController: UITableViewController {
         do {
             try FIRAuth.auth()?.signOut()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "Welcome") as! welcomeViewController
+            let controller = storyboard.instantiateViewController(withIdentifier: "Login") as! Login
             self.present(controller, animated: false, completion: { () -> Void in
             })
         } catch let signOutError as NSError {
