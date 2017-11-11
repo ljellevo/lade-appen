@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class loginViewController: UIViewController, UITextFieldDelegate {
+class Login: UIViewController, UITextFieldDelegate {
     
     var whitePanelLeadingOffset: CGFloat?
     var whitePanelTrailingOffset: CGFloat?
@@ -183,6 +183,7 @@ class loginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
         let gesture = sender.translation(in: view)
         self.view.endEditing(true)
+        print(gesture.y)
         gestureWhitePanel = gesture.y/whitePanelLeadingOffset!
         gestureBanner = (gesture.y/bannerStackTopOffset!)*4
         
