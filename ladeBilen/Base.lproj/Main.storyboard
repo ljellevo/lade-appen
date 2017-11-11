@@ -1113,23 +1113,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eeN-Rv-Lm4" userLabel="White Panel Stack">
-                                <rect key="frame" x="16" y="298" width="288" height="287"/>
+                                <rect key="frame" x="16" y="307" width="288" height="278"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LgQ-ir-el0">
-                                        <rect key="frame" x="0.0" y="0.0" width="288" height="287"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="278"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="LgQ-ir-el0" secondAttribute="trailing" id="77J-gW-dbg"/>
-                                    <constraint firstAttribute="height" constant="287" id="IA8-K8-aco"/>
                                     <constraint firstItem="LgQ-ir-el0" firstAttribute="leading" secondItem="eeN-Rv-Lm4" secondAttribute="leading" id="jeg-2n-MOn"/>
                                     <constraint firstAttribute="bottom" secondItem="LgQ-ir-el0" secondAttribute="bottom" id="jju-Yi-31l"/>
                                     <constraint firstItem="LgQ-ir-el0" firstAttribute="top" secondItem="eeN-Rv-Lm4" secondAttribute="top" id="rWH-Gn-Bfw"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3XJ-Ec-5pH" userLabel="Login Input Stack">
-                                <rect key="frame" x="36" y="328" width="248" height="200"/>
+                                <rect key="frame" x="36" y="417" width="248" height="200"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-Post" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vvj-SA-Di2">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="35"/>
@@ -1201,18 +1200,11 @@
                             <constraint firstItem="3XJ-Ec-5pH" firstAttribute="top" secondItem="Ybw-Tj-2v4" secondAttribute="bottom" constant="397" id="VMb-so-Xtc"/>
                             <constraint firstItem="3XJ-Ec-5pH" firstAttribute="leading" secondItem="5Xe-4x-GwZ" secondAttribute="leading" constant="36" id="Vma-Kz-H0i"/>
                             <constraint firstAttribute="trailing" secondItem="3XJ-Ec-5pH" secondAttribute="trailing" constant="36" id="aMb-Uy-fuD"/>
-                            <constraint firstItem="eeN-Rv-Lm4" firstAttribute="top" secondItem="Ybw-Tj-2v4" secondAttribute="bottom" constant="377" id="gK7-uc-hPU"/>
+                            <constraint firstItem="eeN-Rv-Lm4" firstAttribute="top" secondItem="Ybw-Tj-2v4" secondAttribute="bottom" constant="287" id="gK7-uc-hPU"/>
                             <constraint firstAttribute="trailing" secondItem="eeN-Rv-Lm4" secondAttribute="trailing" constant="16" id="mGz-tv-D9F"/>
                             <constraint firstItem="VZN-Bd-V1n" firstAttribute="top" secondItem="eeN-Rv-Lm4" secondAttribute="bottom" constant="-17" id="ouI-eW-9xF"/>
-                            <constraint firstItem="VZN-Bd-V1n" firstAttribute="top" secondItem="3XJ-Ec-5pH" secondAttribute="bottom" constant="40" id="pbf-x4-KHE"/>
                             <constraint firstItem="H1C-gT-7Of" firstAttribute="top" secondItem="Ybw-Tj-2v4" secondAttribute="bottom" constant="40" id="zwr-sD-LO9"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="gK7-uc-hPU"/>
-                                <exclude reference="VMb-so-Xtc"/>
-                            </mask>
-                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="dPo-e1-YKA" appends="YES" id="TM0-PO-r9i"/>
                         </connections>
@@ -1224,7 +1216,6 @@
                         <outlet property="inputTwoTextField" destination="biG-nU-Jfy" id="ayd-gJ-cFc"/>
                         <outlet property="loginButton" destination="Sxu-iS-2MX" id="ZTT-uZ-KKq"/>
                         <outlet property="loginInputStack" destination="3XJ-Ec-5pH" id="Bav-za-T8T"/>
-                        <outlet property="loginInputStackBottomConstraint" destination="pbf-x4-KHE" id="r1H-lz-NNR"/>
                         <outlet property="loginInputStackLeadingConstraint" destination="Vma-Kz-H0i" id="a58-3M-Gk8"/>
                         <outlet property="loginInputStackTopConstraint" destination="VMb-so-Xtc" id="G7l-w8-gqZ"/>
                         <outlet property="loginInputStackTrailingConstraint" destination="aMb-Uy-fuD" id="gEH-Gz-3Ee"/>
@@ -1233,7 +1224,6 @@
                         <outlet property="whitePanel" destination="LgQ-ir-el0" id="eUM-Oa-1xh"/>
                         <outlet property="whitePanelStack" destination="eeN-Rv-Lm4" id="f5y-3o-YVM"/>
                         <outlet property="whitePanelStackBottomConstraint" destination="ouI-eW-9xF" id="rKY-Vs-iOK"/>
-                        <outlet property="whitePanelStackHeightConstraint" destination="IA8-K8-aco" id="7Fr-a6-JUw"/>
                         <outlet property="whitePanelStackLeadingConstraint" destination="Gey-eI-v3L" id="bOV-6f-Q3C"/>
                         <outlet property="whitePanelStackTopConstraint" destination="gK7-uc-hPU" id="fNW-xb-zRF"/>
                         <outlet property="whitePanelStackTrailingConstraint" destination="mGz-tv-D9F" id="91Y-vA-rqq"/>

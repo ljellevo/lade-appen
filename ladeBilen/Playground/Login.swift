@@ -31,7 +31,6 @@ class Login: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var whitePanelStack: UIStackView!
         @IBOutlet var whitePanel: UIView!
-        @IBOutlet var whitePanelStackHeightConstraint: NSLayoutConstraint!
         @IBOutlet var whitePanelStackLeadingConstraint: NSLayoutConstraint!
         @IBOutlet var whitePanelStackTrailingConstraint: NSLayoutConstraint!
         @IBOutlet var whitePanelStackTopConstraint: NSLayoutConstraint!
@@ -41,7 +40,6 @@ class Login: UIViewController, UITextFieldDelegate {
         @IBOutlet var loginInputStackLeadingConstraint: NSLayoutConstraint!
         @IBOutlet var loginInputStackTrailingConstraint: NSLayoutConstraint!
         @IBOutlet var loginInputStackTopConstraint: NSLayoutConstraint!
-        @IBOutlet var loginInputStackBottomConstraint: NSLayoutConstraint!
         @IBOutlet var inputOneTextField: UITextField!
         @IBOutlet var inputTwoTextField: UITextField!
 
@@ -123,24 +121,18 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     
     func initializeWhitePanelStack() {
-        whitePanelStackTopConstraint.isActive = false
-        whitePanelStackHeightConstraint.isActive = true
-        whitePanelStackHeightConstraint.constant = 287
+        whitePanelStackTopConstraint.constant = self.view.bounds.height/2
         whitePanelStackLeadingConstraint.constant = 16
         whitePanelStackTrailingConstraint.constant = 16
-        whitePanelStackTopConstraint.constant = 0
         whitePanelStackBottomConstraint.constant = -17
         whitePanelLeadingOffset = whitePanelStackLeadingConstraint.constant
         whitePanelTrailingOffset = whitePanelStackTrailingConstraint.constant
     }
     
     func initializeLoginInputStack() {
-        loginInputStackBottomConstraint.isActive = true
-        loginInputStackTopConstraint.isActive = false
         loginInputStackLeadingConstraint.constant = 36
         loginInputStackTrailingConstraint.constant = 36
-        loginInputStackBottomConstraint.constant = 40
-        loginInputStackTopConstraint.constant = 144
+        loginInputStackTopConstraint.constant = UIScreen.main.bounds.height * 0.55
     }
     
     func keyboardWillShow() {
@@ -164,15 +156,13 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     
     func activateWhitePanelStack() {
-        whitePanelStackHeightConstraint.isActive = false
-        whitePanelStackTopConstraint.isActive = true
+        whitePanelStackTopConstraint.constant = 0
         whitePanelStackLeadingConstraint.constant = 0
         whitePanelStackTrailingConstraint.constant = 0
     }
     
     func activateLoginInputStack() {
-        loginInputStackBottomConstraint.isActive = false
-        loginInputStackTopConstraint.isActive = true
+        loginInputStackTopConstraint.constant = 120
     }
     
     
@@ -183,39 +173,39 @@ class Login: UIViewController, UITextFieldDelegate {
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
         let gesture = sender.translation(in: view)
         self.view.endEditing(true)
-        print(gesture.y)
         gestureWhitePanel = gesture.y/whitePanelLeadingOffset!
         gestureBanner = (gesture.y/bannerStackTopOffset!)*4
         
-        whitePanelStackTopConstraint.constant = gesture.y
-        
-
-        if (gestureWhitePanel! < whitePanelLeadingOffset! && isViewActive == true){
-            //Styrer øking/redusering av sidene til white panel
-            whitePanelStackLeadingConstraint.constant = gesture.y/whitePanelLeadingOffset!
-            whitePanelStackTrailingConstraint.constant = gesture.y/whitePanelTrailingOffset!
+        if(isViewActive == false){
+            whitePanelStackTopConstraint.constant = gesture.y + UIScreen.main.bounds.height * 0.50
+        } else {
+            whitePanelStackTopConstraint.constant = gesture.y
         }
         
-        if (gestureBanner! < 40 && isViewActive == true) {
-            //Styrer banner bevegelse
-            bannerStackTopConstraint.constant = (gesture.y/bannerStackTopOffset!)*4
-            bannerStackTopConstraint.constant += 20
+        if(whitePanelStackTopConstraint.constant < UIScreen.main.bounds.height * 0.50){
+            whitePanelStackLeadingConstraint.constant = whitePanelStackTopConstraint.constant/whitePanelLeadingOffset!
+            whitePanelStackTrailingConstraint.constant = whitePanelStackTopConstraint.constant/whitePanelTrailingOffset!
+        }
+        
+        if (gestureBanner! < 40 && whitePanelStackTopConstraint.constant < UIScreen.main.bounds.height * 0.50) {
+            bannerStackTopConstraint.constant = (whitePanelStackTopConstraint.constant/bannerStackTopOffset!)*4
+            bannerStackTopConstraint.constant += 10
         }
                 
-        if (gesture.y > 104) {
-            loginInputStackTopConstraint.constant = gesture.y
+        if (whitePanelStackTopConstraint.constant > 100) {
+            loginInputStackTopConstraint.constant = whitePanelStackTopConstraint.constant
             loginInputStackTopConstraint.constant += 20
         }
         
         if sender.state == UIGestureRecognizerState.ended {
             print("Ended movement")
             
-            if (gesture.y < self.view.bounds.height/2) {
+            if (whitePanelStackTopConstraint.constant < self.view.bounds.height/2) {
                 print("Return to active stance")
                 self.initialLoginView()
                 self.activateLoginView()
                 
-            } else if (gesture.y >= self.view.bounds.height/2){
+            } else if (whitePanelStackTopConstraint.constant >= self.view.bounds.height/2){
                 print("Change to initial stance")
                 self.initialLoginView()
                 UIView.animate(withDuration: 0.5, animations: { 
