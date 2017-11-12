@@ -1,25 +1,14 @@
 //
-//  editSettingsViewController.swift
+//  searchViewController.swift
 //  ladeBilen
 //
-//  Created by Ludvig Ellevold on 18.06.2017.
+//  Created by Ludvig Ellevold on 11.06.2017.
 //  Copyright © 2017 Ludvig Ellevold. All rights reserved.
 //
 
 import UIKit
 
-class editSettingsViewController: UIViewController {
-    
-    var selectedRow: Int = 100
-    
-    @IBOutlet weak var chargingStationStack: UIStackView!
-        @IBOutlet weak var fastChargeSwitch: UISwitch!
-        @IBOutlet weak var publicSwitch: UISwitch!
-        @IBOutlet weak var freeSwitch: UISwitch!
-        @IBOutlet weak var alwaysOpenSwitch: UISwitch!
-        @IBOutlet weak var unlimitedParkingSwitch: UISwitch!
-    
-    
+class Search: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

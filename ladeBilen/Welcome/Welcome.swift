@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class welcomeViewController: UIViewController, UITextFieldDelegate {
+class Welcome: UIViewController, UITextFieldDelegate {
     
     var firstname: String = ""
     var email: String = ""

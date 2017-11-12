@@ -9,7 +9,7 @@
 import UIKit
 
 
-class playgroundViewController: UIViewController{
+class Playground: UIViewController{
     
 
 

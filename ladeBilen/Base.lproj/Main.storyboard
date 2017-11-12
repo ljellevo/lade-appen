@@ -20,7 +20,7 @@
         <!--Søk-->
         <scene sceneID="bYD-Tn-jMK">
             <objects>
-                <tableViewController storyboardIdentifier="Search" id="Nkx-Pl-Pqa" customClass="searchViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Search" id="Nkx-Pl-Pqa" customClass="Search" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Dge-dy-sAG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,7 +51,7 @@
         <!--Favoritter-->
         <scene sceneID="PhT-Bx-KyI">
             <objects>
-                <tableViewController storyboardIdentifier="Favorites" id="fgi-mH-r0M" customClass="favoritesViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Favorites" id="fgi-mH-r0M" customClass="Favorite" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ybf-04-FuQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,7 +82,7 @@
         <!--Stasjon-->
         <scene sceneID="JiU-qd-RAR">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fOv-N9-hRc" customClass="stationsViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fOv-N9-hRc" customClass="Stations" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HiP-C2-6jX"/>
                         <viewControllerLayoutGuide type="bottom" id="akt-XY-bQl"/>
@@ -120,7 +120,7 @@
                                             <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="Rxj-bD-sr5" customClass="collectionViewCells" customModule="ladeBilen" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="Rxj-bD-sr5" customClass="CollectionCells" customModule="ladeBilen" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="5.5" width="278" height="171"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -427,7 +427,7 @@
         <!--Instillinger-->
         <scene sceneID="wW6-cf-0Ei">
             <objects>
-                <viewController storyboardIdentifier="SettingsOld" id="wS9-Sx-GST" customClass="settingsViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsOld" id="wS9-Sx-GST" customClass="Settings" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6xH-mk-42k"/>
                         <viewControllerLayoutGuide type="bottom" id="mpQ-LF-O3H"/>
@@ -474,7 +474,7 @@
         <!--Instillinger-->
         <scene sceneID="FYA-gw-bJQ">
             <objects>
-                <tableViewController storyboardIdentifier="Settings" id="lWp-aQ-DjM" customClass="settingsViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Settings" id="lWp-aQ-DjM" customClass="Settings" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="77" sectionHeaderHeight="28" sectionFooterHeight="28" id="R6b-M2-7iL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -508,7 +508,7 @@
         <!--Instillinger(nf)-->
         <scene sceneID="CKY-My-EoI">
             <objects>
-                <tableViewController storyboardIdentifier="Detailed Settings" id="fnR-P6-b5v" customClass="detailedSettingsTableViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Detailed Settings" id="fnR-P6-b5v" customClass="DetailedSettings" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="77" sectionHeaderHeight="28" sectionFooterHeight="28" id="MC8-DB-iNK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -539,10 +539,10 @@
             </objects>
             <point key="canvasLocation" x="1788" y="948.57571214392806"/>
         </scene>
-        <!--Edit Settings View Controller-->
+        <!--Edit Settings-->
         <scene sceneID="ER2-aL-rFf">
             <objects>
-                <viewController storyboardIdentifier="Edit Settings" id="GfH-az-UIt" customClass="editSettingsViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Edit Settings" id="GfH-az-UIt" customClass="EditSettings" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ttV-Ih-brT"/>
                         <viewControllerLayoutGuide type="bottom" id="fO5-GK-x6T"/>
@@ -843,10 +843,10 @@
             </objects>
             <point key="canvasLocation" x="2557.5999999999999" y="948.57571214392806"/>
         </scene>
-        <!--Test Api View Controller-->
+        <!--TestAPI-->
         <scene sceneID="CgM-lf-kw0">
             <objects>
-                <viewController id="hCR-ms-NTp" customClass="testApiViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hCR-ms-NTp" customClass="TestAPI" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IPo-d5-Yug"/>
                         <viewControllerLayoutGuide type="bottom" id="0Dd-it-yGn"/>
@@ -871,10 +871,10 @@
             </objects>
             <point key="canvasLocation" x="-1408.8" y="-205.54722638680661"/>
         </scene>
-        <!--Welcome View Controller-->
+        <!--Welcome-->
         <scene sceneID="QhJ-aH-wFP">
             <objects>
-                <viewController storyboardIdentifier="Welcome" id="LZi-9k-sUV" customClass="welcomeViewController" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Welcome" id="LZi-9k-sUV" customClass="Welcome" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ViZ-Ek-uzS"/>
                         <viewControllerLayoutGuide type="bottom" id="eLh-Lb-e89"/>

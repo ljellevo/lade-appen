@@ -8,7 +8,7 @@
 
 import UIKit
 
-class collectionViewCells: UICollectionViewCell {
+class CollectionCells: UICollectionViewCell {
     @IBOutlet weak var connectorTypeLabel: UILabel!
     @IBOutlet weak var connectorSpeedLabel: UILabel!
     @IBOutlet weak var connectorCapacityLabel: UILabel!
@@ -20,7 +20,7 @@ class collectionViewCells: UICollectionViewCell {
 }
 
 
-class stationsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class Stations: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var connectorScrollView: UIScrollView!
@@ -58,7 +58,7 @@ class stationsViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath) as! collectionViewCells
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath) as! CollectionCells
         cell.connectorTypeLabel?.text = connectorType[indexPath.row]
         cell.connectorSpeedLabel?.text = connectorSpeed[indexPath.row]
         cell.connectorCapacityLabel?.text = connectorCapacity[indexPath.row]

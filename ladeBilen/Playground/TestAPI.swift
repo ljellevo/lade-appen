@@ -8,7 +8,7 @@
 
 import UIKit
 
-class testApiViewController: UIViewController {
+class TestAPI: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

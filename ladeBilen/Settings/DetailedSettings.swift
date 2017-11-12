@@ -8,7 +8,7 @@
 
 import UIKit
 
-class detailedSettingsTableViewController: UITableViewController {
+class DetailedSettings: UITableViewController {
     
     var selectedRow: Int = 100
     let searchSettingsOptions = ["Type stasjoner", "Type støpsel", "Eier", "Status"]

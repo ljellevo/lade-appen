@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class settingsViewController: UITableViewController {
+class Settings: UITableViewController {
     
     let options = ["Søke instillinger", "Bruker", "Utsene", "Om oss", "Logg ut"]
     
@@ -48,7 +48,7 @@ class settingsViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailedSettings" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let destination = segue.destination as! detailedSettingsTableViewController
+                let destination = segue.destination as! DetailedSettings
                 destination.selectedRow = indexPath.row
             }
         }
