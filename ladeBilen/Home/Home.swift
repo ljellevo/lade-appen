@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class homeViewController: UIViewController {
+class Home: UIViewController {
     
     let defaults = UserDefaults.standard
     

@@ -48,14 +48,13 @@ class welcomeViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if user != nil {
-                self.performSegue(withIdentifier: "toHome", sender: self)
-                print("User is logged in")
-            } else {
-                print("User is not logged in")
-            }
+        if FIRAuth.auth()?.currentUser?.uid != nil{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "NavHome") as! NavigationHome
+            self.present(controller, animated: false, completion: { () -> Void in
+            })
         }
+        
         //checkIfUserIsLoggedIn()
         setupButtons()
         addObservers()

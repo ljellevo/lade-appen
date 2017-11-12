@@ -71,6 +71,7 @@ class Login: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
+    
 
     func initializeApperance() {
         whitePanel.layer.cornerRadius = 20

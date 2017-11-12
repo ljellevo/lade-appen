@@ -13,9 +13,9 @@
 		8314E2351EF44E3400F98E3F /* welcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314E2341EF44E3400F98E3F /* welcomeViewController.swift */; };
 		8342E17E1EED87010079888F /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17D1EED87010079888F /* settingsViewController.swift */; };
 		8342E1801EED87170079888F /* searchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17F1EED87170079888F /* searchViewController.swift */; };
-		83469A881EEB0DF400D9AFC1 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83469A871EEB0DF400D9AFC1 /* homeViewController.swift */; };
+		83469A881EEB0DF400D9AFC1 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83469A871EEB0DF400D9AFC1 /* Home.swift */; };
 		83469A8A1EEB0E0600D9AFC1 /* favoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83469A891EEB0E0600D9AFC1 /* favoritesViewController.swift */; };
-		83498D1C1EEB0B8300C3D92A /* navViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83498D1B1EEB0B8300C3D92A /* navViewController.swift */; };
+		83498D1C1EEB0B8300C3D92A /* NavigationHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83498D1B1EEB0B8300C3D92A /* NavigationHome.swift */; };
 		835413621F82F461000A70CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547A1EEB0696001A278A /* Main.storyboard */; };
 		835413731F82F550000A70CB /* Type_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 835413631F82F546000A70CB /* Type_1.png */; };
 		835413741F82F550000A70CB /* CHAdeMO.png in Resources */ = {isa = PBXBuildFile; fileRef = 835413641F82F547000A70CB /* CHAdeMO.png */; };
@@ -77,9 +77,9 @@
 		8314E2341EF44E3400F98E3F /* welcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcomeViewController.swift; sourceTree = "<group>"; };
 		8342E17D1EED87010079888F /* settingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
 		8342E17F1EED87170079888F /* searchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchViewController.swift; sourceTree = "<group>"; };
-		83469A871EEB0DF400D9AFC1 /* homeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
+		83469A871EEB0DF400D9AFC1 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		83469A891EEB0E0600D9AFC1 /* favoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = favoritesViewController.swift; sourceTree = "<group>"; };
-		83498D1B1EEB0B8300C3D92A /* navViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navViewController.swift; sourceTree = "<group>"; };
+		83498D1B1EEB0B8300C3D92A /* NavigationHome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationHome.swift; sourceTree = "<group>"; };
 		835413631F82F546000A70CB /* Type_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Type_1.png; sourceTree = "<group>"; };
 		835413641F82F547000A70CB /* CHAdeMO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CHAdeMO.png; sourceTree = "<group>"; };
 		835413651F82F547000A70CB /* appicon_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon_test.png; sourceTree = "<group>"; };
@@ -155,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				838F70901F005E230076019A /* playgroundViewController.swift */,
-				8385F8C51F007ABC00619110 /* Login.swift */,
 				83CB041D1F0199C600466503 /* testApiViewController.swift */,
 			);
 			path = Playground;
@@ -172,9 +171,9 @@
 		8354134A1F82F01E000A70CB /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				83469A871EEB0DF400D9AFC1 /* homeViewController.swift */,
+				83469A871EEB0DF400D9AFC1 /* Home.swift */,
 				83469A891EEB0E0600D9AFC1 /* favoritesViewController.swift */,
-				83498D1B1EEB0B8300C3D92A /* navViewController.swift */,
+				83498D1B1EEB0B8300C3D92A /* NavigationHome.swift */,
 				8342E17F1EED87170079888F /* searchViewController.swift */,
 				8381A7411F20E6C700F093A6 /* stationsViewController.swift */,
 			);
@@ -223,6 +222,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		83A352F41FB7C17300742085 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8385F8C51F007ABC00619110 /* Login.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		83F3546A1EEB0696001A278A = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +255,7 @@
 		83F354751EEB0696001A278A /* ladeBilen */ = {
 			isa = PBXGroup;
 			children = (
+				83A352F41FB7C17300742085 /* Login */,
 				835413831F82F6B9000A70CB /* Resources */,
 				8354134E1F82F0A6000A70CB /* Icons */,
 				8354134D1F82F04A000A70CB /* Settings */,
@@ -613,8 +621,8 @@
 				8314E2321EF44DA300F98E3F /* styleExtentions.swift in Sources */,
 				8314E2351EF44E3400F98E3F /* welcomeViewController.swift in Sources */,
 				83F354771EEB0696001A278A /* AppDelegate.swift in Sources */,
-				83498D1C1EEB0B8300C3D92A /* navViewController.swift in Sources */,
-				83469A881EEB0DF400D9AFC1 /* homeViewController.swift in Sources */,
+				83498D1C1EEB0B8300C3D92A /* NavigationHome.swift in Sources */,
+				83469A881EEB0DF400D9AFC1 /* Home.swift in Sources */,
 				838F70911F005E230076019A /* playgroundViewController.swift in Sources */,
 				83469A8A1EEB0E0600D9AFC1 /* favoritesViewController.swift in Sources */,
 				8342E17E1EED87010079888F /* settingsViewController.swift in Sources */,
