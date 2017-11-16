@@ -40,13 +40,14 @@
                             <outlet property="delegate" destination="Nkx-Pl-Pqa" id="Z1x-U3-Muk"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Søk" image="SearchSet" id="d04-4r-8QX"/>
                     <navigationItem key="navigationItem" title="Søk" id="3vW-Hc-1Vj">
                         <barButtonItem key="backBarButtonItem" title="Søk" id="Nqj-eT-ffy"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hX-cQ-sqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1318" y="-527"/>
+            <point key="canvasLocation" x="-713" y="999"/>
         </scene>
         <!--Favoritter-->
         <scene sceneID="PhT-Bx-KyI">
@@ -71,13 +72,14 @@
                             <outlet property="delegate" destination="fgi-mH-r0M" id="3Zb-DL-KHP"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Favoritter" image="FavoriteSet" id="ATZ-9K-kaf"/>
                     <navigationItem key="navigationItem" title="Favoritter" id="oLJ-Ls-cK8">
                         <barButtonItem key="backBarButtonItem" title="Favoritter" id="YXB-Ft-IFN"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4E-kh-WLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1442" y="188"/>
+            <point key="canvasLocation" x="-714" y="1757"/>
         </scene>
         <!--Stasjon-->
         <scene sceneID="JiU-qd-RAR">
@@ -315,40 +317,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1OD-l0-du2">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                             </mapView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fHQ-m9-XD3" userLabel="Buttons Stack">
-                                <rect key="frame" x="234" y="330" width="70" height="230"/>
+                                <rect key="frame" x="234" y="441" width="70" height="70"/>
                                 <subviews>
-                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxl-Wi-fdj">
-                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                        <color key="backgroundColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="foQ-yN-9ex"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" image="Magnifier_3x.png">
-                                            <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="searchButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pk0-gU-Uwj"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osS-WZ-IEe">
-                                        <rect key="frame" x="0.0" y="80" width="70" height="70"/>
-                                        <color key="backgroundColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="yPp-hq-1tA"/>
-                                        </constraints>
-                                        <state key="normal" image="Love_Neutral_3x.png">
-                                            <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="favoritesButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xPr-cG-YXx"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCO-2u-frz">
-                                        <rect key="frame" x="0.0" y="160" width="70" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                         <color key="backgroundColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="Location_Icon_2x.png">
                                             <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -359,35 +334,13 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bf6-yv-U6G" userLabel="Settings Stack">
-                                <rect key="frame" x="16" y="490" width="70" height="70"/>
-                                <subviews>
-                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nW3-tb-xY7">
-                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                        <color key="backgroundColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="Oie-gM-iai"/>
-                                            <constraint firstAttribute="height" constant="70" id="tyO-e5-OM2"/>
-                                        </constraints>
-                                        <state key="normal" image="PICOL_icon_Settings.png">
-                                            <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="settingsButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yiU-R5-KTK"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1OD-l0-du2" secondAttribute="trailing" id="2BL-Hl-Jqo"/>
-                            <constraint firstItem="bf6-yv-U6G" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7lW-Rg-FPY"/>
                             <constraint firstItem="fHQ-m9-XD3" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="7wM-qv-5Zk"/>
                             <constraint firstItem="1OD-l0-du2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Eue-aY-peW"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bf6-yv-U6G" secondAttribute="bottom" constant="8" id="FgU-C3-nVc"/>
                             <constraint firstItem="fHQ-m9-XD3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="KEs-6v-AnL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bf6-yv-U6G" secondAttribute="trailing" id="PuQ-ev-O0g"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fHQ-m9-XD3" secondAttribute="bottom" constant="8" id="YDB-vL-KXf"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1OD-l0-du2" secondAttribute="bottom" id="qmD-PH-4UL"/>
                             <constraint firstItem="1OD-l0-du2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ul6-01-xS7"/>
@@ -395,7 +348,6 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="KEs-6v-AnL"/>
-                                <exclude reference="PuQ-ev-O0g"/>
                             </mask>
                         </variation>
                     </view>
@@ -406,23 +358,34 @@
                         <outlet property="buttonStackConstraintLeading" destination="KEs-6v-AnL" id="PUZ-xK-9Im"/>
                         <outlet property="buttonStackConstraintTrailing" destination="7wM-qv-5Zk" id="Z4w-Js-YVF"/>
                         <outlet property="buttonsStack" destination="fHQ-m9-XD3" id="62c-gv-JOa"/>
-                        <outlet property="favoritesButton" destination="osS-WZ-IEe" id="cJo-s1-SeT"/>
                         <outlet property="mapWindow" destination="1OD-l0-du2" id="BPu-Cb-JTh"/>
                         <outlet property="nearestButton" destination="FCO-2u-frz" id="XlY-Fy-q1T"/>
-                        <outlet property="searchButton" destination="Uxl-Wi-fdj" id="InO-bf-Rn6"/>
-                        <outlet property="settingsButton" destination="nW3-tb-xY7" id="J0y-hB-XJp"/>
-                        <outlet property="settingsStack" destination="bf6-yv-U6G" id="atf-dG-eLk"/>
-                        <outlet property="settingsStackConstraintLeading" destination="7lW-Rg-FPY" id="QCL-BP-Nbf"/>
-                        <outlet property="settingsStackConstraintTrailing" destination="PuQ-ev-O0g" id="FyB-Om-ysQ"/>
                         <segue destination="wS9-Sx-GST" kind="show" identifier="toSettingsTable" id="WV6-le-jGK"/>
-                        <segue destination="fgi-mH-r0M" kind="show" identifier="toFavorites" id="zWI-EP-Fph"/>
-                        <segue destination="Nkx-Pl-Pqa" kind="show" identifier="toSearch" id="BYj-hY-cVP"/>
-                        <segue destination="lWp-aQ-DjM" kind="show" identifier="toSettings" id="FmI-36-dy1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="240.80000000000001" y="187.55622188905548"/>
+        </scene>
+        <!--Tab Home-->
+        <scene sceneID="UaN-XO-e96">
+            <objects>
+                <tabBarController storyboardIdentifier="Home" id="lma-nr-bIu" customClass="TabHome" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cZ8-hs-PXX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="fgi-mH-r0M" kind="relationship" relationship="viewControllers" id="CNs-5c-hoS"/>
+                        <segue destination="XCX-Ed-eow" kind="relationship" relationship="viewControllers" id="uip-76-FLi"/>
+                        <segue destination="Nkx-Pl-Pqa" kind="relationship" relationship="viewControllers" id="DvT-Ct-FX1"/>
+                        <segue destination="Hjj-oB-EuU" kind="relationship" relationship="viewControllers" id="bvI-AB-wqL"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CgU-3N-p6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1823" y="577"/>
         </scene>
         <!--Instillinger-->
         <scene sceneID="wW6-cf-0Ei">
@@ -446,7 +409,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1q-Ig-mvG">
-                                <rect key="frame" x="108" y="281" width="91" height="49"/>
+                                <rect key="frame" x="108" y="232" width="91" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                 <state key="normal" title="Logg ut">
                                     <color key="titleColor" red="1" green="0.028078071959999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -470,6 +433,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXv-NI-zdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="241" y="950"/>
+        </scene>
+        <!--Profil-->
+        <scene sceneID="15J-DW-TO2">
+            <objects>
+                <navigationController id="Hjj-oB-EuU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profil" image="ProfileSet" id="YZq-Vs-X1Q"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yiS-m3-gsH">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="lWp-aQ-DjM" kind="relationship" relationship="rootViewController" id="cr2-As-ohT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Zm-Zf-fvB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2044" y="2531"/>
         </scene>
         <!--Instillinger-->
         <scene sceneID="FYA-gw-bJQ">
@@ -503,7 +483,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4P6-Fg-GXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="949.60000000000002" y="948.57571214392806"/>
+            <point key="canvasLocation" x="-1155" y="2531"/>
         </scene>
         <!--Instillinger(nf)-->
         <scene sceneID="CKY-My-EoI">
@@ -537,7 +517,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tLF-Ja-uFb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1788" y="948.57571214392806"/>
+            <point key="canvasLocation" x="-298" y="2531"/>
         </scene>
         <!--Edit Settings-->
         <scene sceneID="ER2-aL-rFf">
@@ -841,7 +821,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jh2-zM-xtw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2557.5999999999999" y="948.57571214392806"/>
+            <point key="canvasLocation" x="469" y="2531"/>
         </scene>
         <!--TestAPI-->
         <scene sceneID="CgM-lf-kw0">
@@ -869,7 +849,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHd-XW-DLD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1408.8" y="-205.54722638680661"/>
+            <point key="canvasLocation" x="-2211" y="-698"/>
         </scene>
         <!--Welcome-->
         <scene sceneID="QhJ-aH-wFP">
@@ -1254,7 +1234,7 @@
                         <outlet property="whitePanelStackLeadingConstraint" destination="Gey-eI-v3L" id="bOV-6f-Q3C"/>
                         <outlet property="whitePanelStackTopConstraint" destination="gK7-uc-hPU" id="fNW-xb-zRF"/>
                         <outlet property="whitePanelStackTrailingConstraint" destination="mGz-tv-D9F" id="91Y-vA-rqq"/>
-                        <segue destination="XCX-Ed-eow" kind="show" identifier="toHome" id="6Kj-WQ-zth"/>
+                        <segue destination="lma-nr-bIu" kind="show" identifier="toHome" id="LfY-e2-duI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LuC-7K-wpv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1266,10 +1246,12 @@
             </objects>
             <point key="canvasLocation" x="-628" y="-1613"/>
         </scene>
-        <!--Navigation Home-->
+        <!--Kart-->
         <scene sceneID="kDh-qe-Vi4">
             <objects>
-                <navigationController storyboardIdentifier="Home" id="XCX-Ed-eow" customClass="NavigationHome" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ptp-UA-2H2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="XCX-Ed-eow" customClass="NavigationHome" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Kart" image="MarkerSet" id="pzi-fZ-niD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hjp-FY-YWZ">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1283,7 +1265,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="HUc-Q9-zEk"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ptp-UA-2H2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-628" y="188"/>
         </scene>
@@ -1291,13 +1272,14 @@
     <resources>
         <image name="CCS.png" width="800" height="800"/>
         <image name="CHAdeMO.png" width="800" height="800"/>
+        <image name="FavoriteSet" width="25" height="25"/>
         <image name="IEC_60309_3-pin_type_1.png" width="800" height="800"/>
         <image name="IEC_60309_5-pin_type_1.png" width="800" height="800"/>
         <image name="Location_Icon_2x.png" width="70" height="70"/>
-        <image name="Love_Neutral_3x.png" width="60" height="54"/>
-        <image name="Magnifier_3x.png" width="30" height="30"/>
-        <image name="PICOL_icon_Settings.png" width="2000" height="2000"/>
+        <image name="MarkerSet" width="25" height="25"/>
+        <image name="ProfileSet" width="25" height="25"/>
         <image name="Schuko_CEE_7_4.png" width="800" height="800"/>
+        <image name="SearchSet" width="25" height="25"/>
         <image name="Type_1.png" width="800" height="800"/>
         <image name="Type_2.png" width="800" height="800"/>
         <image name="xblogg130708sommer.jpg.pagespeed.ic.b6H3_U7zK2.jpg" width="360" height="245"/>

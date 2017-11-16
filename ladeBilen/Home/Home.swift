@@ -42,6 +42,7 @@ class Home: UIViewController {
     }
     
     func initializeButtons(){
+        /*
         searchButton.layer.cornerRadius = 25
         searchButton.clipsToBounds = true
         searchButton.imageEdgeInsets = UIEdgeInsetsMake(24, 24, 24, 24)
@@ -49,14 +50,15 @@ class Home: UIViewController {
         favoritesButton.layer.cornerRadius = 25
         favoritesButton.clipsToBounds = true
         favoritesButton.imageEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20)
-        
+        */
         nearestButton.layer.cornerRadius = 25
         nearestButton.clipsToBounds = true
         nearestButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
-        
+        /*
         settingsButton.layer.cornerRadius = 25
         settingsButton.clipsToBounds = true
         settingsButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+ */
     }
     
     override func viewWillLayoutSubviews() {
@@ -71,7 +73,7 @@ class Home: UIViewController {
         
         legalMapLabel.frame.origin = CGPoint(x: self.mapWindow.bounds.size.width / 2, y: legalMapLabel.frame.origin.y)
     }
-    
+    /*
     @IBAction func searchButtonClicked(_ sender: Any) {
         self.performSegue(withIdentifier: "toSearch", sender: self)
 
@@ -80,15 +82,18 @@ class Home: UIViewController {
     @IBAction func favoritesButtonClicked(_ sender: Any) {
         self.performSegue(withIdentifier: "toFavorites", sender: self)
     }
+ */
     
     @IBAction func nearestButtonClicked(_ sender: Any) {
     }
-    
+    /*
     @IBAction func settingsButtonClicked(_ sender: Any) {
         self.performSegue(withIdentifier: "toSettings", sender: self)
     }
+ */
     
     func checkButtonFlip(){
+        /*
         if (defaults.integer(forKey: "flip") == 2){
             //Hvis button er satt til venstre er value i flip 2 og dermed så aktiverer den de constrintene som flytter stacken
             buttonStackConstraintTrailing.isActive = false
@@ -107,5 +112,6 @@ class Home: UIViewController {
             settingsStackConstraintLeading.isActive = true
             self.view.layoutIfNeeded()
         }
+ */
     }
 }
