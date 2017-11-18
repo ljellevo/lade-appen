@@ -1,0 +1,14 @@
+{
+    "constantsParameters" : {
+        "processName": "-u",
+        "ipcConfigId": "-s",
+        "colorSchema" : "-a",
+        "authorizedClients" : "-n",
+        "serviceAccountKey" : "-c",
+        "firebaseAppURL" : "-f",
+        "dataJSON" : "-d",
+        "userInfoPath" : "-p",
+        "heartbeatTimeout" : "-x",
+        "heartbeatCounter" : "-y"
+    }
+}

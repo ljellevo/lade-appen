@@ -1,0 +1,5 @@
+{
+	"test1@localhost" : "./certs/NobilStreamReceiver_local.crt",
+	"test2@localhost" : "./certs/NobilStreamReceiver_local.crt",
+	"test3@localhost" : "./certs/NobilStreamReceiver_local.crt"
+}

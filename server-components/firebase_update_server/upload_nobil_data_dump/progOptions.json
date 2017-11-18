@@ -1,0 +1,29 @@
+{
+    "progOptions" : {
+        "-d" : {
+            "option" : "/path/to/output/folder  -> Where to store processed data, default [ /tmp ] ",
+            "value" : "/tmp", 
+            "set" : false
+        },
+        "-u" : {
+            "option" : "Switch to toggle whether or not to upload processed data to firebase database",
+            "value" : null,  
+            "set" : false    
+        },
+        "-i" : {
+            "option" : "/path/to/inputfile -> Name of file contianing datadump from NOBIL, default [ $PWD/nobil_db_dump ]",
+            "value" : "nobil_db_dump", 
+            "set" : false
+        },
+        "-p" : {
+            "option" : "foo_ -> Prefix for outpufiles, default [ ToFirebase_ ]",
+            "value" : "ToFirebase_", 
+            "set" : false
+        },
+        "-h" : {
+            "option" : "This program process previously downloaded database dump from NOBIL, into JSON structure and optionally upload the structure to firebase database used by for LadeApp",
+            "value" : null, 
+            "set" : false
+        }
+    }
+}
