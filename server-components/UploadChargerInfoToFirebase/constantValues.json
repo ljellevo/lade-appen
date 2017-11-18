@@ -1,0 +1,15 @@
+{
+    "constantsParameters" : {
+        "localStoreLocation": "-d",
+        "uploaToFirebase" : "-u",
+        "databaseInputFile" : "-i",
+        "preixOutputfile" : "-p",
+        "uploadSubscriptions" :" -s",
+        "nobilAPIKey" : "-k",
+        "loadFromNobil" :"-n",
+        "serviceAccountKey" : "-c",
+        "firebaseAppURL" : "-f",
+        "nobilAPIQuery" : "-q",
+        "nobilAPIURL" : "-v"
+    }
+}
