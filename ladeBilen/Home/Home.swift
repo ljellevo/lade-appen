@@ -8,31 +8,31 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 
 class Home: UIViewController {
     
+    
     let defaults = UserDefaults.standard
     
+    var stations = [StationStruct]()
+    var conn = [ConnStruct]()
+    
     @IBOutlet weak var mapWindow: MKMapView!
-    @IBOutlet weak var favoritesButton: UIButton!
-    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var nearestButton: UIButton!
-    @IBOutlet weak var settingsButton: UIButton!
     
     @IBOutlet weak var buttonStackConstraintTrailing: NSLayoutConstraint!
     @IBOutlet weak var buttonStackConstraintLeading: NSLayoutConstraint!
-    @IBOutlet weak var settingsStackConstraintTrailing: NSLayoutConstraint!
-    @IBOutlet weak var settingsStackConstraintLeading: NSLayoutConstraint!
     
     @IBOutlet weak var buttonsStack: UIStackView!
-    @IBOutlet weak var settingsStack: UIStackView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeButtons()
         checkButtonFlip()
+        getStationsFromDatabase()
 
     }
     
@@ -42,23 +42,10 @@ class Home: UIViewController {
     }
     
     func initializeButtons(){
-        /*
-        searchButton.layer.cornerRadius = 25
-        searchButton.clipsToBounds = true
-        searchButton.imageEdgeInsets = UIEdgeInsetsMake(24, 24, 24, 24)
-        
-        favoritesButton.layer.cornerRadius = 25
-        favoritesButton.clipsToBounds = true
-        favoritesButton.imageEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20)
-        */
+
         nearestButton.layer.cornerRadius = 25
         nearestButton.clipsToBounds = true
         nearestButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
-        /*
-        settingsButton.layer.cornerRadius = 25
-        settingsButton.clipsToBounds = true
-        settingsButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
- */
     }
     
     override func viewWillLayoutSubviews() {
@@ -73,24 +60,41 @@ class Home: UIViewController {
         
         legalMapLabel.frame.origin = CGPoint(x: self.mapWindow.bounds.size.width / 2, y: legalMapLabel.frame.origin.y)
     }
-    /*
-    @IBAction func searchButtonClicked(_ sender: Any) {
-        self.performSegue(withIdentifier: "toSearch", sender: self)
 
-    }
-    
-    @IBAction func favoritesButtonClicked(_ sender: Any) {
-        self.performSegue(withIdentifier: "toFavorites", sender: self)
-    }
- */
     
     @IBAction func nearestButtonClicked(_ sender: Any) {
+        
     }
-    /*
-    @IBAction func settingsButtonClicked(_ sender: Any) {
-        self.performSegue(withIdentifier: "toSettings", sender: self)
+    
+    func getStationsFromDatabase(){
+        let ref = FIRDatabase.database().reference()
+        ref.child("stations").observe(.value, with: { (snapshot) in
+            print("Accept recieved")
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                
+                if let station = dictionary["NOR_02508"] as? [String: AnyObject]{
+                    let conn = station["conn"]
+                    print(conn)
+                    
+                    
+                
+                }
+                
+                
+                
+                //let stationStruct = StationStruct()
+                //stationStruct.setValuesForKeys(dictionary)
+                //self.stations.append(stationStruct)
+                //print(self.stations)
+                
+                print("Done")
+                    
+                
+
+            }
+        }, withCancel: nil)
     }
- */
+
     
     func checkButtonFlip(){
         /*
@@ -111,6 +115,18 @@ class Home: UIViewController {
             settingsStackConstraintTrailing.isActive = false
             settingsStackConstraintLeading.isActive = true
             self.view.layoutIfNeeded()
+         
+         
+         
+         -------KLIPPEBRETT--------
+         for children in dictionary {
+         
+         print(children)
+         if let position = children.value["Position"] as? String {
+         print(position)
+         }
+         }
+         
         }
  */
     }
