@@ -70,27 +70,17 @@ class Home: UIViewController {
         let ref = FIRDatabase.database().reference()
         ref.child("stations").observe(.value, with: { (snapshot) in
             print("Accept recieved")
-            if let dictionary = snapshot.value as? [String: AnyObject] {
+            if let dictionary = snapshot.value as? NSDictionary {
                 
-                if let station = dictionary["NOR_02508"] as? [String: AnyObject]{
-                    let conn = station["conn"]
-                    print(conn)
-                    
-                    
-                
-                }
-                
-                
-                
-                //let stationStruct = StationStruct()
-                //stationStruct.setValuesForKeys(dictionary)
-                //self.stations.append(stationStruct)
-                //print(self.stations)
-                
-                print("Done")
-                    
-                
+                if let station = dictionary["NOR_02508"] as? NSDictionary{
+                    let conn: NSArray = station["conn"] as! NSArray
 
+                    for i in 1...(conn.count - 1) {
+                        print(conn[i])
+
+                    }
+                }
+                print("Done")
             }
         }, withCancel: nil)
     }
