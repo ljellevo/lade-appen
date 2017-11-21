@@ -8,16 +8,19 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 import Firebase
 
 
-class Home: UIViewController {
+class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+    
+    var locationManager: CLLocationManager = CLLocationManager()
     
     
     let defaults = UserDefaults.standard
+    var stations:[Station] = []
+
     
-    var stations = [StationStruct]()
-    var conn = [ConnStruct]()
     
     @IBOutlet weak var mapWindow: MKMapView!
     @IBOutlet weak var nearestButton: UIButton!
@@ -30,10 +33,10 @@ class Home: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeMap()
         initializeButtons()
         checkButtonFlip()
         getStationsFromDatabase()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,10 +45,17 @@ class Home: UIViewController {
     }
     
     func initializeButtons(){
-
         nearestButton.layer.cornerRadius = 25
         nearestButton.clipsToBounds = true
         nearestButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+    }
+    
+    func initializeMap(){
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        mapWindow.showsUserLocation = true
     }
     
     override func viewWillLayoutSubviews() {
@@ -63,26 +73,44 @@ class Home: UIViewController {
 
     
     @IBAction func nearestButtonClicked(_ sender: Any) {
+        print("Clicked")
         
     }
     
     func getStationsFromDatabase(){
         let ref = FIRDatabase.database().reference()
         ref.child("stations").observe(.value, with: { (snapshot) in
-            print("Accept recieved")
-            if let dictionary = snapshot.value as? NSDictionary {
-                
-                if let station = dictionary["NOR_02508"] as? NSDictionary{
-                    let conn: NSArray = station["conn"] as! NSArray
-
-                    for i in 1...(conn.count - 1) {
-                        print(conn[i])
-
-                    }
+            if let dictionary = snapshot.value as? [String:AnyObject]{
+                for children in dictionary{
+                    let eachStation = children.value as? [String: AnyObject]
+                    self.createStationStructs(eachStation: eachStation!)
                 }
                 print("Done")
+                self.addAnnotationsToMap()
             }
         }, withCancel: nil)
+    }
+    
+    func createStationStructs(eachStation: [String: AnyObject]){
+        let station = Station(dictionary: eachStation)
+        self.stations.append(station)
+    }
+    
+    func addAnnotationsToMap(){
+        for children in stations{
+            var position = children.position
+            position = position?.replacingOccurrences(of: "(", with: "")
+            position = position?.replacingOccurrences(of: ")", with: "")
+            let positionArray = position!.components(separatedBy: ",")
+            let lat = Double(positionArray[0])
+            let lon = Double(positionArray[1])
+            
+            let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
+        
+            let annotation = Annotation(title: children.name!, coordinate: coordinates, street: children.street!)
+            mapWindow.addAnnotation(annotation)
+            
+        }
     }
 
     
@@ -109,15 +137,7 @@ class Home: UIViewController {
          
          
          -------KLIPPEBRETT--------
-         for children in dictionary {
-         
-         print(children)
-         if let position = children.value["Position"] as? String {
-         print(position)
-         }
-         }
-         
-        }
+
  */
     }
 }
