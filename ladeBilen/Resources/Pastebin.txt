@@ -1,0 +1,43 @@
+********** Flytting av "Legal" link på MapKit **********
+override func viewWillLayoutSubviews() {
+    positionLegalMapLabel()
+}
+
+func positionLegalMapLabel() {
+    //Må høre med apple om man kan flytte "Legal" linken til et separert view. Typ "About/legal" view elns. Nedenfor er metoden for å hente ut labelen + for å flytte den.
+    let legalMapLabel = self.mapWindow.subviews[1]
+
+    //legalMapLabel.frame.origin = CGPoint(x: 20, y: 20)
+
+    //legalMapLabel.frame.origin = CGPoint(x: self.mapWindow.bounds.size.width / 2, y: legalMapLabel.frame.origin.y)
+}
+
+
+********** Sjekk om knappene skal bytte side **********
+
+let defaults = UserDefaults.standard
+
+override func viewWillAppear(_ animated: Bool) {
+    print(defaults.integer(forKey: "flip"))
+    checkButtonFlip()
+}
+
+func checkButtonFlip(){
+    if (defaults.integer(forKey: "flip") == 2){
+        //Hvis button er satt til venstre er value i flip 2 og dermed så aktiverer den de constrintene som flytter stacken
+        buttonStackConstraintTrailing.isActive = false
+        buttonStackConstraintLeading.isActive = true
+
+        settingsStackConstraintTrailing.isActive = true
+        settingsStackConstraintLeading.isActive = false
+        self.view.layoutIfNeeded()
+
+    } else {
+        //Hvis den er enten 0 eller 1 så står/flyttes de på/til default possisjon
+        buttonStackConstraintTrailing.isActive = true
+        buttonStackConstraintLeading.isActive = false
+
+        settingsStackConstraintTrailing.isActive = false
+        settingsStackConstraintLeading.isActive = true
+        self.view.layoutIfNeeded()
+}

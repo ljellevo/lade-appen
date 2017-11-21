@@ -15,34 +15,33 @@ import Firebase
 class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     var locationManager: CLLocationManager = CLLocationManager()
-    
-    
-    let defaults = UserDefaults.standard
     var stations:[Station] = []
+    var isInitial: Bool = true
+    var id: Int?
 
-    
-    
     @IBOutlet weak var mapWindow: MKMapView!
     @IBOutlet weak var nearestButton: UIButton!
-    
     @IBOutlet weak var buttonStackConstraintTrailing: NSLayoutConstraint!
     @IBOutlet weak var buttonStackConstraintLeading: NSLayoutConstraint!
-    
     @IBOutlet weak var buttonsStack: UIStackView!
+    
+    @IBOutlet var infoView: UIView!
+        @IBOutlet weak var infoPaneStack: UIStackView!
+            @IBOutlet weak var nameLabel: UILabel!
+            @IBOutlet weak var streetLabel: UILabel!
+            @IBOutlet weak var detailsButton: UIButton!
+            @IBOutlet weak var infoPaneStackBottomConstraint: NSLayoutConstraint!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeMap()
         initializeButtons()
-        checkButtonFlip()
+        initializeView()
         getStationsFromDatabase()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print(defaults.integer(forKey: "flip"))
-        checkButtonFlip()
-    }
     
     func initializeButtons(){
         nearestButton.layer.cornerRadius = 25
@@ -56,25 +55,40 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         mapWindow.showsUserLocation = true
+        mapWindow.delegate = self
+
     }
     
-    override func viewWillLayoutSubviews() {
-        positionLegalMapLabel()
-    }
-    
-    func positionLegalMapLabel() {
-        //Må høre med apple om man kan flytte "Legal" linken til et separert view. Typ "About/legal" view elns. Nedenfor er metoden for å hente ut labelen + for å flytte den.
-        let legalMapLabel = self.mapWindow.subviews[1]
-        
-        //legalMapLabel.frame.origin = CGPoint(x: 20, y: 20)
-        
-        legalMapLabel.frame.origin = CGPoint(x: self.mapWindow.bounds.size.width / 2, y: legalMapLabel.frame.origin.y)
+    func initializeView(){
+        infoPaneStack.alpha = 0.0
+        infoPaneStackBottomConstraint.constant = -70
+        infoView.isHidden = true
+
     }
 
     
     @IBAction func nearestButtonClicked(_ sender: Any) {
         print("Clicked")
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetails"{
+            var station: Station?
+            for i in 0..<stations.count{
+                if stations[i].id == self.id {
+                    station = stations[i]
+                    break
+                }
+            }
+            if let nextViewController = segue.destination as? Details{
+                nextViewController.station = station
+            }
+        }
+    }
+    
+    @IBAction func detailsButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "toDetails", sender: self)
     }
     
     func getStationsFromDatabase(){
@@ -107,37 +121,53 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             
             let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
         
-            let annotation = Annotation(title: children.name!, coordinate: coordinates, street: children.street!)
+            let annotation = Annotation(title: children.name!, subtitle: children.street!, id: children.id!, coordinate: coordinates)
             mapWindow.addAnnotation(annotation)
             
         }
     }
-
     
-    func checkButtonFlip(){
-        /*
-        if (defaults.integer(forKey: "flip") == 2){
-            //Hvis button er satt til venstre er value i flip 2 og dermed så aktiverer den de constrintene som flytter stacken
-            buttonStackConstraintTrailing.isActive = false
-            buttonStackConstraintLeading.isActive = true
-            
-            settingsStackConstraintTrailing.isActive = true
-            settingsStackConstraintLeading.isActive = false
-            self.view.layoutIfNeeded()
-
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let anno = view.annotation as? Annotation {
+            id = anno.id!
+            infoView.isHidden = false
+            nameLabel.text = anno.title
+            streetLabel.text = anno.subtitle
+            infoPaneStackBottomConstraint.constant = 0
+            UIView.animate(withDuration: 0.5) {
+                self.infoPaneStack.alpha = 1.0
+                self.infoView.layoutIfNeeded()
+            }
         } else {
-            //Hvis den er enten 0 eller 1 så står/flyttes de på/til default possisjon
-            buttonStackConstraintTrailing.isActive = true
-            buttonStackConstraintLeading.isActive = false
-            
-            settingsStackConstraintTrailing.isActive = false
-            settingsStackConstraintLeading.isActive = true
-            self.view.layoutIfNeeded()
-         
-         
-         
-         -------KLIPPEBRETT--------
-
- */
+            return
+        }
     }
+    
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        infoPaneStackBottomConstraint.constant = -70
+        let when = DispatchTime.now() + 0.5
+        DispatchQueue.main.asyncAfter(deadline: when) {
+           self.infoView.isHidden = true
+        }
+
+        UIView.animate(withDuration: 0.5) {
+            self.infoPaneStack.alpha = 0.0
+            self.infoView.layoutIfNeeded()
+        }
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        if isInitial == true {
+            let regionRadius = CLLocationDistance(1500)
+            let coordinateRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, regionRadius, regionRadius)
+            mapView.setRegion( coordinateRegion, animated: true)
+            isInitial = false
+        } else {
+            return
+        }
+    }
+
 }
+

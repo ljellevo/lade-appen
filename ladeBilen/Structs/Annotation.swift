@@ -11,12 +11,14 @@ import UIKit
 
 class Annotation: NSObject, MKAnnotation {
     var title: String?
-    var street: String
+    var subtitle: String?
+    var id: Int?
     var coordinate: CLLocationCoordinate2D
     
-    init(title: String, coordinate: CLLocationCoordinate2D, street: String) {
+    init(title: String, subtitle: String, id: Int, coordinate: CLLocationCoordinate2D) {
         self.title = title
+        self.subtitle = subtitle
+        self.id = id
         self.coordinate = coordinate
-        self.street = street
     }
 }
