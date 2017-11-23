@@ -11,11 +11,12 @@ import MapKit
 import CoreLocation
 import Firebase
 
+var stations:[Station] = []
+
 
 class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     var locationManager: CLLocationManager = CLLocationManager()
-    var stations:[Station] = []
     var isInitial: Bool = true
     var id: Int?
 
@@ -99,7 +100,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
                     let eachStation = children.value as? [String: AnyObject]
                     self.createStationStructs(eachStation: eachStation!)
                 }
-                print("Done")
                 self.addAnnotationsToMap()
             }
         }, withCancel: nil)
@@ -107,7 +107,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     func createStationStructs(eachStation: [String: AnyObject]){
         let station = Station(dictionary: eachStation)
-        self.stations.append(station)
+        stations.append(station)
     }
     
     func addAnnotationsToMap(){
@@ -130,9 +130,10 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let anno = view.annotation as? Annotation {
             id = anno.id!
-            infoView.isHidden = false
+            print(id!)
             nameLabel.text = anno.title
             streetLabel.text = anno.subtitle
+            infoView.isHidden = false
             infoPaneStackBottomConstraint.constant = 0
             UIView.animate(withDuration: 0.5) {
                 self.infoPaneStack.alpha = 1.0
@@ -143,19 +144,17 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         }
     }
     
+
+
     
+
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         infoPaneStackBottomConstraint.constant = -70
-        let when = DispatchTime.now() + 0.5
-        DispatchQueue.main.asyncAfter(deadline: when) {
-           self.infoView.isHidden = true
-        }
-
         UIView.animate(withDuration: 0.5) {
             self.infoPaneStack.alpha = 0.0
             self.infoView.layoutIfNeeded()
         }
-        
+        self.infoView.isHidden = true
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
