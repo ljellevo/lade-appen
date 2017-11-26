@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     var station: Station?
 
     @IBOutlet var collectionView: UICollectionView!
@@ -18,6 +18,10 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         //print(station as Any)
         self.collectionView.register(UINib(nibName: "TopCell", bundle: nil), forCellWithReuseIdentifier: "ImageCellIdentifier")
         self.collectionView.register(UINib(nibName: "InfoCell", bundle: nil), forCellWithReuseIdentifier: "InfoCellIdentifier")
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
+            flowLayout.estimatedItemSize = CGSize(width: 1, height: 95)
+        }
+        
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
     }
@@ -31,8 +35,6 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         return 2
     }
     
-    
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0{
             let cell: TopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCellIdentifier", for: indexPath as IndexPath) as! TopCell
@@ -40,7 +42,7 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             return cell
         } else {
             let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
-            cell.descriptionOfLocationTextView.text = station?.descriptionOfLocation
+            //cell.descriptionOfLocationTextView.text = station?.descriptionOfLocation
             /*
             cell.nameLabel.text = station?.name
             cell.streetLabel.text = station?.street
@@ -48,19 +50,26 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             cell.parkingFeeLabel.text = station?.parkingFee
             cell.descriptionOfLocationTextView.text = station?.descriptionOfLocation
  */
-            
 
             return cell
         }
     }
     
+    
+    /*
+ , UICollectionViewDelegateFlowLayout
+     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.row == 0 {
             return CGSize(width: self.view.bounds.size.width, height: 94.0)
         } else {
-            return CGSize(width: self.view.bounds.size.width, height: (UIScreen.main.bounds.height - 200))
+            return CGSize(width: self.view.bounds.size.width, height: (UIScreen.main.bounds.height - 400))
+            //Må ta teksten i station?.descriptionofLocation og regne ut hvor stor den blir mtp høyden når fonten er en spesiell størelse.
+            //Deretter må jeg finne høyden.
         }
     }
+ */
+ 
     
     
     

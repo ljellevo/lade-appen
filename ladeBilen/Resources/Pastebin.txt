@@ -41,3 +41,8 @@ func checkButtonFlip(){
         settingsStackConstraintLeading.isActive = true
         self.view.layoutIfNeeded()
 }
+
+
+
+
+Nedkjøring ved parkeringshuset. Dette er en lang text derfor vil den ikke vise alt, med mindre man trykker på knappen. kaldk kadl kalkdal kadl kadl akda jfksjs ksfh skjfs jfhs jfhsf jshf sjfhsjf hsfj sfsj jfsfjsh fsj fhsj fhs jfshf jshf sjhfsj fhsj fhsj fhsfj shf sjfhsjfhs jfhs jhs fjshf jshf sgfsfgsufwfhwjwfwjhs jshfsfj hsf jsf jsh sjhf jhsfjfhsjfhsjfh sjfh sjfh sj hsj hsjfhsj hjshfsjhfj hsffhs jfh sjfh bskfskufybusfkjfb sfbs klfbslk jfbslj fslfjbslfb slifbslkj blkjsfb slefb slkjefb skljefb slkjefb lsbefuysb fslkjefbsekl jbflisu beflsjeb flskfbslkjefbslkejfbslejf bslfb slfbs lejfbels jbflsejbfkejsbf kj bkljf bslkj bljk bjk bjk bjksfblkj blkj bsljk fblksj bfljk bsljk bj b jksb kjb sklfbslkjf bs lkjbf klsjbfsueyfbs lefbselfjb selfs beflseb flsejbf slejfb slefbslef isblefis b flisfb slifb lsefbselfblsefb lsefbseli fbslef bl Dette er slutten

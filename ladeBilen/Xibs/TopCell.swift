@@ -10,13 +10,20 @@ import UIKit
 
 class TopCell: UICollectionViewCell {
 
+    
+    @IBOutlet weak var screenWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         imageView.layer.cornerRadius = 20
         imageView.layer.masksToBounds = true
+        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        screenWidthConstraint.constant = UIScreen.main.bounds.width
+
+
     }
 
 }
