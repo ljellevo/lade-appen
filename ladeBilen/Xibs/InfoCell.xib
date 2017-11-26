@@ -28,14 +28,23 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bH8-d3-2Ga">
                                         <rect key="frame" x="0.0" y="0.0" width="138" height="30"/>
                                         <state key="normal" image="DetailsSet"/>
+                                        <connections>
+                                            <action selector="detailsButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="hLd-Rb-iOC"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZq-iY-CEU">
                                         <rect key="frame" x="138" y="0.0" width="138" height="30"/>
                                         <state key="normal" image="CommentsSet"/>
+                                        <connections>
+                                            <action selector="commentsButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Y8C-TV-hGv"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mys-t5-7Yh">
                                         <rect key="frame" x="276" y="0.0" width="138" height="30"/>
                                         <state key="normal" image="PicturesSet"/>
+                                        <connections>
+                                            <action selector="picturesButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ka1-XV-cjF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="tintColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -136,7 +145,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="PGa-1L-BZM"/>
                                                 </constraints>
-                                                <mutableString key="text">Nedkjøring ved parkeringshuset. Dette er en lang text derfor vil den ikke vise alt, med mindre man trykker på knappen. kaldk kadl kalkdal kadl kadl akda jfksjs ksfh skjfs jfhs jfhsf jshf sjfhsjf hsfj sfsj jfsfjsh fsj fhsj fhs jfshf jshf sjhfsj fhsj fhsj fhsfj shf sjfhsjfhs jfhs jhs fjshf jshf sgfsfgsufwfhwjwfwjhs jshfsfj hsf jsf jsh sjhf jhsfjfhsjfhsjfh sjfh sjfh sj hsj hsjfhsj hjshfsjhfj hsffhs jfh sjfh bskfskufybusfkjfb sfbs klfbslk jfbslj fslfjbslfb slifbslkj blkjsfb slefb slkjefb skljefb slkjefb lsbefuysb fslkjefbsekl jbflisu beflsjeb flskfbslkjefbslkejfbslejf bslfb slfbs lejfbels jbflsejbfkejsbf kj bkljf bslkj bljk bjk bjk bjksfblkj blkj bsljk fblksj bfljk bsljk bj b jksb kjb sklfbslkjf bs lkjbf klsjbfsueyfbs lefbselfjb selfs beflseb flsejbf slejfb slefbslef isblefis b flisfb slifb lsefbselfblsefb lsefbseli fbslef bl Dette er slutten</mutableString>
+                                                <string key="text">Nedkjøring ved parkeringshuset. Dette er en lang text derfor vil den ikke vise alt, med mindre man trykker på knappen. kaldk kadl kalkdal kadl kadl akda jfksjs ksfh skjfs jfhs jfhsf jshf sjfhsjf hsfj sfsj jfsfjsh fsj fhsj fhs jfshf jshf sjhfsj fhsj fhsj fhsfj shf sjfhsjfhs jfhs jhs fjshf jshf sgfsfgsufwfhwjwfwjhs jshfsfj hsf jsf jsh sjhf jhsfjfhsjfhsjfh sjfh sjfh sj hsj hsjfhsj hjshfsjhfj hsffhs jfh sjfh bskfskufybusfkjfb sfbs klfbslk jfbslj fslfjbslfb slifbslkj blkjsfb slefb slkjefb skljefb slkjefb lsbefuysb fslkjefbsekl jbflisu beflsjeb flskfbslkjefbslkejfbslejf bslfb slfbs lejfbels jbflsejbfkejsbf kj bkljf bslkj bljk bjk bjk bjksfblkj blkj bsljk fblksj bfljk bsljk bj b jksb kjb sklfbslkjf bs lkjbf klsjbfsueyfbs lefbselfjb selfs beflseb flsejbf slejfb slefbslef isblefis b flisfb slifb lsefbselfblsefb lsefbseli fbslef bl Dette er slutten</string>
                                                 <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -149,12 +158,28 @@
                                             <constraint firstAttribute="width" constant="374" id="HlI-yu-Ia5"/>
                                         </constraints>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="t1E-k3-wbq" userLabel="Comments Stack">
+                                        <rect key="frame" x="10" y="0.0" width="374" height="190"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nk6-nm-VXm">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="190"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </tableView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="374" id="61V-s7-MPG"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="t1E-k3-wbq" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="10" id="7S3-Jp-bll"/>
                                     <constraint firstItem="CZS-nt-SiJ" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="10" id="C1S-hI-vJe"/>
+                                    <constraint firstAttribute="bottom" secondItem="t1E-k3-wbq" secondAttribute="bottom" id="J3F-MF-NT5"/>
                                     <constraint firstAttribute="trailing" secondItem="CZS-nt-SiJ" secondAttribute="trailing" constant="10" id="PtR-WS-8GP"/>
+                                    <constraint firstItem="t1E-k3-wbq" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" id="TnT-cq-raX"/>
                                     <constraint firstItem="CZS-nt-SiJ" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" id="ddI-OL-EkO"/>
+                                    <constraint firstAttribute="trailing" secondItem="t1E-k3-wbq" secondAttribute="trailing" constant="10" id="nIh-lw-u6B"/>
                                     <constraint firstAttribute="bottom" secondItem="CZS-nt-SiJ" secondAttribute="bottom" id="oj1-X5-SQe"/>
                                 </constraints>
                             </view>
@@ -181,13 +206,22 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="320" height="241"/>
             <connections>
-                <outlet property="commentsButton" destination="xZq-iY-CEU" id="JF5-sY-LTk"/>
+                <outlet property="commentStackWidthConstraint" destination="61V-s7-MPG" id="Jcx-ih-vmq"/>
+                <outlet property="commentsButton" destination="xZq-iY-CEU" id="cja-cT-cgg"/>
+                <outlet property="commentsStack" destination="t1E-k3-wbq" id="o6U-EC-yNJ"/>
+                <outlet property="commentsView" destination="Nk6-nm-VXm" id="QjI-ka-eKw"/>
                 <outlet property="descriptionOfLocationHeightConstraint" destination="PGa-1L-BZM" id="D72-LP-zxv"/>
                 <outlet property="descriptionOfLocationTextView" destination="pcH-zc-Oi8" id="t3O-az-EUc"/>
                 <outlet property="detailsButton" destination="bH8-d3-2Ga" id="TyW-gJ-RUh"/>
+                <outlet property="detailsStack" destination="CZS-nt-SiJ" id="Ure-l1-5OD"/>
+                <outlet property="fastChargeLabel" destination="sBw-F1-vE1" id="kKt-2b-hXs"/>
+                <outlet property="nameLabel" destination="DUi-fg-nGY" id="Dp9-f1-MHd"/>
                 <outlet property="panelView" destination="mBL-MQ-LsN" id="J3s-KY-QIC"/>
+                <outlet property="parkingFeeLabel" destination="fzv-sj-BoY" id="xNO-Rx-8JP"/>
                 <outlet property="picturesButton" destination="Mys-t5-7Yh" id="SSc-NI-OLd"/>
+                <outlet property="realtimeLabel" destination="N24-tH-Eu4" id="ZE6-Xf-sMQ"/>
                 <outlet property="screenWidthConstraint" destination="HlI-yu-Ia5" id="LlI-UW-0OQ"/>
+                <outlet property="streetLabel" destination="1xt-Lb-WDf" id="Dv6-aW-vQA"/>
             </connections>
             <point key="canvasLocation" x="34" y="167"/>
         </collectionViewCell>

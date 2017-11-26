@@ -42,14 +42,16 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             return cell
         } else {
             let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
-            //cell.descriptionOfLocationTextView.text = station?.descriptionOfLocation
-            /*
             cell.nameLabel.text = station?.name
             cell.streetLabel.text = station?.street
-            cell.fastChargeStationLabel.text = String(describing: station?.availableChargingPoints)
+            cell.realtimeLabel.text = station?.realtimeInfo
+            cell.fastChargeLabel.text = "Mangler"
             cell.parkingFeeLabel.text = station?.parkingFee
+            cell.userComment = station?.userComment
             cell.descriptionOfLocationTextView.text = station?.descriptionOfLocation
- */
+            print(station?.userComment)
+
+ 
 
             return cell
         }
