@@ -26,8 +26,8 @@
 		8314E2301EF435CF00F98E3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8314E22F1EF435CF00F98E3F /* GoogleService-Info.plist */; };
 		8314E2321EF44DA300F98E3F /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314E2311EF44DA300F98E3F /* Styles.swift */; };
 		8314E2351EF44E3400F98E3F /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314E2341EF44E3400F98E3F /* Welcome.swift */; };
-		8323D4201FC77A1C0049D349 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323D41E1FC77A1C0049D349 /* ImageCell.swift */; };
-		8323D4211FC77A1C0049D349 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8323D41F1FC77A1C0049D349 /* ImageCell.xib */; };
+		8323D4201FC77A1C0049D349 /* TopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323D41E1FC77A1C0049D349 /* TopCell.swift */; };
+		8323D4211FC77A1C0049D349 /* TopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8323D41F1FC77A1C0049D349 /* TopCell.xib */; };
 		8323D4241FC77A320049D349 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323D4221FC77A320049D349 /* InfoCell.swift */; };
 		8323D4251FC77A320049D349 /* InfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8323D4231FC77A320049D349 /* InfoCell.xib */; };
 		8323D4281FC77A4F0049D349 /* ConnectorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323D4261FC77A4F0049D349 /* ConnectorsCell.swift */; };
@@ -51,6 +51,15 @@
 		835413801F82F550000A70CB /* PICOL_icon_Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 835413701F82F54E000A70CB /* PICOL_icon_Settings.png */; };
 		835413811F82F550000A70CB /* Schuko_CEE_7_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 835413711F82F54F000A70CB /* Schuko_CEE_7_4.png */; };
 		835413821F82F550000A70CB /* Type_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 835413721F82F54F000A70CB /* Type_2.png */; };
+		836B7DCF1FCA27E800B4B94E /* Details-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DCC1FCA27E500B4B94E /* Details-Icon-50.png */; };
+		836B7DD01FCA27E800B4B94E /* Details-Icon-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DCD1FCA27E600B4B94E /* Details-Icon-75.png */; };
+		836B7DD11FCA27E800B4B94E /* Details-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DCE1FCA27E700B4B94E /* Details-Icon-25.png */; };
+		836B7DD51FCA27F300B4B94E /* Pictures-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DD21FCA27F000B4B94E /* Pictures-Icon-25.png */; };
+		836B7DD61FCA27F300B4B94E /* Pictures-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DD31FCA27F100B4B94E /* Pictures-Icon-50.png */; };
+		836B7DD71FCA27F300B4B94E /* Pictures-Icon-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DD41FCA27F200B4B94E /* Pictures-Icon-75.png */; };
+		836B7DDC1FCA286700B4B94E /* Comments-Icon-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DD91FCA286300B4B94E /* Comments-Icon-75.png */; };
+		836B7DDD1FCA286700B4B94E /* Comments-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DDA1FCA286400B4B94E /* Comments-Icon-25.png */; };
+		836B7DDE1FCA286700B4B94E /* Comments-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DDB1FCA286600B4B94E /* Comments-Icon-50.png */; };
 		8381A7421F20E6C700F093A6 /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8381A7411F20E6C700F093A6 /* Stations.swift */; };
 		8385F8C71F008C8700619110 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8385F8C51F007ABC00619110 /* Login.swift */; };
 		838F70911F005E230076019A /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838F70901F005E230076019A /* Playground.swift */; };
@@ -110,8 +119,8 @@
 		8314E22F1EF435CF00F98E3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8314E2311EF44DA300F98E3F /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		8314E2341EF44E3400F98E3F /* Welcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
-		8323D41E1FC77A1C0049D349 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
-		8323D41F1FC77A1C0049D349 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
+		8323D41E1FC77A1C0049D349 /* TopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCell.swift; sourceTree = "<group>"; };
+		8323D41F1FC77A1C0049D349 /* TopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopCell.xib; sourceTree = "<group>"; };
 		8323D4221FC77A320049D349 /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		8323D4231FC77A320049D349 /* InfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoCell.xib; sourceTree = "<group>"; };
 		8323D4261FC77A4F0049D349 /* ConnectorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectorsCell.swift; sourceTree = "<group>"; };
@@ -134,6 +143,15 @@
 		835413701F82F54E000A70CB /* PICOL_icon_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PICOL_icon_Settings.png; sourceTree = "<group>"; };
 		835413711F82F54F000A70CB /* Schuko_CEE_7_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Schuko_CEE_7_4.png; sourceTree = "<group>"; };
 		835413721F82F54F000A70CB /* Type_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Type_2.png; sourceTree = "<group>"; };
+		836B7DCC1FCA27E500B4B94E /* Details-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Details-Icon-50.png"; sourceTree = "<group>"; };
+		836B7DCD1FCA27E600B4B94E /* Details-Icon-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Details-Icon-75.png"; sourceTree = "<group>"; };
+		836B7DCE1FCA27E700B4B94E /* Details-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Details-Icon-25.png"; sourceTree = "<group>"; };
+		836B7DD21FCA27F000B4B94E /* Pictures-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pictures-Icon-25.png"; sourceTree = "<group>"; };
+		836B7DD31FCA27F100B4B94E /* Pictures-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pictures-Icon-50.png"; sourceTree = "<group>"; };
+		836B7DD41FCA27F200B4B94E /* Pictures-Icon-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pictures-Icon-75.png"; sourceTree = "<group>"; };
+		836B7DD91FCA286300B4B94E /* Comments-Icon-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments-Icon-75.png"; sourceTree = "<group>"; };
+		836B7DDA1FCA286400B4B94E /* Comments-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments-Icon-25.png"; sourceTree = "<group>"; };
+		836B7DDB1FCA286600B4B94E /* Comments-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments-Icon-50.png"; sourceTree = "<group>"; };
 		8381A7411F20E6C700F093A6 /* Stations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
 		8385F8C51F007ABC00619110 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		838F70901F005E230076019A /* Playground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
@@ -202,6 +220,9 @@
 		8314708F1FBE4FD800DCD0CD /* IconSets */ = {
 			isa = PBXGroup;
 			children = (
+				836B7DD81FCA285100B4B94E /* Comments */,
+				836B7DC51FCA27BB00B4B94E /* Details */,
+				836B7DBE1FCA27A600B4B94E /* Pictures */,
 				831470A61FBE52F800DCD0CD /* Favorites */,
 				8314709E1FBE51FC00DCD0CD /* Profile */,
 				831470911FBE504E00DCD0CD /* Search */,
@@ -253,8 +274,8 @@
 		8323D41D1FC779D70049D349 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				8323D41E1FC77A1C0049D349 /* ImageCell.swift */,
-				8323D41F1FC77A1C0049D349 /* ImageCell.xib */,
+				8323D41E1FC77A1C0049D349 /* TopCell.swift */,
+				8323D41F1FC77A1C0049D349 /* TopCell.xib */,
 				8323D4221FC77A320049D349 /* InfoCell.swift */,
 				8323D4231FC77A320049D349 /* InfoCell.xib */,
 				8323D4261FC77A4F0049D349 /* ConnectorsCell.swift */,
@@ -330,6 +351,36 @@
 				8314E2311EF44DA300F98E3F /* Styles.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		836B7DBE1FCA27A600B4B94E /* Pictures */ = {
+			isa = PBXGroup;
+			children = (
+				836B7DD21FCA27F000B4B94E /* Pictures-Icon-25.png */,
+				836B7DD31FCA27F100B4B94E /* Pictures-Icon-50.png */,
+				836B7DD41FCA27F200B4B94E /* Pictures-Icon-75.png */,
+			);
+			path = Pictures;
+			sourceTree = "<group>";
+		};
+		836B7DC51FCA27BB00B4B94E /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				836B7DCE1FCA27E700B4B94E /* Details-Icon-25.png */,
+				836B7DCC1FCA27E500B4B94E /* Details-Icon-50.png */,
+				836B7DCD1FCA27E600B4B94E /* Details-Icon-75.png */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		836B7DD81FCA285100B4B94E /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				836B7DDA1FCA286400B4B94E /* Comments-Icon-25.png */,
+				836B7DDB1FCA286600B4B94E /* Comments-Icon-50.png */,
+				836B7DD91FCA286300B4B94E /* Comments-Icon-75.png */,
+			);
+			path = Comments;
 			sourceTree = "<group>";
 		};
 		83A352F41FB7C17300742085 /* Login */ = {
@@ -560,6 +611,7 @@
 				835413821F82F550000A70CB /* Type_2.png in Resources */,
 				831470AB1FBE531400DCD0CD /* Favorite-Icon-25.png in Resources */,
 				8314709D1FBE518500DCD0CD /* Search-Icon-50.png in Resources */,
+				836B7DD71FCA27F300B4B94E /* Pictures-Icon-75.png in Resources */,
 				831470A41FBE523300DCD0CD /* Profile-Icon-75.png in Resources */,
 				8314708E1FBE4ED600DCD0CD /* Marker-Icon-75.png in Resources */,
 				835413761F82F550000A70CB /* Love_Neutral_3x.png in Resources */,
@@ -569,11 +621,16 @@
 				8323D4251FC77A320049D349 /* InfoCell.xib in Resources */,
 				8314E2301EF435CF00F98E3F /* GoogleService-Info.plist in Resources */,
 				83F354811EEB0696001A278A /* LaunchScreen.storyboard in Resources */,
+				836B7DCF1FCA27E800B4B94E /* Details-Icon-50.png in Resources */,
 				8354137A1F82F550000A70CB /* xblogg130708sommer.jpg.pagespeed.ic.b6H3_U7zK2.jpg in Resources */,
+				836B7DD11FCA27E800B4B94E /* Details-Icon-25.png in Resources */,
 				835413741F82F550000A70CB /* CHAdeMO.png in Resources */,
+				836B7DD61FCA27F300B4B94E /* Pictures-Icon-50.png in Resources */,
 				83F3547E1EEB0696001A278A /* Assets.xcassets in Resources */,
+				836B7DDE1FCA286700B4B94E /* Comments-Icon-50.png in Resources */,
 				831470AC1FBE531400DCD0CD /* Favorite-Icon-50.png in Resources */,
 				835413781F82F550000A70CB /* IEC_60309_3-pin_type_1.png in Resources */,
+				836B7DD01FCA27E800B4B94E /* Details-Icon-75.png in Resources */,
 				8314708A1FBE4D7200DCD0CD /* Marker-Icon-50.png in Resources */,
 				8354137F1F82F550000A70CB /* Location_Icon_2x.png in Resources */,
 				835413801F82F550000A70CB /* PICOL_icon_Settings.png in Resources */,
@@ -584,10 +641,13 @@
 				8314709C1FBE518500DCD0CD /* Search-Icon-75.png in Resources */,
 				8323D4291FC77A4F0049D349 /* ConnectorsCell.xib in Resources */,
 				831470A31FBE523300DCD0CD /* Profile-Icon-25.png in Resources */,
-				8323D4211FC77A1C0049D349 /* ImageCell.xib in Resources */,
+				8323D4211FC77A1C0049D349 /* TopCell.xib in Resources */,
 				8314708C1FBE4DBC00DCD0CD /* Marker-Icon-25.png in Resources */,
 				831470AA1FBE531400DCD0CD /* Favorite-Icon-75.png in Resources */,
 				8354137E1F82F550000A70CB /* Magnifier_3x.png in Resources */,
+				836B7DDD1FCA286700B4B94E /* Comments-Icon-25.png in Resources */,
+				836B7DDC1FCA286700B4B94E /* Comments-Icon-75.png in Resources */,
+				836B7DD51FCA27F300B4B94E /* Pictures-Icon-25.png in Resources */,
 				835413811F82F550000A70CB /* Schuko_CEE_7_4.png in Resources */,
 				831470A21FBE523300DCD0CD /* Profile-Icon-50.png in Resources */,
 			);
@@ -616,9 +676,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ladeBilen/Pods-ladeBilen-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -631,13 +696,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ladeBilen-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5F5449DE7B049CA95EFB2B80 /* [CP] Check Pods Manifest.lock */ = {
@@ -646,13 +714,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ladeBilenTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8A179A3AABC7C7FE9B71C54F /* [CP] Embed Pods Frameworks */ = {
@@ -706,13 +777,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ladeBilenUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E2117BFD871981782668BD14 /* [CP] Copy Pods Resources */ = {
@@ -757,7 +831,7 @@
 				83F208251FC370D70075A2F0 /* Connector.swift in Sources */,
 				83B720221EF7068F00AD00DE /* DetailedSettings.swift in Sources */,
 				8314E2321EF44DA300F98E3F /* Styles.swift in Sources */,
-				8323D4201FC77A1C0049D349 /* ImageCell.swift in Sources */,
+				8323D4201FC77A1C0049D349 /* TopCell.swift in Sources */,
 				8314E2351EF44E3400F98E3F /* Welcome.swift in Sources */,
 				8302AE2E1FC3EA8C007F693A /* Details.swift in Sources */,
 				83F354771EEB0696001A278A /* AppDelegate.swift in Sources */,

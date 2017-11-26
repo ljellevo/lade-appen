@@ -9,22 +9,18 @@
 import UIKit
 
 class InfoCell: UICollectionViewCell{
-
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var streetLabel: UILabel!
-    
-    @IBOutlet weak var fastChargeStationLabel: UILabel!
-    
-    @IBOutlet weak var parkingFeeLabel: UILabel!
-    
+    @IBOutlet weak var detailsButton: UIButton!
+    @IBOutlet weak var commentsButton: UIButton!
+    @IBOutlet weak var picturesButton: UIButton!    
     @IBOutlet weak var descriptionOfLocationTextView: UITextView!
     
+    @IBOutlet weak var descriptionOfLocationHeightConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.descriptionOfLocationTextView.textContainer.lineFragmentPadding = 0
         self.descriptionOfLocationTextView.textContainerInset = .zero
-        // Initialization code
+        
+        descriptionOfLocationHeightConstraint.constant = self.descriptionOfLocationTextView.sizeThatFits(self.descriptionOfLocationTextView.bounds.size).height
     }
-
 }

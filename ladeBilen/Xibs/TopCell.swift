@@ -8,12 +8,15 @@
 
 import UIKit
 
-class ImageCell: UICollectionViewCell {
+class TopCell: UICollectionViewCell {
 
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var view: UIView!
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        imageView.layer.cornerRadius = 20
+        imageView.layer.masksToBounds = true
     }
 
 }
