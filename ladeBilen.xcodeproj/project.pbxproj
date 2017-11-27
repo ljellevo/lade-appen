@@ -30,8 +30,8 @@
 		8323D4211FC77A1C0049D349 /* TopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8323D41F1FC77A1C0049D349 /* TopCell.xib */; };
 		8323D4241FC77A320049D349 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323D4221FC77A320049D349 /* InfoCell.swift */; };
 		8323D4251FC77A320049D349 /* InfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8323D4231FC77A320049D349 /* InfoCell.xib */; };
-		8323D4281FC77A4F0049D349 /* ConnectorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323D4261FC77A4F0049D349 /* ConnectorsCell.swift */; };
-		8323D4291FC77A4F0049D349 /* ConnectorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8323D4271FC77A4F0049D349 /* ConnectorsCell.xib */; };
+		8323D4281FC77A4F0049D349 /* ConnectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323D4261FC77A4F0049D349 /* ConnectorCell.swift */; };
+		8323D4291FC77A4F0049D349 /* ConnectorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8323D4271FC77A4F0049D349 /* ConnectorCell.xib */; };
 		8342E17E1EED87010079888F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17D1EED87010079888F /* Settings.swift */; };
 		8342E1801EED87170079888F /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17F1EED87170079888F /* Search.swift */; };
 		83469A881EEB0DF400D9AFC1 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83469A871EEB0DF400D9AFC1 /* Home.swift */; };
@@ -61,6 +61,9 @@
 		836B7DDD1FCA286700B4B94E /* Comments-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DDA1FCA286400B4B94E /* Comments-Icon-25.png */; };
 		836B7DDE1FCA286700B4B94E /* Comments-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DDB1FCA286600B4B94E /* Comments-Icon-50.png */; };
 		8381A7421F20E6C700F093A6 /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8381A7411F20E6C700F093A6 /* Stations.swift */; };
+		83821E651FCB66EF009D304D /* Charger-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 83821E621FCB66EE009D304D /* Charger-Icon-25.png */; };
+		83821E661FCB66EF009D304D /* Charger-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 83821E631FCB66EF009D304D /* Charger-Icon-50.png */; };
+		83821E671FCB66EF009D304D /* Charger-Icon-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 83821E641FCB66EF009D304D /* Charger-Icon-75.png */; };
 		8385F8C71F008C8700619110 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8385F8C51F007ABC00619110 /* Login.swift */; };
 		838F70911F005E230076019A /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838F70901F005E230076019A /* Playground.swift */; };
 		83A463AA1FCB1659001A5916 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A463A81FCB1659001A5916 /* CommentCell.swift */; };
@@ -125,8 +128,8 @@
 		8323D41F1FC77A1C0049D349 /* TopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopCell.xib; sourceTree = "<group>"; };
 		8323D4221FC77A320049D349 /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		8323D4231FC77A320049D349 /* InfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoCell.xib; sourceTree = "<group>"; };
-		8323D4261FC77A4F0049D349 /* ConnectorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectorsCell.swift; sourceTree = "<group>"; };
-		8323D4271FC77A4F0049D349 /* ConnectorsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectorsCell.xib; sourceTree = "<group>"; };
+		8323D4261FC77A4F0049D349 /* ConnectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectorCell.swift; sourceTree = "<group>"; };
+		8323D4271FC77A4F0049D349 /* ConnectorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectorCell.xib; sourceTree = "<group>"; };
 		8342E17D1EED87010079888F /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		8342E17F1EED87170079888F /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		83469A871EEB0DF400D9AFC1 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -155,6 +158,9 @@
 		836B7DDA1FCA286400B4B94E /* Comments-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments-Icon-25.png"; sourceTree = "<group>"; };
 		836B7DDB1FCA286600B4B94E /* Comments-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments-Icon-50.png"; sourceTree = "<group>"; };
 		8381A7411F20E6C700F093A6 /* Stations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
+		83821E621FCB66EE009D304D /* Charger-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Charger-Icon-25.png"; sourceTree = "<group>"; };
+		83821E631FCB66EF009D304D /* Charger-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Charger-Icon-50.png"; sourceTree = "<group>"; };
+		83821E641FCB66EF009D304D /* Charger-Icon-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Charger-Icon-75.png"; sourceTree = "<group>"; };
 		8385F8C51F007ABC00619110 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		838F70901F005E230076019A /* Playground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
 		83A463A81FCB1659001A5916 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -224,6 +230,7 @@
 		8314708F1FBE4FD800DCD0CD /* IconSets */ = {
 			isa = PBXGroup;
 			children = (
+				83821E611FCB66A5009D304D /* Charger */,
 				836B7DD81FCA285100B4B94E /* Comments */,
 				836B7DC51FCA27BB00B4B94E /* Details */,
 				836B7DBE1FCA27A600B4B94E /* Pictures */,
@@ -278,14 +285,11 @@
 		8323D41D1FC779D70049D349 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				83821E6C1FCB7143009D304D /* Details Xibs */,
 				8323D41E1FC77A1C0049D349 /* TopCell.swift */,
 				8323D41F1FC77A1C0049D349 /* TopCell.xib */,
 				8323D4221FC77A320049D349 /* InfoCell.swift */,
 				8323D4231FC77A320049D349 /* InfoCell.xib */,
-				8323D4261FC77A4F0049D349 /* ConnectorsCell.swift */,
-				8323D4271FC77A4F0049D349 /* ConnectorsCell.xib */,
-				83A463A81FCB1659001A5916 /* CommentCell.swift */,
-				83A463A91FCB1659001A5916 /* CommentCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -387,6 +391,27 @@
 				836B7DD91FCA286300B4B94E /* Comments-Icon-75.png */,
 			);
 			path = Comments;
+			sourceTree = "<group>";
+		};
+		83821E611FCB66A5009D304D /* Charger */ = {
+			isa = PBXGroup;
+			children = (
+				83821E621FCB66EE009D304D /* Charger-Icon-25.png */,
+				83821E631FCB66EF009D304D /* Charger-Icon-50.png */,
+				83821E641FCB66EF009D304D /* Charger-Icon-75.png */,
+			);
+			path = Charger;
+			sourceTree = "<group>";
+		};
+		83821E6C1FCB7143009D304D /* Details Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				83A463A81FCB1659001A5916 /* CommentCell.swift */,
+				83A463A91FCB1659001A5916 /* CommentCell.xib */,
+				8323D4261FC77A4F0049D349 /* ConnectorCell.swift */,
+				8323D4271FC77A4F0049D349 /* ConnectorCell.xib */,
+			);
+			path = "Details Xibs";
 			sourceTree = "<group>";
 		};
 		83A352F41FB7C17300742085 /* Login */ = {
@@ -614,6 +639,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83821E651FCB66EF009D304D /* Charger-Icon-25.png in Resources */,
 				835413821F82F550000A70CB /* Type_2.png in Resources */,
 				831470AB1FBE531400DCD0CD /* Favorite-Icon-25.png in Resources */,
 				8314709D1FBE518500DCD0CD /* Search-Icon-50.png in Resources */,
@@ -636,6 +662,7 @@
 				83F3547E1EEB0696001A278A /* Assets.xcassets in Resources */,
 				836B7DDE1FCA286700B4B94E /* Comments-Icon-50.png in Resources */,
 				831470AC1FBE531400DCD0CD /* Favorite-Icon-50.png in Resources */,
+				83821E661FCB66EF009D304D /* Charger-Icon-50.png in Resources */,
 				835413781F82F550000A70CB /* IEC_60309_3-pin_type_1.png in Resources */,
 				836B7DD01FCA27E800B4B94E /* Details-Icon-75.png in Resources */,
 				8314708A1FBE4D7200DCD0CD /* Marker-Icon-50.png in Resources */,
@@ -646,11 +673,12 @@
 				835413621F82F461000A70CB /* Main.storyboard in Resources */,
 				8354137D1F82F550000A70CB /* IEC_60309_5-pin_type_1.png in Resources */,
 				8314709C1FBE518500DCD0CD /* Search-Icon-75.png in Resources */,
-				8323D4291FC77A4F0049D349 /* ConnectorsCell.xib in Resources */,
+				8323D4291FC77A4F0049D349 /* ConnectorCell.xib in Resources */,
 				831470A31FBE523300DCD0CD /* Profile-Icon-25.png in Resources */,
 				8323D4211FC77A1C0049D349 /* TopCell.xib in Resources */,
 				8314708C1FBE4DBC00DCD0CD /* Marker-Icon-25.png in Resources */,
 				831470AA1FBE531400DCD0CD /* Favorite-Icon-75.png in Resources */,
+				83821E671FCB66EF009D304D /* Charger-Icon-75.png in Resources */,
 				8354137E1F82F550000A70CB /* Magnifier_3x.png in Resources */,
 				836B7DDD1FCA286700B4B94E /* Comments-Icon-25.png in Resources */,
 				836B7DDC1FCA286700B4B94E /* Comments-Icon-75.png in Resources */,
@@ -843,7 +871,7 @@
 				8302AE2E1FC3EA8C007F693A /* Details.swift in Sources */,
 				83F354771EEB0696001A278A /* AppDelegate.swift in Sources */,
 				83498D1C1EEB0B8300C3D92A /* NavigationHome.swift in Sources */,
-				8323D4281FC77A4F0049D349 /* ConnectorsCell.swift in Sources */,
+				8323D4281FC77A4F0049D349 /* ConnectorCell.swift in Sources */,
 				83469A881EEB0DF400D9AFC1 /* Home.swift in Sources */,
 				83F208271FC3A02A0075A2F0 /* Annotation.swift in Sources */,
 				83F208231FC370B60075A2F0 /* Station.swift in Sources */,

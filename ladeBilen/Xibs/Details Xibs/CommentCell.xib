@@ -22,32 +22,30 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvq-yp-kSd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="goz-RX-1zs">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lof-If-ys1">
+                                <rect key="frame" x="10" y="5" width="300" height="125"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Kommentar" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrr-ZJ-LKH">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
-                                        <color key="backgroundColor" red="0.93615164974619292" green="0.93615164974619292" blue="0.93615164974619292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="135" id="7Qw-1l-4Ps"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzd-X5-gCC">
+                                        <rect key="frame" x="10" y="5" width="280" height="115"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Lrr-ZJ-LKH" firstAttribute="top" secondItem="goz-RX-1zs" secondAttribute="top" id="XnL-aI-Jzi"/>
-                                    <constraint firstAttribute="bottom" secondItem="Lrr-ZJ-LKH" secondAttribute="bottom" id="dLj-yz-Eqt"/>
-                                    <constraint firstAttribute="trailing" secondItem="Lrr-ZJ-LKH" secondAttribute="trailing" id="dqL-El-ruL"/>
-                                    <constraint firstItem="Lrr-ZJ-LKH" firstAttribute="leading" secondItem="goz-RX-1zs" secondAttribute="leading" id="mca-yo-LZh"/>
+                                    <constraint firstItem="jzd-X5-gCC" firstAttribute="leading" secondItem="Lof-If-ys1" secondAttribute="leading" constant="10" id="DcF-5r-BUv"/>
+                                    <constraint firstAttribute="bottom" secondItem="jzd-X5-gCC" secondAttribute="bottom" constant="5" id="RjE-wo-q0d"/>
+                                    <constraint firstItem="jzd-X5-gCC" firstAttribute="top" secondItem="Lof-If-ys1" secondAttribute="top" constant="5" id="cTj-ht-L0B"/>
+                                    <constraint firstAttribute="trailing" secondItem="jzd-X5-gCC" secondAttribute="trailing" constant="10" id="saz-fS-w5k"/>
                                 </constraints>
-                            </stackView>
+                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="goz-RX-1zs" firstAttribute="leading" secondItem="mvq-yp-kSd" secondAttribute="leading" id="9TG-19-t8a"/>
-                            <constraint firstAttribute="trailing" secondItem="goz-RX-1zs" secondAttribute="trailing" id="S2A-jA-vX9"/>
-                            <constraint firstAttribute="bottom" secondItem="goz-RX-1zs" secondAttribute="bottom" id="i4S-yZ-cXN"/>
-                            <constraint firstItem="goz-RX-1zs" firstAttribute="top" secondItem="mvq-yp-kSd" secondAttribute="top" id="qCT-pw-FdR"/>
+                            <constraint firstAttribute="bottom" secondItem="Lof-If-ys1" secondAttribute="bottom" constant="5" id="8DB-0r-TIk"/>
+                            <constraint firstAttribute="trailing" secondItem="Lof-If-ys1" secondAttribute="trailing" constant="10" id="blR-gY-mMr"/>
+                            <constraint firstItem="Lof-If-ys1" firstAttribute="leading" secondItem="mvq-yp-kSd" secondAttribute="leading" constant="10" id="g4L-nQ-ipe"/>
+                            <constraint firstItem="Lof-If-ys1" firstAttribute="top" secondItem="mvq-yp-kSd" secondAttribute="top" constant="5" id="nr7-Xc-mmK"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -60,8 +58,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="commenTextViewHeightConstraint" destination="7Qw-1l-4Ps" id="vlr-QS-FDF"/>
-                <outlet property="commentTextView" destination="Lrr-ZJ-LKH" id="pgP-8c-Hsd"/>
+                <outlet property="commentBackgroundView" destination="Lof-If-ys1" id="YMq-Qw-eKC"/>
+                <outlet property="commentLabel" destination="jzd-X5-gCC" id="Opi-oh-tpS"/>
             </connections>
             <point key="canvasLocation" x="107" y="134.5"/>
         </tableViewCell>

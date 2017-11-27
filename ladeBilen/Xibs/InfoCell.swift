@@ -8,16 +8,23 @@
 
 import UIKit
 
-class InfoCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource{
-
+class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+    
+    @IBOutlet weak var xibHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var xibWidthConstraint: NSLayoutConstraint!
     
     
     @IBOutlet weak var panelView: UIView!
     var userComment: String?
+    var connectors: [Connector]?
     
     @IBOutlet weak var screenWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var detailsButton: UIButton!
     @IBOutlet weak var commentsButton: UIButton!
+    
+    @IBOutlet weak var stationButton: UIButton!
     @IBOutlet weak var picturesButton: UIButton!
     
     @IBOutlet weak var detailsStack: UIStackView!
@@ -26,8 +33,9 @@ class InfoCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource
         @IBOutlet weak var realtimeLabel: UILabel!
         @IBOutlet weak var fastChargeLabel: UILabel!
         @IBOutlet weak var parkingFeeLabel: UILabel!
-        @IBOutlet weak var descriptionOfLocationTextView: UITextView!
-            @IBOutlet weak var descriptionOfLocationHeightConstraint: NSLayoutConstraint!
+
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     
     
     @IBOutlet weak var commentsStack: UIStackView!
@@ -35,10 +43,15 @@ class InfoCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource
         @IBOutlet weak var commentStackWidthConstraint: NSLayoutConstraint!
     
     
+    @IBOutlet weak var connectorStack: UIStackView!
+        @IBOutlet weak var connectorCollectionView: UICollectionView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         commentsView.delegate = self
         commentsView.dataSource = self
+        connectorCollectionView.delegate = self
+        connectorCollectionView.dataSource = self
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
        
         commentsView.rowHeight = UITableViewAutomaticDimension
@@ -48,52 +61,77 @@ class InfoCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource
         setConstraints()
         
         commentsView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCellIdentifier")
+        connectorCollectionView.register(UINib(nibName: "ConnectorCell", bundle: nil), forCellWithReuseIdentifier: "ConnectorCellIdentifier")
         
-        print(descriptionOfLocationHeightConstraint.constant)
+        xibWidthConstraint.constant = UIScreen.main.bounds.width
+        xibHeightConstraint.constant = UIScreen.main.bounds.height - 220
+        
+        
+        
+        //219 høyden på xib for best config.
+        descriptionLabel.sizeToFit()
+        
     }
     
     func initializeApperance(){
-        detailsButton.tintColor = UIColor.blue
-        descriptionOfLocationTextView.textContainer.lineFragmentPadding = 0
-        descriptionOfLocationTextView.textContainerInset = .zero
+        detailsButton.tintColor = UIColor.appleBlue()
         panelView.layer.cornerRadius = 20
         detailsStack.isHidden = false
         commentsStack.isHidden = true
+        connectorStack.isHidden = true
     }
     
     func setConstraints(){
         screenWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
         commentStackWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
         
-        descriptionOfLocationHeightConstraint.constant = (self.descriptionOfLocationTextView.sizeThatFits(self.descriptionOfLocationTextView.bounds.size).height + 20)
     }
     
     @IBAction func detailsButton(_ sender: UIButton) {
-        detailsButton.tintColor = UIColor.blue
+        detailsButton.tintColor = UIColor.appleBlue()
         commentsButton.tintColor = UIColor.gray
+        stationButton.tintColor = UIColor.gray
         picturesButton.tintColor = UIColor.gray
-        commentsStack.isHidden = true
+        
         detailsStack.isHidden = false
-        self.layoutIfNeeded()
-        print(commentsStack.isHidden)
+        commentsStack.isHidden = true
+        connectorStack.isHidden = true
+
     }
     
     @IBAction func commentsButton(_ sender: UIButton) {
         detailsButton.tintColor = UIColor.gray
-        commentsButton.tintColor = UIColor.blue
+        commentsButton.tintColor = UIColor.appleBlue()
+        stationButton.tintColor = UIColor.gray
         picturesButton.tintColor = UIColor.gray
-        commentsStack.isHidden = false
+
         detailsStack.isHidden = true
-        self.layoutIfNeeded()
-        print(commentsStack.isHidden)
+        commentsStack.isHidden = false
+        connectorStack.isHidden = true
+
     }
+    
+    @IBAction func stationButton(_ sender: UIButton) {
+        detailsButton.tintColor = UIColor.gray
+        commentsButton.tintColor = UIColor.gray
+        stationButton.tintColor = UIColor.appleBlue()
+        picturesButton.tintColor = UIColor.gray
+        detailsStack.isHidden = true
+        commentsStack.isHidden = true
+        connectorStack.isHidden = false
+
+    }
+    
     
     @IBAction func picturesButton(_ sender: UIButton) {
         detailsButton.tintColor = UIColor.gray
         commentsButton.tintColor = UIColor.gray
-        picturesButton.tintColor = UIColor.blue
+        stationButton.tintColor = UIColor.gray
+        picturesButton.tintColor = UIColor.appleBlue()
         detailsStack.isHidden = true
         commentsStack.isHidden = true
+        connectorStack.isHidden = true
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,8 +141,27 @@ class InfoCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CommentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCellIdentifier", for: indexPath as IndexPath) as! CommentCell
         cell.backgroundColor = UIColor.clear
-        cell.commentTextView.text = userComment
+        cell.commentLabel.text = userComment
+        cell.isUserInteractionEnabled = false
+        
         return cell
 
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //!! ikke sikker, kan gi nil!!!
+        print("Count")
+        print(connectors!.count)
+        return connectors!.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: ConnectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectorCellIdentifier", for: indexPath as IndexPath) as! ConnectorCell
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //Sette størelsen på containerene i collectionview
+        return CGSize(width: (UIScreen.main.bounds.width - 100), height: (UIScreen.main.bounds.width - 100))
     }
 }

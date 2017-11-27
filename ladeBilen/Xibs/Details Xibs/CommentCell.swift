@@ -10,18 +10,14 @@ import UIKit
 
 class CommentCell: UITableViewCell {
 
-    
-    @IBOutlet var commentTextView: UITextView!
-    
-    @IBOutlet weak var commenTextViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var commentBackgroundView: UIView!
+    @IBOutlet weak var commentLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        commentTextView.layer.cornerRadius = 20
-        
-        commenTextViewHeightConstraint.constant = (self.commentTextView.sizeThatFits(self.commentTextView.bounds.size).height + 40)
+        commentBackgroundView.layer.masksToBounds = true
+        commentBackgroundView.layer.cornerRadius = 10
 
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

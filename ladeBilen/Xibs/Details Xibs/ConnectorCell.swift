@@ -8,8 +8,12 @@
 
 import UIKit
 
-class ConnectorsCell: UICollectionViewCell {
-
+class ConnectorCell: UICollectionViewCell {
+    
+    @IBOutlet weak var screenWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var screenHeightConstraint: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
