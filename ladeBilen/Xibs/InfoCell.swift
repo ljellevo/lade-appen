@@ -64,7 +64,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         connectorCollectionView.register(UINib(nibName: "ConnectorCell", bundle: nil), forCellWithReuseIdentifier: "ConnectorCellIdentifier")
         
         xibWidthConstraint.constant = UIScreen.main.bounds.width
-        xibHeightConstraint.constant = UIScreen.main.bounds.height - 220
+        xibHeightConstraint.constant = UIScreen.main.bounds.height - 219
         
         
         
