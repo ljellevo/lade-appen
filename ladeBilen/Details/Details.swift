@@ -46,9 +46,9 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
             cell.nameLabel.text = station?.name
             cell.streetLabel.text = station?.street
-            cell.realtimeLabel.text = station?.realtimeInfo
+            cell.realtimeLabel.text = "Realtime: " + (station?.realtimeInfo)!
             cell.fastChargeLabel.text = "Mangler"
-            cell.parkingFeeLabel.text = station?.parkingFee
+            cell.parkingFeeLabel.text = "Parkerings avgift: " + (station?.parkingFee)!
             cell.userComment = station?.userComment
             cell.descriptionLabel.text = station?.descriptionOfLocation
             cell.connectors = station?.conn
@@ -66,16 +66,4 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             //Deretter må jeg finne høyden.
         }
     }
- 
- 
- 
- 
-    
-    
-    
-    
-    
-    
-
-
 }

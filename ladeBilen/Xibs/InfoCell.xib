@@ -26,32 +26,25 @@
                                 <rect key="frame" x="0.0" y="10" width="414" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bH8-d3-2Ga">
-                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="138" height="30"/>
                                         <state key="normal" image="DetailsSet"/>
                                         <connections>
                                             <action selector="detailsButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="hLd-Rb-iOC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZq-iY-CEU">
-                                        <rect key="frame" x="103.5" y="0.0" width="103.5" height="30"/>
+                                        <rect key="frame" x="138" y="0.0" width="138" height="30"/>
                                         <state key="normal" image="CommentsSet"/>
                                         <connections>
                                             <action selector="commentsButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Y8C-TV-hGv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYb-bQ-QrU" userLabel="Station Button">
-                                        <rect key="frame" x="207" y="0.0" width="103.5" height="30"/>
+                                        <rect key="frame" x="276" y="0.0" width="138" height="30"/>
                                         <state key="normal" image="ChargerSet"/>
                                         <connections>
                                             <action selector="picturesButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="FdC-fv-20K"/>
                                             <action selector="stationButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ZHU-jG-tJF"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJp-b0-Gpw" userLabel="Pictures Button">
-                                        <rect key="frame" x="310.5" y="0.0" width="103.5" height="30"/>
-                                        <state key="normal" image="PicturesSet"/>
-                                        <connections>
-                                            <action selector="picturesButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="4Z2-4S-uhJ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -240,7 +233,6 @@
                 <outlet property="nameLabel" destination="DUi-fg-nGY" id="Dp9-f1-MHd"/>
                 <outlet property="panelView" destination="mBL-MQ-LsN" id="J3s-KY-QIC"/>
                 <outlet property="parkingFeeLabel" destination="fzv-sj-BoY" id="xNO-Rx-8JP"/>
-                <outlet property="picturesButton" destination="OJp-b0-Gpw" id="Xck-sA-8Ly"/>
                 <outlet property="realtimeLabel" destination="N24-tH-Eu4" id="ZE6-Xf-sMQ"/>
                 <outlet property="screenWidthConstraint" destination="HlI-yu-Ia5" id="LlI-UW-0OQ"/>
                 <outlet property="stationButton" destination="NYb-bQ-QrU" id="HyO-0r-Qnb"/>
@@ -255,6 +247,5 @@
         <image name="ChargerSet" width="25" height="25"/>
         <image name="CommentsSet" width="25" height="25"/>
         <image name="DetailsSet" width="25" height="25"/>
-        <image name="PicturesSet" width="25" height="25"/>
     </resources>
 </document>

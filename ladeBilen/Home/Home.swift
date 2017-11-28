@@ -167,6 +167,8 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             return
         }
     }
+    
+    
 
 }
 

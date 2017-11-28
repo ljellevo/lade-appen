@@ -25,7 +25,6 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     @IBOutlet weak var commentsButton: UIButton!
     
     @IBOutlet weak var stationButton: UIButton!
-    @IBOutlet weak var picturesButton: UIButton!
     
     @IBOutlet weak var detailsStack: UIStackView!
         @IBOutlet weak var nameLabel: UILabel!
@@ -91,7 +90,6 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         detailsButton.tintColor = UIColor.appleBlue()
         commentsButton.tintColor = UIColor.gray
         stationButton.tintColor = UIColor.gray
-        picturesButton.tintColor = UIColor.gray
         
         detailsStack.isHidden = false
         commentsStack.isHidden = true
@@ -103,7 +101,6 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         detailsButton.tintColor = UIColor.gray
         commentsButton.tintColor = UIColor.appleBlue()
         stationButton.tintColor = UIColor.gray
-        picturesButton.tintColor = UIColor.gray
 
         detailsStack.isHidden = true
         commentsStack.isHidden = false
@@ -115,7 +112,6 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         detailsButton.tintColor = UIColor.gray
         commentsButton.tintColor = UIColor.gray
         stationButton.tintColor = UIColor.appleBlue()
-        picturesButton.tintColor = UIColor.gray
         detailsStack.isHidden = true
         commentsStack.isHidden = true
         connectorStack.isHidden = false
@@ -127,7 +123,6 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         detailsButton.tintColor = UIColor.gray
         commentsButton.tintColor = UIColor.gray
         stationButton.tintColor = UIColor.gray
-        picturesButton.tintColor = UIColor.appleBlue()
         detailsStack.isHidden = true
         commentsStack.isHidden = true
         connectorStack.isHidden = true
@@ -150,13 +145,17 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //!! ikke sikker, kan gi nil!!!
-        print("Count")
-        print(connectors!.count)
+        print("Count", connectors!.count)
         return connectors!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ConnectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectorCellIdentifier", for: indexPath as IndexPath) as! ConnectorCell
+        cell.typeLabel.text = connectors![indexPath.row].connector
+        cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode
+        cell.compatibleLabel.text = "Mangler"
+        cell.isOperatingLabel.text = connectors![indexPath.row].operationStatus
+        cell.isTakenLabel.text = connectors![indexPath.row].status
         return cell
     }
     
