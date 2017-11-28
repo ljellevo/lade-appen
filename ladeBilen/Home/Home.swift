@@ -27,7 +27,8 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     @IBOutlet weak var buttonsStack: UIStackView!
     
     @IBOutlet var infoView: UIView!
-        @IBOutlet weak var infoPaneStack: UIStackView!
+    @IBOutlet weak var infoViewPannel: UIView!
+    @IBOutlet weak var infoPaneStack: UIStackView!
             @IBOutlet weak var nameLabel: UILabel!
             @IBOutlet weak var streetLabel: UILabel!
             @IBOutlet weak var detailsButton: UIButton!
@@ -61,6 +62,10 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func initializeView(){
+        infoViewPannel.layer.cornerRadius = 20
+        infoViewPannel.layer.borderWidth = 0.5
+        infoViewPannel.layer.borderColor = UIColor.lightGray.cgColor
+        infoViewPannel.layer.masksToBounds = true
         infoPaneStack.alpha = 0.0
         infoPaneStackBottomConstraint.constant = -70
         infoView.isHidden = true
@@ -134,7 +139,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             nameLabel.text = anno.title
             streetLabel.text = anno.subtitle
             infoView.isHidden = false
-            infoPaneStackBottomConstraint.constant = 0
+            infoPaneStackBottomConstraint.constant = 16
             UIView.animate(withDuration: 0.5) {
                 self.infoPaneStack.alpha = 1.0
                 self.infoView.layoutIfNeeded()
@@ -143,9 +148,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             return
         }
     }
-    
-
-
     
 
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
