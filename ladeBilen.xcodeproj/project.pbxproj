@@ -32,7 +32,7 @@
 		8323D4251FC77A320049D349 /* InfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8323D4231FC77A320049D349 /* InfoCell.xib */; };
 		8323D4281FC77A4F0049D349 /* ConnectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323D4261FC77A4F0049D349 /* ConnectorCell.swift */; };
 		8323D4291FC77A4F0049D349 /* ConnectorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8323D4271FC77A4F0049D349 /* ConnectorCell.xib */; };
-		8342E17E1EED87010079888F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17D1EED87010079888F /* Settings.swift */; };
+		8342E17E1EED87010079888F /* SettingsOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17D1EED87010079888F /* SettingsOld.swift */; };
 		8342E1801EED87170079888F /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17F1EED87170079888F /* Search.swift */; };
 		83469A881EEB0DF400D9AFC1 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83469A871EEB0DF400D9AFC1 /* Home.swift */; };
 		83469A8A1EEB0E0600D9AFC1 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83469A891EEB0E0600D9AFC1 /* Favorite.swift */; };
@@ -69,6 +69,7 @@
 		8390E22D1FCD48DA003894DD /* TestThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8390E22C1FCD48DA003894DD /* TestThread.swift */; };
 		83A463AA1FCB1659001A5916 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A463A81FCB1659001A5916 /* CommentCell.swift */; };
 		83A463AB1FCB1659001A5916 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A463A91FCB1659001A5916 /* CommentCell.xib */; };
+		83A54F051FD09FC3002CB5B3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A54F041FD09FC3002CB5B3 /* Settings.swift */; };
 		83B720221EF7068F00AD00DE /* DetailedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B720211EF7068F00AD00DE /* DetailedSettings.swift */; };
 		83B720241EF7119B00AD00DE /* EditSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B720231EF7119B00AD00DE /* EditSettings.swift */; };
 		83CB041E1F0199C600466503 /* TestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CB041D1F0199C600466503 /* TestAPI.swift */; };
@@ -131,7 +132,7 @@
 		8323D4231FC77A320049D349 /* InfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoCell.xib; sourceTree = "<group>"; };
 		8323D4261FC77A4F0049D349 /* ConnectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectorCell.swift; sourceTree = "<group>"; };
 		8323D4271FC77A4F0049D349 /* ConnectorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectorCell.xib; sourceTree = "<group>"; };
-		8342E17D1EED87010079888F /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		8342E17D1EED87010079888F /* SettingsOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsOld.swift; sourceTree = "<group>"; };
 		8342E17F1EED87170079888F /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		83469A871EEB0DF400D9AFC1 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		83469A891EEB0E0600D9AFC1 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
@@ -167,6 +168,7 @@
 		8390E22C1FCD48DA003894DD /* TestThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestThread.swift; sourceTree = "<group>"; };
 		83A463A81FCB1659001A5916 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		83A463A91FCB1659001A5916 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		83A54F041FD09FC3002CB5B3 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		83B720211EF7068F00AD00DE /* DetailedSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedSettings.swift; sourceTree = "<group>"; };
 		83B720231EF7119B00AD00DE /* EditSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettings.swift; sourceTree = "<group>"; };
 		83CB041D1F0199C600466503 /* TestAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAPI.swift; sourceTree = "<group>"; };
@@ -329,9 +331,10 @@
 		8354134D1F82F04A000A70CB /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				8342E17D1EED87010079888F /* Settings.swift */,
+				8342E17D1EED87010079888F /* SettingsOld.swift */,
 				83B720211EF7068F00AD00DE /* DetailedSettings.swift */,
 				83B720231EF7119B00AD00DE /* EditSettings.swift */,
+				83A54F041FD09FC3002CB5B3 /* Settings.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -879,6 +882,7 @@
 			files = (
 				8342E1801EED87170079888F /* Search.swift in Sources */,
 				83F354791EEB0696001A278A /* ViewController.swift in Sources */,
+				83A54F051FD09FC3002CB5B3 /* Settings.swift in Sources */,
 				83F208251FC370D70075A2F0 /* Connector.swift in Sources */,
 				83B720221EF7068F00AD00DE /* DetailedSettings.swift in Sources */,
 				8314E2321EF44DA300F98E3F /* Styles.swift in Sources */,
@@ -895,7 +899,7 @@
 				838F70911F005E230076019A /* Playground.swift in Sources */,
 				8390E22D1FCD48DA003894DD /* TestThread.swift in Sources */,
 				83469A8A1EEB0E0600D9AFC1 /* Favorite.swift in Sources */,
-				8342E17E1EED87010079888F /* Settings.swift in Sources */,
+				8342E17E1EED87010079888F /* SettingsOld.swift in Sources */,
 				83B720241EF7119B00AD00DE /* EditSettings.swift in Sources */,
 				8381A7421F20E6C700F093A6 /* Stations.swift in Sources */,
 				8385F8C71F008C8700619110 /* Login.swift in Sources */,
