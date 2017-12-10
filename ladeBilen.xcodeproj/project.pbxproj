@@ -51,6 +51,7 @@
 		835413801F82F550000A70CB /* PICOL_icon_Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 835413701F82F54E000A70CB /* PICOL_icon_Settings.png */; };
 		835413811F82F550000A70CB /* Schuko_CEE_7_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 835413711F82F54F000A70CB /* Schuko_CEE_7_4.png */; };
 		835413821F82F550000A70CB /* Type_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 835413721F82F54F000A70CB /* Type_2.png */; };
+		83562CDA1FDCD1BE0017F1A7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83562CD91FDCD1BE0017F1A7 /* User.swift */; };
 		836B7DCF1FCA27E800B4B94E /* Details-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DCC1FCA27E500B4B94E /* Details-Icon-50.png */; };
 		836B7DD01FCA27E800B4B94E /* Details-Icon-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DCD1FCA27E600B4B94E /* Details-Icon-75.png */; };
 		836B7DD11FCA27E800B4B94E /* Details-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DCE1FCA27E700B4B94E /* Details-Icon-25.png */; };
@@ -69,7 +70,7 @@
 		8390E22D1FCD48DA003894DD /* TestThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8390E22C1FCD48DA003894DD /* TestThread.swift */; };
 		83A463AA1FCB1659001A5916 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A463A81FCB1659001A5916 /* CommentCell.swift */; };
 		83A463AB1FCB1659001A5916 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A463A91FCB1659001A5916 /* CommentCell.xib */; };
-		83A54F051FD09FC3002CB5B3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A54F041FD09FC3002CB5B3 /* Settings.swift */; };
+		83A54F051FD09FC3002CB5B3 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A54F041FD09FC3002CB5B3 /* Profile.swift */; };
 		83B720221EF7068F00AD00DE /* DetailedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B720211EF7068F00AD00DE /* DetailedSettings.swift */; };
 		83B720241EF7119B00AD00DE /* EditSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B720231EF7119B00AD00DE /* EditSettings.swift */; };
 		83CB041E1F0199C600466503 /* TestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CB041D1F0199C600466503 /* TestAPI.swift */; };
@@ -150,6 +151,7 @@
 		835413701F82F54E000A70CB /* PICOL_icon_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PICOL_icon_Settings.png; sourceTree = "<group>"; };
 		835413711F82F54F000A70CB /* Schuko_CEE_7_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Schuko_CEE_7_4.png; sourceTree = "<group>"; };
 		835413721F82F54F000A70CB /* Type_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Type_2.png; sourceTree = "<group>"; };
+		83562CD91FDCD1BE0017F1A7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		836B7DCC1FCA27E500B4B94E /* Details-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Details-Icon-50.png"; sourceTree = "<group>"; };
 		836B7DCD1FCA27E600B4B94E /* Details-Icon-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Details-Icon-75.png"; sourceTree = "<group>"; };
 		836B7DCE1FCA27E700B4B94E /* Details-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Details-Icon-25.png"; sourceTree = "<group>"; };
@@ -168,7 +170,7 @@
 		8390E22C1FCD48DA003894DD /* TestThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestThread.swift; sourceTree = "<group>"; };
 		83A463A81FCB1659001A5916 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		83A463A91FCB1659001A5916 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
-		83A54F041FD09FC3002CB5B3 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		83A54F041FD09FC3002CB5B3 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		83B720211EF7068F00AD00DE /* DetailedSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedSettings.swift; sourceTree = "<group>"; };
 		83B720231EF7119B00AD00DE /* EditSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettings.swift; sourceTree = "<group>"; };
 		83CB041D1F0199C600466503 /* TestAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAPI.swift; sourceTree = "<group>"; };
@@ -334,7 +336,7 @@
 				8342E17D1EED87010079888F /* SettingsOld.swift */,
 				83B720211EF7068F00AD00DE /* DetailedSettings.swift */,
 				83B720231EF7119B00AD00DE /* EditSettings.swift */,
-				83A54F041FD09FC3002CB5B3 /* Settings.swift */,
+				83A54F041FD09FC3002CB5B3 /* Profile.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -441,6 +443,7 @@
 				83F208221FC370B60075A2F0 /* Station.swift */,
 				83F208241FC370D70075A2F0 /* Connector.swift */,
 				83F208261FC3A02A0075A2F0 /* Annotation.swift */,
+				83562CD91FDCD1BE0017F1A7 /* User.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -882,9 +885,10 @@
 			files = (
 				8342E1801EED87170079888F /* Search.swift in Sources */,
 				83F354791EEB0696001A278A /* ViewController.swift in Sources */,
-				83A54F051FD09FC3002CB5B3 /* Settings.swift in Sources */,
+				83A54F051FD09FC3002CB5B3 /* Profile.swift in Sources */,
 				83F208251FC370D70075A2F0 /* Connector.swift in Sources */,
 				83B720221EF7068F00AD00DE /* DetailedSettings.swift in Sources */,
+				83562CDA1FDCD1BE0017F1A7 /* User.swift in Sources */,
 				8314E2321EF44DA300F98E3F /* Styles.swift in Sources */,
 				8323D4201FC77A1C0049D349 /* TopCell.swift in Sources */,
 				8314E2351EF44E3400F98E3F /* Welcome.swift in Sources */,
