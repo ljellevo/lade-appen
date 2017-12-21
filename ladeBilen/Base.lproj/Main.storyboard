@@ -323,6 +323,23 @@
             <point key="canvasLocation" x="3356.25" y="-700.35211267605632"/>
         </scene>
         <!--Profil-->
+        <scene sceneID="jGF-Ml-9n7">
+            <objects>
+                <navigationController id="5zj-1T-jTV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profil" image="ProfileSet" id="Xqy-Cm-HD5"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JfA-Ch-Nxk">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="b4j-J0-Rey" kind="relationship" relationship="rootViewController" id="VBK-8R-loX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cSK-kf-nj3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2769" y="1727"/>
+        </scene>
+        <!--Profil-->
         <scene sceneID="iig-vW-9zE">
             <objects>
                 <viewController id="b4j-J0-Rey" customClass="Profile" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
@@ -334,30 +351,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M1C-58-wJt">
-                                <rect key="frame" x="0.0" y="20" width="320" height="499"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="708-k9-KaU">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="708-k9-KaU" id="3mF-Tb-ymL">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kMX-7s-2e9">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M1C-58-wJt">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="708-k9-KaU">
+                                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="708-k9-KaU" id="3mF-Tb-ymL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="M1C-58-wJt" firstAttribute="top" secondItem="CsD-jC-tpd" secondAttribute="bottom" id="05o-0G-6gA"/>
-                            <constraint firstAttribute="trailing" secondItem="M1C-58-wJt" secondAttribute="trailing" id="IGT-IA-cMK"/>
-                            <constraint firstItem="M1C-58-wJt" firstAttribute="leading" secondItem="kvQ-Gw-lxo" secondAttribute="leading" id="OMI-U0-UDb"/>
-                            <constraint firstItem="Ejx-Tg-npi" firstAttribute="top" secondItem="M1C-58-wJt" secondAttribute="bottom" id="nok-n9-bEm"/>
+                            <constraint firstItem="kMX-7s-2e9" firstAttribute="top" secondItem="CsD-jC-tpd" secondAttribute="bottom" id="h50-1j-2nS"/>
+                            <constraint firstAttribute="trailing" secondItem="kMX-7s-2e9" secondAttribute="trailing" id="i29-LB-Py7"/>
+                            <constraint firstItem="Ejx-Tg-npi" firstAttribute="top" secondItem="kMX-7s-2e9" secondAttribute="bottom" id="lUo-2M-mbY"/>
+                            <constraint firstItem="kMX-7s-2e9" firstAttribute="leading" secondItem="kvQ-Gw-lxo" secondAttribute="leading" id="zMJ-Fs-P0c"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profil" image="ProfileSet" id="fXY-PE-fKK"/>
+                    <navigationItem key="navigationItem" title="Profil" id="TKW-4W-fRd">
+                        <barButtonItem key="backBarButtonItem" title="Profil" id="RDg-fE-R3q"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="M1C-58-wJt" id="t0j-0v-BdV"/>
                     </connections>
@@ -626,7 +651,7 @@
                         <segue destination="2XU-PT-YZF" kind="relationship" relationship="viewControllers" id="gBv-Lb-iCP"/>
                         <segue destination="XCX-Ed-eow" kind="relationship" relationship="viewControllers" id="uip-76-FLi"/>
                         <segue destination="QyE-R2-WER" kind="relationship" relationship="viewControllers" id="Wue-xl-UGN"/>
-                        <segue destination="b4j-J0-Rey" kind="relationship" relationship="viewControllers" id="i6d-V7-OnZ"/>
+                        <segue destination="5zj-1T-jTV" kind="relationship" relationship="viewControllers" id="T4Y-UI-qtS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CgU-3N-p6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
