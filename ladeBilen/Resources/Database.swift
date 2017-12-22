@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 class Database {
+    
+    func addUserToDatabase(Name: String, Email: String){
+        
+    }
 
     
 

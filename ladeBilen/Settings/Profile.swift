@@ -7,18 +7,17 @@
 //
 
 import UIKit
+import Firebase
 
 class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    //Må legge til padding i tabellen for å ha en avstand mellom sections
     
+    var window: UIWindow?
+
     let items = [
-        ["Navn", "E-post", "Passord", "Bilmodell", " "],
-        ["Kontakter", "Parkerings Avgift", "Hastighet", " "],
+        ["Navn", "E-post", "Passord", "Bilmodell"],
+        ["Kontakter", "Parkerings Avgift", "Hastighet"],
         ["Cloud lagring", "Om oss", "Rapporter feil", "Log ut"]
     ]
-    
-    let section = ["Bruker", "Søke innstillinger", "Innstillinger"]
-
 
     
     @IBOutlet weak var tableView: UITableView!
@@ -29,7 +28,6 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = self
         tableView.tableHeaderView = UIView()
         tableView.tableFooterView = UIView()
-        tableView.sectionHeaderHeight = 40
         //confifureHeaderFrame()
     }
     
@@ -51,14 +49,11 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.section[section]
-    }
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.section.count
+        return 3
     }
+ 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items[section].count
@@ -72,16 +67,27 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        if(indexPath.row == self.items[indexPath.section].count - 1){
-            return false
-        }
-        return true
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
         cell.textLabel?.text = self.items[indexPath.section][indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.section)
+        print(indexPath.row)
+        if(indexPath.section == (items.count - 1) && indexPath.row == (items[indexPath.section].count - 1)){
+            print("Logout")
+            do{
+                try FIRAuth.auth()?.signOut()
+                let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+                let vc = storyBoard.instantiateViewController(withIdentifier: "Login") as! Login
+                self.window?.rootViewController=vc
+                self.window?.makeKeyAndVisible()
+            } catch {
+                print ("Error")
+            }
+        }
     }
 }

@@ -41,7 +41,10 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         initializeMap()
         initializeButtons()
         initializeView()
-        getStationsFromDatabase()
+        getStationsFromDatabase() {
+            self.addAnnotationsToMap()
+            
+        }
     }
     
     
@@ -58,7 +61,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         locationManager.startUpdatingLocation()
         mapWindow.showsUserLocation = true
         mapWindow.delegate = self
-
     }
     
     func initializeView(){
@@ -69,13 +71,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         infoPaneStack.alpha = 0.0
         infoPaneStackBottomConstraint.constant = -70
         infoView.isHidden = true
-
-    }
-
-    
-    @IBAction func nearestButtonClicked(_ sender: Any) {
-        print("Clicked")
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -97,37 +92,39 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         performSegue(withIdentifier: "toDetails", sender: self)
     }
     
-    func getStationsFromDatabase(){
+    func getStationsFromDatabase(finished: @escaping () -> Void){
         let ref = FIRDatabase.database().reference()
         ref.child("stations").observe(.value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String:AnyObject]{
-                for children in dictionary{
-                    let eachStation = children.value as? [String: AnyObject]
-                    self.createStationStructs(eachStation: eachStation!)
+            DispatchQueue.global().async {
+                if let dictionary = snapshot.value as? [String:AnyObject]{
+                    for children in dictionary{
+                        let eachStation = children.value as? [String: AnyObject]
+                        let station = Station(dictionary: eachStation!)
+                        stations.append(station)
+                    }
                 }
-                self.addAnnotationsToMap()
+                DispatchQueue.main.async {
+                    finished()
+                }
             }
         }, withCancel: nil)
     }
     
-    func createStationStructs(eachStation: [String: AnyObject]){
-        let station = Station(dictionary: eachStation)
-        stations.append(station)
-    }
+
     
     func addAnnotationsToMap(){
         for children in stations{
-            var position = children.position
-            position = position?.replacingOccurrences(of: "(", with: "")
-            position = position?.replacingOccurrences(of: ")", with: "")
-            let positionArray = position!.components(separatedBy: ",")
-            let lat = Double(positionArray[0])
-            let lon = Double(positionArray[1])
-            
-            let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
-        
-            let annotation = Annotation(title: children.name!, subtitle: children.street!, id: children.id!, coordinate: coordinates)
-            mapWindow.addAnnotation(annotation)
+                var position = children.position
+                position = position?.replacingOccurrences(of: "(", with: "")
+                position = position?.replacingOccurrences(of: ")", with: "")
+                let positionArray = position!.components(separatedBy: ",")
+                let lat = Double(positionArray[0])
+                let lon = Double(positionArray[1])
+                
+                let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
+                
+                let annotation = Annotation(title: children.name!, subtitle: children.street!, id: children.id!, coordinate: coordinates)
+                self.mapWindow.addAnnotation(annotation)
             
         }
     }

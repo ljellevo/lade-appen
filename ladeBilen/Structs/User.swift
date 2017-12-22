@@ -9,13 +9,27 @@
 import Foundation
 
 struct User {
-    var name: String?
-    var email: String?
-    var carModel: String?
+    var name: String? = ""
+    var email: String? = ""
+    var carModel: String? = ""
     
-    var connectors: [String?]
-    var parkingFee: Bool?
-    var fastCharge: Bool?
+    var connectors: [String?] = [""]
+    var parkingFee: Bool? = false
+    var fastCharge: Bool? = false
     
-    var cloudStorage: Bool?
+    var cloudStorage: Bool? = false
+    
+    init() {
+        name = ""
+        email = ""
+        carModel = ""
+        connectors = [""]
+        parkingFee = false
+        fastCharge = false
+        cloudStorage = false
+    }
+    
+    init(email: String) {
+        self.email = email
+    }
 }

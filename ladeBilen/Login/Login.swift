@@ -81,6 +81,12 @@ class Login: UIViewController, UITextFieldDelegate {
         inputThreeTextField.setBottomBorderGray()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nextViewController = segue.destination as? Register{
+            //nextViewController.user = user!
+        }
+    }
+    
     @IBAction func actionButtonClicked(_ sender: UIButton) {
         if inputOneTextField.text!.isEmpty || inputTwoTextField.text!.isEmpty {
             if(inputOneTextField.text!.isEmpty){
@@ -107,7 +113,7 @@ class Login: UIViewController, UITextFieldDelegate {
                         self.inputThreeTextField.setBottomBorderRed()
                     } else {
                         print("Bruker ble suksessfult opprettet")
-                        self.performSegue(withIdentifier: "toHome", sender: self)
+                        self.performSegue(withIdentifier: "toRegister", sender: self)
                     }
                 }
             } else {
