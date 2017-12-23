@@ -106,20 +106,6 @@ class Login: UIViewController, UITextFieldDelegate {
             })
         } else {
             if(inputTwoTextField.text == inputThreeTextField.text){
-                
-                let ref = FIRDatabase.database().reference()
-                ref.child("User_Info").observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
-                    
-                    if snapshot.hasChild(self.inputOneTextField.text!){
-                        
-                
-                    }else{
-                        
-                    }
-                    
-                    
-                })
-                
                 FIRAuth.auth()?.createUser(withEmail: inputOneTextField.text!, password: inputTwoTextField.text!) { (user, error) in
                     if (error != nil){
                         self.inputOneTextField.setBottomBorderRed()
@@ -132,8 +118,11 @@ class Login: UIViewController, UITextFieldDelegate {
                 inputTwoTextField.setBottomBorderRed()
                 inputThreeTextField.setBottomBorderRed()
             }
+
+                
         }
     }
+ 
     
     @IBAction func switchButtonClicked(_ sender: UIButton) {
         if(isViewActive == true){

@@ -9,23 +9,26 @@
 import Foundation
 
 struct User {
-    var firstname: String? = ""
-    var lastname: String? = ""
-    var email: String? = ""
+    var email: String?
+    var firstname: String?
+    var lastname: String?
+    var fastCharge: Bool?
+    var parkingFee: Bool?
+    var cloudStorage: Bool?
+    var notifications: Bool?
+    var notificationDuration: Int?
+    var connector: Int?
+
     
-    var connectors: [String?] = [""]
-    var parkingFee: Bool? = false
-    var fastCharge: Bool? = false
-    
-    var cloudStorage: Bool? = false
-    
-    init(firstname: String, lastname: String, email: String, connectors: [String], parkingFee: Bool, fastCharge: Bool, cloudStorage: Bool) {
+    init(email: String, firstname: String, lastname: String, fastCharge: Bool, parkingFee: Bool, cloudStorage: Bool, notifications: Bool, notificationDuration: Int, connector: Int) {
+        self.email = email
         self.firstname = firstname
         self.lastname = lastname
-        self.email = email
-        self.connectors = connectors
-        self.parkingFee = parkingFee
         self.fastCharge = fastCharge
-        self.cloudStorage = cloudStorage
+        self.parkingFee = parkingFee
+        self.notifications = notifications
+        self.notificationDuration = notificationDuration
+        self.connector = connector
+        
     }
 }

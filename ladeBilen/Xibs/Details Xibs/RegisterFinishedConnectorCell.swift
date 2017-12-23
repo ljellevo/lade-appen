@@ -1,26 +1,22 @@
 //
-//  ConnectorsCell.swift
+//  RegisterFinishedConnectorCell.swift
 //  ladeBilen
 //
-//  Created by Ludvig Ellevold on 23.11.2017.
+//  Created by Ludvig Ellevold on 23.12.2017.
 //  Copyright © 2017 Ludvig Ellevold. All rights reserved.
 //
 
 import UIKit
 
-class ConnectorCell: UICollectionViewCell {
-    
+class RegisterFinishedConnectorCell: UICollectionViewCell {
+
+    @IBOutlet weak var connectorImage: UIImageView!
+    @IBOutlet weak var connectorLabel: UILabel!
     @IBOutlet weak var view: UIView!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var typeLabel: UILabel!
-    @IBOutlet weak var chargeRateLabel: UILabel!
-    @IBOutlet weak var compatibleLabel: UILabel!
-    @IBOutlet weak var isOperatingLabel: UILabel!
-    @IBOutlet weak var isTakenLabel: UILabel!
     
-    override func awakeFromNib() { 
+    
+    override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.cornerRadius = 20
@@ -31,10 +27,11 @@ class ConnectorCell: UICollectionViewCell {
         didSet{
             if self.isSelected {
                 self.view.layer.borderColor = UIColor.green.cgColor
-
+                
             } else {
                 self.view.layer.borderColor = UIColor.gray.cgColor
             }
         }
     }
+
 }
