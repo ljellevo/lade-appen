@@ -9,9 +9,9 @@
 import Foundation
 
 struct User {
-    var name: String? = ""
+    var firstname: String? = ""
+    var lastname: String? = ""
     var email: String? = ""
-    var carModel: String? = ""
     
     var connectors: [String?] = [""]
     var parkingFee: Bool? = false
@@ -19,17 +19,13 @@ struct User {
     
     var cloudStorage: Bool? = false
     
-    init() {
-        name = ""
-        email = ""
-        carModel = ""
-        connectors = [""]
-        parkingFee = false
-        fastCharge = false
-        cloudStorage = false
-    }
-    
-    init(email: String) {
+    init(firstname: String, lastname: String, email: String, connectors: [String], parkingFee: Bool, fastCharge: Bool, cloudStorage: Bool) {
+        self.firstname = firstname
+        self.lastname = lastname
         self.email = email
+        self.connectors = connectors
+        self.parkingFee = parkingFee
+        self.fastCharge = fastCharge
+        self.cloudStorage = cloudStorage
     }
 }

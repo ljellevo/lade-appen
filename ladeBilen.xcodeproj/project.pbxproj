@@ -86,6 +86,7 @@
 		83F354811EEB0696001A278A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547F1EEB0696001A278A /* LaunchScreen.storyboard */; };
 		83F3548C1EEB0697001A278A /* ladeBilenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3548B1EEB0697001A278A /* ladeBilenTests.swift */; };
 		83F354971EEB0697001A278A /* ladeBilenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354961EEB0697001A278A /* ladeBilenUITests.swift */; };
+		83FD2BEA1FEE6DE9002B8EDF /* RegisterCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD2BE91FEE6DE9002B8EDF /* RegisterCont.swift */; };
 		AF3F3AAA148AB995D9D565AE /* Pods_ladeBilenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4FD70E2300928D5DD5CA905 /* Pods_ladeBilenTests.framework */; };
 		C80FCBA5A734B9589C5D8F32 /* Pods_ladeBilenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20189C346CDCFD95DE48E18F /* Pods_ladeBilenUITests.framework */; };
 /* End PBXBuildFile section */
@@ -196,6 +197,7 @@
 		83F354921EEB0697001A278A /* ladeBilenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ladeBilenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F354961EEB0697001A278A /* ladeBilenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ladeBilenUITests.swift; sourceTree = "<group>"; };
 		83F354981EEB0697001A278A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83FD2BE91FEE6DE9002B8EDF /* RegisterCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCont.swift; sourceTree = "<group>"; };
 		A11AA552B6632E680D391088 /* Pods-ladeBilenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CBE7FF5E7AF48C454404FE8B /* Pods_ladeBilen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC9EF150DA9B89419D446B17 /* Pods-ladeBilen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilen.release.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilen/Pods-ladeBilen.release.xcconfig"; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 			children = (
 				8385F8C51F007ABC00619110 /* Login.swift */,
 				83DD039B1FEDCD3E00AEF6C9 /* Register.swift */,
+				83FD2BE91FEE6DE9002B8EDF /* RegisterCont.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -912,6 +915,7 @@
 				831470861FBE465500DCD0CD /* TabHome.swift in Sources */,
 				838F70911F005E230076019A /* Playground.swift in Sources */,
 				8390E22D1FCD48DA003894DD /* TestThread.swift in Sources */,
+				83FD2BEA1FEE6DE9002B8EDF /* RegisterCont.swift in Sources */,
 				83469A8A1EEB0E0600D9AFC1 /* Favorite.swift in Sources */,
 				8342E17E1EED87010079888F /* SettingsOld.swift in Sources */,
 				83B720241EF7119B00AD00DE /* EditSettings.swift in Sources */,

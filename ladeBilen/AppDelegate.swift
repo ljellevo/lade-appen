@@ -20,18 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         //UIApplication.shared.statusBarStyle = .lightContent
         
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if user != nil {
-                let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vc = storyBoard.instantiateViewController(withIdentifier: "Home") as! TabHome
-                self.window?.rootViewController=vc
-                self.window?.makeKeyAndVisible()
-            } else {
-                let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vc = storyBoard.instantiateViewController(withIdentifier: "Login") as! Login
-                self.window?.rootViewController=vc
-                self.window?.makeKeyAndVisible()
-            }
+        if FIRAuth.auth()?.currentUser?.uid != nil {
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: "Home") as! TabHome
+            self.window?.rootViewController=vc
+            self.window?.makeKeyAndVisible()
+        }else{
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: "Login") as! Login
+            self.window?.rootViewController=vc
+            self.window?.makeKeyAndVisible()
         }
         return true
     }
