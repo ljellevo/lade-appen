@@ -20,7 +20,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let items = [
         ["Fornavn", "Etternavn", "E-post", "Passord"],
         ["Kontakt", "Parkerings Avgift", "Hastighet", "Notifikasjons Varighet"],
-        ["Cloud lagring", "Om oss", "Rapporter feil", "Log ut"]
+        ["Cloud lagring", "Om oss", "Rapporter feil", "Slett cache", "Log ut"]
     ]
 
     
@@ -37,7 +37,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if GlobalResources.user == nil {
             print("User struct does not exist")
             do{
-                user = try Disk.retrieve("User.json", from: .caches, as: User.self)
+                user = try Disk.retrieve((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches, as: User.self)
                 GlobalResources.user = user
                 userInfo.append(GlobalResources.user?.nsDictionary["firstname"] as! String)
                 userInfo.append(GlobalResources.user?.nsDictionary["lastname"] as! String)
@@ -104,6 +104,15 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         print(indexPath.row)
         if indexPath.row <= items[indexPath.section].count && indexPath.section == 0 {
             //Last opp tastatur
+        }
+        
+        if indexPath.section == 2 && indexPath.row == 3 {
+            do {
+                try Disk.remove((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches)
+                print("Removed cache")
+            } catch {
+                print("Could not remove cache")
+            }
         }
         if(indexPath.section == (items.count - 1) && indexPath.row == (items[indexPath.section].count - 1)){
             print("Logout")
