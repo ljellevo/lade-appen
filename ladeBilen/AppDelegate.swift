@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Disk
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,17 +21,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         //UIApplication.shared.statusBarStyle = .lightContent
         
-        
-        
         if FIRAuth.auth()?.currentUser?.uid != nil {
-            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-            let vc = storyBoard.instantiateViewController(withIdentifier: "Tab") as! Tab
-            self.window?.rootViewController=vc
-            self.window?.makeKeyAndVisible()
-        }else{
+            
+            if GlobalResources.user == nil {
+                do{
+                    //Fant user struct i cache
+                    GlobalResources.user = try Disk.retrieve((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches, as: User.self)
+                    let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+                    let vc = storyBoard.instantiateViewController(withIdentifier: "Tab") as! Tab
+                    self.window?.rootViewController = vc
+                    self.window?.makeKeyAndVisible()
+                } catch {
+                    //Fant ikke user struct i cache, gjør en database query
+                    let ref = FIRDatabase.database().reference()
+                    ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
+                        DispatchQueue.global().async {
+                            if let value = snapshot.value as? NSDictionary {
+                                let uid = value["uid"] as! String
+                                let email = value["email"] as! String
+                                let firstname = value["firstname"] as! String
+                                let lastname = value["lastname"] as! String
+                                let fastcharge = value["fastcharge"] as! Bool
+                                let parkingfee = value["parkingfee"] as! Bool
+                                let cloudstorage = value["cloudstorage"] as! Bool
+                                let notifications = value["notifications"] as! Bool
+                                let notificationsDuration = value["notificationsDuration"] as! Int
+                                let connector = value["connector"] as! Int
+                                
+                                if let user = User(uid: uid, email: email, firstname: firstname, lastname: lastname, fastCharge: fastcharge, parkingFee: parkingfee, cloudStorage: cloudstorage, notifications: notifications, notificationDuration: notificationsDuration, connector: connector) as User? {
+                                    GlobalResources.user = user
+                                    let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+                                    let vc = storyBoard.instantiateViewController(withIdentifier: "Tab") as! Tab
+                                    self.window?.rootViewController = vc
+                                    self.window?.makeKeyAndVisible()
+                                } else {
+                                    let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+                                    let vc = storyBoard.instantiateViewController(withIdentifier: "Register") as! Register
+                                    self.window?.rootViewController = vc
+                                    self.window?.makeKeyAndVisible()
+                                }
+                            }
+                        }
+                    }, withCancel: nil)
+                }
+            }
+    
+            
+
+        } else {
             let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "Login") as! Login
-            self.window?.rootViewController=vc
+            self.window?.rootViewController = vc
             self.window?.makeKeyAndVisible()
         }
         return true

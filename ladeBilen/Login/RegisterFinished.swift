@@ -109,7 +109,7 @@ class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollection
             )
  
             do {
-                try Disk.save(user, to: .caches, as: "User.json")
+                try Disk.save(user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
             } catch {
                 print("User not stored in cache")
             }
