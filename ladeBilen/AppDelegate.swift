@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         //UIApplication.shared.statusBarStyle = .lightContent
         
+        
+        
         if FIRAuth.auth()?.currentUser?.uid != nil {
             let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "Tab") as! Tab

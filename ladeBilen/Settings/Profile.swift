@@ -13,7 +13,9 @@ import Disk
 class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var window: UIWindow?
-    var user: User = nil
+    var user: User?
+    var userInfoDictionary: NSDictionary?
+    var userInfo: [String] = []
 
     let items = [
         ["Fornavn", "Etternavn", "E-post", "Passord"],
@@ -32,10 +34,18 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "EntryCell", bundle: nil), forCellReuseIdentifier: "EntryCell")
         tableView.register(UINib(nibName: "DefaultCell", bundle: nil), forCellReuseIdentifier: "DefaultCell")
-        do{
-            user = try Disk.retrieve("User.json", from: .caches, as: User.self)
-        } catch {
-            print("User er ikke lagret. hent fra databasen og lagre")
+        if GlobalResources.user == nil {
+            print("User struct does not exist")
+            do{
+                user = try Disk.retrieve("User.json", from: .caches, as: User.self)
+                GlobalResources.user = user
+                userInfo.append(GlobalResources.user?.nsDictionary["firstname"] as! String)
+                userInfo.append(GlobalResources.user?.nsDictionary["lastname"] as! String)
+                userInfo.append(GlobalResources.user?.nsDictionary["email"] as! String)
+                print("User was found in cache")
+            } catch {
+                print("User was not found in cache")
+            }
         }
     }
     
@@ -73,16 +83,13 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return true
     }
     
-
-    
-
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row <= items[indexPath.section].count && indexPath.section == 0 {
+        if indexPath.row < (items[indexPath.section].count - 1) && indexPath.section == 0 {
             let cell: EntryCell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
             cell.label.text = items[indexPath.section][indexPath.row]
-            cell.textField.text = "Ludvig"
+            if user != nil {
+                cell.textField.text = userInfo[indexPath.row]
+            }
             return cell
         } else {
             let cell: DefaultCell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath) as! DefaultCell
