@@ -9,7 +9,8 @@
 import UIKit
 
 class Register: UIViewController {
-
+    
+    var uid: String?
     var email: String?
 
     @IBOutlet weak var whitePannel: UIView!
@@ -40,7 +41,7 @@ class Register: UIViewController {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     }
     
-    func keyboardWillShow() {
+    @objc func keyboardWillShow() {
         firstnameTextField.setBottomBorder()
         lastnameTextField.setBottomBorder()
     }
@@ -53,6 +54,7 @@ class Register: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextViewController = segue.destination as? RegisterCont{
+            nextViewController.uid = uid
             nextViewController.email = email
             nextViewController.firstname = self.firstnameTextField.text
             nextViewController.lastname = self.lastnameTextField.text

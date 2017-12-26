@@ -17,6 +17,7 @@ class Login: UIViewController, UITextFieldDelegate {
     var gestureWhitePanel: CGFloat?
     var gestureBanner: CGFloat?
     var isViewActive: Bool? = false
+    var uid: String?
     var email: String? = ""
     var username: String? = ""
     var password: String? = ""
@@ -83,6 +84,7 @@ class Login: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextViewController = segue.destination as? Register{
+            nextViewController.uid = FIRAuth.auth()?.currentUser?.uid
             nextViewController.email = self.inputOneTextField.text
         }
     }
@@ -100,7 +102,6 @@ class Login: UIViewController, UITextFieldDelegate {
                     self.inputOneTextField.setBottomBorderRed()
                     self.inputTwoTextField.setBottomBorderRed()
                 } else {
-                    print("Bruker ble suksessfult logget inn")
                     self.performSegue(withIdentifier: "toHome", sender: self)
                 }
             })
@@ -110,7 +111,6 @@ class Login: UIViewController, UITextFieldDelegate {
                     if (error != nil){
                         self.inputOneTextField.setBottomBorderRed()
                     } else {
-                        print("Bruker ble suksessfult opprettet")
                         self.performSegue(withIdentifier: "toRegister", sender: self)
                     }
                 }
@@ -185,7 +185,7 @@ class Login: UIViewController, UITextFieldDelegate {
     }
 
     
-    func keyboardWillShow() {
+    @objc func keyboardWillShow() {
         print("Keyboard will show")
         activateLoginView()
     }
@@ -211,7 +211,7 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     
     
-    func keyboardWillHide() {
+    @objc func keyboardWillHide() {
         print("Keybord will hide")
     }
 

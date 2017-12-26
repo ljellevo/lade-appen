@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if FIRAuth.auth()?.currentUser?.uid != nil {
             let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-            let vc = storyBoard.instantiateViewController(withIdentifier: "Home") as! TabHome
+            let vc = storyBoard.instantiateViewController(withIdentifier: "Tab") as! Tab
             self.window?.rootViewController=vc
             self.window?.makeKeyAndVisible()
         }else{

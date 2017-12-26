@@ -9,10 +9,11 @@
 import UIKit
 
 class RegisterCont: UIViewController {
+    var uid: String?
     var email: String?
     var firstname: String?
     var lastname: String?
-    var notificationDuration: Int?
+    var notificationDuration: Int = 30
 
     @IBOutlet weak var whitePannel: UIView!
     
@@ -65,6 +66,7 @@ class RegisterCont: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let registerFinished = segue.destination as? RegisterFinished{
+            registerFinished.uid = uid
             registerFinished.email = email
             registerFinished.firstname = firstname
             registerFinished.lastname = lastname

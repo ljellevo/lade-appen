@@ -165,11 +165,11 @@ class Welcome: UIViewController, UITextFieldDelegate {
         }
     }
 
-    func keyboardWillShow(notification: NSNotification){
+    @objc func keyboardWillShow(notification: NSNotification){
         print("Keyboard will show")
     }
     
-    func keyboardWillHide(){
+    @objc func keyboardWillHide(){
         print("Keyboard will hide")
         
     }

@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct User {
+struct User: Codable {
+    var uid: String?
     var email: String?
     var firstname: String?
     var lastname: String?
@@ -20,7 +21,8 @@ struct User {
     var connector: Int?
 
     
-    init(email: String, firstname: String, lastname: String, fastCharge: Bool, parkingFee: Bool, cloudStorage: Bool, notifications: Bool, notificationDuration: Int, connector: Int) {
+    init(uid: String, email: String, firstname: String, lastname: String, fastCharge: Bool, parkingFee: Bool, cloudStorage: Bool, notifications: Bool, notificationDuration: Int, connector: Int) {
+        self.uid = uid
         self.email = email
         self.firstname = firstname
         self.lastname = lastname

@@ -8,11 +8,13 @@
 
 import UIKit
 import Firebase
+import Disk
 
 class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
 
     var connectors: [String] = []
+    var uid: String?
     var email: String?
     var firstname: String?
     var lastname: String?
@@ -88,11 +90,30 @@ class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollection
     
     @IBAction func finishedButton(_ sender: UIButton) {
         if connector != nil {
-            let user = User(email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudStorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
             
+            let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudStorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
+            GlobalResources.user = user
+            
+            let ref = FIRDatabase.database().reference()
+            ref.child("User_Info").child(uid!).setValue(
+                ["uid": uid!,
+                "email": email!,
+                "firstname": firstname!,
+                "lastname": lastname!,
+                "fastCharge": fastcharge!,
+                "parkingFee": parkingfee!,
+                "cloudStorage": cloudStorage!,
+                "notifications": notifications!,
+                "notificationsDuration": notificationsDuration!,
+                "connector": connector!]
+            )
+ 
+            do {
+                try Disk.save(user, to: .caches, as: "User.json")
+            } catch {
+                print("User not stored in cache")
+            }
+            performSegue(withIdentifier: "toHomeFromRegister", sender: self)
         }
     }
-    
-
-
 }

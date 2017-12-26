@@ -48,8 +48,8 @@ class SettingsOld: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailedSettings" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let destination = segue.destination as! DetailedSettings
-                destination.selectedRow = indexPath.row
+                //let destination = segue.destination as! DetailedSettings
+                //destination.selectedRow = indexPath.row
             }
         }
     }
