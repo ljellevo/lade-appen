@@ -13,7 +13,7 @@ import Disk
 class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var window: UIWindow?
-    var user: User?
+    var user: User = GlobalResources.user!
     var userInfoDictionary: NSDictionary?
     var userInfo: [String] = []
 
@@ -34,19 +34,9 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "EntryCell", bundle: nil), forCellReuseIdentifier: "EntryCell")
         tableView.register(UINib(nibName: "DefaultCell", bundle: nil), forCellReuseIdentifier: "DefaultCell")
-        if GlobalResources.user == nil {
-            print("User struct does not exist")
-            do{
-                user = try Disk.retrieve((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches, as: User.self)
-                GlobalResources.user = user
-                userInfo.append(GlobalResources.user?.nsDictionary["firstname"] as! String)
-                userInfo.append(GlobalResources.user?.nsDictionary["lastname"] as! String)
-                userInfo.append(GlobalResources.user?.nsDictionary["email"] as! String)
-                print("User was found in cache")
-            } catch {
-                print("User was not found in cache")
-            }
-        }
+        userInfo.append(GlobalResources.user?.nsDictionary["firstname"] as! String)
+        userInfo.append(GlobalResources.user?.nsDictionary["lastname"] as! String)
+        userInfo.append(GlobalResources.user?.nsDictionary["email"] as! String)
     }
     
 

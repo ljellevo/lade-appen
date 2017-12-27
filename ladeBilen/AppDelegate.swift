@@ -22,103 +22,88 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //UIApplication.shared.statusBarStyle = .lightContent
         
         if FIRAuth.auth()?.currentUser?.uid != nil {
-            
             if GlobalResources.user == nil {
                 do{
-                    GlobalResources.user = try Disk.retrieve((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches, as: User.self)
-                    print("User is stored in cache")
-                    let ref = FIRDatabase.database().reference()
-                    ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).child("uid").observe(.value, with: { (snapshot) in
-                        if let value = snapshot.value as? NSDictionary {
-                            let uid = value["uid"] as? String
-                            if uid != nil && uid == GlobalResources.user?.uid {
-                                let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                                let vc = storyBoard.instantiateViewController(withIdentifier: "Tab") as! Tab
-                                self.window?.rootViewController = vc
-                                self.window?.makeKeyAndVisible()
-                            } else {
-                                print("Cache er ikke lik databasen, login på nytt")
-                                let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                                let vc = storyBoard.instantiateViewController(withIdentifier: "Login") as! Login
-                                self.window?.rootViewController = vc
-                                self.window?.makeKeyAndVisible()
-                            }
-                        }
-                    }, withCancel: nil)
-                } catch {
-                    print("User not stored in cache, performing database query")
-                    let ref = FIRDatabase.database().reference()
-                    ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
-                        if let value = snapshot.value as? NSDictionary {
-                            var error: Bool = false
-                            let uid = value["uid"] as? String
-                            if uid == nil {
-                                error = true
-                            }
-                            let email = value["email"] as? String
-                            if email == nil {
-                                error = true
-                            }
-                            let firstname = value["firstname"] as? String
-                            if firstname == nil {
-                                error = true
-                            }
-                            let lastname = value["lastname"] as? String
-                            if lastname == nil {
-                                error = true
-                            }
-                            let fastcharge = value["fastCharge"] as? Bool
-                            if fastcharge == nil {
-                                error = true
-                            }
-                            let parkingfee = value["parkingFee"] as? Bool
-                            if parkingfee == nil {
-                                error = true
-                            }
-                            let cloudstorage = value["cloudStorage"] as? Bool
-                            if cloudstorage == nil {
-                                error = true
-                            }
-                            let notifications = value["notifications"] as? Bool
-                            if notifications == nil {
-                                error = true
-                            }
-                            let notificationsDuration = value["notificationsDuration"] as? Int
-                            if notificationsDuration == nil {
-                                error = true
-                            }
-                            let connector = value["connector"] as? Int
-                            if connector == nil {
-                                error = true
-                            }
-                                
-                            if error == false {
-                                print("User found in database, caching an navigating to home")
-                                let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
-                                GlobalResources.user = user
-                                do {
-                                    try Disk.save(user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
-                                } catch {
-                                    print("User not stored in cache")
+                    if Disk.exists((FIRAuth.auth()?.currentUser?.uid)! + ".json", in: .caches) {
+                        GlobalResources.user = try Disk.retrieve((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches, as: User.self)
+                        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+                        let vc = storyBoard.instantiateViewController(withIdentifier: "Tab") as! Tab
+                        self.window?.rootViewController = vc
+                        self.window?.makeKeyAndVisible()
+                    } else {
+                        print("User not stored in cache, performing database query")
+                        let ref = FIRDatabase.database().reference()
+                        ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
+                            if let value = snapshot.value as? NSDictionary {
+                                var error: Bool = false
+                                let uid = value["uid"] as? String
+                                if uid == nil {
+                                    error = true
                                 }
-                                let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                                let vc = storyBoard.instantiateViewController(withIdentifier: "Tab") as! Tab
-                                self.window?.rootViewController = vc
-                                self.window?.makeKeyAndVisible()
-                            } else {
-                                print("User not found in database, will navigate user to registration")
-                                let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                                let vc = storyBoard.instantiateViewController(withIdentifier: "Register") as! Register
-                                self.window?.rootViewController = vc
-                                self.window?.makeKeyAndVisible()
+                                let email = value["email"] as? String
+                                if email == nil {
+                                    error = true
+                                }
+                                let firstname = value["firstname"] as? String
+                                if firstname == nil {
+                                    error = true
+                                }
+                                let lastname = value["lastname"] as? String
+                                if lastname == nil {
+                                    error = true
+                                }
+                                let fastcharge = value["fastCharge"] as? Bool
+                                if fastcharge == nil {
+                                    error = true
+                                }
+                                let parkingfee = value["parkingFee"] as? Bool
+                                if parkingfee == nil {
+                                    error = true
+                                }
+                                let cloudstorage = value["cloudStorage"] as? Bool
+                                if cloudstorage == nil {
+                                    error = true
+                                }
+                                let notifications = value["notifications"] as? Bool
+                                if notifications == nil {
+                                    error = true
+                                }
+                                let notificationsDuration = value["notificationsDuration"] as? Int
+                                if notificationsDuration == nil {
+                                    error = true
+                                }
+                                let connector = value["connector"] as? Int
+                                if connector == nil {
+                                    error = true
+                                }
+                                
+                                if error == false {
+                                    print("User found in database, caching an navigating to home")
+                                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
+                                    GlobalResources.user = user
+                                    do {
+                                        try Disk.save(user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
+                                    } catch {
+                                        print("User not stored in cache")
+                                    }
+                                    let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+                                    let vc = storyBoard.instantiateViewController(withIdentifier: "Tab") as! Tab
+                                    self.window?.rootViewController = vc
+                                    self.window?.makeKeyAndVisible()
+                                } else {
+                                    print("User not found in database, will navigate user to registration")
+                                    let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+                                    let vc = storyBoard.instantiateViewController(withIdentifier: "Register") as! Register
+                                    self.window?.rootViewController = vc
+                                    self.window?.makeKeyAndVisible()
+                                }
                             }
-                        }
-                    }, withCancel: nil)
+                        }, withCancel: nil)
+                    }
+                }catch {
+                    print("Error reading cache")
                 }
             }
-    
-            
-
         } else {
             let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "Login") as! Login
