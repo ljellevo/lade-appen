@@ -35,15 +35,14 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             @IBOutlet weak var infoPaneStackBottomConstraint: NSLayoutConstraint!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        isInitial = true
         initializeMap()
         initializeButtons()
         initializeView()
         getStationsFromDatabase() {
             self.addAnnotationsToMap()
-            
         }
     }
     
@@ -125,7 +124,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
                 
                 let annotation = Annotation(title: children.name!, subtitle: children.street!, id: children.id!, coordinate: coordinates)
                 self.mapWindow.addAnnotation(annotation)
-            
         }
     }
     
@@ -166,8 +164,5 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             return
         }
     }
-    
-    
-
 }
 
