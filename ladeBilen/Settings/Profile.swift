@@ -14,8 +14,8 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var window: UIWindow?
     var user: User = GlobalResources.user!
-    var userInfoDictionary: NSDictionary?
     var userInfo: [String] = []
+    var rowIndex: Int?
 
     let items = [
         ["Fornavn", "Etternavn", "E-post", "Endre Passord"],
@@ -62,7 +62,6 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view:UIView, forSection: Int) {
-        
         view.tintColor = UIColor.white
         if let headerTitle = view as? UITableViewHeaderFooterView {
             headerTitle.textLabel?.textColor = UIColor.gray
@@ -73,20 +72,14 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return 44
     }
     
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.row < (items[indexPath.section].count - 1) && indexPath.section == 0 {
-            return false
-        }
-        return true
-    }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row < (items[indexPath.section].count - 1) && indexPath.section == 0 {
-            let cell: EntryCell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
-            cell.label.text = items[indexPath.section][indexPath.row]
-            if user != nil {
-                cell.textField.text = userInfo[indexPath.row]
-            }
+            let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "CellId")
+            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            cell.textLabel?.text = items[indexPath.section][indexPath.row]
+            cell.detailTextLabel?.text = userInfo[indexPath.row]
             return cell
         } else if indexPath.section == 3 {
             let cell: DefaultCell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath) as! DefaultCell
@@ -100,16 +93,25 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nextViewController = segue.destination as? ChangeUserInfo{
+            nextViewController.rowIndex = rowIndex!
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.section)
         print(indexPath.row)
         switch (indexPath.section, indexPath.row){
             case (0,0):
-                print("Change firstname")
+                rowIndex = indexPath.row
+                performSegue(withIdentifier: "toChangeUserInfo", sender: self)
             case (0,1):
-                print("Change Lastname")
+                rowIndex = indexPath.row
+                performSegue(withIdentifier: "toChangeUserInfo", sender: self)
             case (0,2):
-                print("Change Email")
+                rowIndex = indexPath.row
+                performSegue(withIdentifier: "toChangeUserInfo", sender: self)
             case (0,3):
                 performSegue(withIdentifier: "toChangePassword", sender: self)
             case (1,0):
@@ -121,10 +123,8 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
             case (2,1):
                 performSegue(withIdentifier: "toReportBug", sender: self)
             case (3,0):
-                print("Delete cache")
                 deleteCache()
             case (3,1):
-                print("Log out")
                 logOut()
             default: break
         }
