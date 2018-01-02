@@ -17,6 +17,8 @@ class ChangePassword: UIViewController {
     @IBOutlet weak var newPassword: UITextField!
     
     @IBOutlet weak var changeButton: UIButton!
+    @IBOutlet weak var whitePanel: UIView!
+    @IBOutlet weak var whitePanelCorner: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,9 @@ class ChangePassword: UIViewController {
         retypeOldPassword.setBottomBorder()
         newPassword.setBottomBorder()
         changeButton.layer.cornerRadius = 20
+        whitePanel.layer.cornerRadius = 20
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

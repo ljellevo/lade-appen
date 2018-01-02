@@ -10,6 +10,8 @@ import UIKit
 
 class ReportBug: UIViewController {
 
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
 

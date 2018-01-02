@@ -8,67 +8,44 @@
 
 import UIKit
 
-class ChangeUserInfo: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate  {
+class ChangeUserInfo: UIViewController{
     
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var informationLabel: UILabel!
+    @IBOutlet weak var whitePanel: UIView!
+    @IBOutlet weak var whitePanelCorner: UIView!
     
     var rowIndex: Int?
     var placeholder: String?
+    let nameInfoLabel: String = "Ditt navn er ikke synlig for andre brukere"
+    let emailInfoLabel: String = "Din epost brukes kun til pålogging og nullstilling av passord"
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: "EntryCell", bundle: nil), forCellReuseIdentifier: "EntryCell")
+        textField.setBottomBorder()
+        whitePanel.layer.cornerRadius = 20
+        saveButton.layer.cornerRadius = 20
         if rowIndex == 0 {
-            placeholder = GlobalResources.user?.firstname
+            textField.text = GlobalResources.user?.firstname
+            informationLabel.text = nameInfoLabel
         } else if rowIndex == 1 {
-            placeholder = GlobalResources.user?.lastname
+            textField.text = GlobalResources.user?.lastname
+            informationLabel.text = nameInfoLabel
         } else {
-            placeholder = GlobalResources.user?.email
+            textField.text = GlobalResources.user?.email
+            informationLabel.text = emailInfoLabel
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    /*
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: EntryCell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
-        cell.textField.text = placeholder
-        return cell
+    
+    
+    @IBAction func saveButtonClicked(_ sender: UIButton) {
         
     }
- */
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "EditableCells")
-        let textField = UITextField(frame: CGRect(x: 8, y: 8, width: (UIScreen.main.bounds.width - 16), height: 30))
-        textField.backgroundColor = UIColor.white
-        textField.text = placeholder
-        cell.contentView.addSubview(textField)
-        textField.delegate = self // set delegate
-        textField.tag = indexPath.row
-        return cell
-    }
     
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print(textField.tag)
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        print(textField.tag)
-        placeholder = textField.text
-        return false
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
 
-    
-    
+
 }
