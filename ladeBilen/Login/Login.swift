@@ -13,6 +13,8 @@ import AudioToolbox
 
 class Login: UIViewController, UITextFieldDelegate {
     
+    let database = Database()
+    
     var whitePanelLeadingOffset: CGFloat?
     var whitePanelTrailingOffset: CGFloat?
     var bannerStackTopOffset: CGFloat?
@@ -107,65 +109,20 @@ class Login: UIViewController, UITextFieldDelegate {
                     self.inputTwoTextField.setBottomBorderRed()
                     AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
                 } else {
-                    let ref = FIRDatabase.database().reference()
-                    ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
-                        if let value = snapshot.value as? NSDictionary {
-                            var error: Bool = false
-                            let uid = value["uid"] as? String
-                            if uid == nil {
-                                error = true
-                            }
-                            let email = value["email"] as? String
-                            if email == nil {
-                                error = true
-                            }
-                            let firstname = value["firstname"] as? String
-                            if firstname == nil {
-                                error = true
-                            }
-                            let lastname = value["lastname"] as? String
-                            if lastname == nil {
-                                error = true
-                            }
-                            let fastcharge = value["fastCharge"] as? Bool
-                            if fastcharge == nil {
-                                error = true
-                            }
-                            let parkingfee = value["parkingFee"] as? Bool
-                            if parkingfee == nil {
-                                error = true
-                            }
-                            let cloudstorage = value["cloudStorage"] as? Bool
-                            if cloudstorage == nil {
-                                error = true
-                            }
-                            let notifications = value["notifications"] as? Bool
-                            if notifications == nil {
-                                error = true
-                            }
-                            let notificationsDuration = value["notificationsDuration"] as? Int
-                            if notificationsDuration == nil {
-                                error = true
-                            }
-                            let connector = value["connector"] as? Int
-                            if connector == nil {
-                                error = true
-                            }
-                            
-                            if error == false {
-                                print("User found in database, caching and navigating to home")
-                                let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
-                                GlobalResources.user = user
-                                do {
-                                    try Disk.save(user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
-                                } catch {
-                                    print("User not stored in cache")
-                                }
-                                self.performSegue(withIdentifier: "toHome", sender: self)
+                    do {
+                        if Disk.exists("stations.json", in: .caches) {
+                            GlobalResources.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
+                            self.navigateUser()
+                        } else {
+                            self.database.getStationsFromDatabase {
+                                self.navigateUser()
                             }
                         }
-                        self.performSegue(withIdentifier: "toRegister", sender: self)
-                    }, withCancel: nil)
+                    } catch {
+                        self.database.getStationsFromDatabase {
+                            self.navigateUser()
+                        }
+                    }
                 }
             })
         } else {
@@ -187,6 +144,68 @@ class Login: UIViewController, UITextFieldDelegate {
 
                 
         }
+    }
+    
+    func navigateUser(){
+        let ref = FIRDatabase.database().reference()
+        ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
+            if let value = snapshot.value as? NSDictionary {
+                var error: Bool = false
+                let uid = value["uid"] as? String
+                if uid == nil {
+                    error = true
+                }
+                let email = value["email"] as? String
+                if email == nil {
+                    error = true
+                }
+                let firstname = value["firstname"] as? String
+                if firstname == nil {
+                    error = true
+                }
+                let lastname = value["lastname"] as? String
+                if lastname == nil {
+                    error = true
+                }
+                let fastcharge = value["fastCharge"] as? Bool
+                if fastcharge == nil {
+                    error = true
+                }
+                let parkingfee = value["parkingFee"] as? Bool
+                if parkingfee == nil {
+                    error = true
+                }
+                let cloudstorage = value["cloudStorage"] as? Bool
+                if cloudstorage == nil {
+                    error = true
+                }
+                let notifications = value["notifications"] as? Bool
+                if notifications == nil {
+                    error = true
+                }
+                let notificationsDuration = value["notificationsDuration"] as? Int
+                if notificationsDuration == nil {
+                    error = true
+                }
+                let connector = value["connector"] as? Int
+                if connector == nil {
+                    error = true
+                }
+                
+                if error == false {
+                    print("User found in database, caching and navigating to home")
+                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
+                    GlobalResources.user = user
+                    do {
+                        try Disk.save(user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
+                    } catch {
+                        print("User not stored in cache")
+                    }
+                    self.performSegue(withIdentifier: "toHome", sender: self)
+                }
+            }
+            self.performSegue(withIdentifier: "toRegister", sender: self)
+        }, withCancel: nil)
     }
  
     

@@ -42,13 +42,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         initializeMap()
         initializeButtons()
         initializeView()
-
-        
-        database.getStationsFromDatabase() {
-            print("Found stations")
-            //GlobalResources.stations = self.stations
-            self.addAnnotationsToMap()
-        }
+        self.addAnnotationsToMap()
     }
     
     

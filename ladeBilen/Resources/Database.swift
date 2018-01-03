@@ -28,11 +28,11 @@ class Database {
              "notificationsDuration": GlobalResources.user?.notificationDuration! as Int!,
              "connector": GlobalResources.user?.connector! as Int!]
         )
-        updateCache()
+        updateUserCache()
     }
     
     
-    func updateCache(){
+    func updateUserCache(){
         do {
             try Disk.save(GlobalResources.user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
         } catch {
@@ -40,25 +40,33 @@ class Database {
         }
     }
     
+    func updateStationCache(){
+        do {
+            try Disk.save(GlobalResources.stations, to: .caches, as: "stations.json")
+        } catch {
+            print("Station not stored in cache")
+        }
+    }
+    
     func updateEmail(){
         ref.child("User_Info/" + GlobalResources.user!.uid! + "/email").setValue(GlobalResources.user!.email!)
-        updateCache()
+        updateUserCache()
     }
     
     func updateFirstname(){
         ref.child("User_Info/" + GlobalResources.user!.uid! + "/firstname").setValue(GlobalResources.user!.firstname!)
-        updateCache()
+        updateUserCache()
     }
     
     func updateLastname(){
         ref.child("User_Info/" + GlobalResources.user!.uid! + "/lastname").setValue(GlobalResources.user!.lastname!)
-        updateCache()
+        updateUserCache()
     }
     
 
     func updateConnector(){
         ref.child("User_Info/" + GlobalResources.user!.uid! + "/connector").setValue(GlobalResources.user!.connector!)
-        updateCache()
+        updateUserCache()
     }
     
     func submitBugReport(reportedText: String){
@@ -82,6 +90,7 @@ class Database {
                     }
                 }
                 GlobalResources.stations = stations
+                self.updateStationCache()
                 DispatchQueue.main.async {
                     finished()
                 }

@@ -10,8 +10,6 @@ import UIKit
 
 class Search: UITableViewController, UISearchResultsUpdating {
 
-    
-    
     let database = Database()
     var filteredStations: [Station]?
 

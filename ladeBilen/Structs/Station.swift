@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Station {
+struct Station: Codable {
     var availability: String?
     var availableChargingPoints: Int?
     var city: String?

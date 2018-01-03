@@ -94,7 +94,22 @@ class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollection
             let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudStorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
             GlobalResources.user = user
             database.updateUser()
-            performSegue(withIdentifier: "toHomeFromRegister", sender: self)
+            do {
+                if Disk.exists("stations.json", in: .caches) {
+                    GlobalResources.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
+                    print("Stations is cached")
+                    performSegue(withIdentifier: "toHomeFromRegister", sender: self)
+                } else {
+                    print("Stations is not cached")
+                    database.getStationsFromDatabase {
+                        self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
+                    }
+                }
+            } catch {
+                database.getStationsFromDatabase {
+                    self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
+                }
+            }
         } else {
           AudioServicesPlaySystemSound(Constants.VIBRATION_WEAK)
         }

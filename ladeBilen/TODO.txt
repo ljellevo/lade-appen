@@ -1,9 +1,13 @@
 AppDelegate:
 Sette opp lytter når bruker åpner appen og det finnes en cache.
+Vise progress/loading symbol når fetching av stasjoner fra database
+
 
 Login:
+Vise progress/loading symbol når fetching av stasjoner fra database
 
 Registrering:
+Vise progress/loading symbol når fetching av stasjoner fra database
 
 Profil:
 Laste ned ny cache. Finne ut hvordan structs er persiste igjennom standby/bakgrunns kjøring.

@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Connector {
+struct Connector: Codable {
     var accesibility: String?
     var capasity: String?
     var chargerMode: String?

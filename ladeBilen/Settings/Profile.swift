@@ -146,6 +146,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
             AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
             do {
                 try Disk.remove((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches)
+                try Disk.remove("stations.json", from: .caches)
                 print("Removed cache")
             } catch {
                 print("Could not remove cache")

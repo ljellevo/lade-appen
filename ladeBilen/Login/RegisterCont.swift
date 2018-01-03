@@ -66,15 +66,6 @@ class RegisterCont: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let registerFinished = segue.destination as? RegisterFinished{
-            print("uid", uid)
-            print("email", email)
-            print("firstname", firstname)
-            print("lastname", lastname)
-            print("fastcharge", fastchargeSwitch.isOn)
-            print("parkingFee", parkingFeeSwitch.isOn)
-            print("cloudStorage", cloudStorageSwitch.isOn)
-            print("notifications", notificationSwitch.isOn)
-            print("notificationduration", notificationDuration)
             registerFinished.uid = uid
             registerFinished.email = email
             registerFinished.firstname = firstname
