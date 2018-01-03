@@ -10,9 +10,11 @@ import Foundation
 
 struct GlobalResources {
     static var user: User?
-    static var stations: [Station]?
+    static var stations: [Station] = []
     
     func setUser(newUser: User){
         GlobalResources.user = newUser
     }
+    
+
 }

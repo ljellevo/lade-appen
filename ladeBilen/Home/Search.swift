@@ -8,28 +8,64 @@
 
 import UIKit
 
-class Search: UITableViewController {
+class Search: UITableViewController, UISearchResultsUpdating {
 
+    
+    
+    let database = Database()
+    var filteredStations: [Station]?
+
+    @IBOutlet weak var searchBar: UISearchBar!
+    let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        tableView.tableHeaderView = searchController.searchBar
+        
+        if GlobalResources.stations.count == 0 {
+            print("No stations")
+            database.getStationsFromDatabase {
+                print("Refresh")
+                self.tableView.reloadData()
+            }
+        }
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let result = filteredStations else {
+            return GlobalResources.stations.count
+        }
+        return result.count
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stationsCells", for: indexPath)
+        
+        if let result = filteredStations {
+            cell.textLabel!.text = result[indexPath.row].name
+        } else {
+            cell.textLabel!.text = GlobalResources.stations[indexPath.row].name
+        }
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            filteredStations = GlobalResources.stations.filter { filteredStations in
+                return (filteredStations.name?.lowercased().contains(searchText.lowercased()))!
+            }
+            
+        } else {
+            filteredStations = GlobalResources.stations
+        }
+        tableView.reloadData()
+    }
 }

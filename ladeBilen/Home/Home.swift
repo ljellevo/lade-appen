@@ -11,7 +11,6 @@ import MapKit
 import CoreLocation
 import Firebase
 
-var stations:[Station] = []
 
 
 class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
@@ -19,6 +18,8 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     var locationManager: CLLocationManager = CLLocationManager()
     var isInitial: Bool = true
     var id: Int?
+    var stations:[Station] = []
+    let database = Database()
 
     @IBOutlet weak var mapWindow: MKMapView!
     @IBOutlet weak var nearestButton: UIButton!
@@ -41,7 +42,11 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         initializeMap()
         initializeButtons()
         initializeView()
-        getStationsFromDatabase() {
+
+        
+        database.getStationsFromDatabase() {
+            print("Found stations")
+            //GlobalResources.stations = self.stations
             self.addAnnotationsToMap()
         }
     }
@@ -75,9 +80,9 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetails"{
             var station: Station?
-            for i in 0..<stations.count{
-                if stations[i].id == self.id {
-                    station = stations[i]
+            for i in 0..<GlobalResources.stations.count{
+                if GlobalResources.stations[i].id == self.id {
+                    station = GlobalResources.stations[i]
                     break
                 }
             }
@@ -91,6 +96,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         performSegue(withIdentifier: "toDetails", sender: self)
     }
     
+    /*
     func getStationsFromDatabase(finished: @escaping () -> Void){
         let ref = FIRDatabase.database().reference()
         ref.child("stations").observe(.value, with: { (snapshot) in
@@ -99,7 +105,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
                     for children in dictionary{
                         let eachStation = children.value as? [String: AnyObject]
                         let station = Station(dictionary: eachStation!)
-                        stations.append(station)
+                        self.stations.append(station)
                     }
                 }
                 DispatchQueue.main.async {
@@ -108,11 +114,13 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             }
         }, withCancel: nil)
     }
+ */
+ 
     
 
     
     func addAnnotationsToMap(){
-        for children in stations{
+        for children in GlobalResources.stations{
                 var position = children.position
                 position = position?.replacingOccurrences(of: "(", with: "")
                 position = position?.replacingOccurrences(of: ")", with: "")

@@ -68,6 +68,26 @@ class Database {
              "Report": reportedText]
         )
     }
+    
+    func getStationsFromDatabase(finished: @escaping () -> Void){
+        var stations: [Station] = []
+        let ref = FIRDatabase.database().reference()
+        ref.child("stations").observe(.value, with: { (snapshot) in
+            DispatchQueue.global().async {
+                if let dictionary = snapshot.value as? [String:AnyObject]{
+                    for children in dictionary{
+                        let eachStation = children.value as? [String: AnyObject]
+                        let station = Station(dictionary: eachStation!)
+                        stations.append(station)
+                    }
+                }
+                GlobalResources.stations = stations
+                DispatchQueue.main.async {
+                    finished()
+                }
+            }
+        }, withCancel: nil)
+    }
 
     
 
