@@ -28,12 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     print("Stations is cached")
                     navigateUser()
                 } else {
-                    print("Stations is not cached")
+                    print("Could not find stations cache, asking database")
                     database.getStationsFromDatabase {
                         self.navigateUser()
                     }
                 }
             } catch {
+                print("Could not retrieve stations cache, asking database")
                 database.getStationsFromDatabase {
                     self.navigateUser()
                 }

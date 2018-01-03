@@ -114,11 +114,13 @@ class Login: UIViewController, UITextFieldDelegate {
                             GlobalResources.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
                             self.navigateUser()
                         } else {
+                            print("Could not find stations cache, asking database")
                             self.database.getStationsFromDatabase {
                                 self.navigateUser()
                             }
                         }
                     } catch {
+                        print("Could not retrieve stations cache, asking database")
                         self.database.getStationsFromDatabase {
                             self.navigateUser()
                         }

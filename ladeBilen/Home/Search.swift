@@ -12,6 +12,7 @@ class Search: UITableViewController, UISearchResultsUpdating {
 
     let database = Database()
     var filteredStations: [Station]?
+    var index: Int?
 
     @IBOutlet weak var searchBar: UISearchBar!
     let searchController = UISearchController(searchResultsController: nil)
@@ -33,6 +34,11 @@ class Search: UITableViewController, UISearchResultsUpdating {
 
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchController.dismiss(animated: false, completion: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let result = filteredStations else {
             return GlobalResources.stations.count
@@ -52,7 +58,20 @@ class Search: UITableViewController, UISearchResultsUpdating {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        index = indexPath.row
+        performSegue(withIdentifier: "toDetailsFromSearch", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if filteredStations != nil {
+            if let nextViewController = segue.destination as? Details{
+                nextViewController.station = filteredStations![index!]
+            }
+        } else {
+            if let nextViewController = segue.destination as? Details{
+                nextViewController.station = GlobalResources.stations[index!]
+            }
+        }
     }
     
     func updateSearchResults(for searchController: UISearchController) {

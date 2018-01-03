@@ -100,12 +100,13 @@ class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollection
                     print("Stations is cached")
                     performSegue(withIdentifier: "toHomeFromRegister", sender: self)
                 } else {
-                    print("Stations is not cached")
+                    print("Could not find stations cache, asking database")
                     database.getStationsFromDatabase {
                         self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
                     }
                 }
             } catch {
+                print("Could not retrieve stations cache, asking database")
                 database.getStationsFromDatabase {
                     self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
                 }

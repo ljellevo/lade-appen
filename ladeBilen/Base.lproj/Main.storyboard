@@ -55,7 +55,7 @@
                     <connections>
                         <outlet property="searchBar" destination="Tya-Jb-GjG" id="gEV-ZY-lcY"/>
                         <outlet property="searchDisplayController" destination="1jc-ux-hQl" id="8Pv-g1-qMU"/>
-                        <segue destination="pit-r4-Zzf" kind="show" id="hFR-pv-beq"/>
+                        <segue destination="pit-r4-Zzf" kind="show" identifier="toDetailsFromSearch" id="hFR-pv-beq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hX-cQ-sqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1039,7 +1039,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uKX-Ir-yTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1404" y="-68"/>
+            <point key="canvasLocation" x="1455" y="316"/>
         </scene>
         <!--Tab-->
         <scene sceneID="UaN-XO-e96">
