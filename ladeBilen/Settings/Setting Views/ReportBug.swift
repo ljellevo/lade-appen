@@ -49,7 +49,7 @@ class ReportBug: UIViewController, UITextViewDelegate {
             let alert = UIAlertController(title: "Rapporter Feil", message: "Er du klar til å levere inn en rapport?", preferredStyle: UIAlertControllerStyle.alert)
             
             alert.addAction(UIAlertAction(title: "Send", style: UIAlertActionStyle.default, handler: { action in
-                AudioServicesPlaySystemSound(1520)
+                AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
                 self.textViewDidEndEditing(self.textView)
                 self.database.submitBugReport(reportedText: self.textView.text)
                 self.textView.text = "Takk for at du sendte en rapport, vi vil gjennomgå denne snarest. Dersom vi lurer på noe vil vi ta kontakt via email."

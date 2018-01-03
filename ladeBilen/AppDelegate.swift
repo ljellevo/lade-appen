@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                                 
                             if error == false {
-                                print("User found in database, caching and navigating to home")
+                                print("User found in database, caching and navigating to home: AppDelegate")
                                 let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
                                 GlobalResources.user = user
                                 do {
@@ -88,13 +88,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 let vc = storyBoard.instantiateViewController(withIdentifier: "Tab") as! Tab
                                 self.window?.rootViewController = vc
                                 self.window?.makeKeyAndVisible()
+                                return
                             }
                         }
-                        print("User not found in database, will navigate user to registration")
+                        print("User not found in database, will navigate user to registration: AppDelegate")
                         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
                         let vc = storyBoard.instantiateViewController(withIdentifier: "Register") as! Register
                         self.window?.rootViewController = vc
                         self.window?.makeKeyAndVisible()
+
                     }, withCancel: nil)
                 }
             }catch {

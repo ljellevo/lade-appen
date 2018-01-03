@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Disk
+import AudioToolbox
 
 class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -21,7 +22,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         ["Fornavn", "Etternavn", "E-post", "Endre Passord"],
         ["Endre Kontakt", "Innstillinger"],
         ["Om oss", "Rapporter feil"],
-        ["Slett cache", "Log ut"]
+        ["Slett lagret data", "Log ut"]
     ]
 
     
@@ -140,24 +141,41 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func deleteCache(){
-        do {
-            try Disk.remove((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches)
-            print("Removed cache")
-        } catch {
-            print("Could not remove cache")
+        let alert = UIAlertController(title: "Sletting av lagrede data", message: "Sikker på at du vil slette den lagrede dataen? Dette vil ikke logge deg ut.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ja", style: UIAlertActionStyle.default, handler: { action in
+            AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
+            do {
+                try Disk.remove((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches)
+                print("Removed cache")
+            } catch {
+                print("Could not remove cache")
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Nei", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        if let index = self.tableView.indexPathForSelectedRow{
+            self.tableView.deselectRow(at: index, animated: true)
         }
     }
     
     func logOut(){
-        print("Logout")
-        do{
-            try FIRAuth.auth()?.signOut()
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "Login") as! Login
-            self.present(controller, animated: false, completion: { () -> Void in
-            })
-        } catch {
-            print ("Error")
+        let alert = UIAlertController(title: "Logge ut", message: "Sikker på at du vil logge ut?", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ja", style: UIAlertActionStyle.default, handler: { action in
+            do{
+                try FIRAuth.auth()?.signOut()
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "Login") as! Login
+                self.present(controller, animated: false, completion: { () -> Void in
+                })
+            } catch {
+                print ("Error")
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Nei", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        if let index = self.tableView.indexPathForSelectedRow{
+            self.tableView.deselectRow(at: index, animated: true)
         }
     }
 }
