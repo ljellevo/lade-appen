@@ -10,6 +10,8 @@ import UIKit
 
 class ChangeUserInfo: UIViewController{
     
+    let database = Database()
+    
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
@@ -31,19 +33,25 @@ class ChangeUserInfo: UIViewController{
         if rowIndex == 0 {
             textField.text = GlobalResources.user?.firstname
             informationLabel.text = nameInfoLabel
-        } else if rowIndex == 1 {
+        } else  {
             textField.text = GlobalResources.user?.lastname
             informationLabel.text = nameInfoLabel
-        } else {
-            textField.text = GlobalResources.user?.email
-            informationLabel.text = emailInfoLabel
         }
+    
     }
     
     
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
-        
+        if rowIndex == 0 {
+            GlobalResources.user?.firstname = textField.text
+            database.updateUser()
+            informationLabel.text = "Fornavn er oppdatert"
+        } else {
+            GlobalResources.user?.lastname = textField.text
+            database.updateUser()
+            informationLabel.text = "Etternavn er oppdatert"
+        }
     }
     
 

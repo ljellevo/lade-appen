@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Disk
+import AudioToolbox
 
 class Login: UIViewController, UITextFieldDelegate {
     
@@ -97,11 +98,14 @@ class Login: UIViewController, UITextFieldDelegate {
             } else {
                 inputTwoTextField.setBottomBorderRed()
             }
+            AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
+            
         } else if(loginViewIsPresented){
             FIRAuth.auth()?.signIn(withEmail: inputOneTextField.text!, password: inputTwoTextField.text!, completion: { (user, error) in
                 if (error != nil) {
                     self.inputOneTextField.setBottomBorderRed()
                     self.inputTwoTextField.setBottomBorderRed()
+                    AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
                 } else {
                     let ref = FIRDatabase.database().reference()
                     ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
@@ -169,6 +173,8 @@ class Login: UIViewController, UITextFieldDelegate {
                 FIRAuth.auth()?.createUser(withEmail: inputOneTextField.text!, password: inputTwoTextField.text!) { (user, error) in
                     if (error != nil){
                         self.inputOneTextField.setBottomBorderRed()
+                        AudioServicesPlaySystemSound(Constants.VIBRATION_WEAK)
+
                     } else {
                         self.performSegue(withIdentifier: "toRegister", sender: self)
                     }
@@ -176,6 +182,7 @@ class Login: UIViewController, UITextFieldDelegate {
             } else {
                 inputTwoTextField.setBottomBorderRed()
                 inputThreeTextField.setBottomBorderRed()
+                AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
             }
 
                 

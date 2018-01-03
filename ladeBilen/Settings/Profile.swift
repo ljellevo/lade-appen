@@ -44,6 +44,11 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let index = self.tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: index, animated: true)
         }
+        userInfo = []
+        userInfo.append(GlobalResources.user?.nsDictionary["firstname"] as! String)
+        userInfo.append(GlobalResources.user?.nsDictionary["lastname"] as! String)
+        userInfo.append(GlobalResources.user?.nsDictionary["email"] as! String)
+        tableView.reloadData()
     }
     
 
@@ -97,6 +102,9 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let nextViewController = segue.destination as? ChangeUserInfo{
             nextViewController.rowIndex = rowIndex!
         }
+        if let nextViewController = segue.destination as? ChangeAuthInfo {
+            nextViewController.rowIndex = rowIndex!
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -111,9 +119,10 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 performSegue(withIdentifier: "toChangeUserInfo", sender: self)
             case (0,2):
                 rowIndex = indexPath.row
-                performSegue(withIdentifier: "toChangeUserInfo", sender: self)
+                performSegue(withIdentifier: "toChangeAuthInfo", sender: self)
             case (0,3):
-                performSegue(withIdentifier: "toChangePassword", sender: self)
+                rowIndex = indexPath.row
+                performSegue(withIdentifier: "toChangeAuthInfo", sender: self)
             case (1,0):
                 performSegue(withIdentifier: "toChangeContact", sender: self)
             case (1,1):

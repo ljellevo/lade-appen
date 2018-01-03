@@ -1,0 +1,19 @@
+AppDelegate:
+Sette opp lytter når bruker åpner appen og det finnes en cache.
+
+Login:
+Vibrere når input er feil.
+
+Registrering:
+Vibrere når input er feil.
+
+Profil:
+Vibrere når input er feil.
+Bekreftelse når cache slettes.
+Laste ned ny cache.
+Bekreftelse når bruker logger ut.
+
+
+Report bug:
+Alert før sending.
+Vibrer når rapport er sendt.

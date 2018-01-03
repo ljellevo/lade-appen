@@ -179,7 +179,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="M1C-58-wJt" id="t0j-0v-BdV"/>
-                        <segue destination="dAw-Mp-djm" kind="show" identifier="toChangePassword" id="hzT-M4-Ms0"/>
+                        <segue destination="dAw-Mp-djm" kind="show" identifier="toChangeAuthInfo" id="hzT-M4-Ms0"/>
                         <segue destination="yz2-zU-lLA" kind="show" identifier="toChangeContact" id="EeF-U5-9SL"/>
                         <segue destination="MYZ-zz-Sov" kind="show" identifier="toChangePreferences" id="MOa-jg-d8U"/>
                         <segue destination="j8x-ww-oDR" kind="show" identifier="toAbout" id="esI-WO-f6v"/>
@@ -290,10 +290,10 @@
             </objects>
             <point key="canvasLocation" x="-3039.375" y="2734.8591549295775"/>
         </scene>
-        <!--Endre Passord-->
+        <!--Change Auth Info-->
         <scene sceneID="4Pu-wF-7IE">
             <objects>
-                <viewController storyboardIdentifier="ChangePassword" title="Endre Passord" id="dAw-Mp-djm" customClass="ChangePassword" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangePassword" id="dAw-Mp-djm" customClass="ChangeAuthInfo" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="90D-IK-w11"/>
                         <viewControllerLayoutGuide type="bottom" id="FFT-gt-xkv"/>
@@ -311,9 +311,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ukG-Rr-pHd">
-                                <rect key="frame" x="36" y="84" width="248" height="235"/>
+                                <rect key="frame" x="36" y="84" width="248" height="250"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gammelt passord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fYS-eB-Qnv">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nytt passord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fYS-eB-Qnv">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="hPW-OE-uNd"/>
@@ -322,7 +322,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gjenta gammelt passord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EI9-Ym-omQ">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gjenta nytt passord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EI9-Ym-omQ">
                                         <rect key="frame" x="0.0" y="50" width="248" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="2RI-KT-jjE"/>
@@ -331,7 +331,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nytt passord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bnw-EO-rU8">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gammelt passord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bnw-EO-rU8">
                                         <rect key="frame" x="0.0" y="100" width="248" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="SzF-jJ-jvh"/>
@@ -341,14 +341,20 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RT7-Cd-QOj">
-                                        <rect key="frame" x="0.0" y="150" width="248" height="20"/>
+                                        <rect key="frame" x="0.0" y="150" width="248" height="8"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="MAR-7k-w9G"/>
+                                            <constraint firstAttribute="height" constant="8" id="MAR-7k-w9G"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhr-Zv-TfZ">
+                                        <rect key="frame" x="0.0" y="173" width="248" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHu-c5-gwV">
-                                        <rect key="frame" x="0.0" y="185" width="248" height="50"/>
+                                        <rect key="frame" x="0.0" y="200" width="248" height="50"/>
                                         <color key="backgroundColor" red="0.23305154519999999" green="0.77393712290000005" blue="0.21476158910000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="aFP-4n-tl7"/>
@@ -396,9 +402,10 @@
                     </view>
                     <connections>
                         <outlet property="changeButton" destination="YHu-c5-gwV" id="651-dL-PvQ"/>
-                        <outlet property="newPassword" destination="bnw-EO-rU8" id="EKf-4O-M6X"/>
-                        <outlet property="oldPassord" destination="fYS-eB-Qnv" id="gg3-9G-AYf"/>
-                        <outlet property="retypeOldPassword" destination="EI9-Ym-omQ" id="OPE-7g-tSH"/>
+                        <outlet property="firstTextField" destination="fYS-eB-Qnv" id="WGf-wK-vxb"/>
+                        <outlet property="infoLabel" destination="Mhr-Zv-TfZ" id="1bc-hP-8eV"/>
+                        <outlet property="secondTextField" destination="EI9-Ym-omQ" id="y7F-1F-6zU"/>
+                        <outlet property="thirdTextField" destination="bnw-EO-rU8" id="OMa-jI-klN"/>
                         <outlet property="whitePanel" destination="eBw-Yk-bS7" id="zPm-Bs-2vI"/>
                         <outlet property="whitePanelCorner" destination="ZZC-rW-wgB" id="s7k-4n-aVm"/>
                     </connections>
@@ -734,7 +741,6 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CK3-nJ-jU3">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="235"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <mutableString key="text">Vennligst skriv utfyllende både hva som skjedde og hvilke handlinger som du utførte før feilen oppstod. ------------------------------------------------------------kadjkja jkad jkajd ajkd jajka jdjk ajkda jja jaa jkja jdajkd jajda jaj j djaj dadj kajk jadj ajkad jkadjda jkjad jadj jad jad jjk ajad jkajkadjk ajkadj jadjadjkd akjdaj adajkd adjkda jad jkadjkad jkadjka dj adjjadjka jkdajd kajkajdkadjkad j ajdkajjajda jaj j djaj dadj kajk jadj ajkad jkadjda jkjad jadj jad jad jjk ajad jkajkadjk ajkadj jadjadjkd akjdaj adajkd adjkda jad jkadjkad jkadjka dj adjjadjka jkdajd kajkajdkadjkad j ajdkajjajda jaj j djaj dadj kajk jadj ajkad jkadjda jkjad jadj jad jad jjk ajad jkajkadjk ajkadj jadjadjkd akjdaj adajkd adjkda jad jkadjkad jkadjka dj adjjadjka jkdajd kajkajdkadjkad j ajdkaj</mutableString>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -758,11 +764,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Rapporter Feil" id="vu2-Hz-7Sa">
-                        <barButtonItem key="rightBarButtonItem" title="Send" id="8Ak-QS-HWY"/>
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="8Ak-QS-HWY">
+                            <connections>
+                                <action selector="sendButtonClicked:" destination="EYt-UJ-mP1" id="5Ua-er-UKk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="saveButton" destination="8Ak-QS-HWY" id="ut3-3r-KIB"/>
+                        <outlet property="sendButton" destination="8Ak-QS-HWY" id="xEV-b9-0gD"/>
                         <outlet property="textView" destination="CK3-nJ-jU3" id="vn3-Kn-jt3"/>
+                        <outlet property="whitePanel" destination="6nq-bn-djd" id="6V2-c5-Rum"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKD-La-bfg" userLabel="First Responder" sceneMemberID="firstResponder"/>

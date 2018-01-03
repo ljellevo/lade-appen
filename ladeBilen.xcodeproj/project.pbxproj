@@ -74,6 +74,7 @@
 		83A463AA1FCB1659001A5916 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A463A81FCB1659001A5916 /* CommentCell.swift */; };
 		83A463AB1FCB1659001A5916 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A463A91FCB1659001A5916 /* CommentCell.xib */; };
 		83A54F051FD09FC3002CB5B3 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A54F041FD09FC3002CB5B3 /* Profile.swift */; };
+		83A570CF1FFC577300B98E9F /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83A570CE1FFC577300B98E9F /* TODO.txt */; };
 		83C042861FFAEB1E00F8D8CD /* ChangeUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C042851FFAEB1E00F8D8CD /* ChangeUserInfo.swift */; };
 		83C83A7D1FF1B6D40088C10C /* GlobalResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C83A7C1FF1B6D40088C10C /* GlobalResources.swift */; };
 		83C83A811FF1D35A0088C10C /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C83A7F1FF1D35A0088C10C /* EntryCell.swift */; };
@@ -81,7 +82,7 @@
 		83C83A871FF1D70F0088C10C /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C83A851FF1D70F0088C10C /* DefaultCell.swift */; };
 		83C83A881FF1D70F0088C10C /* DefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C83A861FF1D70F0088C10C /* DefaultCell.xib */; };
 		83DD039C1FEDCD3E00AEF6C9 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DD039B1FEDCD3E00AEF6C9 /* Register.swift */; };
-		83DE76071FFAC404001EE4C6 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE76061FFAC404001EE4C6 /* ChangePassword.swift */; };
+		83DE76071FFAC404001EE4C6 /* ChangeAuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE76061FFAC404001EE4C6 /* ChangeAuthInfo.swift */; };
 		83DE76091FFAC41D001EE4C6 /* ChangeContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE76081FFAC41D001EE4C6 /* ChangeContact.swift */; };
 		83DE760B1FFAC48B001EE4C6 /* ChangePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE760A1FFAC48B001EE4C6 /* ChangePreferences.swift */; };
 		83DE760D1FFAC49A001EE4C6 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE760C1FFAC49A001EE4C6 /* About.swift */; };
@@ -183,6 +184,7 @@
 		83A463A81FCB1659001A5916 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		83A463A91FCB1659001A5916 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		83A54F041FD09FC3002CB5B3 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		83A570CE1FFC577300B98E9F /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		83C042851FFAEB1E00F8D8CD /* ChangeUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUserInfo.swift; sourceTree = "<group>"; };
 		83C83A7C1FF1B6D40088C10C /* GlobalResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalResources.swift; sourceTree = "<group>"; };
 		83C83A7F1FF1D35A0088C10C /* EntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
@@ -190,7 +192,7 @@
 		83C83A851FF1D70F0088C10C /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		83C83A861FF1D70F0088C10C /* DefaultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultCell.xib; sourceTree = "<group>"; };
 		83DD039B1FEDCD3E00AEF6C9 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
-		83DE76061FFAC404001EE4C6 /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
+		83DE76061FFAC404001EE4C6 /* ChangeAuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAuthInfo.swift; sourceTree = "<group>"; };
 		83DE76081FFAC41D001EE4C6 /* ChangeContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeContact.swift; sourceTree = "<group>"; };
 		83DE760A1FFAC48B001EE4C6 /* ChangePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePreferences.swift; sourceTree = "<group>"; };
 		83DE760C1FFAC49A001EE4C6 /* About.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
@@ -470,12 +472,12 @@
 		83DE76031FFAC3D0001EE4C6 /* Setting Views */ = {
 			isa = PBXGroup;
 			children = (
-				83DE76061FFAC404001EE4C6 /* ChangePassword.swift */,
+				83C042851FFAEB1E00F8D8CD /* ChangeUserInfo.swift */,
+				83DE76061FFAC404001EE4C6 /* ChangeAuthInfo.swift */,
 				83DE76081FFAC41D001EE4C6 /* ChangeContact.swift */,
 				83DE760A1FFAC48B001EE4C6 /* ChangePreferences.swift */,
 				83DE760C1FFAC49A001EE4C6 /* About.swift */,
 				83DE760E1FFAC4AA001EE4C6 /* ReportBug.swift */,
-				83C042851FFAEB1E00F8D8CD /* ChangeUserInfo.swift */,
 			);
 			path = "Setting Views";
 			sourceTree = "<group>";
@@ -520,6 +522,7 @@
 				83F3547F1EEB0696001A278A /* LaunchScreen.storyboard */,
 				83F354821EEB0696001A278A /* Info.plist */,
 				8314E22F1EF435CF00F98E3F /* GoogleService-Info.plist */,
+				83A570CE1FFC577300B98E9F /* TODO.txt */,
 			);
 			path = ladeBilen;
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 				831470A31FBE523300DCD0CD /* Profile-Icon-25.png in Resources */,
 				8323D4211FC77A1C0049D349 /* TopCell.xib in Resources */,
 				83C83A881FF1D70F0088C10C /* DefaultCell.xib in Resources */,
+				83A570CF1FFC577300B98E9F /* TODO.txt in Resources */,
 				8314708C1FBE4DBC00DCD0CD /* Marker-Icon-25.png in Resources */,
 				831470AA1FBE531400DCD0CD /* Favorite-Icon-75.png in Resources */,
 				83821E671FCB66EF009D304D /* Charger-Icon-75.png in Resources */,
@@ -933,7 +937,7 @@
 				83DE760F1FFAC4AA001EE4C6 /* ReportBug.swift in Sources */,
 				832296331FEB35AC00401ECD /* Database.swift in Sources */,
 				83A463AA1FCB1659001A5916 /* CommentCell.swift in Sources */,
-				83DE76071FFAC404001EE4C6 /* ChangePassword.swift in Sources */,
+				83DE76071FFAC404001EE4C6 /* ChangeAuthInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

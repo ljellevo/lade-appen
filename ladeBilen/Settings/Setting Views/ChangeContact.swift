@@ -11,7 +11,10 @@ import Firebase
 
 class ChangeContact: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    var connectors: [String] = []
+    let database = Database()
+    
+    var connectorString: [String] = []
+    var connectorIndex: [Int] = []
     var connector: Int?
 
     
@@ -36,26 +39,24 @@ class ChangeContact: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     func getConnectors(){
         let ref = FIRDatabase.database().reference()
-        ref.child("Connectors").observe(.value, with: { (snapshot) in
+        ref.child("nobil_database_static").child("connectors").observeSingleEvent(of: .value, with: { (snapshot) in
             print(snapshot)
-            
             for children in snapshot.children.allObjects as? [FIRDataSnapshot] ?? [] {
-                print(children.value as! String)
-                self.connectors.append(children.value as! String)
+                self.connectorIndex.append(Int(children.key)!)
+                self.connectorString.append(children.value as! String)
             }
             self.connectorCollectionView.reloadData()
-            
         }, withCancel: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return connectors.count
+        return connectorIndex.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: RegisterFinishedConnectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "RegisterFinishedConnectorCellIdentifier", for: indexPath as IndexPath) as! RegisterFinishedConnectorCell
-        if connectors.count != 0{
-            cell.connectorLabel.text = connectors[indexPath.row]
+        if connectorIndex.count != 0{
+            cell.connectorLabel.text = connectorString[indexPath.row]
         }
         return cell
     }
@@ -66,6 +67,8 @@ class ChangeContact: UIViewController, UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! RegisterFinishedConnectorCell
         cell.isSelected = true
-        connector = indexPath.row
+        connector = connectorIndex[indexPath.row]
+        GlobalResources.user?.connector = connector
+        database.updateUser()
     }
 }

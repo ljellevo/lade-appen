@@ -9,11 +9,14 @@
 import UIKit
 import Firebase
 import Disk
+import AudioToolbox
 
 class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
 
-    var connectors: [String] = []
+    var connectorString: [String] = []
+    var connectorIndex: [Int] = []
+    
     var uid: String?
     var email: String?
     var firstname: String?
@@ -26,6 +29,8 @@ class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollection
     var connector: Int?
     var connectorIndexPath: IndexPath?
     var connectorSelected: Bool = false
+    
+    let database = Database()
     
     @IBOutlet weak var whitePannel: UIView!
     @IBOutlet weak var finishedButton: UIButton!
@@ -53,28 +58,24 @@ class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollection
     
     func getConnectors(){
         let ref = FIRDatabase.database().reference()
-        ref.child("Connectors").observe(.value, with: { (snapshot) in
+        ref.child("nobil_database_static").child("connectors").observeSingleEvent(of: .value, with: { (snapshot) in
             print(snapshot)
-            
             for children in snapshot.children.allObjects as? [FIRDataSnapshot] ?? [] {
-                print(children.value as! String)
-                self.connectors.append(children.value as! String)
+                self.connectorIndex.append(Int(children.key)!)
+                self.connectorString.append(children.value as! String)
             }
             self.connectorCollectionView.reloadData()
-
         }, withCancel: nil)
-        
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return connectors.count
+        return connectorIndex.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: RegisterFinishedConnectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "RegisterFinishedConnectorCellIdentifier", for: indexPath as IndexPath) as! RegisterFinishedConnectorCell
-        if connectors.count != 0{
-            cell.connectorLabel.text = connectors[indexPath.row]
+        if connectorIndex.count != 0{
+            cell.connectorLabel.text = connectorString[indexPath.row]
         }
         return cell
     }
@@ -85,35 +86,17 @@ class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! RegisterFinishedConnectorCell
         cell.isSelected = true
-        connector = indexPath.row
+        connector = connectorIndex[indexPath.row]
     }
     
     @IBAction func finishedButton(_ sender: UIButton) {
         if connector != nil {
-            
             let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudStorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
             GlobalResources.user = user
-            
-            let ref = FIRDatabase.database().reference()
-            ref.child("User_Info").child(uid!).setValue(
-                ["uid": uid!,
-                "email": email!,
-                "firstname": firstname!,
-                "lastname": lastname!,
-                "fastCharge": fastcharge!,
-                "parkingFee": parkingfee!,
-                "cloudStorage": cloudStorage!,
-                "notifications": notifications!,
-                "notificationsDuration": notificationsDuration!,
-                "connector": connector!]
-            )
- 
-            do {
-                try Disk.save(user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
-            } catch {
-                print("User not stored in cache")
-            }
+            database.updateUser()
             performSegue(withIdentifier: "toHomeFromRegister", sender: self)
+        } else {
+          AudioServicesPlaySystemSound(Constants.VIBRATION_WEAK)
         }
     }
 }

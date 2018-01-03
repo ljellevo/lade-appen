@@ -9,7 +9,7 @@
 import UIKit
 
 class ChangePreferences: UIViewController {
-    
+    let database = Database()
     var notificationDuration: Int = 30
     
     @IBOutlet weak var whitePannel: UIView!
@@ -56,10 +56,11 @@ class ChangePreferences: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
-        
+        GlobalResources.user?.fastCharge = fastchargeSwitch.isOn
+        GlobalResources.user?.parkingFee = parkingFeeSwitch.isOn
+        GlobalResources.user?.cloudStorage = cloudStorageSwitch.isOn
+        GlobalResources.user?.notifications = notificationSwitch.isOn
+        GlobalResources.user?.notificationDuration = notificationDuration
+        database.updateUser()
     }
-    
-
-
-
 }

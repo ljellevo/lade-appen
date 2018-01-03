@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import AudioToolbox
 
 class Register: UIViewController {
     
@@ -74,6 +75,7 @@ class Register: UIViewController {
                 firstnameTextField.setBottomBorderRed()
                 lastnameTextField.setBottomBorderRed()
             }
+            AudioServicesPlaySystemSound(Constants.VIBRATION_WEAK)
         }
     }
 }
