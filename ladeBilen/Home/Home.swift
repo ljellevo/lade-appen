@@ -26,6 +26,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     var selectedStationSearch: Station?
 
     @IBOutlet weak var tableViewStack: UIStackView!
+    @IBOutlet weak var tableViewStackBottomConstraint: NSLayoutConstraint!
     @IBOutlet var tableView: UITableView!
     
     @IBOutlet weak var mapWindow: MKMapView!
@@ -55,10 +56,24 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
-        navigationItem.titleView = searchController.searchBar
+        searchController.searchBar.placeholder = "Søk"
+        setupNavigationBar()
         self.definesPresentationContext = true
         self.addAnnotationsToMap()
+
+
     }
+    
+    func setupNavigationBar() {
+        let searchBarContainer = SearchBarContainerView(customSearchBar: searchController.searchBar)
+        searchBarContainer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
+        navigationItem.titleView = searchBarContainer
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        searchController.searchBar.sizeToFit()
+    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let result = filteredStations else {
@@ -140,6 +155,8 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         performSegue(withIdentifier: "toDetails", sender: self)
     }
     
+
+    
     func addAnnotationsToMap(){
         for children in GlobalResources.stations{
                 var position = children.position
@@ -194,4 +211,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         }
     }
 }
+
+
 

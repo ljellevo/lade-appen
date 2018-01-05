@@ -1039,6 +1039,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ladestasjoner" id="vwX-8P-S8t">
                         <barButtonItem key="backBarButtonItem" title="Kart" id="nHy-K6-z2I"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="FavoriteSet" id="2ey-C1-Q1S"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="ProfileSet" id="Osa-Y9-cNL"/>
                     </navigationItem>
                     <connections>
                         <outlet property="buttonStackConstraintLeading" destination="KEs-6v-AnL" id="PUZ-xK-9Im"/>
@@ -1055,6 +1057,7 @@
                         <outlet property="streetLabel" destination="5SI-QM-hsT" id="DnC-Zu-Bog"/>
                         <outlet property="tableView" destination="Rzb-4I-5yn" id="Jfg-BW-yWk"/>
                         <outlet property="tableViewStack" destination="bcT-jA-b1i" id="4qm-yB-Kmf"/>
+                        <outlet property="tableViewStackBottomConstraint" destination="7pO-TI-5d0" id="eXG-he-H5J"/>
                         <segue destination="pit-r4-Zzf" kind="show" identifier="toDetails" id="HZU-tn-49a"/>
                     </connections>
                 </viewController>
@@ -1992,7 +1995,7 @@
         <image name="SearchSet" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ai9-CH-uGm"/>
-        <segue reference="hFR-pv-beq"/>
+        <segue reference="LfY-e2-duI"/>
+        <segue reference="HZU-tn-49a"/>
     </inferredMetricsTieBreakers>
 </document>
