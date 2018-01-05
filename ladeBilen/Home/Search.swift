@@ -13,6 +13,7 @@ class Search: UITableViewController, UISearchResultsUpdating {
     let database = Database()
     var filteredStations: [Station]?
     var index: Int?
+    var searchText: String?
 
     @IBOutlet weak var searchBar: UISearchBar!
     let searchController = UISearchController(searchResultsController: nil)
@@ -34,11 +35,27 @@ class Search: UITableViewController, UISearchResultsUpdating {
 
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        searchController.dismiss(animated: false, completion: nil)
+    override func viewWillAppear(_ animated: Bool) {
+        if let text = searchText {
+            searchController.searchBar.text = text
+        } else {
+            searchController.searchBar.text = ""
+        }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.definesPresentationContext = true
+        super.viewDidAppear(animated)
+
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchText = searchController.searchBar.text
+        searchController.searchBar.text = ""
+        searchController.dismiss(animated: false, completion: nil)
+    }
+ 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let result = filteredStations else {
             return GlobalResources.stations.count

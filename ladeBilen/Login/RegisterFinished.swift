@@ -11,7 +11,7 @@ import Firebase
 import Disk
 import AudioToolbox
 
-class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
 
     var connectorString: [String] = []
@@ -34,22 +34,15 @@ class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollection
     
     @IBOutlet weak var whitePannel: UIView!
     @IBOutlet weak var finishedButton: UIButton!
-    @IBOutlet weak var connectorCollectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         whitePannel.layer.cornerRadius = 20
         finishedButton.layer.cornerRadius = 20
-        connectorCollectionView.delegate = self
-        connectorCollectionView.dataSource = self
-        
-        connectorCollectionView.register(UINib(nibName: "RegisterFinishedConnectorCell", bundle: nil), forCellWithReuseIdentifier: "RegisterFinishedConnectorCellIdentifier")
+        tableView.delegate = self
+        tableView.dataSource = self
         getConnectors()
-        
-
-
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,29 +57,57 @@ class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollection
                 self.connectorIndex.append(Int(children.key)!)
                 self.connectorString.append(children.value as! String)
             }
-            self.connectorCollectionView.reloadData()
+            self.tableView.reloadData()
         }, withCancel: nil)
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return connectorIndex.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: RegisterFinishedConnectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "RegisterFinishedConnectorCellIdentifier", for: indexPath as IndexPath) as! RegisterFinishedConnectorCell
-        if connectorIndex.count != 0{
-            cell.connectorLabel.text = connectorString[indexPath.row]
+    /*
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if connector.index(of: connectorIndex[indexPath.row]) != nil {
+            cell.accessoryType = .checkmark
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
         }
+    }
+ */
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "connectorsCells", for: indexPath)
+        cell.textLabel?.text = connectorString[indexPath.row]
+        cell.selectionStyle = .none
+        if connector.index(of: connectorIndex[indexPath.row]) != nil {
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryType.none
+        }
+        
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.width - 100), height: (UIScreen.main.bounds.width - 100))
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            if cell.accessoryType == .none {
+                cell.accessoryType = .checkmark
+                connector.append(connectorIndex[indexPath.row])
+            }
+            print(connector)
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! RegisterFinishedConnectorCell
-        cell.isSelected = true
-        connector.append(connectorIndex[indexPath.row])
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let index = connector.index(of: connectorIndex[indexPath.row]) {
+            connector.remove(at: index)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                if cell.accessoryType == .checkmark {
+                    cell.accessoryType = .none
+                }
+            }
+        }
+        print(connector)
     }
     
     @IBAction func finishedButton(_ sender: UIButton) {

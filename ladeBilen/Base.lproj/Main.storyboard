@@ -1878,17 +1878,20 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="H7M-Nd-rBS">
                                 <rect key="frame" x="0.0" y="116" width="320" height="327"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zDX-fD-soW">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lG9-99-pug">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="327"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hln-Dy-ijU">
-                                            <size key="itemSize" width="50" height="50"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells/>
-                                    </collectionView>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="connectorsCells" id="N81-HG-bou">
+                                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N81-HG-bou" id="Wxq-jS-Oos">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ETy-2m-x9f">
@@ -1922,8 +1925,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="connectorCollectionView" destination="zDX-fD-soW" id="41m-2p-6Gt"/>
                         <outlet property="finishedButton" destination="1hT-Sl-6Cx" id="EPW-iD-pYb"/>
+                        <outlet property="tableView" destination="lG9-99-pug" id="6b4-HL-LiS"/>
                         <outlet property="whitePannel" destination="aWb-aZ-eCi" id="VwH-cu-u7w"/>
                         <segue destination="lma-nr-bIu" kind="show" identifier="toHomeFromRegister" animates="NO" id="ai9-CH-uGm"/>
                     </connections>
@@ -1965,6 +1968,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ai9-CH-uGm"/>
-        <segue reference="hFR-pv-beq"/>
+        <segue reference="HZU-tn-49a"/>
     </inferredMetricsTieBreakers>
 </document>
