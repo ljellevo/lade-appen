@@ -32,7 +32,6 @@ class Search: UITableViewController, UISearchResultsUpdating {
                 self.tableView.reloadData()
             }
         }
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +45,6 @@ class Search: UITableViewController, UISearchResultsUpdating {
     override func viewDidAppear(_ animated: Bool) {
         self.definesPresentationContext = true
         super.viewDidAppear(animated)
-
     }
 
     override func viewWillDisappear(_ animated: Bool) {

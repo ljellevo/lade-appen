@@ -991,19 +991,42 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bcT-jA-b1i" userLabel="TableView Stack">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rzb-4I-5yn">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="ro6-W5-gt0">
+                                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ro6-W5-gt0" id="SLM-AP-Bfa">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bcT-jA-b1i" secondAttribute="bottom" id="7pO-TI-5d0"/>
                             <constraint firstItem="fHQ-m9-XD3" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="7wM-qv-5Zk"/>
                             <constraint firstAttribute="trailing" secondItem="frf-yt-d8b" secondAttribute="trailing" id="9eX-U3-XX5"/>
                             <constraint firstItem="frf-yt-d8b" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HSn-sD-WPU"/>
                             <constraint firstItem="fHQ-m9-XD3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="KEs-6v-AnL"/>
                             <constraint firstAttribute="trailing" secondItem="bDK-wx-8YK" secondAttribute="trailing" id="Lwj-gF-iTo"/>
                             <constraint firstItem="bDK-wx-8YK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Lzy-2l-1P2"/>
+                            <constraint firstItem="bcT-jA-b1i" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Rdi-Am-ZzW"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fHQ-m9-XD3" secondAttribute="bottom" constant="8" id="YDB-vL-KXf"/>
                             <constraint firstAttribute="bottom" secondItem="bDK-wx-8YK" secondAttribute="bottom" constant="50" id="aSj-Ng-B56"/>
                             <constraint firstItem="bDK-wx-8YK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="geO-gc-UT7"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="frf-yt-d8b" secondAttribute="bottom" id="h5m-r0-vBB"/>
+                            <constraint firstAttribute="trailing" secondItem="bcT-jA-b1i" secondAttribute="trailing" id="qyO-fM-FcQ"/>
+                            <constraint firstItem="bcT-jA-b1i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yZL-pe-Z5P"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -1030,6 +1053,8 @@
                         <outlet property="nameLabel" destination="oUL-7h-9wy" id="DbR-cK-XBe"/>
                         <outlet property="nearestButton" destination="FCO-2u-frz" id="XlY-Fy-q1T"/>
                         <outlet property="streetLabel" destination="5SI-QM-hsT" id="DnC-Zu-Bog"/>
+                        <outlet property="tableView" destination="Rzb-4I-5yn" id="Jfg-BW-yWk"/>
+                        <outlet property="tableViewStack" destination="bcT-jA-b1i" id="4qm-yB-Kmf"/>
                         <segue destination="pit-r4-Zzf" kind="show" identifier="toDetails" id="HZU-tn-49a"/>
                     </connections>
                 </viewController>
@@ -1968,6 +1993,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ai9-CH-uGm"/>
-        <segue reference="HZU-tn-49a"/>
+        <segue reference="hFR-pv-beq"/>
     </inferredMetricsTieBreakers>
 </document>
