@@ -210,11 +210,11 @@
                     <connections>
                         <outlet property="tableView" destination="M1C-58-wJt" id="t0j-0v-BdV"/>
                         <segue destination="dAw-Mp-djm" kind="show" identifier="toChangeAuthInfo" id="hzT-M4-Ms0"/>
-                        <segue destination="yz2-zU-lLA" kind="show" identifier="toChangeContact" id="EeF-U5-9SL"/>
                         <segue destination="MYZ-zz-Sov" kind="show" identifier="toChangePreferences" id="MOa-jg-d8U"/>
                         <segue destination="j8x-ww-oDR" kind="show" identifier="toAbout" id="esI-WO-f6v"/>
                         <segue destination="EYt-UJ-mP1" kind="show" identifier="toReportBug" id="NOV-gx-54B"/>
                         <segue destination="ypy-3c-FZW" kind="show" identifier="toChangeUserInfo" id="KsY-UK-J0t"/>
+                        <segue destination="Wel-ij-dGa" kind="show" identifier="toChangeContact" id="j1U-WB-64A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z5c-fD-Y1V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -444,10 +444,10 @@
             </objects>
             <point key="canvasLocation" x="-2385" y="2735"/>
         </scene>
-        <!--Change Contact-->
+        <!--Change Contact Old-->
         <scene sceneID="EHS-Jc-Sec">
             <objects>
-                <viewController storyboardIdentifier="ChangeContact" id="yz2-zU-lLA" customClass="ChangeContact" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangeContact" id="yz2-zU-lLA" customClass="ChangeContactOld" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tu4-S1-WnD"/>
                         <viewControllerLayoutGuide type="bottom" id="cmI-60-GNt"/>
@@ -457,18 +457,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHE-be-a6k">
-                                <rect key="frame" x="0.0" y="64" width="305" height="455"/>
+                                <rect key="frame" x="0.0" y="20" width="305" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7L-4p-EA0">
-                                <rect key="frame" x="0.0" y="64" width="120" height="455"/>
+                                <rect key="frame" x="0.0" y="20" width="120" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LQe-qW-dRf">
-                                <rect key="frame" x="0.0" y="84" width="320" height="327"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="420"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xV4-Y3-H69">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="327"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="420"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nGk-SZ-h4B">
                                             <size key="itemSize" width="50" height="50"/>
@@ -504,7 +504,55 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQl-4W-6Er" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1686" y="2735"/>
+            <point key="canvasLocation" x="-1708" y="3452"/>
+        </scene>
+        <!--Change Contact-->
+        <scene sceneID="OIE-Cn-cLy">
+            <objects>
+                <viewController id="Wel-ij-dGa" customClass="ChangeContact" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cgg-ZB-3D0"/>
+                        <viewControllerLayoutGuide type="bottom" id="uH3-Do-Kcc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cbh-hW-tcM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZnV-dy-sCa">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3O0-EQ-2mw">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="connectorsCells" id="4EG-yE-nCw">
+                                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4EG-yE-nCw" id="WNY-oj-uIJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.26661759610000002" green="0.79998916389999997" blue="0.27651202679999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZnV-dy-sCa" firstAttribute="top" secondItem="cgg-ZB-3D0" secondAttribute="bottom" id="VVV-Gm-Z6r"/>
+                            <constraint firstAttribute="trailing" secondItem="ZnV-dy-sCa" secondAttribute="trailing" id="dSZ-Iy-pnk"/>
+                            <constraint firstItem="ZnV-dy-sCa" firstAttribute="leading" secondItem="cbh-hW-tcM" secondAttribute="leading" id="fMe-gn-Dx8"/>
+                            <constraint firstItem="uH3-Do-Kcc" firstAttribute="top" secondItem="ZnV-dy-sCa" secondAttribute="bottom" id="q3v-sf-pjJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="3O0-EQ-2mw" id="70X-Kc-TSo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V0n-2x-37K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1708" y="2735"/>
         </scene>
         <!--Change Preferences-->
         <scene sceneID="7in-yA-nVC">

@@ -26,7 +26,7 @@ class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollection
     var cloudStorage: Bool?
     var notifications: Bool?
     var notificationsDuration: Int?
-    var connector: Int?
+    var connector: [Int] = []
     var connectorIndexPath: IndexPath?
     var connectorSelected: Bool = false
     
@@ -86,12 +86,12 @@ class RegisterFinished: UIViewController, UICollectionViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! RegisterFinishedConnectorCell
         cell.isSelected = true
-        connector = connectorIndex[indexPath.row]
+        connector.append(connectorIndex[indexPath.row])
     }
     
     @IBAction func finishedButton(_ sender: UIButton) {
-        if connector != nil {
-            let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudStorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
+        if connector.count != 0 {
+            let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudStorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector)
             GlobalResources.user = user
             database.updateUser()
             do {

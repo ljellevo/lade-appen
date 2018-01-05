@@ -26,7 +26,7 @@ class Database {
              "cloudStorage": GlobalResources.user?.cloudStorage! as Bool!,
              "notifications": GlobalResources.user?.notifications! as Bool!,
              "notificationsDuration": GlobalResources.user?.notificationDuration! as Int!,
-             "connector": GlobalResources.user?.connector! as Int!]
+             "connector": GlobalResources.user?.connector! as [Int]!]
         )
         updateUserCache()
     }

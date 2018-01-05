@@ -18,7 +18,7 @@ struct User: Codable {
     var cloudStorage: Bool?
     var notifications: Bool?
     var notificationDuration: Int?
-    var connector: Int?
+    var connector: [Int]?
     
     var dictionary: [String: Any] {
         return ["uid": uid!,
@@ -30,7 +30,7 @@ struct User: Codable {
                 "cloudStorage": cloudStorage!,
                 "notifications": notifications!,
                 "notificationsDuration": notificationDuration!,
-                "connector": connector!
+                "connector": [connector]
         ]
     }
     
@@ -39,7 +39,7 @@ struct User: Codable {
     }
 
     
-    init(uid: String, email: String, firstname: String, lastname: String, fastCharge: Bool, parkingFee: Bool, cloudStorage: Bool, notifications: Bool, notificationDuration: Int, connector: Int) {
+    init(uid: String, email: String, firstname: String, lastname: String, fastCharge: Bool, parkingFee: Bool, cloudStorage: Bool, notifications: Bool, notificationDuration: Int, connector: [Int]) {
         self.uid = uid
         self.email = email
         self.firstname = firstname

@@ -1,41 +1,31 @@
 //
-//  ChangeContact.swift
+//  changeContactPlayground.swift
 //  ladeBilen
 //
-//  Created by Ludvig Ellevold on 01.01.2018.
+//  Created by Ludvig Ellevold on 05.01.2018.
 //  Copyright © 2018 Ludvig Ellevold. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class ChangeContact: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     let database = Database()
     
     var connectorString: [String] = []
     var connectorIndex: [Int] = []
-    var connector: Int?
+    var connector: [Int] = GlobalResources.user!.connector!
 
-    
-    @IBOutlet weak var connectorCollectionView: UICollectionView!
-    @IBOutlet weak var whitePanel: UIView!
-    
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        whitePanel.layer.cornerRadius = 20
-
-        connectorCollectionView.delegate = self
-        connectorCollectionView.dataSource = self
-        
-        connectorCollectionView.register(UINib(nibName: "RegisterFinishedConnectorCell", bundle: nil), forCellWithReuseIdentifier: "RegisterFinishedConnectorCellIdentifier")
+        tableView.delegate = self
+        tableView.dataSource = self
         getConnectors()
     }
+    
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func getConnectors(){
         let ref = FIRDatabase.database().reference()
@@ -45,30 +35,49 @@ class ChangeContact: UIViewController, UICollectionViewDelegate, UICollectionVie
                 self.connectorIndex.append(Int(children.key)!)
                 self.connectorString.append(children.value as! String)
             }
-            self.connectorCollectionView.reloadData()
+            self.tableView.reloadData()
         }, withCancel: nil)
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return connectorIndex.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: RegisterFinishedConnectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "RegisterFinishedConnectorCellIdentifier", for: indexPath as IndexPath) as! RegisterFinishedConnectorCell
-        if connectorIndex.count != 0{
-            cell.connectorLabel.text = connectorString[indexPath.row]
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if connector.index(of: connectorIndex[indexPath.row]) != nil {
+            cell.accessoryType = .checkmark
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
         }
-        return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.width - 100), height: (UIScreen.main.bounds.width - 100))
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! RegisterFinishedConnectorCell
-        cell.isSelected = true
-        connector = connectorIndex[indexPath.row]
-        GlobalResources.user?.connector = connector
-        database.updateUser()
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "connectorsCells", for: indexPath)
+        cell.textLabel?.text = connectorString[indexPath.row]
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .checkmark
+            connector.append(connectorIndex[indexPath.row])
+            GlobalResources.user?.connector = connector
+            database.updateConnector()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let index = connector.index(of: connectorIndex[indexPath.row]) {
+            connector.remove(at: index)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                cell.accessoryType = .none
+            }
+            GlobalResources.user?.connector = connector
+            database.updateConnector()
+        }
+
     }
 }

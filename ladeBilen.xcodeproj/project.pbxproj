@@ -55,6 +55,7 @@
 		835413811F82F550000A70CB /* Schuko_CEE_7_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 835413711F82F54F000A70CB /* Schuko_CEE_7_4.png */; };
 		835413821F82F550000A70CB /* Type_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 835413721F82F54F000A70CB /* Type_2.png */; };
 		83562CDA1FDCD1BE0017F1A7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83562CD91FDCD1BE0017F1A7 /* User.swift */; };
+		8362951B1FFFE85100D6C430 /* ChangeContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8362951A1FFFE85100D6C430 /* ChangeContact.swift */; };
 		8365D9F11FEEB48E006510E9 /* RegisterFinished.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365D9F01FEEB48E006510E9 /* RegisterFinished.swift */; };
 		8365D9F41FEEE6F8006510E9 /* RegisterFinishedConnectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365D9F21FEEE6F8006510E9 /* RegisterFinishedConnectorCell.swift */; };
 		8365D9F51FEEE6F8006510E9 /* RegisterFinishedConnectorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8365D9F31FEEE6F8006510E9 /* RegisterFinishedConnectorCell.xib */; };
@@ -83,7 +84,7 @@
 		83C83A881FF1D70F0088C10C /* DefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C83A861FF1D70F0088C10C /* DefaultCell.xib */; };
 		83DD039C1FEDCD3E00AEF6C9 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DD039B1FEDCD3E00AEF6C9 /* Register.swift */; };
 		83DE76071FFAC404001EE4C6 /* ChangeAuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE76061FFAC404001EE4C6 /* ChangeAuthInfo.swift */; };
-		83DE76091FFAC41D001EE4C6 /* ChangeContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE76081FFAC41D001EE4C6 /* ChangeContact.swift */; };
+		83DE76091FFAC41D001EE4C6 /* ChangeContactOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE76081FFAC41D001EE4C6 /* ChangeContactOld.swift */; };
 		83DE760B1FFAC48B001EE4C6 /* ChangePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE760A1FFAC48B001EE4C6 /* ChangePreferences.swift */; };
 		83DE760D1FFAC49A001EE4C6 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE760C1FFAC49A001EE4C6 /* About.swift */; };
 		83DE760F1FFAC4AA001EE4C6 /* ReportBug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE760E1FFAC4AA001EE4C6 /* ReportBug.swift */; };
@@ -165,6 +166,7 @@
 		835413711F82F54F000A70CB /* Schuko_CEE_7_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Schuko_CEE_7_4.png; sourceTree = "<group>"; };
 		835413721F82F54F000A70CB /* Type_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Type_2.png; sourceTree = "<group>"; };
 		83562CD91FDCD1BE0017F1A7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8362951A1FFFE85100D6C430 /* ChangeContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeContact.swift; sourceTree = "<group>"; };
 		8365D9F01FEEB48E006510E9 /* RegisterFinished.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFinished.swift; sourceTree = "<group>"; };
 		8365D9F21FEEE6F8006510E9 /* RegisterFinishedConnectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFinishedConnectorCell.swift; sourceTree = "<group>"; };
 		8365D9F31FEEE6F8006510E9 /* RegisterFinishedConnectorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterFinishedConnectorCell.xib; sourceTree = "<group>"; };
@@ -193,7 +195,7 @@
 		83C83A861FF1D70F0088C10C /* DefaultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultCell.xib; sourceTree = "<group>"; };
 		83DD039B1FEDCD3E00AEF6C9 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		83DE76061FFAC404001EE4C6 /* ChangeAuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAuthInfo.swift; sourceTree = "<group>"; };
-		83DE76081FFAC41D001EE4C6 /* ChangeContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeContact.swift; sourceTree = "<group>"; };
+		83DE76081FFAC41D001EE4C6 /* ChangeContactOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeContactOld.swift; sourceTree = "<group>"; };
 		83DE760A1FFAC48B001EE4C6 /* ChangePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePreferences.swift; sourceTree = "<group>"; };
 		83DE760C1FFAC49A001EE4C6 /* About.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		83DE760E1FFAC4AA001EE4C6 /* ReportBug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportBug.swift; sourceTree = "<group>"; };
@@ -383,6 +385,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		836295191FFFE83200D6C430 /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				83DE76081FFAC41D001EE4C6 /* ChangeContactOld.swift */,
+			);
+			path = Playground;
+			sourceTree = "<group>";
+		};
 		836B7DBE1FCA27A600B4B94E /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,7 +484,7 @@
 			children = (
 				83C042851FFAEB1E00F8D8CD /* ChangeUserInfo.swift */,
 				83DE76061FFAC404001EE4C6 /* ChangeAuthInfo.swift */,
-				83DE76081FFAC41D001EE4C6 /* ChangeContact.swift */,
+				8362951A1FFFE85100D6C430 /* ChangeContact.swift */,
 				83DE760A1FFAC48B001EE4C6 /* ChangePreferences.swift */,
 				83DE760C1FFAC49A001EE4C6 /* About.swift */,
 				83DE760E1FFAC4AA001EE4C6 /* ReportBug.swift */,
@@ -505,6 +515,7 @@
 		83F354751EEB0696001A278A /* ladeBilen */ = {
 			isa = PBXGroup;
 			children = (
+				836295191FFFE83200D6C430 /* Playground */,
 				8323D41D1FC779D70049D349 /* Xibs */,
 				8302AE2C1FC3EA6E007F693A /* Details */,
 				83AC00321FC0DFA400A215B8 /* Structs */,
@@ -902,10 +913,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83DE76091FFAC41D001EE4C6 /* ChangeContact.swift in Sources */,
+				83DE76091FFAC41D001EE4C6 /* ChangeContactOld.swift in Sources */,
 				8365D9F11FEEB48E006510E9 /* RegisterFinished.swift in Sources */,
 				83C83A871FF1D70F0088C10C /* DefaultCell.swift in Sources */,
 				8342E1801EED87170079888F /* Search.swift in Sources */,
+				8362951B1FFFE85100D6C430 /* ChangeContact.swift in Sources */,
 				83F354791EEB0696001A278A /* ViewController.swift in Sources */,
 				83A54F051FD09FC3002CB5B3 /* Profile.swift in Sources */,
 				83F208251FC370D70075A2F0 /* Connector.swift in Sources */,

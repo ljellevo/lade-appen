@@ -21,7 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         let database = Database()
         
+        //deleteCache()
+        //logOut()
         if FIRAuth.auth()?.currentUser != nil {
+
             do {
                 if Disk.exists("stations.json", in: .caches) {
                     GlobalResources.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
@@ -99,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if notificationsDuration == nil {
                             error = true
                         }
-                        let connector = value["connector"] as? Int
+                        let connector = value["connector"] as? [Int]
                         if connector == nil {
                             error = true
                         }
@@ -131,6 +134,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }catch {
             print("Error reading cache")
         }
+    }
+    
+    func deleteCache(){
+
+            do {
+                try Disk.remove((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches)
+                try Disk.remove("stations.json", from: .caches)
+                print("Removed cache")
+            } catch {
+                print("Could not remove cache")
+            }
+    }
+    
+    func logOut(){
+
+            do{
+                try FIRAuth.auth()?.signOut()
+            } catch {
+                print ("Error")
+            }
+
     }
     
 

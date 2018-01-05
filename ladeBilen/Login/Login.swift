@@ -189,7 +189,7 @@ class Login: UIViewController, UITextFieldDelegate {
                 if notificationsDuration == nil {
                     error = true
                 }
-                let connector = value["connector"] as? Int
+                let connector = value["connector"] as? [Int]
                 if connector == nil {
                     error = true
                 }
