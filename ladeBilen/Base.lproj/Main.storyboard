@@ -155,7 +155,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYN-PA-Gki">
                                         <rect key="frame" x="0.0" y="142" width="248" height="50"/>
-                                        <color key="backgroundColor" red="0.23305154519999999" green="0.77393712290000005" blue="0.21476158910000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.26700228450000002" green="0.80124998089999999" blue="0.27593502399999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="w5a-Mf-zhv"/>
                                         </constraints>
@@ -180,7 +180,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.26661759610000002" green="0.79998916389999997" blue="0.27651202679999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.26700228450000002" green="0.80124998089999999" blue="0.27593502399999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="tGz-oe-cfT" firstAttribute="leading" secondItem="2Og-h8-SLR" secondAttribute="leading" id="WbG-FN-3Ee"/>
                             <constraint firstItem="Nbb-0c-AE7" firstAttribute="leading" secondItem="2Og-h8-SLR" secondAttribute="leading" id="aey-Z4-QTy"/>
@@ -1845,6 +1845,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hjp-FY-YWZ">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
