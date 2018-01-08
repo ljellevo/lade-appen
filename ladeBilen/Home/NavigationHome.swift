@@ -12,6 +12,7 @@ class NavigationHome: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //navigationController?.setViewControllers([Home()], animated: true)
 
         // Do any additional setup after loading the view.
     }

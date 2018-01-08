@@ -13,7 +13,11 @@ import Firebase
 
 
 
-class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource {
+class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource{
+    //, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate
+    
+    //let simpleOver = SimpleOver()
+    
 
     var locationManager: CLLocationManager = CLLocationManager()
     var isInitial: Bool = true
@@ -46,6 +50,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.navigationController?.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         isInitial = true
@@ -60,9 +65,8 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         setupNavigationBar()
         self.definesPresentationContext = true
         self.addAnnotationsToMap()
-
-
     }
+
     
     func setupNavigationBar() {
         let searchBarContainer = SearchBarContainerView(customSearchBar: searchController.searchBar)
@@ -210,7 +214,47 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
             return
         }
     }
+    
+    
+    @IBAction func toProfile(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "toProfile", sender: self)
+    }
+    
+    
+    @IBAction func toFavorites(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "toFavorites", sender: self)
+    }
+    
+    
 }
+
+/*
+extension Home {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch operation {
+        case .push:
+            return CustomPushSegue()
+        case .pop:
+            return CustomPopSegue()
+        default:
+            return nil
+        }
+    }
+ 
+ 
+}
+ 
+
+func navigationController(
+    _ navigationController: UINavigationController,
+    animationControllerFor operation: UINavigationControllerOperation,
+    from fromVC: UIViewController,
+    to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    
+    simpleOver.popStyle = (operation == .pop)
+    return simpleOver
+}
+ */
 
 
 

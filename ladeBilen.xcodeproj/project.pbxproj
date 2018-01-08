@@ -76,6 +76,7 @@
 		83A463AB1FCB1659001A5916 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A463A91FCB1659001A5916 /* CommentCell.xib */; };
 		83A54F051FD09FC3002CB5B3 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A54F041FD09FC3002CB5B3 /* Profile.swift */; };
 		83A570CF1FFC577300B98E9F /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83A570CE1FFC577300B98E9F /* TODO.txt */; };
+		83BC8FFA2003060B0086E1C6 /* SegueToFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BC8FF92003060B0086E1C6 /* SegueToFavorites.swift */; };
 		83C042861FFAEB1E00F8D8CD /* ChangeUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C042851FFAEB1E00F8D8CD /* ChangeUserInfo.swift */; };
 		83C83A7D1FF1B6D40088C10C /* GlobalResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C83A7C1FF1B6D40088C10C /* GlobalResources.swift */; };
 		83C83A811FF1D35A0088C10C /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C83A7F1FF1D35A0088C10C /* EntryCell.swift */; };
@@ -187,6 +188,7 @@
 		83A463A91FCB1659001A5916 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		83A54F041FD09FC3002CB5B3 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		83A570CE1FFC577300B98E9F /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
+		83BC8FF92003060B0086E1C6 /* SegueToFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueToFavorites.swift; sourceTree = "<group>"; };
 		83C042851FFAEB1E00F8D8CD /* ChangeUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUserInfo.swift; sourceTree = "<group>"; };
 		83C83A7C1FF1B6D40088C10C /* GlobalResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalResources.swift; sourceTree = "<group>"; };
 		83C83A7F1FF1D35A0088C10C /* EntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
@@ -468,6 +470,14 @@
 			path = Structs;
 			sourceTree = "<group>";
 		};
+		83BC8FF6200305400086E1C6 /* Custom segue */ = {
+			isa = PBXGroup;
+			children = (
+				83BC8FF92003060B0086E1C6 /* SegueToFavorites.swift */,
+			);
+			path = "Custom segue";
+			sourceTree = "<group>";
+		};
 		83C83A7E1FF1D3350088C10C /* Profile Xibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,6 +525,7 @@
 		83F354751EEB0696001A278A /* ladeBilen */ = {
 			isa = PBXGroup;
 			children = (
+				83BC8FF6200305400086E1C6 /* Custom segue */,
 				836295191FFFE83200D6C430 /* Playground */,
 				8323D41D1FC779D70049D349 /* Xibs */,
 				8302AE2C1FC3EA6E007F693A /* Details */,
@@ -941,6 +952,7 @@
 				83C83A7D1FF1B6D40088C10C /* GlobalResources.swift in Sources */,
 				83FD2BEA1FEE6DE9002B8EDF /* RegisterCont.swift in Sources */,
 				83469A8A1EEB0E0600D9AFC1 /* Favorites.swift in Sources */,
+				83BC8FFA2003060B0086E1C6 /* SegueToFavorites.swift in Sources */,
 				83C83A811FF1D35A0088C10C /* EntryCell.swift in Sources */,
 				8342E17E1EED87010079888F /* SettingsOld.swift in Sources */,
 				83DD039C1FEDCD3E00AEF6C9 /* Register.swift in Sources */,

@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
         let database = Database()
+        //UIApplication.shared.statusBarStyle = .lightContent
         
         //deleteCache()
         //logOut()
@@ -57,13 +58,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if Disk.exists((FIRAuth.auth()?.currentUser?.uid)! + ".json", in: .caches) {
                 GlobalResources.user = try Disk.retrieve((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches, as: User.self)
                 let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vc = storyBoard.instantiateViewController(withIdentifier: "Tab") as! Tab
+                let vc = storyBoard.instantiateViewController(withIdentifier: "NavigationHome") as! NavigationHome
                 self.window?.rootViewController = vc
                 self.window?.makeKeyAndVisible()
             } else {
                 print("User not stored in cache, performing database query")
                 let ref = FIRDatabase.database().reference()
-                ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
+                ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
                     if let value = snapshot.value as? NSDictionary {
                         var error: Bool = false
                         let uid = value["uid"] as? String
@@ -102,9 +103,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if notificationsDuration == nil {
                             error = true
                         }
-                        let connector = value["connector"] as? [Int]
+                        var connector = value["connector"] as? [Int]
                         if connector == nil {
-                            error = true
+                            connector = []
                         }
                         
                         if error == false {
@@ -117,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 print("User not stored in cache")
                             }
                             let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                            let vc = storyBoard.instantiateViewController(withIdentifier: "Tab") as! Tab
+                            let vc = storyBoard.instantiateViewController(withIdentifier: "NavigationHome") as! NavigationHome
                             self.window?.rootViewController = vc
                             self.window?.makeKeyAndVisible()
                             return
@@ -135,6 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Error reading cache")
         }
     }
+
     
     func deleteCache(){
 
