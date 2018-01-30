@@ -48,7 +48,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4E-kh-WLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4914" y="593"/>
+            <point key="canvasLocation" x="-2610" y="163"/>
         </scene>
         <!--Profil-->
         <scene sceneID="iig-vW-9zE">
@@ -1004,7 +1004,9 @@
                             <constraint firstItem="iej-q9-19P" firstAttribute="top" secondItem="oA1-Tl-mHl" secondAttribute="bottom" id="y7i-wN-uEP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Stasjon" id="QVv-o9-w55"/>
+                    <navigationItem key="navigationItem" title="Stasjon" id="QVv-o9-w55">
+                        <barButtonItem key="rightBarButtonItem" title="Følg" id="hhg-WM-I8M"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="eES-eu-9cJ" id="8y6-vz-ehR"/>
                     </connections>
@@ -1846,6 +1848,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>

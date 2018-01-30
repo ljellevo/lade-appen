@@ -67,6 +67,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         self.addAnnotationsToMap()
     }
 
+
     
     func setupNavigationBar() {
         let searchBarContainer = SearchBarContainerView(customSearchBar: searchController.searchBar)
@@ -163,22 +164,22 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     func addAnnotationsToMap(){
         for children in GlobalResources.stations{
-                var position = children.position
-                position = position?.replacingOccurrences(of: "(", with: "")
-                position = position?.replacingOccurrences(of: ")", with: "")
-                let positionArray = position!.components(separatedBy: ",")
-                let lat = Double(positionArray[0])
-                let lon = Double(positionArray[1])
-                
-                let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
-                
-                let annotation = Annotation(title: children.name!, subtitle: children.street!, id: children.id!, coordinate: coordinates)
-                self.mapWindow.addAnnotation(annotation)
+            var position = children.position
+            position = position?.replacingOccurrences(of: "(", with: "")
+            position = position?.replacingOccurrences(of: ")", with: "")
+            let positionArray = position!.components(separatedBy: ",")
+            let lat = Double(positionArray[0])
+            let lon = Double(positionArray[1])
+            let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
+            
+            let annotation = Annotation(title: children.name!, subtitle: children.street! + " " + children.houseNumber!, id: children.id!, coordinate: coordinates)
+            self.mapWindow.addAnnotation(annotation)
         }
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let anno = view.annotation as? Annotation {
+            
             id = anno.id!
             print(id!)
             nameLabel.text = anno.title

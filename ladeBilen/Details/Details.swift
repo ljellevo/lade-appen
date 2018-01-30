@@ -45,7 +45,7 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         } else {
             let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
             cell.nameLabel.text = station?.name
-            cell.streetLabel.text = station?.street
+            cell.streetLabel.text = (station?.street)! + " " + (station?.houseNumber)!
             cell.realtimeLabel.text = "Realtime: " + (station?.realtimeInfo)!
             cell.fastChargeLabel.text = "Mangler"
             cell.parkingFeeLabel.text = "Parkerings avgift: " + (station?.parkingFee)!
