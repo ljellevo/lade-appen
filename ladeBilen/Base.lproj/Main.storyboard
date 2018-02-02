@@ -1005,7 +1005,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Stasjon" id="QVv-o9-w55">
-                        <barButtonItem key="rightBarButtonItem" title="Følg" id="hhg-WM-I8M"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="FavoriteSet" id="hhg-WM-I8M">
+                                <connections>
+                                    <action selector="favoriteButton:" destination="pit-r4-Zzf" id="4MV-PC-0id"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Følg" id="ucY-wG-JU5">
+                                <connections>
+                                    <action selector="followButton:" destination="pit-r4-Zzf" id="s3U-TF-hkU"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="eES-eu-9cJ" id="8y6-vz-ehR"/>

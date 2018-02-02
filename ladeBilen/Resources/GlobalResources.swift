@@ -11,6 +11,7 @@ import Foundation
 struct GlobalResources {
     static var user: User?
     static var stations: [Station] = []
+    static var favorites: [Int] = []
     
     func setUser(newUser: User){
         GlobalResources.user = newUser

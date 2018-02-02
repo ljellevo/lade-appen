@@ -10,6 +10,7 @@ import UIKit
 
 class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     var station: Station?
+    let database = Database()
 
     @IBOutlet var collectionView: UICollectionView!
 
@@ -66,4 +67,18 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             //Deretter må jeg finne høyden.
         }
     }
+    @IBAction func favoriteButton(_ sender: UIBarButtonItem) {
+        //Sjekk om stasjon er lagt til favoritter, hvis den er det, sett icon filled i viewdidload
+        //Endre icon til filled hvis man trykker på knappen og man ikke har stasjonen som favoritt
+        //vice versa hvis stasjonen er lagt til favoritter
+        
+        database.setFavoriteInDatabase(id: station!.id!)
+        print(GlobalResources.favorites)
+    }
+    
+    @IBAction func followButton(_ sender: UIBarButtonItem) {
+        //Legg til i følge, hvis man følger så fjerner man entryen.
+        
+    }
+    
 }

@@ -14,32 +14,36 @@ import Disk
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
         let database = Database()
+        
         //UIApplication.shared.statusBarStyle = .lightContent
         
         //deleteCache()
         //logOut()
         if FIRAuth.auth()?.currentUser != nil {
-
             do {
                 if Disk.exists("stations.json", in: .caches) {
                     GlobalResources.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
+                    //self.getFavoritesCache()
                     print("Stations is cached")
                     navigateUser()
                 } else {
                     print("Could not find stations cache, asking database")
                     database.getStationsFromDatabase {
+                        //self.getFavoritesCache()
                         self.navigateUser()
                     }
                 }
             } catch {
                 print("Could not retrieve stations cache, asking database")
                 database.getStationsFromDatabase {
+                    //self.getFavoritesCache()
                     self.navigateUser()
                 }
             }
@@ -51,6 +55,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         }
         return true
+    }
+    
+    func getFavoritesCache(){
+        let database = Database()
+        do {
+            try Disk.remove("favorites.json", from: .caches)
+            if Disk.exists("favorites.json", in: .caches){
+                GlobalResources.favorites = try Disk.retrieve("favorites.json", from: .caches, as: [Int].self)
+            } else {
+                database.getFavoritesFromDatabase(){
+                    print("Got favorites from database")
+                }
+                //Favorites cache eksisterer ikke
+                //Hent fra databasen
+            }
+        } catch {
+            database.getFavoritesFromDatabase(){
+                print("Got favorites from database")
+            }
+
+            //Hent fra databasen
+        }
     }
     
     func navigateUser(){

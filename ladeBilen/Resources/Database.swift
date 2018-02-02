@@ -48,6 +48,14 @@ class Database {
         }
     }
     
+    func updateFavoriteCache(){
+        do {
+            try Disk.save(GlobalResources.favorites, to: .caches, as: "favorites.json")
+        } catch {
+            print("Favorites not stored in cache")
+        }
+    }
+    
     func updateEmail(){
         ref.child("User_Info/" + GlobalResources.user!.uid! + "/email").setValue(GlobalResources.user!.email!)
         updateUserCache()
@@ -97,6 +105,43 @@ class Database {
             }
         }, withCancel: nil)
     }
+    
+    func getFavoritesFromDatabase(finished: @escaping () -> Void){
+        /*
+        var favorites: [Int] = []
+        let ref = FIRDatabase.database().reference()
+        ref.child("favorites").child((GlobalResources.user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+            DispatchQueue.global().async {
+                if let dictionary = snapshot.value as? [String:AnyObject]{
+                    for children in dictionary{
+                        let eachStation = children.value as? [String: AnyObject]
+                        print(eachStation)
+                        favorites.append(eachStation!["id"] as! Int)
+                    }
+                }
+                GlobalResources.favorites = favorites
+                self.updateFavoriteCache()
+                DispatchQueue.main.async {
+                    finished()
+                }
+            }
+        }, withCancel: nil)
+ */
+    }
+    
+    func setFavoriteInDatabase(id: Int){
+        ref.child("favorites").child((GlobalResources.user?.uid)!).child(String(id)).setValue(
+            ["id": id]
+        )
+        GlobalResources.favorites.append(id)
+        updateFavoriteCache()
+    }
+    
+    func removeFavoriteFromDatabase(id: Int){
+        
+    }
+    
+    
 
     
 
