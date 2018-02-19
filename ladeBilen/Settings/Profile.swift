@@ -147,6 +147,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
             do {
                 try Disk.remove((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches)
                 try Disk.remove("stations.json", from: .caches)
+                try Disk.remove("favorites.json", from: .caches)
                 print("Removed cache")
             } catch {
                 print("Could not remove cache")

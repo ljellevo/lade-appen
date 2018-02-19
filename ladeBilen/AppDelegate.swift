@@ -30,20 +30,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             do {
                 if Disk.exists("stations.json", in: .caches) {
                     GlobalResources.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
-                    //self.getFavoritesCache()
                     print("Stations is cached")
                     navigateUser()
                 } else {
                     print("Could not find stations cache, asking database")
                     database.getStationsFromDatabase {
-                        //self.getFavoritesCache()
                         self.navigateUser()
                     }
                 }
             } catch {
                 print("Could not retrieve stations cache, asking database")
                 database.getStationsFromDatabase {
-                    //self.getFavoritesCache()
                     self.navigateUser()
                 }
             }

@@ -45,6 +45,9 @@
                     <navigationItem key="navigationItem" title="Favoritter" id="oLJ-Ls-cK8">
                         <barButtonItem key="backBarButtonItem" title="Favoritter" id="YXB-Ft-IFN"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="pit-r4-Zzf" kind="show" identifier="toDetailsFromFavorites" id="pGb-bS-KWj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4E-kh-WLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1024,7 +1027,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uKX-Ir-yTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3900" y="1404"/>
+            <point key="canvasLocation" x="-2610" y="-592"/>
         </scene>
         <!--Welcome-->
         <scene sceneID="QhJ-aH-wFP">
@@ -1884,5 +1887,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="d0I-ZH-wrF"/>
+        <segue reference="pGb-bS-KWj"/>
     </inferredMetricsTieBreakers>
 </document>
