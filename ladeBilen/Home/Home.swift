@@ -10,14 +10,11 @@ import UIKit
 import MapKit
 import CoreLocation
 import Firebase
+import Disk
 
 
 
 class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource{
-    //, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate
-    
-    //let simpleOver = SimpleOver()
-    
 
     var locationManager: CLLocationManager = CLLocationManager()
     var isInitial: Bool = true
@@ -28,6 +25,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     var filteredStations: [Station]?
     var selectedStationSearch: Station?
+
 
     @IBOutlet weak var tableViewStack: UIStackView!
     @IBOutlet weak var tableViewStackBottomConstraint: NSLayoutConstraint!
@@ -66,6 +64,8 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         self.definesPresentationContext = true
         self.addAnnotationsToMap()
     }
+    
+    
 
 
     
@@ -171,10 +171,38 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
             let lat = Double(positionArray[0])
             let lon = Double(positionArray[1])
             let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
-            
             let annotation = Annotation(title: children.name!, subtitle: children.street! + " " + children.houseNumber!, id: children.id!, coordinate: coordinates)
             self.mapWindow.addAnnotation(annotation)
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        guard let annotation = annotation as? Annotation else { return nil }
+        let identifier = "marker"
+        if #available(iOS 11.0, *) {
+            var view: MKMarkerAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+                as? MKMarkerAnnotationView {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            } else {
+                view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = false
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                
+                view.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
+
+
+
+                //view.markerTintColor = UIColor.yellow
+            }
+            return view
+        } else {
+            // Fallback on earlier versions
+        }
+        return nil
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
