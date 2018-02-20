@@ -45,13 +45,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         } else {
-            print("Login")
-            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-            let vc = storyBoard.instantiateViewController(withIdentifier: "Login") as! Login
-            self.window?.rootViewController = vc
-            self.window?.makeKeyAndVisible()
+            toLogin()
         }
         return true
+    }
+    
+    func toLogin(){
+        print("Login")
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "Login") as! Login
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func toHome(){
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "NavigationHome") as! NavigationHome
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func toRegister(){
+        print("User not found in database, will navigate user to registration: AppDelegate")
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "Register") as! Register
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
     }
     
     func getFavoritesCache(){
@@ -71,7 +90,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             database.getFavoritesFromDatabase(){
                 print("Got favorites from database")
             }
-
             //Hent fra databasen
         }
     }
@@ -80,10 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do{
             if Disk.exists((FIRAuth.auth()?.currentUser?.uid)! + ".json", in: .caches) {
                 GlobalResources.user = try Disk.retrieve((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches, as: User.self)
-                let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vc = storyBoard.instantiateViewController(withIdentifier: "NavigationHome") as! NavigationHome
-                self.window?.rootViewController = vc
-                self.window?.makeKeyAndVisible()
+                toHome()
             } else {
                 print("User not stored in cache, performing database query")
                 let ref = FIRDatabase.database().reference()
@@ -140,18 +155,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             } catch {
                                 print("User not stored in cache")
                             }
-                            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                            let vc = storyBoard.instantiateViewController(withIdentifier: "NavigationHome") as! NavigationHome
-                            self.window?.rootViewController = vc
-                            self.window?.makeKeyAndVisible()
+                            self.toHome()
                             return
                         }
                     }
-                    print("User not found in database, will navigate user to registration: AppDelegate")
-                    let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                    let vc = storyBoard.instantiateViewController(withIdentifier: "Register") as! Register
-                    self.window?.rootViewController = vc
-                    self.window?.makeKeyAndVisible()
+                    self.toRegister()
                     
                 }, withCancel: nil)
             }
@@ -162,24 +170,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func deleteCache(){
-
-            do {
-                try Disk.remove((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches)
-                try Disk.remove("stations.json", from: .caches)
-                print("Removed cache")
-            } catch {
-                print("Could not remove cache")
-            }
+        do {
+            try Disk.remove((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches)
+            try Disk.remove("stations.json", from: .caches)
+            print("Removed cache")
+        } catch {
+            print("Could not remove cache")
+        }
     }
     
     func logOut(){
-
-            do{
-                try FIRAuth.auth()?.signOut()
-            } catch {
-                print ("Error")
-            }
-
+        do{
+            try FIRAuth.auth()?.signOut()
+        } catch {
+            print ("Error")
+        }
     }
     
 

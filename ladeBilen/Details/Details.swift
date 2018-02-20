@@ -71,8 +71,9 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         //Sjekk om stasjon er lagt til favoritter, hvis den er det, sett icon filled i viewdidload
         //Endre icon til filled hvis man trykker på knappen og man ikke har stasjonen som favoritt
         //vice versa hvis stasjonen er lagt til favoritter
+        database.removeFavoriteInDatabase(id: station!.id!)
         
-        database.setFavoriteInDatabase(id: station!.id!)
+        //database.addFavoriteInDatabase(id: station!.id!)
         print(GlobalResources.favorites)
     }
     

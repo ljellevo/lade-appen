@@ -71,7 +71,6 @@ class Database {
         updateUserCache()
     }
     
-
     func updateConnector(){
         ref.child("User_Info/" + GlobalResources.user!.uid! + "/connector").setValue(GlobalResources.user!.connector!)
         updateUserCache()
@@ -107,7 +106,6 @@ class Database {
     }
     
     func getFavoritesFromDatabase(finished: @escaping () -> Void){
-        
         var favorites: [Int] = []
         let ref = FIRDatabase.database().reference()
         ref.child("favorites").child((GlobalResources.user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -125,10 +123,9 @@ class Database {
                 }
             }
         }, withCancel: nil)
- 
     }
     
-    func setFavoriteInDatabase(id: Int){
+    func addFavoriteInDatabase(id: Int){
         ref.child("favorites").child((GlobalResources.user?.uid)!).child(String(id)).setValue(
             ["id": id]
         )
@@ -136,12 +133,8 @@ class Database {
         updateFavoriteCache()
     }
     
-    func removeFavoriteFromDatabase(id: Int){
-        
+    func removeFavoriteInDatabase(id: Int){
+        ref.child("favorites").child((GlobalResources.user?.uid)!).child(String(id)).removeValue()
+        updateFavoriteCache()
     }
-    
-    
-
-    
-
 }

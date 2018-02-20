@@ -22,6 +22,7 @@ class Favorites: UITableViewController {
     
     func checkFavoritesCache(){
         do {
+            //try Disk.remove("favorites.json", from: .caches)
             if Disk.exists("favorites.json", in: .caches){
                 GlobalResources.favorites = try Disk.retrieve("favorites.json", from: .caches, as: [Int].self)
                 self.populateFavoritesArray()
