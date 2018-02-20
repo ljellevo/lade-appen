@@ -383,7 +383,6 @@
 				8302AE2A1FC3D074007F693A /* Pastebin.txt */,
 				8314E2311EF44DA300F98E3F /* Styles.swift */,
 				832296341FEB3B8700401ECD /* Constants.swift */,
-				832296321FEB35AC00401ECD /* Database.swift */,
 				83C83A7C1FF1B6D40088C10C /* GlobalResources.swift */,
 			);
 			path = Resources;
@@ -466,9 +465,8 @@
 			children = (
 				83F208221FC370B60075A2F0 /* Station.swift */,
 				83F208241FC370D70075A2F0 /* Connector.swift */,
-				83F208261FC3A02A0075A2F0 /* Annotation.swift */,
 				83562CD91FDCD1BE0017F1A7 /* User.swift */,
-				83F9E43F203C98DE009B3788 /* Initialization.swift */,
+				83F208261FC3A02A0075A2F0 /* Annotation.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -528,6 +526,7 @@
 		83F354751EEB0696001A278A /* ladeBilen */ = {
 			isa = PBXGroup;
 			children = (
+				83F9E441203CA2B7009B3788 /* Classes */,
 				83BC8FF6200305400086E1C6 /* Custom segue */,
 				836295191FFFE83200D6C430 /* Playground */,
 				8323D41D1FC779D70049D349 /* Xibs */,
@@ -550,6 +549,15 @@
 				83A570CE1FFC577300B98E9F /* TODO.txt */,
 			);
 			path = ladeBilen;
+			sourceTree = "<group>";
+		};
+		83F9E441203CA2B7009B3788 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				83F9E43F203C98DE009B3788 /* Initialization.swift */,
+				832296321FEB35AC00401ECD /* Database.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		A05DFF1A7DC21554909AC87E /* Pods */ = {
