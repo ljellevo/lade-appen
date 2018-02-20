@@ -11,9 +11,13 @@ import UIKit
 class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     var station: Station?
     let database = Database()
+    var isFavorite: Bool = false
 
     @IBOutlet var collectionView: UICollectionView!
 
+    @IBOutlet weak var favoriteBarButtonItem: UIBarButtonItem!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.register(UINib(nibName: "TopCell", bundle: nil), forCellWithReuseIdentifier: "ImageCellIdentifier")
@@ -25,6 +29,16 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.automaticallyAdjustsScrollViewInsets = false
+        checkIfFavorite()
+    }
+    
+    func checkIfFavorite(){
+        for favorite in GlobalResources.favorites{
+            if favorite == station?.id {
+                isFavorite = true
+                favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
+            }
+        }
     }
     
 
@@ -68,13 +82,15 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         }
     }
     @IBAction func favoriteButton(_ sender: UIBarButtonItem) {
-        //Sjekk om stasjon er lagt til favoritter, hvis den er det, sett icon filled i viewdidload
-        //Endre icon til filled hvis man trykker på knappen og man ikke har stasjonen som favoritt
-        //vice versa hvis stasjonen er lagt til favoritter
-        database.removeFavoriteInDatabase(id: station!.id!)
-        
-        //database.addFavoriteInDatabase(id: station!.id!)
-        print(GlobalResources.favorites)
+        if isFavorite {
+            database.removeFavoriteInDatabase(id: station!.id!)
+            favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteSet")
+            isFavorite = false
+        } else {
+            database.addFavoriteInDatabase(id: station!.id!)
+            favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
+            isFavorite = true
+        }        
     }
     
     @IBAction func followButton(_ sender: UIBarButtonItem) {

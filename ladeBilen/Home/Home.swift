@@ -48,7 +48,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationController?.delegate = self
+        mapWindow.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         isInitial = true
@@ -62,7 +62,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         searchController.searchBar.placeholder = "Søk"
         setupNavigationBar()
         self.definesPresentationContext = true
-        self.addAnnotationsToMap()
     }
     
     
@@ -76,6 +75,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.addAnnotationsToMap()
         searchController.searchBar.sizeToFit()
     }
 
@@ -161,8 +161,8 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     }
     
 
-    
     func addAnnotationsToMap(){
+        mapWindow.removeAnnotations(mapWindow.annotations)
         for children in GlobalResources.stations{
             var position = children.position
             position = position?.replacingOccurrences(of: "(", with: "")
@@ -172,38 +172,51 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
             let lon = Double(positionArray[1])
             let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
             let annotation = Annotation(title: children.name!, subtitle: children.street! + " " + children.houseNumber!, id: children.id!, coordinate: coordinates)
-            self.mapWindow.addAnnotation(annotation)
+            DispatchQueue.main.async {
+                self.mapWindow.addAnnotation(annotation)
+            }
         }
+        print("Added annotations")
     }
     
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        guard let annotation = annotation as? Annotation else { return nil }
-        let identifier = "marker"
         if #available(iOS 11.0, *) {
+            guard let annotation = annotation as? Annotation else { return nil }
+            let identifier = "marker"
             var view: MKMarkerAnnotationView
             if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
                 as? MKMarkerAnnotationView {
                 dequeuedView.annotation = annotation
+                dequeuedView.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
+                for favorites in GlobalResources.favorites {
+                    if annotation.id == favorites {
+                        print("Match")
+                        dequeuedView.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
+                    }
+                }
                 view = dequeuedView
             } else {
                 view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = false
-                view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-                
-                view.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
-
-
-
-                //view.markerTintColor = UIColor.yellow
+                view.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
+                for favorites in GlobalResources.favorites {
+                    if annotation.id == favorites {
+                        print("Match")
+                        view.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
+                    }
+                }
             }
             return view
         } else {
-            // Fallback on earlier versions
+            //På tidligere versoner
+            return nil
         }
         return nil
     }
+ 
+    
+    
+    
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let anno = view.annotation as? Annotation {
@@ -257,33 +270,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
 }
 
-/*
-extension Home {
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        switch operation {
-        case .push:
-            return CustomPushSegue()
-        case .pop:
-            return CustomPopSegue()
-        default:
-            return nil
-        }
-    }
- 
- 
-}
- 
 
-func navigationController(
-    _ navigationController: UINavigationController,
-    animationControllerFor operation: UINavigationControllerOperation,
-    from fromVC: UIViewController,
-    to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    
-    simpleOver.popStyle = (operation == .pop)
-    return simpleOver
-}
- */
 
 
 

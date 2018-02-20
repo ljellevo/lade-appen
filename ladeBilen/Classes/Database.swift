@@ -129,12 +129,11 @@ class Database {
         ref.child("favorites").child((GlobalResources.user?.uid)!).child(String(id)).setValue(
             ["id": id]
         )
-        GlobalResources.favorites.append(id)
-        updateFavoriteCache()
+        getFavoritesFromDatabase {}
     }
     
     func removeFavoriteInDatabase(id: Int){
         ref.child("favorites").child((GlobalResources.user?.uid)!).child(String(id)).removeValue()
-        updateFavoriteCache()
+        getFavoritesFromDatabase {}
     }
 }

@@ -17,28 +17,14 @@ class Favorites: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkFavoritesCache()
     }
     
-    func checkFavoritesCache(){
-        do {
-            //try Disk.remove("favorites.json", from: .caches)
-            if Disk.exists("favorites.json", in: .caches){
-                GlobalResources.favorites = try Disk.retrieve("favorites.json", from: .caches, as: [Int].self)
-                self.populateFavoritesArray()
-            } else {
-                database.getFavoritesFromDatabase(){
-                    self.populateFavoritesArray()
-                }
-            }
-        } catch {
-            database.getFavoritesFromDatabase(){
-                self.populateFavoritesArray()
-            }
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        populateFavoritesArray()
     }
     
     func populateFavoritesArray(){
+        favoriteArray = []
         for station in GlobalResources.stations{
             for favorite in GlobalResources.favorites{
                 if station.id == favorite {

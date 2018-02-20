@@ -765,6 +765,9 @@
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1OD-l0-du2">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="ABx-Wp-uKj"/>
+                                        </connections>
                                     </mapView>
                                 </subviews>
                                 <constraints>
@@ -1023,6 +1026,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="eES-eu-9cJ" id="8y6-vz-ehR"/>
+                        <outlet property="favoriteBarButtonItem" destination="hhg-WM-I8M" id="h1b-xa-Xll"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uKX-Ir-yTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1887,6 +1891,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="d0I-ZH-wrF"/>
-        <segue reference="pGb-bS-KWj"/>
+        <segue reference="HZU-tn-49a"/>
     </inferredMetricsTieBreakers>
 </document>

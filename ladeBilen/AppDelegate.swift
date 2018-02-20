@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //UIApplication.shared.statusBarStyle = .lightContent
         
-        deleteCache()
+        //deleteCache()
         //logOut()
         if FIRAuth.auth()?.currentUser != nil {
             initialization.verifyApplicationParameters(){(code: Int) -> Void in
