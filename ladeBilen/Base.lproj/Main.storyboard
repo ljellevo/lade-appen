@@ -334,68 +334,6 @@
             </objects>
             <point key="canvasLocation" x="-2499" y="1410"/>
         </scene>
-        <!--Change Contact Old-->
-        <scene sceneID="EHS-Jc-Sec">
-            <objects>
-                <viewController storyboardIdentifier="ChangeContact" id="yz2-zU-lLA" customClass="ChangeContactOld" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tu4-S1-WnD"/>
-                        <viewControllerLayoutGuide type="bottom" id="cmI-60-GNt"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rUg-9Q-sDj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHE-be-a6k">
-                                <rect key="frame" x="0.0" y="20" width="305" height="548"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7L-4p-EA0">
-                                <rect key="frame" x="0.0" y="20" width="120" height="548"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LQe-qW-dRf">
-                                <rect key="frame" x="0.0" y="40" width="320" height="420"/>
-                                <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xV4-Y3-H69">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="420"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nGk-SZ-h4B">
-                                            <size key="itemSize" width="50" height="50"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells/>
-                                    </collectionView>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.26661759610000002" green="0.79998916389999997" blue="0.27651202679999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="tHE-be-a6k" firstAttribute="leading" secondItem="rUg-9Q-sDj" secondAttribute="leading" id="4BS-34-cLj"/>
-                            <constraint firstItem="A7L-4p-EA0" firstAttribute="top" secondItem="tu4-S1-WnD" secondAttribute="bottom" id="7zd-VE-acj"/>
-                            <constraint firstItem="cmI-60-GNt" firstAttribute="top" secondItem="LQe-qW-dRf" secondAttribute="bottom" constant="108" id="8Nb-Rc-CCl"/>
-                            <constraint firstItem="LQe-qW-dRf" firstAttribute="leading" secondItem="rUg-9Q-sDj" secondAttribute="leading" id="EBF-8Z-XcW"/>
-                            <constraint firstItem="A7L-4p-EA0" firstAttribute="leading" secondItem="rUg-9Q-sDj" secondAttribute="leading" id="M5d-Ci-Epk"/>
-                            <constraint firstItem="cmI-60-GNt" firstAttribute="top" secondItem="tHE-be-a6k" secondAttribute="bottom" id="f9L-aU-CI2"/>
-                            <constraint firstAttribute="trailing" secondItem="tHE-be-a6k" secondAttribute="trailing" constant="15" id="fes-K0-zdv"/>
-                            <constraint firstAttribute="trailing" secondItem="A7L-4p-EA0" secondAttribute="trailing" constant="200" id="nhg-Xo-4Bl"/>
-                            <constraint firstItem="cmI-60-GNt" firstAttribute="top" secondItem="A7L-4p-EA0" secondAttribute="bottom" id="qUT-2v-Kn3"/>
-                            <constraint firstItem="tHE-be-a6k" firstAttribute="top" secondItem="tu4-S1-WnD" secondAttribute="bottom" id="rcj-dH-EUZ"/>
-                            <constraint firstAttribute="trailing" secondItem="LQe-qW-dRf" secondAttribute="trailing" id="wyB-QZ-985"/>
-                            <constraint firstItem="LQe-qW-dRf" firstAttribute="top" secondItem="tu4-S1-WnD" secondAttribute="bottom" constant="20" id="yhU-5R-rdT"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="connectorCollectionView" destination="xV4-Y3-H69" id="Kn9-1Q-gdB"/>
-                        <outlet property="whitePanel" destination="tHE-be-a6k" id="TeX-Px-j0Z"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LQl-4W-6Er" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1824" y="2129"/>
-        </scene>
         <!--Change Contact-->
         <scene sceneID="OIE-Cn-cLy">
             <objects>
