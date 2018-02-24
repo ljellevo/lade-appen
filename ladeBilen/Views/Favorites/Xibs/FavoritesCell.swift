@@ -23,14 +23,13 @@ class FavoritesCell: UICollectionViewCell {
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var subscriberAmountLabel: UILabel!
     
+    @IBOutlet weak var separatorLine: UIView!
+    
     @IBOutlet weak var stationNameLabel: UILabel!
-    
     @IBOutlet weak var stationStreetLabel: UILabel!
-    
     @IBOutlet weak var stationCityLabel: UILabel!
     
     @IBOutlet weak var availableContactsLabel: UILabel!
-    
     @IBOutlet weak var isAvailableLabel: UILabel!
     
     @IBOutlet weak var toDetailsButton: UIButton!
@@ -47,6 +46,7 @@ class FavoritesCell: UICollectionViewCell {
         
         indicatorColor.layer.cornerRadius = 10
         whitePanel.layer.cornerRadius = 0
+        separatorLine.layer.cornerRadius = 1
     }
     
     
