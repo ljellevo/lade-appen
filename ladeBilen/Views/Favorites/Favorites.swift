@@ -157,6 +157,10 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                 let row = indexPath.row - (followingArray.count + 2)
                 station = favoriteArray[row]
                 self.performSegue(withIdentifier: "toDetailsFromFavorites", sender: nil)
+            } else if indexPath.row != 0 && indexPath.row <= followingArray.count{
+                let row = indexPath.row - 1
+                station = followingArray[row]
+                self.performSegue(withIdentifier: "toDetailsFromFavorites", sender: nil)
             }
         } else {
             station = favoriteArray[indexPath.row]
@@ -176,6 +180,8 @@ extension Favorites: CollectionViewCellDelegate {
     
     func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton) {
         //var indexPath = self.collectionView.indexPath(for: cell)
-        self.performSegue(withIdentifier: "toDetailsFromFavorites", sender: nil)
+        
+        //Remove subscription from database
+        print("Remove button clicked")
     }
 }
