@@ -36,6 +36,11 @@ class Algorithms {
         return true
     }
     
+    func populateFavoritesArray(){
+        _ = GlobalResources.favorites
+        _ = GlobalResources.stations
+    }
+    
 
     
 

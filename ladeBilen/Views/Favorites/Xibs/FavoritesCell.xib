@@ -87,42 +87,43 @@
                                                     <constraint firstAttribute="trailing" secondItem="odu-9x-qyH" secondAttribute="trailing" id="Tmh-WX-OdH"/>
                                                     <constraint firstItem="odu-9x-qyH" firstAttribute="leading" secondItem="BJS-oq-CGz" secondAttribute="leading" id="jX1-L8-olO"/>
                                                     <constraint firstItem="odu-9x-qyH" firstAttribute="top" secondItem="BJS-oq-CGz" secondAttribute="top" id="lwC-jq-X6d"/>
+                                                    <constraint firstAttribute="width" constant="2" id="sGf-Iv-pJp"/>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6G8-eH-hqv">
-                                                <rect key="frame" x="65" y="0.0" width="201" height="147"/>
+                                                <rect key="frame" x="65" y="0.0" width="231" height="147"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xvu-vd-XuL">
-                                                        <rect key="frame" x="0.0" y="0.0" width="201" height="1"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="231" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="YOO-wN-BL4"/>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nova ladestasjon lade" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cev-Uu-nvu">
-                                                        <rect key="frame" x="0.0" y="1" width="201" height="17"/>
+                                                        <rect key="frame" x="0.0" y="1" width="231" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mellomveien 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaT-EZ-bBY">
-                                                        <rect key="frame" x="0.0" y="18" width="201" height="14.5"/>
+                                                        <rect key="frame" x="0.0" y="18" width="231" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trondheim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r54-Na-RJ7">
-                                                        <rect key="frame" x="0.0" y="32.5" width="201" height="14.5"/>
+                                                        <rect key="frame" x="0.0" y="32.5" width="231" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GLi-Sc-0aO">
-                                                        <rect key="frame" x="0.0" y="47" width="201" height="62.5"/>
+                                                        <rect key="frame" x="0.0" y="47" width="231" height="62.5"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="Dvk-Me-BR2">
-                                                        <rect key="frame" x="0.0" y="109.5" width="201" height="37.5"/>
+                                                        <rect key="frame" x="0.0" y="109.5" width="231" height="37.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cJk-w3-yxr">
                                                                 <rect key="frame" x="0.0" y="0.0" width="62.5" height="37.5"/>
@@ -148,7 +149,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FZU-gh-E3F">
-                                                                <rect key="frame" x="165.5" y="0.0" width="35.5" height="37.5"/>
+                                                                <rect key="frame" x="195.5" y="0.0" width="35.5" height="37.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ledig" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqf-de-I7l">
                                                                         <rect key="frame" x="0.0" y="0.0" width="35.5" height="37.5"/>
@@ -163,7 +164,7 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="Xvu-vd-XuL" firstAttribute="leading" secondItem="6G8-eH-hqv" secondAttribute="leading" id="H02-pi-xSY"/>
-                                                    <constraint firstAttribute="width" constant="201" id="Wdb-eL-w6Q"/>
+                                                    <constraint firstAttribute="width" constant="231" id="Wdb-eL-w6Q"/>
                                                     <constraint firstAttribute="trailing" secondItem="SaT-EZ-bBY" secondAttribute="trailing" id="aQt-in-uhH"/>
                                                     <constraint firstItem="cev-Uu-nvu" firstAttribute="top" secondItem="Xvu-vd-XuL" secondAttribute="bottom" id="bSH-ph-9jQ"/>
                                                     <constraint firstAttribute="trailing" secondItem="Xvu-vd-XuL" secondAttribute="trailing" id="boV-wu-FfI"/>
@@ -173,41 +174,18 @@
                                                     <constraint firstItem="SaT-EZ-bBY" firstAttribute="top" secondItem="cev-Uu-nvu" secondAttribute="bottom" id="x3z-RE-lUl"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aBd-cl-E8V">
-                                                <rect key="frame" x="274" y="0.0" width="22" height="147"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OB2-L7-bay">
-                                                        <rect key="frame" x="0.0" y="0.0" width="22" height="147"/>
-                                                        <state key="normal">
-                                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="toDetailsButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="bZS-zs-LPJ"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="OB2-L7-bay" firstAttribute="top" secondItem="aBd-cl-E8V" secondAttribute="top" id="94U-ys-yVY"/>
-                                                    <constraint firstAttribute="bottom" secondItem="OB2-L7-bay" secondAttribute="bottom" id="I0U-YQ-a6r"/>
-                                                    <constraint firstItem="OB2-L7-bay" firstAttribute="leading" secondItem="aBd-cl-E8V" secondAttribute="leading" id="dGV-o8-k48"/>
-                                                    <constraint firstAttribute="trailing" secondItem="OB2-L7-bay" secondAttribute="trailing" id="l6D-9G-E8h"/>
-                                                </constraints>
-                                            </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="wPL-f0-t0I" firstAttribute="top" secondItem="bbh-PA-f00" secondAttribute="top" id="Ak0-VU-fyP"/>
                                             <constraint firstItem="BJS-oq-CGz" firstAttribute="top" secondItem="bbh-PA-f00" secondAttribute="top" id="BRd-R0-tCl"/>
                                             <constraint firstItem="wPL-f0-t0I" firstAttribute="leading" secondItem="bbh-PA-f00" secondAttribute="leading" id="GdU-ZR-GC6"/>
-                                            <constraint firstAttribute="trailing" secondItem="aBd-cl-E8V" secondAttribute="trailing" id="KJO-5q-qkt"/>
                                             <constraint firstAttribute="bottom" secondItem="6G8-eH-hqv" secondAttribute="bottom" id="Lmv-Bx-Z9b"/>
                                             <constraint firstItem="6G8-eH-hqv" firstAttribute="leading" secondItem="BJS-oq-CGz" secondAttribute="trailing" constant="8" id="azk-O1-1j4"/>
                                             <constraint firstItem="6G8-eH-hqv" firstAttribute="leading" secondItem="BJS-oq-CGz" secondAttribute="trailing" constant="8" id="bnx-X2-Cry"/>
                                             <constraint firstAttribute="bottom" secondItem="wPL-f0-t0I" secondAttribute="bottom" id="cH6-y3-o5H"/>
-                                            <constraint firstAttribute="bottom" secondItem="aBd-cl-E8V" secondAttribute="bottom" id="d08-9G-BJt"/>
                                             <constraint firstAttribute="bottom" secondItem="BJS-oq-CGz" secondAttribute="bottom" id="ghe-17-DEr"/>
                                             <constraint firstItem="6G8-eH-hqv" firstAttribute="top" secondItem="bbh-PA-f00" secondAttribute="top" id="hBu-zc-cDt"/>
                                             <constraint firstItem="BJS-oq-CGz" firstAttribute="leading" secondItem="wPL-f0-t0I" secondAttribute="trailing" constant="8" id="pY3-au-9UA"/>
-                                            <constraint firstItem="aBd-cl-E8V" firstAttribute="top" secondItem="bbh-PA-f00" secondAttribute="top" id="wWA-vo-jJi"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -248,7 +226,6 @@
                 <outlet property="stationNameLabel" destination="cev-Uu-nvu" id="QU7-51-oQd"/>
                 <outlet property="stationStreetLabel" destination="SaT-EZ-bBY" id="2kT-zw-AGl"/>
                 <outlet property="subscriberAmountLabel" destination="rho-bP-hOC" id="lD0-A5-biz"/>
-                <outlet property="toDetailsButton" destination="OB2-L7-bay" id="iMf-2W-NCg"/>
                 <outlet property="whitePanel" destination="5hO-PY-77g" id="xTO-Nb-rBl"/>
             </connections>
             <point key="canvasLocation" x="-114" y="152.5"/>

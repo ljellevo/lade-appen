@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubscriptionCell" id="gTV-IL-0wX" customClass="SubscriptionCell" customModule="ladeBilen" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lok-JC-qFc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Lpc-te-pP9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="WlS-Pb-2vK">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9h-r8-bG2">
+                                                <rect key="frame" x="0.0" y="0.0" width="4" height="39"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="4" id="Lah-Ck-jt7"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9KY-Z9-J6c">
+                                                <rect key="frame" x="8" y="0.0" width="40" height="39"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="Ds5-1R-USk"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="CancelSet"/>
+                                                <connections>
+                                                    <action selector="cancelSubscriptionButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="9pE-Rb-EYh"/>
+                                                </connections>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l8y-77-Bee">
+                                                <rect key="frame" x="52" y="0.0" width="2" height="39"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkp-iI-Rwj">
+                                                        <rect key="frame" x="0.0" y="0.0" width="2" height="2"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="2" id="OTf-am-Ngf"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DzV-uG-YXf">
+                                                        <rect key="frame" x="0.0" y="2" width="2" height="35"/>
+                                                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="2" id="ehL-Rr-NxV"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsA-d0-olW">
+                                                        <rect key="frame" x="0.0" y="37" width="2" height="2"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="2" id="mfv-WR-X9t"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lade hurtigladestasjon Fortum Trondheim" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phK-KC-o0M">
+                                                <rect key="frame" x="58" y="0.0" width="210" height="39"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hrk-bj-Glo">
+                                                <rect key="frame" x="272" y="0.0" width="2" height="39"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sfm-I8-2T6">
+                                                        <rect key="frame" x="0.0" y="0.0" width="2" height="2"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="2" id="UfH-b3-5oD"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spX-dU-vBH">
+                                                        <rect key="frame" x="0.0" y="2" width="2" height="35"/>
+                                                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="2" id="gqv-Dg-BJh"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAx-Fg-qSw">
+                                                        <rect key="frame" x="0.0" y="37" width="2" height="2"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="2" id="NbE-W8-koz"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1t 30s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fR2-wb-4Et">
+                                                <rect key="frame" x="278" y="0.0" width="42" height="39"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="42" id="cPY-oX-cjc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Lpc-te-pP9" firstAttribute="leading" secondItem="Lok-JC-qFc" secondAttribute="leading" id="CmT-nq-iqY"/>
+                            <constraint firstItem="Lpc-te-pP9" firstAttribute="top" secondItem="Lok-JC-qFc" secondAttribute="top" id="GJo-HO-SS9"/>
+                            <constraint firstAttribute="trailing" secondItem="Lpc-te-pP9" secondAttribute="trailing" id="TPH-Wh-yQi"/>
+                            <constraint firstAttribute="bottom" secondItem="Lpc-te-pP9" secondAttribute="bottom" id="daC-cX-TNW"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Lok-JC-qFc" secondAttribute="bottom" id="8Vj-S5-SOk"/>
+                <constraint firstItem="Lok-JC-qFc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="GG3-rB-b9U"/>
+                <constraint firstAttribute="trailing" secondItem="Lok-JC-qFc" secondAttribute="trailing" id="YzM-ga-MrE"/>
+                <constraint firstItem="Lok-JC-qFc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="r1L-IO-gr4"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="320" height="39"/>
+            <connections>
+                <outlet property="cancelSubscriptionButton" destination="9KY-Z9-J6c" id="TsL-Lp-Uhh"/>
+                <outlet property="firstSeparator" destination="DzV-uG-YXf" id="6qg-j7-Cvs"/>
+                <outlet property="remainingTimeLabel" destination="fR2-wb-4Et" id="DUw-XH-6SS"/>
+                <outlet property="secondSeparator" destination="spX-dU-vBH" id="6zR-YO-0Ys"/>
+                <outlet property="stationNameLabel" destination="phK-KC-o0M" id="A0Z-Kf-g5U"/>
+                <outlet property="view" destination="Lok-JC-qFc" id="BlI-Pm-pra"/>
+            </connections>
+            <point key="canvasLocation" x="41" y="51.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="CancelSet" width="25" height="25"/>
+    </resources>
+</document>

@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol CollectionViewCellDelegate: class {
-    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton)
-}
-
 class FavoritesCell: UICollectionViewCell {
     
     var station: Station?
@@ -33,7 +29,6 @@ class FavoritesCell: UICollectionViewCell {
     @IBOutlet weak var isAvailableLabel: UILabel!
     
     @IBOutlet weak var toDetailsButton: UIButton!
-    weak var delegate: CollectionViewCellDelegate?
 
     
     
@@ -52,6 +47,6 @@ class FavoritesCell: UICollectionViewCell {
     
 
     @IBAction func toDetailsButton(_ sender: UIButton) {
-        self.delegate?.collectionViewCell(self, buttonTapped: toDetailsButton)
+        
     }
 }
