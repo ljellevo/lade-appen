@@ -19,39 +19,60 @@
     </customFonts>
     <scenes>
         <!--Favoritter-->
-        <scene sceneID="PhT-Bx-KyI">
+        <scene sceneID="j0p-DK-lHI">
             <objects>
-                <tableViewController storyboardIdentifier="Favorites" id="fgi-mH-r0M" customClass="Favorites" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ybf-04-FuQ">
+                <viewController storyboardIdentifier="Favorites" id="61v-XF-rz4" customClass="Favorites" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LEz-ng-0jN"/>
+                        <viewControllerLayoutGuide type="bottom" id="TEu-AD-0Te"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aGZ-VN-jqy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="stationsCells" id="OoI-uf-bh9">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OoI-uf-bh9" id="1hN-e0-lW5">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="fgi-mH-r0M" id="9p0-WS-if4"/>
-                            <outlet property="delegate" destination="fgi-mH-r0M" id="3Zb-DL-KHP"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Favoritter" image="FavoriteSet" id="ATZ-9K-kaf"/>
-                    <navigationItem key="navigationItem" title="Favoritter" id="oLJ-Ls-cK8">
-                        <barButtonItem key="backBarButtonItem" title="Favoritter" id="YXB-Ft-IFN"/>
-                    </navigationItem>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="I0U-CG-WqB">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rAQ-ck-95O">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fZM-3B-hUm">
+                                            <size key="itemSize" width="320" height="157"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9ff-xW-6Xj">
+                                                <rect key="frame" x="0.0" y="10" width="320" height="157"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="157"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TEu-AD-0Te" firstAttribute="top" secondItem="I0U-CG-WqB" secondAttribute="bottom" id="5ak-N2-mXU"/>
+                            <constraint firstItem="I0U-CG-WqB" firstAttribute="top" secondItem="LEz-ng-0jN" secondAttribute="bottom" id="Drg-pt-Nk1"/>
+                            <constraint firstItem="I0U-CG-WqB" firstAttribute="leading" secondItem="aGZ-VN-jqy" secondAttribute="leading" id="seD-tP-duf"/>
+                            <constraint firstAttribute="trailing" secondItem="I0U-CG-WqB" secondAttribute="trailing" id="xn9-RL-Wa0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Favoritter" id="mVF-L0-W0s"/>
                     <connections>
-                        <segue destination="pit-r4-Zzf" kind="show" identifier="toDetailsFromFavorites" id="pGb-bS-KWj"/>
+                        <outlet property="collectionView" destination="rAQ-ck-95O" id="fRY-2f-Sn2"/>
+                        <segue destination="pit-r4-Zzf" kind="show" identifier="toDetailsFromFavorites" id="e7W-QR-Fgf"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="l4E-kh-WLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f6N-SM-aZa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2610" y="163"/>
+            <point key="canvasLocation" x="-2610" y="184.85915492957747"/>
         </scene>
         <!--Profil-->
         <scene sceneID="iig-vW-9zE">
@@ -898,7 +919,7 @@
                         <outlet property="tableViewStackBottomConstraint" destination="7pO-TI-5d0" id="eXG-he-H5J"/>
                         <segue destination="pit-r4-Zzf" kind="show" identifier="toDetails" id="HZU-tn-49a"/>
                         <segue destination="b4j-J0-Rey" kind="show" identifier="toProfile" id="qwf-aM-l1j"/>
-                        <segue destination="fgi-mH-r0M" kind="show" identifier="toFavorites" id="h7X-hw-Ohv"/>
+                        <segue destination="61v-XF-rz4" kind="show" identifier="toFavorites" id="dwM-oI-LTk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1829,6 +1850,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="d0I-ZH-wrF"/>
-        <segue reference="HZU-tn-49a"/>
+        <segue reference="e7W-QR-Fgf"/>
     </inferredMetricsTieBreakers>
 </document>
