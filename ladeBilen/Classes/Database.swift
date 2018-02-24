@@ -12,10 +12,10 @@ import Firebase
 import Disk
 
 class Database {
+    let cacheManagement = CacheManagement()
     let ref = FIRDatabase.database().reference()
     
     func updateUser(){
-        
         ref.child("User_Info").child((GlobalResources.user?.uid)!).setValue(
             ["uid": GlobalResources.user?.uid! as String!,
              "email": GlobalResources.user?.email! as String!,
@@ -28,52 +28,31 @@ class Database {
              "notificationsDuration": GlobalResources.user?.notificationDuration! as Int!,
              "connector": GlobalResources.user?.connector! as [Int]!]
         )
-        updateUserCache()
+        cacheManagement.updateUserCache()
     }
     
-    
-    func updateUserCache(){
-        do {
-            try Disk.save(GlobalResources.user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
-        } catch {
-            print("User not stored in cache")
-        }
-    }
-    
-    func updateStationCache(){
-        do {
-            try Disk.save(GlobalResources.stations, to: .caches, as: "stations.json")
-        } catch {
-            print("Station not stored in cache")
-        }
-    }
-    
-    func updateFavoriteCache(){
-        do {
-            try Disk.save(GlobalResources.favorites, to: .caches, as: "favorites.json")
-        } catch {
-            print("Favorites not stored in cache")
-        }
-    }
     
     func updateEmail(){
         ref.child("User_Info/" + GlobalResources.user!.uid! + "/email").setValue(GlobalResources.user!.email!)
-        updateUserCache()
+        cacheManagement.updateUserCache()
     }
     
     func updateFirstname(){
         ref.child("User_Info/" + GlobalResources.user!.uid! + "/firstname").setValue(GlobalResources.user!.firstname!)
-        updateUserCache()
+        cacheManagement.updateUserCache()
+
     }
     
     func updateLastname(){
         ref.child("User_Info/" + GlobalResources.user!.uid! + "/lastname").setValue(GlobalResources.user!.lastname!)
-        updateUserCache()
+        cacheManagement.updateUserCache()
+
     }
     
     func updateConnector(){
         ref.child("User_Info/" + GlobalResources.user!.uid! + "/connector").setValue(GlobalResources.user!.connector!)
-        updateUserCache()
+        cacheManagement.updateUserCache()
+
     }
     
     func submitBugReport(reportedText: String){
@@ -97,7 +76,7 @@ class Database {
                     }
                 }
                 GlobalResources.stations = stations
-                self.updateStationCache()
+                self.cacheManagement.updateStationCache()
                 DispatchQueue.main.async {
                     finished()
                 }
@@ -117,7 +96,7 @@ class Database {
                     }
                 }
                 GlobalResources.favorites = favorites
-                self.updateFavoriteCache()
+                self.cacheManagement.updateFavoriteCache()
                 DispatchQueue.main.async {
                     finished()
                 }
