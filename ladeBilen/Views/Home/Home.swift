@@ -62,6 +62,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         searchController.searchBar.placeholder = "Søk"
         setupNavigationBar()
         self.definesPresentationContext = true
+        
     }
     
     

@@ -14,6 +14,7 @@ import Disk
 class Database {
     let cacheManagement = CacheManagement()
     let ref = FIRDatabase.database().reference()
+    let algotithms = Algorithms()
     
     func updateUser(){
         ref.child("User_Info").child((GlobalResources.user?.uid)!).setValue(
@@ -72,10 +73,18 @@ class Database {
                     for children in dictionary{
                         let eachStation = children.value as? [String: AnyObject]
                         let station = Station(dictionary: eachStation!)
-                        stations.append(station)
+                        //stations.append(station)
+                        
+                        
+                        if self.algotithms.checkIfApplicable(station: station) {
+                            print("Applicable:", station.conn)
+                            stations.append(station)
+                        }
                     }
                 }
+                
                 GlobalResources.stations = stations
+                
                 self.cacheManagement.updateStationCache()
                 DispatchQueue.main.async {
                     finished()

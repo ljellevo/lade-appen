@@ -9,14 +9,22 @@
 import Foundation
 
 class Algorithms {
-    let database = Database()
+    static let database = Database()
     
     
     //General (Run when fetching stations) -> Should be server side
-    func checkIfApplicable(){
+    func checkIfApplicable(station: Station) -> Bool{
         _ = GlobalResources.user?.connector
-        _ = GlobalResources.stations
+        for connector in (GlobalResources.user?.connector)! {
+            for conn in station.conn {
+                if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
+                    return true
+                }
+            }
+        }
+        return false
     }
+
     
     
     //Favorites/Details

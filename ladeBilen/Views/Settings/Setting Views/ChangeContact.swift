@@ -25,6 +25,11 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
         getConnectors()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        //Må bare kalle algoritmen og ikke hente alle stasjonene på nytt.
+        database.getStationsFromDatabase {}
+    }
+    
 
     
     func getConnectors(){
@@ -78,6 +83,5 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
             GlobalResources.user?.connector = connector
             database.updateConnector()
         }
-
     }
 }

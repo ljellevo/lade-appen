@@ -39,6 +39,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         userInfo.append(GlobalResources.user?.nsDictionary["firstname"] as! String)
         userInfo.append(GlobalResources.user?.nsDictionary["lastname"] as! String)
         userInfo.append(GlobalResources.user?.nsDictionary["email"] as! String)
+        print(GlobalResources.user?.connector)
     }
     
     override func viewWillAppear(_ animated: Bool) {

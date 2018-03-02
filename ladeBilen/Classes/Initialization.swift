@@ -28,26 +28,30 @@ class Initialization {
                 group.leave()
             }
         }
-        
-        group.enter()
-        verifyStationCache(){
-            print("Stations verified")
-            DispatchQueue.main.async {
-                group.leave()
-            }
-        }
-        
-        group.enter()
-        verifyFavoritesCache {
-            print("Favorites verified")
-            DispatchQueue.main.async {
-                group.leave()
-            }
-        }
-        
         group.notify(queue: .main) {
-            print("All done")
-            done(verificationCode)
+            print("User verified")
+            let infoGroup = DispatchGroup()
+            
+            group.enter()
+            self.verifyStationCache(){
+                print("Stations verified")
+                DispatchQueue.main.async {
+                    group.leave()
+                }
+            }
+        
+            group.enter()
+            self.verifyFavoritesCache {
+                print("Favorites verified")
+                DispatchQueue.main.async {
+                    group.leave()
+                }
+            }
+            
+            infoGroup.notify(queue: .main) {
+                print("All done")
+                done(verificationCode)
+            }
         }
     }
     
