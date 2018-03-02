@@ -85,14 +85,15 @@ class Database {
     }
     
     func getFavoritesFromDatabase(finished: @escaping () -> Void){
-        var favorites: [Int] = []
+        var favorites: [Int:Int] = [:]
         let ref = FIRDatabase.database().reference()
         ref.child("favorites").child((GlobalResources.user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
             DispatchQueue.global().async {
                 if let dictionary = snapshot.value as? [String:AnyObject]{
                     for children in dictionary{
                         let eachStation = children.value as? [String: AnyObject]
-                        favorites.append(eachStation!["id"] as! Int)
+                        favorites.updateValue(eachStation!["id"] as! Int, forKey: eachStation!["id"] as! Int)
+                        //favorites.append(eachStation!["id"] as! Int)
                     }
                 }
                 GlobalResources.favorites = favorites

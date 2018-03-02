@@ -74,7 +74,7 @@ class Initialization {
     func verifyFavoritesCache(done: @escaping ()-> Void){
         do {
             if Disk.exists("favorites.json", in: .caches){
-                GlobalResources.favorites = try Disk.retrieve("favorites.json", from: .caches, as: [Int].self)
+                GlobalResources.favorites = try Disk.retrieve("favorites.json", from: .caches, as: [Int:Int].self)
                 done()
             } else {
                 print("Could not find favorites cache, asking database")

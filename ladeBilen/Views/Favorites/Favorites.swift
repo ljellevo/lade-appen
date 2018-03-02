@@ -35,11 +35,9 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         favoriteArray = []
         followingArray = []
         for station in GlobalResources.stations{
-            for favorite in GlobalResources.favorites{
-                if station.id == favorite {
-                    self.favoriteArray.append(station)
-                    self.followingArray.append(station)
-                }
+            if GlobalResources.favorites.keys.contains(station.id!) {
+                self.favoriteArray.append(station)
+                self.followingArray.append(station)
             }
         }
         collectionView.reloadData()

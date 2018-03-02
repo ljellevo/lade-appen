@@ -33,11 +33,9 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func checkIfFavorite(){
-        for favorite in GlobalResources.favorites{
-            if favorite == station?.id {
-                isFavorite = true
-                favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
-            }
+        if GlobalResources.favorites.keys.contains(station!.id!){
+            isFavorite = true
+            favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
         }
     }
     

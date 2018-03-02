@@ -189,21 +189,17 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 as? MKMarkerAnnotationView {
                 dequeuedView.annotation = annotation
                 dequeuedView.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
-                for favorites in GlobalResources.favorites {
-                    if annotation.id == favorites {
-                        print("Match")
-                        dequeuedView.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
-                    }
+                if GlobalResources.favorites.keys.contains(annotation.id!) {
+                    print("Match")
+                    dequeuedView.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
                 }
                 view = dequeuedView
             } else {
                 view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
-                for favorites in GlobalResources.favorites {
-                    if annotation.id == favorites {
-                        print("Match")
-                        view.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
-                    }
+                if GlobalResources.favorites.keys.contains(annotation.id!) {
+                    print("Match")
+                    view.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
                 }
             }
             return view
@@ -211,7 +207,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
             //På tidligere versoner
             return nil
         }
-        return nil
     }
  
     
