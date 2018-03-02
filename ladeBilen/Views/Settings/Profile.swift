@@ -13,6 +13,7 @@ import AudioToolbox
 
 class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let cacheManagement = CacheManagement()
     var window: UIWindow?
     var user: User = GlobalResources.user!
     var userInfo: [String] = []
@@ -145,14 +146,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let alert = UIAlertController(title: "Sletting av lagrede data", message: "Sikker på at du vil slette den lagrede dataen? Dette vil ikke logge deg ut.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ja", style: UIAlertActionStyle.default, handler: { action in
             AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
-            do {
-                try Disk.remove((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches)
-                try Disk.remove("stations.json", from: .caches)
-                try Disk.remove("favorites.json", from: .caches)
-                print("Removed cache")
-            } catch {
-                print("Could not remove cache")
-            }
+            self.cacheManagement.removeAllCache()
         }))
         alert.addAction(UIAlertAction(title: "Nei", style: UIAlertActionStyle.cancel, handler: nil))
         

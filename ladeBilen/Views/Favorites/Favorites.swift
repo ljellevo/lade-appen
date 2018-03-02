@@ -11,7 +11,7 @@ import Disk
 
 class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    let database = Database()
+    //let database = Database()
     var favoriteArray: [Station] = []
     var followingArray: [Station] = []
     var station: Station?
@@ -34,7 +34,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     func populateFavoritesArray(){
         favoriteArray = []
         followingArray = []
-        for station in GlobalResources.stations{
+        for station in GlobalResources.filteredStations{
             if GlobalResources.favorites.keys.contains(station.id!) {
                 self.favoriteArray.append(station)
                 self.followingArray.append(station)

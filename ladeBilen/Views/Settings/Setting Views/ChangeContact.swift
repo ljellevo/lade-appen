@@ -12,6 +12,7 @@ import Firebase
 class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let database = Database()
+    let algorithms = Algorithms()
     
     var connectorString: [String] = []
     var connectorIndex: [Int] = []
@@ -27,7 +28,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewWillDisappear(_ animated: Bool) {
         //Må bare kalle algoritmen og ikke hente alle stasjonene på nytt.
-        database.getStationsFromDatabase {}
+        algorithms.filterStations()
     }
     
 

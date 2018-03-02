@@ -20,7 +20,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     var isInitial: Bool = true
     var id: Int?
     var stations:[Station] = []
-    let database = Database()
     let searchController = UISearchController(searchResultsController: nil)
     
     var filteredStations: [Station]?
@@ -62,7 +61,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         searchController.searchBar.placeholder = "Søk"
         setupNavigationBar()
         self.definesPresentationContext = true
-        
     }
     
     
@@ -83,7 +81,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let result = filteredStations else {
-            return GlobalResources.stations.count
+            return GlobalResources.filteredStations.count
         }
         return result.count
     }
@@ -94,7 +92,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         if let result = filteredStations {
             cell.textLabel!.text = result[indexPath.row].name
         } else {
-            cell.textLabel!.text = GlobalResources.stations[indexPath.row].name
+            cell.textLabel!.text = GlobalResources.filteredStations[indexPath.row].name
         }
         return cell
     }
@@ -107,12 +105,12 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
             tableViewStack.isHidden = false
-            filteredStations = GlobalResources.stations.filter { filteredStations in
+            filteredStations = GlobalResources.filteredStations.filter { filteredStations in
                 return (filteredStations.name?.lowercased().contains(searchText.lowercased()))!
             }
         } else {
             tableViewStack.isHidden = true
-            filteredStations = GlobalResources.stations
+            filteredStations = GlobalResources.filteredStations
         }
         tableView.reloadData()
     }
@@ -145,9 +143,9 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetails"{
             var station: Station?
-            for i in 0..<GlobalResources.stations.count{
-                if GlobalResources.stations[i].id == self.id {
-                    station = GlobalResources.stations[i]
+            for i in 0..<GlobalResources.filteredStations.count{
+                if GlobalResources.filteredStations[i].id == self.id {
+                    station = GlobalResources.filteredStations[i]
                     break
                 }
             }
@@ -164,7 +162,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
 
     func addAnnotationsToMap(){
         mapWindow.removeAnnotations(mapWindow.annotations)
-        for children in GlobalResources.stations{
+        for children in GlobalResources.filteredStations{
             var position = children.position
             position = position?.replacingOccurrences(of: "(", with: "")
             position = position?.replacingOccurrences(of: ")", with: "")

@@ -74,12 +74,7 @@ class Database {
                         let eachStation = children.value as? [String: AnyObject]
                         let station = Station(dictionary: eachStation!)
                         //stations.append(station)
-                        
-                        
-                        if self.algotithms.checkIfApplicable(station: station) {
-                            print("Applicable:", station.conn)
-                            stations.append(station)
-                        }
+                        stations.append(station)
                     }
                 }
                 

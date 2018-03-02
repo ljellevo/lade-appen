@@ -24,6 +24,16 @@ class Algorithms {
         }
         return false
     }
+    
+    func filterStations(){
+        var temp: [Station] = []
+        for station in GlobalResources.stations {
+            if checkIfApplicable(station: station) {
+                temp.append(station)
+            }
+        }
+        GlobalResources.filteredStations = temp
+    }
 
     
     
@@ -47,12 +57,5 @@ class Algorithms {
     func populateFavoritesArray(){
         _ = GlobalResources.favorites
         _ = GlobalResources.stations
-    }
-    
-
-    
-
-    
-    
-    
+    }  
 }
