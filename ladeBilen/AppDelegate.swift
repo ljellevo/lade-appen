@@ -8,33 +8,83 @@
 
 import UIKit
 import Firebase
+import Disk
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         FIRApp.configure()
+        let initialization = Initialization()
+        
         //UIApplication.shared.statusBarStyle = .lightContent
         
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if user != nil {
-                let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vc = storyBoard.instantiateViewController(withIdentifier: "Home") as! TabHome
-                self.window?.rootViewController=vc
-                self.window?.makeKeyAndVisible()
-            } else {
-                let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vc = storyBoard.instantiateViewController(withIdentifier: "Login") as! Login
-                self.window?.rootViewController=vc
-                self.window?.makeKeyAndVisible()
+        //deleteCache()
+        //logOut()
+        if FIRAuth.auth()?.currentUser != nil {
+            initialization.verifyApplicationParameters(){(code: Int) -> Void in
+                print("----AppDelegate return value----")
+                print(code)
+                if code == 0 {
+                    self.toHome()
+                } else if code == 1 {
+                    self.toRegister()
+                } else {
+                    self.toLogin()
+                }
             }
+        } else {
+            toLogin()
         }
         return true
     }
+
+    func deleteCache(){
+        do {
+            try Disk.remove((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches)
+            try Disk.remove("stations.json", from: .caches)
+            print("Removed cache")
+        } catch {
+            print("Could not remove cache")
+        }
+    }
+    
+    func logOut(){
+        do{
+            try FIRAuth.auth()?.signOut()
+        } catch {
+            print ("Error")
+        }
+    }
+    
+    func toLogin(){
+        print("Login")
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "Login") as! Login
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func toHome(){
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "NavigationHome") as! NavigationHome
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func toRegister(){
+        print("User not found in database, will navigate user to registration: AppDelegate")
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "Register") as! Register
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
+    }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

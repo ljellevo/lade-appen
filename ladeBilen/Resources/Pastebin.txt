@@ -1,0 +1,91 @@
+********** Flytting av "Legal" link på MapKit **********
+override func viewWillLayoutSubviews() {
+    positionLegalMapLabel()
+}
+
+func positionLegalMapLabel() {
+    //Må høre med apple om man kan flytte "Legal" linken til et separert view. Typ "About/legal" view elns. Nedenfor er metoden for å hente ut labelen + for å flytte den.
+    let legalMapLabel = self.mapWindow.subviews[1]
+
+    //legalMapLabel.frame.origin = CGPoint(x: 20, y: 20)
+
+    //legalMapLabel.frame.origin = CGPoint(x: self.mapWindow.bounds.size.width / 2, y: legalMapLabel.frame.origin.y)
+}
+
+
+********** Sjekk om knappene skal bytte side **********
+
+let defaults = UserDefaults.standard
+
+override func viewWillAppear(_ animated: Bool) {
+    print(defaults.integer(forKey: "flip"))
+    checkButtonFlip()
+}
+
+func checkButtonFlip(){
+    if (defaults.integer(forKey: "flip") == 2){
+        //Hvis button er satt til venstre er value i flip 2 og dermed så aktiverer den de constrintene som flytter stacken
+        buttonStackConstraintTrailing.isActive = false
+        buttonStackConstraintLeading.isActive = true
+
+        settingsStackConstraintTrailing.isActive = true
+        settingsStackConstraintLeading.isActive = false
+        self.view.layoutIfNeeded()
+
+    } else {
+        //Hvis den er enten 0 eller 1 så står/flyttes de på/til default possisjon
+        buttonStackConstraintTrailing.isActive = true
+        buttonStackConstraintLeading.isActive = false
+
+        settingsStackConstraintTrailing.isActive = false
+        settingsStackConstraintLeading.isActive = true
+        self.view.layoutIfNeeded()
+}
+
+
+func scrollToNearestVisibleCollectionViewCell() {
+    let visibleCenterPositionOfScrollView = Float(collectionView.contentOffset.x + (self.collectionView!.bounds.size.width / 2))
+    var closestCellIndex = -1
+    var closestDistance: Float = .greatestFiniteMagnitude
+    for i in 0..<collectionView.visibleCells.count {
+        let cell = collectionView.visibleCells[i]
+        let cellWidth = cell.bounds.size.width
+        let cellCenter = Float(cell.frame.origin.x + cellWidth / 2)
+
+        // Now calculate closest cell
+        let distance: Float = fabsf(visibleCenterPositionOfScrollView - cellCenter)
+        if distance < closestDistance {
+            closestDistance = distance
+            closestCellIndex = collectionView.indexPath(for: cell)!.row
+        }
+    }
+    if closestCellIndex != -1 {
+        self.collectionView!.scrollToItem(at: IndexPath(row: closestCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+    }
+}
+
+func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+    scrollToNearestVisibleCollectionViewCell()
+}
+
+
+func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    if !decelerate {
+        scrollToNearestVisibleCollectionViewCell()
+    }
+}
+
+func confifureHeaderFrame() {
+    let headerView = tableView.tableHeaderView
+    var frame = headerView?.frame
+    frame?.size.height = Constants.SCREEN_HEIGHT/4
+    headerView?.layer.masksToBounds = true
+    let label = UILabel()
+    label.frame = CGRect(x: 0, y: 0, width: Constants.SCREEN_WIDTH, height: ceil(Constants.SCREEN_HEIGHT/4))
+    label.textAlignment = .center
+    label.text = "Ludvig Johannes Nohre Ellevold"
+    label.backgroundColor = UIColor.white
+    label.layer.masksToBounds = true
+    headerView?.addSubview(label)
+    headerView?.frame = frame!
+}

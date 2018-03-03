@@ -1,0 +1,21 @@
+
+Profil:
+Laste ned ny cache. Finne ut hvordan structs er persiste igjennom standby/bakgrunns kjøring.
+
+
+Favoritter:
+Prepend favoritter slik at de havner øverst på listen.
+Kunne sortere favoritter. (Alg i algoritmer klassen)
+
+Home:
+Når den henter stasjoner fra databasen så må appen refreshe mapview slik at markerene blir lagt til etter at alle er hentet. Dette gjelder kunn når cache har blitt slettet.
+Implemenetere en extention som varsler brukeren når appen henter data fra databasen. Denne kan ligge på Home.
+
+
+
+Forbedringer:
+Ha en egen GlobalResource for stasjoner som oppfyller kravene og en som har alle stasjonene. Dermed vil man kunne filtrere ut de stasjonene som skal vises kjappere og man vil bruke mindre mobildata.
+
+Samle markerene slik at favoritter syntes når man zoomer ut
+
+

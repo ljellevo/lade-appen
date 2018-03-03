@@ -9,7 +9,7 @@ target 'ladeBilen' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
-
+  pod 'Disk', '~> 0.3.3'
 
   target 'ladeBilenTests' do
     inherit! :search_paths
