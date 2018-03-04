@@ -9,7 +9,7 @@
 import Foundation
 
 class Algorithms {
-    static let database = Database()
+    let cacheManagement = CacheManagement()
     
     
     //General (Run when fetching stations) -> Should be server side
@@ -33,6 +33,8 @@ class Algorithms {
             }
         }
         GlobalResources.filteredStations = temp
+        cacheManagement.updateFilteredStationsCache()
+        
     }
 
     
@@ -46,8 +48,16 @@ class Algorithms {
         return -1
     }
     
-    func findAvailableContacts(station: Station) -> [Int]{
-        return [-1, -1]
+    func findAvailableContacts(station: Station) -> Int{
+        var counter: Int = 0
+        for conn in station.conn {
+            for connector in GlobalResources.user!.connector!{
+                if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
+                    counter += 1
+                }
+            }
+        }
+        return counter
     }
     
     func checkIfAvailable(station: Station) -> Bool{

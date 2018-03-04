@@ -12,6 +12,7 @@ import Disk
 class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     //let database = Database()
+    let algorithms = Algorithms()
     var favoriteArray: [Station] = []
     var followingArray: [Station] = []
     var station: Station?
@@ -84,6 +85,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                 cell.stationNameLabel.text = favoriteArray[row].name
                 cell.stationStreetLabel.text = favoriteArray[row].street
                 cell.stationCityLabel.text = favoriteArray[row].city
+                cell.availableContactsLabel.text = "Ledig/" + algorithms.findAvailableContacts(station: favoriteArray[row]).description
                 cell.station = favoriteArray[row]
                 cell = addShadowFavoritesCell(cell: cell)
                 return cell
@@ -96,10 +98,10 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             cell.stationNameLabel.text = favoriteArray[indexPath.row].name
             cell.stationStreetLabel.text = favoriteArray[indexPath.row].street
             cell.stationCityLabel.text = favoriteArray[indexPath.row].city
+            cell.availableContactsLabel.text = "Ledig/" + algorithms.findAvailableContacts(station: favoriteArray[indexPath.row]).description
             cell.station = favoriteArray[indexPath.row]
             cell = addShadowFavoritesCell(cell: cell)
             return cell
-            
         }
     }
     
