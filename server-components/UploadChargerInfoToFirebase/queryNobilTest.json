@@ -1,9 +1,0 @@
-{
-	"apikey": "",
-	"apiversion": "3",
-	"action": "search",
-	"type": "id",
-	"id": "NOR_03333",
-    "success": "printJsonResponse",
-    "dataType": "json"
-}

@@ -1,8 +1,0 @@
-{
-	"apikey": "",
-	"countrycode": "NOR",
-	"fromdate": "2014-01-01",
-	"file": "false",
-    "success": "printJsonResponse",
-    "format": "json"
-}
