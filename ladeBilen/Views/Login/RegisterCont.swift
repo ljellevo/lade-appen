@@ -9,6 +9,7 @@
 import UIKit
 
 class RegisterCont: UIViewController {
+    var app: App?
     var uid: String?
     var email: String?
     var firstname: String?
@@ -75,6 +76,7 @@ class RegisterCont: UIViewController {
             registerFinished.cloudStorage = cloudStorageSwitch.isOn
             registerFinished.notifications = notificationSwitch.isOn
             registerFinished.notificationsDuration = notificationDuration
+            registerFinished.app = app
         }
     }
     

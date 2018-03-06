@@ -10,17 +10,17 @@ import UIKit
 import Firebase
 
 class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var app: App?
     
-    let database = Database()
-    let algorithms = Algorithms()
     
     var connectorString: [String] = []
     var connectorIndex: [Int] = []
-    var connector: [Int] = GlobalResources.user!.connector!
+    var connector: [Int] = []
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        connector = app!.user!.connector!
         tableView.delegate = self
         tableView.dataSource = self
         getConnectors()
@@ -28,7 +28,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewWillDisappear(_ animated: Bool) {
         //Må bare kalle algoritmen og ikke hente alle stasjonene på nytt.
-        algorithms.filterStations()
+        app!.algorithms?.filterStations()
     }
     
 
@@ -70,8 +70,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
             connector.append(connectorIndex[indexPath.row])
-            GlobalResources.user?.connector = connector
-            database.updateConnector()
+            app!.database.updateConnector(connectors: connector)
         }
     }
     
@@ -81,8 +80,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
             if let cell = tableView.cellForRow(at: indexPath) {
                 cell.accessoryType = .none
             }
-            GlobalResources.user?.connector = connector
-            database.updateConnector()
+            app!.database.updateConnector(connectors: connector)
         }
     }
 }

@@ -12,8 +12,8 @@ import AudioToolbox
 
 class ChangeAuthInfo: UIViewController {
     
+    var app: App?
     var rowIndex: Int?
-    var database = Database()
 
     @IBOutlet weak var firstTextField: UITextField!
     
@@ -83,7 +83,7 @@ class ChangeAuthInfo: UIViewController {
             }
             
             let user = FIRAuth.auth()?.currentUser
-            let credential = FIREmailPasswordAuthProvider.credential(withEmail: GlobalResources.user!.email!, password: thirdTextField.text!)
+            let credential = FIREmailPasswordAuthProvider.credential(withEmail: app!.user!.email!, password: thirdTextField.text!)
             
             user?.reauthenticate(with: credential) { error in
                 if error != nil {
@@ -98,8 +98,7 @@ class ChangeAuthInfo: UIViewController {
                             self.infoLabel.text = "Epost er tatt"
                             AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
                         } else {
-                            GlobalResources.user?.email = self.firstTextField.text
-                            self.database.updateEmail()
+                            self.app!.database.updateEmail(newEmail: self.firstTextField.text!)
                             self.infoLabel.text = "Epost oppdatert"
                         }
                     }
@@ -114,7 +113,7 @@ class ChangeAuthInfo: UIViewController {
                 return
             }
             let user = FIRAuth.auth()?.currentUser
-            let credential = FIREmailPasswordAuthProvider.credential(withEmail: GlobalResources.user!.email!, password: thirdTextField.text!)
+            let credential = FIREmailPasswordAuthProvider.credential(withEmail: app!.user!.email!, password: thirdTextField.text!)
             
             user?.reauthenticate(with: credential) { error in
                 if error != nil {
@@ -134,7 +133,6 @@ class ChangeAuthInfo: UIViewController {
                     }
                 }
             }
-            
         }
     }
 }

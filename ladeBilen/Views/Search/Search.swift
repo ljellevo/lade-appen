@@ -6,6 +6,7 @@
 //  Copyright © 2017 Ludvig Ellevold. All rights reserved.
 //
 
+/*
 import UIKit
 
 class Search: UITableViewController, UISearchResultsUpdating {
@@ -27,7 +28,7 @@ class Search: UITableViewController, UISearchResultsUpdating {
         
         if GlobalResources.stations.count == 0 {
             print("No stations")
-            database.getStationsFromDatabase {
+            database.getStationsFromDatabase {_ in 
                 print("Refresh")
                 self.tableView.reloadData()
             }
@@ -101,3 +102,4 @@ class Search: UITableViewController, UISearchResultsUpdating {
         tableView.reloadData()
     }
 }
+ */

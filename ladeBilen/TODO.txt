@@ -1,3 +1,5 @@
+Generelt:
+Må gå igjennom hver viewcontroller og sjekke om både database implementasjonen og cache implementasjonen fungerer.
 
 Profil:
 Laste ned ny cache. Finne ut hvordan structs er persiste igjennom standby/bakgrunns kjøring.

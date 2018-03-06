@@ -9,13 +9,23 @@
 import Foundation
 
 class Algorithms {
+    let user: User?
+    let stations: [Station]?
+    var filteredStations: [Station]?
+    var favorites: [Int:Int] = [:]
     let cacheManagement = CacheManagement()
     
+    init(user: User, stations: [Station], filteredStations: [Station], favorites: [Int:Int]) {
+        self.user = user
+        self.stations = stations
+        self.filteredStations = filteredStations
+        self.favorites = favorites
+    }
     
     //General (Run when fetching stations) -> Should be server side
     func checkIfApplicable(station: Station) -> Bool{
-        _ = GlobalResources.user?.connector
-        for connector in (GlobalResources.user?.connector)! {
+        _ = user?.connector
+        for connector in (user?.connector)! {
             for conn in station.conn {
                 if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
                     return true
@@ -27,14 +37,12 @@ class Algorithms {
     
     func filterStations(){
         var temp: [Station] = []
-        for station in GlobalResources.stations {
+        for station in stations! {
             if checkIfApplicable(station: station) {
                 temp.append(station)
             }
         }
-        GlobalResources.filteredStations = temp
-        cacheManagement.updateFilteredStationsCache()
-        
+        filteredStations = temp        
     }
 
     
@@ -51,7 +59,7 @@ class Algorithms {
     func findAvailableContacts(station: Station) -> Int{
         var counter: Int = 0
         for conn in station.conn {
-            for connector in GlobalResources.user!.connector!{
+            for connector in user!.connector!{
                 if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
                     counter += 1
                 }
@@ -65,7 +73,7 @@ class Algorithms {
     }
     
     func populateFavoritesArray(){
-        _ = GlobalResources.favorites
-        _ = GlobalResources.stations
+        _ = favorites
+        _ = stations
     }  
 }

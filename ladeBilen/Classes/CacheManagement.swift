@@ -12,83 +12,80 @@ import Disk
 
 class CacheManagement {
     
-    func fetchUserCache() -> Bool{
+    func fetchUserCache() -> User?{
         do{
             if Disk.exists((FIRAuth.auth()?.currentUser?.uid)! + ".json", in: .caches) {
-                GlobalResources.user = try Disk.retrieve((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches, as: User.self)
-                return true
+                return try Disk.retrieve((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches, as: User.self)
+                //return true
             }
         } catch {
             print("User not cached.")
         }
-        return false
+        return nil
     }
     
-    func updateUserCache(){
+    func updateUserCache(user: User){
         do {
-            try Disk.save(GlobalResources.user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
+            try Disk.save(user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
         } catch {
             print("User cache not updated.")
         }
     }
     
-    func fetchStationCache() -> Bool{
+    func fetchStationCache() -> [Station]?{
         do {
             if Disk.exists("stations.json", in: .caches) {
-                GlobalResources.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
-                return true
+                return try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
             }
         } catch {
             print("Stations not cached.")
         }
-        return false
+        return nil
     }
     
-    func updateStationCache(){
+    func updateStationCache(stations: [Station]){
         do {
-            try Disk.save(GlobalResources.stations, to: .caches, as: "stations.json")
+            try Disk.save(stations, to: .caches, as: "stations.json")
         } catch {
             print("Stations cache not updated.")
         }
     }
     
-    func fetchFilteredStationsCache() -> Bool{
+    func fetchFilteredStationsCache() -> [Station]?{
         do {
             if Disk.exists("filteredStations.json", in: .caches) {
-                GlobalResources.filteredStations = try Disk.retrieve("filteredStations.json", from: .caches, as: [Station].self)
-                return true
+                return try Disk.retrieve("filteredStations.json", from: .caches, as: [Station].self)
             }
         } catch {
             print("Filtered Stations not cached.")
         }
-        return false
+        return nil
 
     }
     
-    func updateFilteredStationsCache(){
+    func updateFilteredStationsCache(filteredStations: [Station]){
         do {
-            try Disk.save(GlobalResources.filteredStations, to: .caches, as: "filteredStations.json")
+            try Disk.save(filteredStations, to: .caches, as: "filteredStations.json")
         } catch {
             print("Filtered stations cache not updated.")
         }
     }
     
-    func fetchFavoritesCache() -> Bool{
+    func fetchFavoritesCache() -> [Int:Int]{
         do {
             if Disk.exists("favorites.json", in: .caches){
-                GlobalResources.favorites = try Disk.retrieve("favorites.json", from: .caches, as: [Int:Int].self)
-                return true
+                return try Disk.retrieve("favorites.json", from: .caches, as: [Int:Int].self)
             }
         } catch {
             print("Favorites not cached.")
         }
-        return false
+        return [-1:-1]
 
     }
     
-    func updateFavoriteCache(){
+    func updateFavoriteCache(favorites: [Int:Int]){
         do {
-            try Disk.save(GlobalResources.favorites, to: .caches, as: "favorites.json")
+            try Disk.save(favorites, to: .caches, as: "favorites.json")
         } catch {
             print("Favorite cache not updated.")
         }

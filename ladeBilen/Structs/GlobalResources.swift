@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct GlobalResources {
+class GlobalResources {
+    /*
     static var user: User?
     static var stations: [Station] = []
     static var filteredStations: [Station] = []
@@ -17,6 +18,7 @@ struct GlobalResources {
     func setUser(newUser: User){
         GlobalResources.user = newUser
     }
+ */
     
 
 }

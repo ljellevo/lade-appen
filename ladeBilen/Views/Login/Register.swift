@@ -11,6 +11,7 @@ import Firebase
 import AudioToolbox
 
 class Register: UIViewController {
+    var app: App?
     
     var uid: String?
     var email: String?
@@ -60,6 +61,7 @@ class Register: UIViewController {
             nextViewController.email = FIRAuth.auth()?.currentUser?.email
             nextViewController.firstname = self.firstnameTextField.text
             nextViewController.lastname = self.lastnameTextField.text
+            nextViewController.app = app
         }
     }
     

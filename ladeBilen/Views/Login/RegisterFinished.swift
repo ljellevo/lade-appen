@@ -12,7 +12,7 @@ import Disk
 import AudioToolbox
 
 class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    var app: App?
 
     var connectorString: [String] = []
     var connectorIndex: [Int] = []
@@ -29,9 +29,7 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
     var connector: [Int] = []
     var connectorIndexPath: IndexPath?
     var connectorSelected: Bool = false
-    
-    let database = Database()
-    
+        
     @IBOutlet weak var whitePannel: UIView!
     @IBOutlet weak var finishedButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -113,22 +111,22 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBAction func finishedButton(_ sender: UIButton) {
         if connector.count != 0 {
             let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudStorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector)
-            GlobalResources.user = user
-            database.updateUser()
+            app!.user = user
+            app!.database.updateUser(user: user)
             do {
                 if Disk.exists("stations.json", in: .caches) {
-                    GlobalResources.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
+                    app!.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
                     print("Stations is cached")
                     performSegue(withIdentifier: "toHomeFromRegister", sender: self)
                 } else {
                     print("Could not find stations cache, asking database")
-                    database.getStationsFromDatabase {
+                    app!.database.getStationsFromDatabase {_ in
                         self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
                     }
                 }
             } catch {
                 print("Could not retrieve stations cache, asking database")
-                database.getStationsFromDatabase {
+                app!.database.getStationsFromDatabase {_ in
                     self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
                 }
             }

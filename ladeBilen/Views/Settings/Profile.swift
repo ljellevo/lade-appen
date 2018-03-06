@@ -13,9 +13,11 @@ import AudioToolbox
 
 class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var app: App?
+    
     let cacheManagement = CacheManagement()
     var window: UIWindow?
-    var user: User = GlobalResources.user!
+    var user: User?
     var userInfo: [String] = []
     var rowIndex: Int?
 
@@ -31,16 +33,17 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        user = app?.user
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = UIView()
         tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "EntryCell", bundle: nil), forCellReuseIdentifier: "EntryCell")
         tableView.register(UINib(nibName: "DefaultCell", bundle: nil), forCellReuseIdentifier: "DefaultCell")
-        userInfo.append(GlobalResources.user?.nsDictionary["firstname"] as! String)
-        userInfo.append(GlobalResources.user?.nsDictionary["lastname"] as! String)
-        userInfo.append(GlobalResources.user?.nsDictionary["email"] as! String)
-        print(GlobalResources.user?.connector)
+        userInfo.append(user?.nsDictionary["firstname"] as! String)
+        userInfo.append(user?.nsDictionary["lastname"] as! String)
+        userInfo.append(user?.nsDictionary["email"] as! String)
+        print(user?.connector)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,9 +51,9 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.tableView.deselectRow(at: index, animated: true)
         }
         userInfo = []
-        userInfo.append(GlobalResources.user?.nsDictionary["firstname"] as! String)
-        userInfo.append(GlobalResources.user?.nsDictionary["lastname"] as! String)
-        userInfo.append(GlobalResources.user?.nsDictionary["email"] as! String)
+        userInfo.append(user?.nsDictionary["firstname"] as! String)
+        userInfo.append(user?.nsDictionary["lastname"] as! String)
+        userInfo.append(user?.nsDictionary["email"] as! String)
         tableView.reloadData()
     }
     
@@ -103,10 +106,18 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextViewController = segue.destination as? ChangeUserInfo{
+            nextViewController.app = app
             nextViewController.rowIndex = rowIndex!
         }
         if let nextViewController = segue.destination as? ChangeAuthInfo {
+            nextViewController.app = app
             nextViewController.rowIndex = rowIndex!
+        }
+        if let nextViewController = segue.destination as? ChangeContact {
+            nextViewController.app = app
+        }
+        if let nextViewController = segue.destination as? ChangePreferences {
+            nextViewController.app = app
         }
     }
     
@@ -146,7 +157,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let alert = UIAlertController(title: "Sletting av lagrede data", message: "Sikker på at du vil slette den lagrede dataen? Dette vil ikke logge deg ut.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ja", style: UIAlertActionStyle.default, handler: { action in
             AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
-            self.cacheManagement.removeAllCache()
+            self.app!.cacheManagement.removeAllCache()
         }))
         alert.addAction(UIAlertAction(title: "Nei", style: UIAlertActionStyle.cancel, handler: nil))
         

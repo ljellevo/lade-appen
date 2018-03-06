@@ -12,34 +12,30 @@ import Disk
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
     
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
-        let initialization = Initialization()
+        let app = App()
         
         //UIApplication.shared.statusBarStyle = .lightContent
         
         //deleteCache()
         //logOut()
         if FIRAuth.auth()?.currentUser != nil {
-            initialization.verifyApplicationParameters(){(code: Int) -> Void in
+            app.initializeApplication(){(code: Int) -> Void in
                 print("----AppDelegate return value----")
                 print(code)
                 if code == 0 {
-                    self.toHome()
+                    self.toHome(app)
                 } else if code == 1 {
-                    self.toRegister()
+                    self.toRegister(app)
                 } else {
-                    self.toLogin()
+                    self.toLogin(app)
                 }
             }
         } else {
-            toLogin()
+            toLogin(app)
         }
         return true
     }
@@ -62,25 +58,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func toLogin(){
+    func toLogin(_ app: App){
         print("Login")
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "Login") as! Login
+        vc.app = app
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
     }
     
-    func toHome(){
+    func toHome(_ app: App){
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "NavigationHome") as! NavigationHome
+        let homeVC = vc.viewControllers.first as! Home
+        homeVC.app = app
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
     }
     
-    func toRegister(){
+    func toRegister(_ app: App){
         print("User not found in database, will navigate user to registration: AppDelegate")
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "Register") as! Register
+        vc.app = app
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
     }

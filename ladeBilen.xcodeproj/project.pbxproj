@@ -70,6 +70,7 @@
 		836B7DDC1FCA286700B4B94E /* Comments-Icon-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DD91FCA286300B4B94E /* Comments-Icon-75.png */; };
 		836B7DDD1FCA286700B4B94E /* Comments-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DDA1FCA286400B4B94E /* Comments-Icon-25.png */; };
 		836B7DDE1FCA286700B4B94E /* Comments-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B7DDB1FCA286600B4B94E /* Comments-Icon-50.png */; };
+		837E98D4204EF923007D01D6 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837E98D3204EF923007D01D6 /* App.swift */; };
 		83821E651FCB66EF009D304D /* Charger-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 83821E621FCB66EE009D304D /* Charger-Icon-25.png */; };
 		83821E661FCB66EF009D304D /* Charger-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 83821E631FCB66EF009D304D /* Charger-Icon-50.png */; };
 		83821E671FCB66EF009D304D /* Charger-Icon-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 83821E641FCB66EF009D304D /* Charger-Icon-75.png */; };
@@ -195,6 +196,7 @@
 		836B7DD91FCA286300B4B94E /* Comments-Icon-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments-Icon-75.png"; sourceTree = "<group>"; };
 		836B7DDA1FCA286400B4B94E /* Comments-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments-Icon-25.png"; sourceTree = "<group>"; };
 		836B7DDB1FCA286600B4B94E /* Comments-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments-Icon-50.png"; sourceTree = "<group>"; };
+		837E98D3204EF923007D01D6 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		83821E621FCB66EE009D304D /* Charger-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Charger-Icon-25.png"; sourceTree = "<group>"; };
 		83821E631FCB66EF009D304D /* Charger-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Charger-Icon-50.png"; sourceTree = "<group>"; };
 		83821E641FCB66EF009D304D /* Charger-Icon-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Charger-Icon-75.png"; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 				832296321FEB35AC00401ECD /* Database.swift */,
 				83DF00B820411990003F5691 /* Algorithms.swift */,
 				83DF00BA20411C50003F5691 /* CacheManagement.swift */,
+				837E98D3204EF923007D01D6 /* App.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1056,6 +1059,7 @@
 				8365D9F41FEEE6F8006510E9 /* RegisterFinishedConnectorCell.swift in Sources */,
 				83DE760B1FFAC48B001EE4C6 /* ChangePreferences.swift in Sources */,
 				831470861FBE465500DCD0CD /* Tab.swift in Sources */,
+				837E98D4204EF923007D01D6 /* App.swift in Sources */,
 				83C83A7D1FF1B6D40088C10C /* GlobalResources.swift in Sources */,
 				83FD2BEA1FEE6DE9002B8EDF /* RegisterCont.swift in Sources */,
 				83469A8A1EEB0E0600D9AFC1 /* Favorites.swift in Sources */,

@@ -13,6 +13,7 @@ import AudioToolbox
 
 class Login: UIViewController, UITextFieldDelegate {
     
+    var app: App?
     let database = Database()
     
     var whitePanelLeadingOffset: CGFloat?
@@ -111,17 +112,17 @@ class Login: UIViewController, UITextFieldDelegate {
                 } else {
                     do {
                         if Disk.exists("stations.json", in: .caches) {
-                            GlobalResources.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
+                            self.app!.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
                             self.navigateUser()
                         } else {
                             print("Could not find stations cache, asking database")
-                            self.database.getStationsFromDatabase {
+                            self.database.getStationsFromDatabase {_ in 
                                 self.navigateUser()
                             }
                         }
                     } catch {
                         print("Could not retrieve stations cache, asking database")
-                        self.database.getStationsFromDatabase {
+                        self.database.getStationsFromDatabase {_ in 
                             self.navigateUser()
                         }
                     }
@@ -197,7 +198,7 @@ class Login: UIViewController, UITextFieldDelegate {
                 if error == false {
                     print("User found in database, caching and navigating to home")
                     let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
-                    GlobalResources.user = user
+                    self.app!.user = user
                     do {
                         try Disk.save(user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
                     } catch {

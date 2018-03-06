@@ -9,28 +9,20 @@
 import UIKit
 
 class NavigationHome: UINavigationController {
-
+    
+    var app: App?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //navigationController?.setViewControllers([Home()], animated: true)
-
-        // Do any additional setup after loading the view.
+        print("NavHomeVDL")
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        print("NavHome")
+        let navVC = segue.destination as! NavigationHome
+        let homeVC = navVC.viewControllers.first as! Home
+        
+        homeVC.app = app!
     }
-    */
-
 }

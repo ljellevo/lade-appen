@@ -16,6 +16,8 @@ import Disk
 
 class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource{
 
+    var app: App?
+    
     var locationManager: CLLocationManager = CLLocationManager()
     var isInitial: Bool = true
     var id: Int?
@@ -47,6 +49,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        filteredStations = app!.filteredStations
         mapWindow.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
@@ -80,10 +83,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let result = filteredStations else {
-            return GlobalResources.filteredStations.count
-        }
-        return result.count
+        return filteredStations!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,7 +92,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         if let result = filteredStations {
             cell.textLabel!.text = result[indexPath.row].name
         } else {
-            cell.textLabel!.text = GlobalResources.filteredStations[indexPath.row].name
+            cell.textLabel!.text = filteredStations![indexPath.row].name
         }
         return cell
     }
@@ -105,12 +105,12 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
             tableViewStack.isHidden = false
-            filteredStations = GlobalResources.filteredStations.filter { filteredStations in
+            filteredStations = filteredStations!.filter { filteredStations in
                 return (filteredStations.name?.lowercased().contains(searchText.lowercased()))!
             }
         } else {
             tableViewStack.isHidden = true
-            filteredStations = GlobalResources.filteredStations
+            filteredStations = app?.filteredStations
         }
         tableView.reloadData()
     }
@@ -140,29 +140,12 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         infoView.isHidden = true
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDetails"{
-            var station: Station?
-            for i in 0..<GlobalResources.filteredStations.count{
-                if GlobalResources.filteredStations[i].id == self.id {
-                    station = GlobalResources.filteredStations[i]
-                    break
-                }
-            }
-            if let nextViewController = segue.destination as? Details{
-                nextViewController.station = station
-            }
-        }
-    }
-    
-    @IBAction func detailsButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "toDetails", sender: self)
-    }
+
     
 
     func addAnnotationsToMap(){
         mapWindow.removeAnnotations(mapWindow.annotations)
-        for children in GlobalResources.filteredStations{
+        for children in filteredStations!{
             var position = children.position
             position = position?.replacingOccurrences(of: "(", with: "")
             position = position?.replacingOccurrences(of: ")", with: "")
@@ -188,7 +171,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 as? MKMarkerAnnotationView {
                 dequeuedView.annotation = annotation
                 dequeuedView.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
-                if GlobalResources.favorites.keys.contains(annotation.id!) {
+                if app!.favorites.keys.contains(annotation.id!) {
                     print("Match")
                     dequeuedView.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
                 }
@@ -196,7 +179,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
             } else {
                 view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
-                if GlobalResources.favorites.keys.contains(annotation.id!) {
+                if app!.favorites.keys.contains(annotation.id!) {
                     print("Match")
                     view.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
                 }
@@ -249,6 +232,33 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         } else {
             return
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetails"{
+            var station: Station?
+            for i in 0..<filteredStations!.count{
+                if filteredStations![i].id == self.id {
+                    station = filteredStations![i]
+                    break
+                }
+            }
+            if let nextViewController = segue.destination as? Details{
+                nextViewController.station = station
+                nextViewController.app = app
+            }
+        } else {
+            if let nextViewController = segue.destination as? Profile{
+                nextViewController.app = app
+            }
+            if let nextViewController = segue.destination as? Favorites{
+                nextViewController.app = app
+            }
+        }
+    }
+    
+    @IBAction func detailsButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "toDetails", sender: self)
     }
     
     

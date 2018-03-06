@@ -10,7 +10,7 @@ import UIKit
 
 class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     var station: Station?
-    let database = Database()
+    var app: App?
     var isFavorite: Bool = false
 
     @IBOutlet var collectionView: UICollectionView!
@@ -33,7 +33,7 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func checkIfFavorite(){
-        if GlobalResources.favorites.keys.contains(station!.id!){
+        if app!.favorites.keys.contains(station!.id!){
             isFavorite = true
             favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
         }
@@ -81,11 +81,11 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     @IBAction func favoriteButton(_ sender: UIBarButtonItem) {
         if isFavorite {
-            database.removeFavoriteInDatabase(id: station!.id!)
+            app!.database.removeFavoriteInDatabase(id: station!.id!)
             favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteSet")
             isFavorite = false
         } else {
-            database.addFavoriteInDatabase(id: station!.id!)
+            app!.database.addFavoriteInDatabase(id: station!.id!)
             favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
             isFavorite = true
         }        
@@ -93,7 +93,6 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     @IBAction func followButton(_ sender: UIBarButtonItem) {
         //Legg til i følge, hvis man følger så fjerner man entryen.
-        
     }
     
 }

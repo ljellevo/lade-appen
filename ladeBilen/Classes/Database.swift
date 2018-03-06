@@ -12,59 +12,49 @@ import Firebase
 import Disk
 
 class Database {
-    let cacheManagement = CacheManagement()
     let ref = FIRDatabase.database().reference()
-    let algotithms = Algorithms()
     
-    func updateUser(){
-        ref.child("User_Info").child((GlobalResources.user?.uid)!).setValue(
-            ["uid": GlobalResources.user?.uid! as String!,
-             "email": GlobalResources.user?.email! as String!,
-             "firstname": GlobalResources.user?.firstname! as String!,
-             "lastname": GlobalResources.user?.lastname! as String!,
-             "fastCharge": GlobalResources.user?.fastCharge! as Bool!,
-             "parkingFee": GlobalResources.user?.parkingFee! as Bool!,
-             "cloudStorage": GlobalResources.user?.cloudStorage! as Bool!,
-             "notifications": GlobalResources.user?.notifications! as Bool!,
-             "notificationsDuration": GlobalResources.user?.notificationDuration! as Int!,
-             "connector": GlobalResources.user?.connector! as [Int]!]
+    func updateUser(user: User){
+        ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).setValue(
+            ["uid": user.uid as String!,
+             "email": user.email as String!,
+             "firstname": user.firstname as String!,
+             "lastname": user.lastname as String!,
+             "fastCharge": user.fastCharge as Bool!,
+             "parkingFee": user.parkingFee as Bool!,
+             "cloudStorage": user.cloudStorage as Bool!,
+             "notifications": user.notifications as Bool!,
+             "notificationsDuration": user.notificationDuration as Int!,
+             "connector": user.connector as [Int]!]
         )
-        cacheManagement.updateUserCache()
     }
     
     
-    func updateEmail(){
-        ref.child("User_Info/" + GlobalResources.user!.uid! + "/email").setValue(GlobalResources.user!.email!)
-        cacheManagement.updateUserCache()
+    func updateEmail(newEmail: String){
+        ref.child("User_Info/" + (FIRAuth.auth()?.currentUser?.uid)! + "/email").setValue(newEmail)
     }
     
-    func updateFirstname(){
-        ref.child("User_Info/" + GlobalResources.user!.uid! + "/firstname").setValue(GlobalResources.user!.firstname!)
-        cacheManagement.updateUserCache()
-
+    func updateFirstname(newFirstname: String){
+        ref.child("User_Info/" + (FIRAuth.auth()?.currentUser?.uid)! + "/firstname").setValue(newFirstname)
     }
     
-    func updateLastname(){
-        ref.child("User_Info/" + GlobalResources.user!.uid! + "/lastname").setValue(GlobalResources.user!.lastname!)
-        cacheManagement.updateUserCache()
-
+    func updateLastname(newLastname: String){
+        ref.child("User_Info/" + (FIRAuth.auth()?.currentUser?.uid)! + "/lastname").setValue(newLastname)
     }
     
-    func updateConnector(){
-        ref.child("User_Info/" + GlobalResources.user!.uid! + "/connector").setValue(GlobalResources.user!.connector!)
-        cacheManagement.updateUserCache()
-
+    func updateConnector(connectors: [Int]){
+        ref.child("User_Info/" + (FIRAuth.auth()?.currentUser?.uid)! + "/connector").setValue(connectors)
     }
     
     func submitBugReport(reportedText: String){
         ref.child("customer_service").child("reported_bugs").childByAutoId().setValue(
-            ["uid": GlobalResources.user?.uid,
-             "email": GlobalResources.user?.email,
+            ["uid": (FIRAuth.auth()?.currentUser?.uid)!,
+             "email": (FIRAuth.auth()?.currentUser?.email)!,
              "Report": reportedText]
         )
     }
     
-    func getStationsFromDatabase(finished: @escaping () -> Void){
+    func getStationsFromDatabase(done: @escaping (_ stations: [Station])-> Void){
         var stations: [Station] = []
         let ref = FIRDatabase.database().reference()
         ref.child("stations").observe(.value, with: { (snapshot) in
@@ -78,20 +68,17 @@ class Database {
                     }
                 }
                 
-                GlobalResources.stations = stations
-                
-                self.cacheManagement.updateStationCache()
                 DispatchQueue.main.async {
-                    finished()
+                    done(stations)
                 }
             }
         }, withCancel: nil)
     }
     
-    func getFavoritesFromDatabase(finished: @escaping () -> Void){
+    func getFavoritesFromDatabase(done: @escaping (_ favorites: [Int:Int])-> Void){
         var favorites: [Int:Int] = [:]
         let ref = FIRDatabase.database().reference()
-        ref.child("favorites").child((GlobalResources.user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("favorites").child((FIRAuth.auth()?.currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
             DispatchQueue.global().async {
                 if let dictionary = snapshot.value as? [String:AnyObject]{
                     for children in dictionary{
@@ -100,24 +87,22 @@ class Database {
                         //favorites.append(eachStation!["id"] as! Int)
                     }
                 }
-                GlobalResources.favorites = favorites
-                self.cacheManagement.updateFavoriteCache()
                 DispatchQueue.main.async {
-                    finished()
+                    done(favorites)
                 }
             }
         }, withCancel: nil)
     }
     
     func addFavoriteInDatabase(id: Int){
-        ref.child("favorites").child((GlobalResources.user?.uid)!).child(String(id)).setValue(
+        ref.child("favorites").child((FIRAuth.auth()?.currentUser?.uid)!).child(String(id)).setValue(
             ["id": id]
         )
-        getFavoritesFromDatabase {}
+        getFavoritesFromDatabase {_ in}
     }
     
     func removeFavoriteInDatabase(id: Int){
-        ref.child("favorites").child((GlobalResources.user?.uid)!).child(String(id)).removeValue()
-        getFavoritesFromDatabase {}
+        ref.child("favorites").child((FIRAuth.auth()?.currentUser?.uid)!).child(String(id)).removeValue()
+        getFavoritesFromDatabase {_ in}
     }
 }
