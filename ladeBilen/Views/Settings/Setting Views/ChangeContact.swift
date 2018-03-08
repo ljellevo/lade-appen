@@ -34,10 +34,11 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
 
     
     func getConnectors(){
-        let ref = FIRDatabase.database().reference()
+        //Må puttes i app klassen
+        let ref = Database.database().reference()
         ref.child("nobil_database_static").child("connectors").observeSingleEvent(of: .value, with: { (snapshot) in
             print(snapshot)
-            for children in snapshot.children.allObjects as? [FIRDataSnapshot] ?? [] {
+            for children in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
                 self.connectorIndex.append(Int(children.key)!)
                 self.connectorString.append(children.value as! String)
             }
@@ -70,7 +71,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
             connector.append(connectorIndex[indexPath.row])
-            app!.database.updateConnector(connectors: connector)
+            app!.updateConnectorForUserInDatabase(connectors: connector)
         }
     }
     
@@ -80,7 +81,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
             if let cell = tableView.cellForRow(at: indexPath) {
                 cell.accessoryType = .none
             }
-            app!.database.updateConnector(connectors: connector)
+            app!.updateConnectorForUserInDatabase(connectors: connector)
         }
     }
 }

@@ -81,13 +81,17 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     @IBAction func favoriteButton(_ sender: UIBarButtonItem) {
         if isFavorite {
-            app!.database.removeFavoriteInDatabase(id: station!.id!)
-            favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteSet")
-            isFavorite = false
+            app!.removeFavoriteFromDatabase(stationId: station!.id!, done: {
+                self.favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteSet")
+                self.isFavorite = false
+            })
+
         } else {
-            app!.database.addFavoriteInDatabase(id: station!.id!)
-            favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
-            isFavorite = true
+            app!.addFavoriteToDatabase(stationId: station!.id!, done: {
+                self.favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
+                self.isFavorite = true
+            })
+
         }        
     }
     

@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import AudioToolbox
 
+
+
 class ChangeAuthInfo: UIViewController {
     
     var app: App?
@@ -82,8 +84,9 @@ class ChangeAuthInfo: UIViewController {
                 return
             }
             
-            let user = FIRAuth.auth()?.currentUser
-            let credential = FIREmailPasswordAuthProvider.credential(withEmail: app!.user!.email!, password: thirdTextField.text!)
+            let user = Auth.auth().currentUser
+            //let credentialTest = credential(withEmail: , password: )
+            let credential = EmailAuthProvider.credential(withEmail: app!.user!.email!, password: thirdTextField.text!)
             
             user?.reauthenticate(with: credential) { error in
                 if error != nil {
@@ -91,14 +94,14 @@ class ChangeAuthInfo: UIViewController {
                     self.infoLabel.text = "Passord er feil"
                     AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
                 } else {
-                    FIRAuth.auth()?.currentUser?.updateEmail(self.firstTextField.text!) { (error) in
+                    Auth.auth().currentUser?.updateEmail(to: self.firstTextField.text!) { (error) in
                         if error != nil {
                             self.firstTextField.setBottomBorderRed()
                             self.secondTextField.setBottomBorderRed()
                             self.infoLabel.text = "Epost er tatt"
                             AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
                         } else {
-                            self.app!.database.updateEmail(newEmail: self.firstTextField.text!)
+                            self.app!.updateEmailForUserInDatabase(newEmail: self.firstTextField.text!)
                             self.infoLabel.text = "Epost oppdatert"
                         }
                     }
@@ -112,8 +115,8 @@ class ChangeAuthInfo: UIViewController {
                 AudioServicesPlaySystemSound(Constants.VIBRATION_WEAK)
                 return
             }
-            let user = FIRAuth.auth()?.currentUser
-            let credential = FIREmailPasswordAuthProvider.credential(withEmail: app!.user!.email!, password: thirdTextField.text!)
+            let user = Auth.auth().currentUser
+            let credential = EmailAuthProvider.credential(withEmail: app!.user!.email!, password: thirdTextField.text!)
             
             user?.reauthenticate(with: credential) { error in
                 if error != nil {
@@ -121,7 +124,7 @@ class ChangeAuthInfo: UIViewController {
                     self.infoLabel.text = "Passord er feil"
                     AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
                 } else {
-                    FIRAuth.auth()?.currentUser?.updatePassword(self.firstTextField.text!) { (error) in
+                    Auth.auth().currentUser?.updatePassword(to: self.firstTextField.text!) { (error) in
                         if error != nil {
                             self.firstTextField.setBottomBorderRed()
                             self.secondTextField.setBottomBorderRed()

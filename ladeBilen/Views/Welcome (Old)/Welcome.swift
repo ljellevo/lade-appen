@@ -48,7 +48,7 @@ class Welcome: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if FIRAuth.auth()?.currentUser?.uid != nil{
+        if Auth.auth().currentUser?.uid != nil{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "NavHome") as! NavigationHome
             self.present(controller, animated: false, completion: { () -> Void in
@@ -104,7 +104,7 @@ class Welcome: UIViewController, UITextFieldDelegate {
     }
     
     func checkIfUserIsLoggedIn(){
-        if (FIRAuth.auth()?.currentUser?.uid != nil){
+        if (Auth.auth().currentUser?.uid != nil){
             self.performSegue(withIdentifier: "toHome", sender: self)
         }
     }
@@ -291,7 +291,7 @@ class Welcome: UIViewController, UITextFieldDelegate {
     }
     
     func registerUserInDatabase(){
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
                 //Feil under registrering av bruker
                 print("Error creating user")
@@ -305,8 +305,8 @@ class Welcome: UIViewController, UITextFieldDelegate {
     }
     
     func registerUserInfoInDatabase(){
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        let ref = FIRDatabase.database().reference()
+        let uid = Auth.auth().currentUser?.uid
+        let ref = Database.database().reference()
         let values = ["First name" : firstname, "Email" : email]
         
         ref.child("User_Info").child(uid as String!).updateChildValues(values) { (error, ref) in
@@ -320,7 +320,7 @@ class Welcome: UIViewController, UITextFieldDelegate {
     }
     
     func loginUser(){
-        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             if (error != nil) {
                 //Feil under innloggig
                 print("Error when signing in")

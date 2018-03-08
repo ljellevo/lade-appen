@@ -48,10 +48,11 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func getConnectors(){
-        let ref = FIRDatabase.database().reference()
+        //Må puttes i app klassen
+        let ref = Database.database().reference()
         ref.child("nobil_database_static").child("connectors").observeSingleEvent(of: .value, with: { (snapshot) in
             print(snapshot)
-            for children in snapshot.children.allObjects as? [FIRDataSnapshot] ?? [] {
+            for children in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
                 self.connectorIndex.append(Int(children.key)!)
                 self.connectorString.append(children.value as! String)
             }
@@ -112,7 +113,11 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
         if connector.count != 0 {
             let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudStorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector)
             app!.user = user
-            app!.database.updateUser(user: user)
+            app!.updateUserInDatabase(user: user)
+            app!.verifyStationCache {
+                self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
+            }
+            /*
             do {
                 if Disk.exists("stations.json", in: .caches) {
                     app!.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
@@ -130,6 +135,7 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
                     self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
                 }
             }
+ */
         } else {
           AudioServicesPlaySystemSound(Constants.VIBRATION_WEAK)
         }

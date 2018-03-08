@@ -26,7 +26,7 @@
 		8314E2301EF435CF00F98E3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8314E22F1EF435CF00F98E3F /* GoogleService-Info.plist */; };
 		8314E2321EF44DA300F98E3F /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314E2311EF44DA300F98E3F /* Styles.swift */; };
 		8314E2351EF44E3400F98E3F /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314E2341EF44E3400F98E3F /* Welcome.swift */; };
-		832296331FEB35AC00401ECD /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832296321FEB35AC00401ECD /* Database.swift */; };
+		832296331FEB35AC00401ECD /* DatabaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832296321FEB35AC00401ECD /* DatabaseApp.swift */; };
 		832296351FEB3B8700401ECD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832296341FEB3B8700401ECD /* Constants.swift */; };
 		8323D4201FC77A1C0049D349 /* TopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323D41E1FC77A1C0049D349 /* TopCell.swift */; };
 		8323D4211FC77A1C0049D349 /* TopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8323D41F1FC77A1C0049D349 /* TopCell.xib */; };
@@ -90,6 +90,7 @@
 		83B3DEF3203CAB6A0018AEE5 /* Favorite-Filled-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B3DEF0203CAB690018AEE5 /* Favorite-Filled-Icon-25.png */; };
 		83B3DEF4203CAB6A0018AEE5 /* Favorite-Filled-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B3DEF1203CAB690018AEE5 /* Favorite-Filled-Icon-50.png */; };
 		83C042861FFAEB1E00F8D8CD /* ChangeUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C042851FFAEB1E00F8D8CD /* ChangeUserInfo.swift */; };
+		83C25ECD2051F62100D67445 /* ladeBilenTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C25ECC2051F62100D67445 /* ladeBilenTest.swift */; };
 		83C83A7D1FF1B6D40088C10C /* GlobalResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C83A7C1FF1B6D40088C10C /* GlobalResources.swift */; };
 		83C83A811FF1D35A0088C10C /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C83A7F1FF1D35A0088C10C /* EntryCell.swift */; };
 		83C83A821FF1D35A0088C10C /* EntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C83A801FF1D35A0088C10C /* EntryCell.xib */; };
@@ -105,7 +106,6 @@
 		83F208231FC370B60075A2F0 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F208221FC370B60075A2F0 /* Station.swift */; };
 		83F208251FC370D70075A2F0 /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F208241FC370D70075A2F0 /* Connector.swift */; };
 		83F208271FC3A02A0075A2F0 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F208261FC3A02A0075A2F0 /* Annotation.swift */; };
-		83F354791EEB0696001A278A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354781EEB0696001A278A /* ViewController.swift */; };
 		83F3547E1EEB0696001A278A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547D1EEB0696001A278A /* Assets.xcassets */; };
 		83F354811EEB0696001A278A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547F1EEB0696001A278A /* LaunchScreen.storyboard */; };
 		83F9E440203C98DE009B3788 /* Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9E43F203C98DE009B3788 /* Initialization.swift */; };
@@ -154,7 +154,7 @@
 		8314E22F1EF435CF00F98E3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8314E2311EF44DA300F98E3F /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		8314E2341EF44E3400F98E3F /* Welcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
-		832296321FEB35AC00401ECD /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		832296321FEB35AC00401ECD /* DatabaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseApp.swift; sourceTree = "<group>"; };
 		832296341FEB3B8700401ECD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8323D41E1FC77A1C0049D349 /* TopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCell.swift; sourceTree = "<group>"; };
 		8323D41F1FC77A1C0049D349 /* TopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopCell.xib; sourceTree = "<group>"; };
@@ -216,6 +216,8 @@
 		83B3DEF0203CAB690018AEE5 /* Favorite-Filled-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Favorite-Filled-Icon-25.png"; sourceTree = "<group>"; };
 		83B3DEF1203CAB690018AEE5 /* Favorite-Filled-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Favorite-Filled-Icon-50.png"; sourceTree = "<group>"; };
 		83C042851FFAEB1E00F8D8CD /* ChangeUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUserInfo.swift; sourceTree = "<group>"; };
+		83C25ECB2051F62000D67445 /* ladeBilenTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ladeBilenTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		83C25ECC2051F62100D67445 /* ladeBilenTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ladeBilenTest.swift; sourceTree = "<group>"; };
 		83C83A7C1FF1B6D40088C10C /* GlobalResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalResources.swift; sourceTree = "<group>"; };
 		83C83A7F1FF1D35A0088C10C /* EntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
 		83C83A801FF1D35A0088C10C /* EntryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryCell.xib; sourceTree = "<group>"; };
@@ -233,7 +235,6 @@
 		83F208261FC3A02A0075A2F0 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		83F354731EEB0696001A278A /* ladeBilen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ladeBilen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F354761EEB0696001A278A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		83F354781EEB0696001A278A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		83F3547B1EEB0696001A278A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		83F3547D1EEB0696001A278A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83F354801EEB0696001A278A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -375,7 +376,7 @@
 				8354134D1F82F04A000A70CB /* Settings */,
 				8340595F203F2B6900ECFF99 /* Welcome (Old) */,
 				8340595D203F2B1B00ECFF99 /* Tab (Old) */,
-				8340595C203F2B1400ECFF99 /* Search */,
+				8340595C203F2B1400ECFF99 /* Search (Unused) */,
 				8340595B203F2B0C00ECFF99 /* Favorites */,
 				8340595A203F2B0700ECFF99 /* Home */,
 				8302AE2C1FC3EA6E007F693A /* Details */,
@@ -401,12 +402,12 @@
 			path = Favorites;
 			sourceTree = "<group>";
 		};
-		8340595C203F2B1400ECFF99 /* Search */ = {
+		8340595C203F2B1400ECFF99 /* Search (Unused) */ = {
 			isa = PBXGroup;
 			children = (
 				8342E17F1EED87170079888F /* Search.swift */,
 			);
-			path = Search;
+			path = "Search (Unused)";
 			sourceTree = "<group>";
 		};
 		8340595D203F2B1B00ECFF99 /* Tab (Old) */ = {
@@ -571,6 +572,15 @@
 			path = "Favorites Filled";
 			sourceTree = "<group>";
 		};
+		83C25ECA2051F5F400D67445 /* ladeBilenTests */ = {
+			isa = PBXGroup;
+			children = (
+				83C25ECC2051F62100D67445 /* ladeBilenTest.swift */,
+				83C25ECB2051F62000D67445 /* ladeBilenTests-Bridging-Header.h */,
+			);
+			path = ladeBilenTests;
+			sourceTree = "<group>";
+		};
 		83C83A7E1FF1D3350088C10C /* Profile Xibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -599,6 +609,7 @@
 			isa = PBXGroup;
 			children = (
 				83F354751EEB0696001A278A /* ladeBilen */,
+				83C25ECA2051F5F400D67445 /* ladeBilenTests */,
 				83F354741EEB0696001A278A /* Products */,
 				A05DFF1A7DC21554909AC87E /* Pods */,
 				FB049DAA8D4B5278F5C66507 /* Frameworks */,
@@ -624,7 +635,6 @@
 				835413831F82F6B9000A70CB /* Resources */,
 				83405959203F2AFC00ECFF99 /* Views */,
 				83F354761EEB0696001A278A /* AppDelegate.swift */,
-				83F354781EEB0696001A278A /* ViewController.swift */,
 				83F3547A1EEB0696001A278A /* Main.storyboard */,
 				83F3547D1EEB0696001A278A /* Assets.xcassets */,
 				83F3547F1EEB0696001A278A /* LaunchScreen.storyboard */,
@@ -639,7 +649,7 @@
 			isa = PBXGroup;
 			children = (
 				83F9E43F203C98DE009B3788 /* Initialization.swift */,
-				832296321FEB35AC00401ECD /* Database.swift */,
+				832296321FEB35AC00401ECD /* DatabaseApp.swift */,
 				83DF00B820411990003F5691 /* Algorithms.swift */,
 				83DF00BA20411C50003F5691 /* CacheManagement.swift */,
 				837E98D3204EF923007D01D6 /* App.swift */,
@@ -741,7 +751,7 @@
 		83F3546B1EEB0696001A278A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Ludvig Ellevold";
 				TargetAttributes = {
@@ -758,6 +768,7 @@
 					83F354861EEB0697001A278A = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 2X8N6D5K7V;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 83F354721EEB0696001A278A;
 					};
@@ -883,12 +894,16 @@
 				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1035,7 +1050,6 @@
 				83C83A871FF1D70F0088C10C /* DefaultCell.swift in Sources */,
 				8342E1801EED87170079888F /* Search.swift in Sources */,
 				8362951B1FFFE85100D6C430 /* ChangeContact.swift in Sources */,
-				83F354791EEB0696001A278A /* ViewController.swift in Sources */,
 				83A54F051FD09FC3002CB5B3 /* Profile.swift in Sources */,
 				83F208251FC370D70075A2F0 /* Connector.swift in Sources */,
 				833B143E1FEDAA8C008016BA /* AppDelegate.swift in Sources */,
@@ -1071,7 +1085,7 @@
 				8385F8C71F008C8700619110 /* Login.swift in Sources */,
 				8323D4241FC77A320049D349 /* InfoCell.swift in Sources */,
 				83DE760F1FFAC4AA001EE4C6 /* ReportBug.swift in Sources */,
-				832296331FEB35AC00401ECD /* Database.swift in Sources */,
+				832296331FEB35AC00401ECD /* DatabaseApp.swift in Sources */,
 				83A463AA1FCB1659001A5916 /* CommentCell.swift in Sources */,
 				83DE76071FFAC404001EE4C6 /* ChangeAuthInfo.swift in Sources */,
 			);
@@ -1081,6 +1095,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83C25ECD2051F62100D67445 /* ladeBilenTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1179,6 +1194,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1227,6 +1243,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1267,11 +1284,25 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2X8N6D5K7V;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"${PODS_ROOT}/Firebase/Core/Sources",
+				);
 				INFOPLIST_FILE = ladeBilenTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilenTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ladeBilenTests/ladeBilenTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladeBilen.app/ladeBilen";
 			};
@@ -1283,11 +1314,24 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2X8N6D5K7V;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"${PODS_ROOT}/Firebase/Core/Sources",
+				);
 				INFOPLIST_FILE = ladeBilenTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilenTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ladeBilenTests/ladeBilenTests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladeBilen.app/ladeBilen";
 			};

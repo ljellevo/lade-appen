@@ -43,13 +43,13 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         userInfo.append(user?.nsDictionary["firstname"] as! String)
         userInfo.append(user?.nsDictionary["lastname"] as! String)
         userInfo.append(user?.nsDictionary["email"] as! String)
-        print(user?.connector)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if let index = self.tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: index, animated: true)
         }
+        user = app?.user
         userInfo = []
         userInfo.append(user?.nsDictionary["firstname"] as! String)
         userInfo.append(user?.nsDictionary["lastname"] as! String)
@@ -119,6 +119,9 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let nextViewController = segue.destination as? ChangePreferences {
             nextViewController.app = app
         }
+        if let nextViewController = segue.destination as? ReportBug {
+            nextViewController.app = app
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -157,7 +160,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let alert = UIAlertController(title: "Sletting av lagrede data", message: "Sikker på at du vil slette den lagrede dataen? Dette vil ikke logge deg ut.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ja", style: UIAlertActionStyle.default, handler: { action in
             AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
-            self.app!.cacheManagement.removeAllCache()
+            _ = self.app!.removeAllCache()
         }))
         alert.addAction(UIAlertAction(title: "Nei", style: UIAlertActionStyle.cancel, handler: nil))
         
@@ -171,7 +174,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let alert = UIAlertController(title: "Logge ut", message: "Sikker på at du vil logge ut?", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ja", style: UIAlertActionStyle.default, handler: { action in
             do{
-                try FIRAuth.auth()?.signOut()
+                try Auth.auth().signOut()
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "Login") as! Login
                 self.present(controller, animated: false, completion: { () -> Void in

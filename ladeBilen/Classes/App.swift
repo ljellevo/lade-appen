@@ -11,16 +11,16 @@ import Firebase
 import Disk
 
 class App {
-    let database = Database()
+    let database = DatabaseApp()
     var algorithms: Algorithms?
     let cacheManagement = CacheManagement()
-    let initialization = Initialization()
     
     var user: User?
     var stations: [Station] = []
     var filteredStations: [Station] = []
     var favorites: [Int:Int] = [:]
     
+    //Initialize
     func initializeApplication(done: @escaping (_ code: Int)-> Void){
         let group = DispatchGroup()
         var verificationCode: Int = -1
@@ -62,8 +62,8 @@ class App {
     }
     
     func verifyStationCache(done: @escaping ()-> Void){
-        if cacheManagement.fetchStationCache() != nil {
-            stations = cacheManagement.fetchStationCache()!
+        if fetchStationCache() != nil {
+            stations = fetchStationCache()!
             done()
         } else {
             database.getStationsFromDatabase {_ in 
@@ -72,17 +72,17 @@ class App {
         }
     }
     
-    func verifyFilteredStationsCache() {
-        if cacheManagement.fetchFilteredStationsCache() != nil{
-            filteredStations = cacheManagement.fetchFilteredStationsCache()!
+    private func verifyFilteredStationsCache() {
+        if fetchFilteredStationsCache() != nil{
+            filteredStations = fetchFilteredStationsCache()!
         } else {
             //Regn ut filtrerte stasjoner
         }
     }
     
-    func verifyFavoritesCache(done: @escaping ()-> Void){
-        if cacheManagement.fetchFavoritesCache() != [-1:-1] {
-            favorites = cacheManagement.fetchFavoritesCache()
+    private func verifyFavoritesCache(done: @escaping ()-> Void){
+        if fetchFavoritesCache() != [-1:-1] {
+            favorites = fetchFavoritesCache()
             done()
         } else {
             database.getFavoritesFromDatabase(){_ in 
@@ -91,69 +91,125 @@ class App {
         }
     }
     
-    func verifyUserCache(done: @escaping (_ code: Int)-> Void){
-        if cacheManagement.fetchUserCache() != nil{
-            user = cacheManagement.fetchUserCache()!
+    func verifyUserCache(done: @escaping (_ code: Int) -> Void){
+        if fetchUserCache() != nil{
+            user = fetchUserCache()
             done(0)
         } else {
-            print("User not stored in cache, performing database query")
-            let ref = FIRDatabase.database().reference()
-            ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
-                if let value = snapshot.value as? NSDictionary {
-                    var error: Bool = false
-                    let uid = value["uid"] as? String
-                    if uid == nil {
-                        error = true
-                    }
-                    let email = value["email"] as? String
-                    if email == nil {
-                        error = true
-                    }
-                    let firstname = value["firstname"] as? String
-                    if firstname == nil {
-                        error = true
-                    }
-                    let lastname = value["lastname"] as? String
-                    if lastname == nil {
-                        error = true
-                    }
-                    let fastcharge = value["fastCharge"] as? Bool
-                    if fastcharge == nil {
-                        error = true
-                    }
-                    let parkingfee = value["parkingFee"] as? Bool
-                    if parkingfee == nil {
-                        error = true
-                    }
-                    let cloudstorage = value["cloudStorage"] as? Bool
-                    if cloudstorage == nil {
-                        error = true
-                    }
-                    let notifications = value["notifications"] as? Bool
-                    if notifications == nil {
-                        error = true
-                    }
-                    let notificationsDuration = value["notificationsDuration"] as? Int
-                    if notificationsDuration == nil {
-                        error = true
-                    }
-                    var connector = value["connector"] as? [Int]
-                    if connector == nil {
-                        connector = []
-                    }
-                    
-                    if error == false {
-                        print("User found in database, caching and navigating to home: AppDelegate")
-                        let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
-                        self.user = user
-                        self.cacheManagement.updateUserCache(user: user)
-                        done(0)
-                        return
-                    }
+            database.fetchUserFromDatabase(){user in
+                if user != nil {
+                    self.user = user
+                    _ = self.updateUserCache()
+                    done(0)
+                } else {
+                    done(1)
                 }
-                done(1)
-            }, withCancel: nil)
+            }
         }
     }
+    
+    //CacheManagement
+    func fetchUserCache() -> User?{
+        return cacheManagement.fetchUserCache()
+    }
+    
+    func updateUserCache() -> Bool{
+        return cacheManagement.updateUserCache(user: user!)
+    }
+    
+    func fetchStationCache() -> [Station]?{
+        return cacheManagement.fetchStationCache()
+    }
+    
+    func updateStationCache() -> Bool{
+        return cacheManagement.updateStationCache(stations: stations)
+    }
+    
+    func fetchFilteredStationsCache() -> [Station]?{
+        return cacheManagement.fetchFilteredStationsCache()
+    }
+    
+    func updateFilteredStationsCache() -> Bool{
+        return cacheManagement.updateFilteredStationsCache(filteredStations: filteredStations)
+    }
+    
+    func fetchFavoritesCache() -> [Int:Int]{
+        return cacheManagement.fetchFavoritesCache()
+    }
+    
+    func updateFavoritesCache() -> Bool{
+        return cacheManagement.updateFavoriteCache(favorites: favorites)
+    }
+    
+    func removeAllCache() -> Bool{
+        return cacheManagement.removeAllCache()
+    }
+    
+    //Database
+    func getStationsFromDatabase(done: @escaping ()-> Void){
+        database.getStationsFromDatabase(done: { stations in
+            self.stations = stations
+            _ = self.updateStationCache()
+            done()
+        })
+    }
+    
+    func getFavoritesFromDatabase(done: @escaping ()-> Void){
+        database.getFavoritesFromDatabase { favorites in
+            self.favorites = favorites
+            _ = self.updateFavoritesCache()
+            done()
+        }
+    }
+    
+    func addFavoriteToDatabase(stationId: Int, done: @escaping ()-> Void){
+        database.addFavoriteToDatabase(id: stationId)
+        self.getFavoritesFromDatabase {
+            _ = self.updateFavoritesCache()
+            done()
+        }
+    }
+    
+    func removeFavoriteFromDatabase(stationId: Int, done: @escaping ()-> Void){
+        database.removeFavoriteFromDatabase(id: stationId)
+        self.getFavoritesFromDatabase {
+            _ = self.updateFavoritesCache()
+            done()
+        }
+    }
+    
+    func updateUserInDatabase(user: User){
+        database.updateUser(user: user)
+        _ = updateUserCache()
+    }
+    
+    func updateEmailForUserInDatabase(newEmail: String){
+        database.updateEmail(newEmail: newEmail)
+    }
+    
+    func updateFirstnameForUserInDatabase(newFirstname: String){
+        database.updateFirstname(newFirstname: newFirstname)
+    }
+    
+    func updateLastnameForUserInDatabase(newLastname: String){
+        database.updateLastname(newLastname: newLastname)
+    }
+    
+    func updateConnectorForUserInDatabase(connectors: [Int]){
+        database.updateConnector(connectors: connectors)
+    }
+    
+    func submitBugToDatabase(reportedText: String){
+        database.submitBugReport(reportedText: reportedText)
+    }
+    
+
+    
+
+    
+
+    
+
+    
     
 }

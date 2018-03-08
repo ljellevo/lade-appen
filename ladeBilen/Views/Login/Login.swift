@@ -14,7 +14,6 @@ import AudioToolbox
 class Login: UIViewController, UITextFieldDelegate {
     
     var app: App?
-    let database = Database()
     
     var whitePanelLeadingOffset: CGFloat?
     var whitePanelTrailingOffset: CGFloat?
@@ -64,6 +63,7 @@ class Login: UIViewController, UITextFieldDelegate {
         initializeApperance()
     }
     
+    
     override func viewWillDisappear(_ animated: Bool) {
         removeObservers()
     }
@@ -89,7 +89,7 @@ class Login: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextViewController = segue.destination as? Register{
-            nextViewController.uid = FIRAuth.auth()?.currentUser?.uid
+            nextViewController.uid = Auth.auth().currentUser?.uid
             nextViewController.email = self.inputOneTextField.text
         }
     }
@@ -104,37 +104,41 @@ class Login: UIViewController, UITextFieldDelegate {
             AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
             
         } else if(loginViewIsPresented){
-            FIRAuth.auth()?.signIn(withEmail: inputOneTextField.text!, password: inputTwoTextField.text!, completion: { (user, error) in
+            Auth.auth().signIn(withEmail: inputOneTextField.text!, password: inputTwoTextField.text!, completion: { (user, error) in
                 if (error != nil) {
                     self.inputOneTextField.setBottomBorderRed()
                     self.inputTwoTextField.setBottomBorderRed()
                     AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
                 } else {
+                    self.app?.verifyStationCache(){
+                        self.navigateUser()
+                    }
+                    /*
                     do {
                         if Disk.exists("stations.json", in: .caches) {
                             self.app!.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
                             self.navigateUser()
                         } else {
                             print("Could not find stations cache, asking database")
-                            self.database.getStationsFromDatabase {_ in 
+                            self.app?.getStationsFromDatabase {
                                 self.navigateUser()
                             }
                         }
                     } catch {
                         print("Could not retrieve stations cache, asking database")
-                        self.database.getStationsFromDatabase {_ in 
+                        self.app?.getStationsFromDatabase {
                             self.navigateUser()
                         }
                     }
+ */
                 }
             })
         } else {
             if(inputTwoTextField.text == inputThreeTextField.text){
-                FIRAuth.auth()?.createUser(withEmail: inputOneTextField.text!, password: inputTwoTextField.text!) { (user, error) in
+                Auth.auth().createUser(withEmail: inputOneTextField.text!, password: inputTwoTextField.text!) { (user, error) in
                     if (error != nil){
                         self.inputOneTextField.setBottomBorderRed()
                         AudioServicesPlaySystemSound(Constants.VIBRATION_WEAK)
-
                     } else {
                         self.performSegue(withIdentifier: "toRegister", sender: self)
                     }
@@ -150,8 +154,16 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     
     func navigateUser(){
-        let ref = FIRDatabase.database().reference()
-        ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
+        app?.verifyUserCache(){code in
+            if code == 0 {
+                self.performSegue(withIdentifier: "toHome", sender: self)
+            } else {
+              self.performSegue(withIdentifier: "toRegister", sender: self)
+            }
+        }
+        /*
+        let ref = Database.database().reference()
+        ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in
             if let value = snapshot.value as? NSDictionary {
                 var error: Bool = false
                 let uid = value["uid"] as? String
@@ -200,7 +212,7 @@ class Login: UIViewController, UITextFieldDelegate {
                     let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
                     self.app!.user = user
                     do {
-                        try Disk.save(user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
+                        try Disk.save(user, to: .caches, as: (Auth.auth().currentUser?.uid)! + ".json")
                     } catch {
                         print("User not stored in cache")
                     }
@@ -209,6 +221,7 @@ class Login: UIViewController, UITextFieldDelegate {
             }
             self.performSegue(withIdentifier: "toRegister", sender: self)
         }, withCancel: nil)
+ */
     }
  
     

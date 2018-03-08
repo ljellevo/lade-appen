@@ -14,11 +14,19 @@ target 'ladeBilen' do
   target 'ladeBilenTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'Disk', '~> 0.3.3'
   end
 
   target 'ladeBilenUITests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'Disk', '~> 0.3.3'
   end
 
 end

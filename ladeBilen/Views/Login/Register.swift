@@ -57,8 +57,8 @@ class Register: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextViewController = segue.destination as? RegisterCont{
-            nextViewController.uid = FIRAuth.auth()?.currentUser?.uid
-            nextViewController.email = FIRAuth.auth()?.currentUser?.email
+            nextViewController.uid = Auth.auth().currentUser?.uid
+            nextViewController.email = Auth.auth().currentUser?.email
             nextViewController.firstname = self.firstnameTextField.text
             nextViewController.lastname = self.lastnameTextField.text
             nextViewController.app = app

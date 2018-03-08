@@ -15,14 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        FIRApp.configure()
+        FirebaseApp.configure()
         let app = App()
         
         //UIApplication.shared.statusBarStyle = .lightContent
         
+        
         //deleteCache()
         //logOut()
-        if FIRAuth.auth()?.currentUser != nil {
+        if Auth.auth().currentUser != nil {
             app.initializeApplication(){(code: Int) -> Void in
                 print("----AppDelegate return value----")
                 print(code)
@@ -38,11 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             toLogin(app)
         }
         return true
+ 
     }
 
     func deleteCache(){
         do {
-            try Disk.remove((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches)
+            try Disk.remove((Auth.auth().currentUser?.uid)! + ".json", from: .caches)
             try Disk.remove("stations.json", from: .caches)
             print("Removed cache")
         } catch {
@@ -52,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func logOut(){
         do{
-            try FIRAuth.auth()?.signOut()
+            try Auth.auth().signOut()
         } catch {
             print ("Error")
         }

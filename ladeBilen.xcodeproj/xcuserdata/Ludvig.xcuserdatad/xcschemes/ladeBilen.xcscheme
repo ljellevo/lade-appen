@@ -33,6 +33,16 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "83F354911EEB0697001A278A"
+               BuildableName = "ladeBilenUITests.xctest"
+               BlueprintName = "ladeBilenUITests"
+               ReferencedContainer = "container:ladeBilen.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "83F354861EEB0697001A278A"
                BuildableName = "ladeBilenTests.xctest"
                BlueprintName = "ladeBilenTests"
@@ -43,9 +53,19 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83F354911EEB0697001A278A"
-               BuildableName = "ladeBilenUITests.xctest"
-               BlueprintName = "ladeBilenUITests"
+               BlueprintIdentifier = "83C25E872051F1F800D67445"
+               BuildableName = "ladeBilenUnitTests.xctest"
+               BlueprintName = "ladeBilenUnitTests"
+               ReferencedContainer = "container:ladeBilen.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "83C25E922051F47200D67445"
+               BuildableName = "ladeBilenTests copy.xctest"
+               BlueprintName = "ladeBilenTests copy"
                ReferencedContainer = "container:ladeBilen.xcodeproj">
             </BuildableReference>
          </TestableReference>

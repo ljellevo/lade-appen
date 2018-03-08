@@ -14,8 +14,8 @@ class CacheManagement {
     
     func fetchUserCache() -> User?{
         do{
-            if Disk.exists((FIRAuth.auth()?.currentUser?.uid)! + ".json", in: .caches) {
-                return try Disk.retrieve((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches, as: User.self)
+            if Disk.exists((Auth.auth().currentUser?.uid)! + ".json", in: .caches) {
+                return try Disk.retrieve((Auth.auth().currentUser?.uid)! + ".json", from: .caches, as: User.self)
                 //return true
             }
         } catch {
@@ -24,11 +24,13 @@ class CacheManagement {
         return nil
     }
     
-    func updateUserCache(user: User){
+    func updateUserCache(user: User) -> Bool{
         do {
-            try Disk.save(user, to: .caches, as: (FIRAuth.auth()?.currentUser?.uid)! + ".json")
+            try Disk.save(user, to: .caches, as: (Auth.auth().currentUser?.uid)! + ".json")
+            return true
         } catch {
             print("User cache not updated.")
+            return false
         }
     }
     
@@ -43,11 +45,13 @@ class CacheManagement {
         return nil
     }
     
-    func updateStationCache(stations: [Station]){
+    func updateStationCache(stations: [Station]) -> Bool{
         do {
             try Disk.save(stations, to: .caches, as: "stations.json")
+            return true
         } catch {
             print("Stations cache not updated.")
+            return false
         }
     }
     
@@ -63,11 +67,13 @@ class CacheManagement {
 
     }
     
-    func updateFilteredStationsCache(filteredStations: [Station]){
+    func updateFilteredStationsCache(filteredStations: [Station]) -> Bool{
         do {
             try Disk.save(filteredStations, to: .caches, as: "filteredStations.json")
+            return true
         } catch {
             print("Filtered stations cache not updated.")
+            return false
         }
     }
     
@@ -83,22 +89,26 @@ class CacheManagement {
 
     }
     
-    func updateFavoriteCache(favorites: [Int:Int]){
+    func updateFavoriteCache(favorites: [Int:Int]) -> Bool{
         do {
             try Disk.save(favorites, to: .caches, as: "favorites.json")
+            return true
         } catch {
             print("Favorite cache not updated.")
+            return false
         }
     }
     
-    func removeAllCache(){
+    func removeAllCache() -> Bool{
         do {
-            try Disk.remove((FIRAuth.auth()?.currentUser?.uid)! + ".json", from: .caches)
+            try Disk.remove((Auth.auth().currentUser?.uid)! + ".json", from: .caches)
             try Disk.remove("stations.json", from: .caches)
             try Disk.remove("favorites.json", from: .caches)
             try Disk.remove("filteredStations.json", from: .caches)
+            return true
         } catch {
             print("Cache not deleted")
         }
+        return false
     }
 }

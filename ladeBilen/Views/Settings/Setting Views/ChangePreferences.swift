@@ -61,6 +61,6 @@ class ChangePreferences: UIViewController {
         app!.user?.cloudStorage = cloudStorageSwitch.isOn
         app!.user?.notifications = notificationSwitch.isOn
         app!.user?.notificationDuration = notificationDuration
-        app!.database.updateUser(user: app!.user!)
+        app!.updateUserInDatabase(user: app!.user!)
     }
 }

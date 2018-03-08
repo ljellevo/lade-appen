@@ -61,7 +61,7 @@ class SettingsOld: UITableViewController {
     
     func logoutUser(){
         do {
-            try FIRAuth.auth()?.signOut()
+            try Auth.auth().signOut()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "Login") as! Login
             self.present(controller, animated: false, completion: { () -> Void in

@@ -11,11 +11,67 @@ import UIKit
 import Firebase
 import Disk
 
-class Database {
-    let ref = FIRDatabase.database().reference()
+class DatabaseApp {
+    let ref = Database.database().reference()
+    
+    func fetchUserFromDatabase(done: @escaping (_ user: User?)-> Void){
+        ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let value = snapshot.value as? NSDictionary {
+                var error: Bool = false
+                let uid = value["uid"] as? String
+                if uid == nil {
+                    error = true
+                }
+                let email = value["email"] as? String
+                if email == nil {
+                    error = true
+                }
+                let firstname = value["firstname"] as? String
+                if firstname == nil {
+                    error = true
+                }
+                let lastname = value["lastname"] as? String
+                if lastname == nil {
+                    error = true
+                }
+                let fastcharge = value["fastCharge"] as? Bool
+                if fastcharge == nil {
+                    error = true
+                }
+                let parkingfee = value["parkingFee"] as? Bool
+                if parkingfee == nil {
+                    error = true
+                }
+                let cloudstorage = value["cloudStorage"] as? Bool
+                if cloudstorage == nil {
+                    error = true
+                }
+                let notifications = value["notifications"] as? Bool
+                if notifications == nil {
+                    error = true
+                }
+                let notificationsDuration = value["notificationsDuration"] as? Int
+                if notificationsDuration == nil {
+                    error = true
+                }
+                var connector = value["connector"] as? [Int]
+                if connector == nil {
+                    connector = []
+                }
+                
+                if error == false {
+                    print("User found in database, caching and navigating to home: AppDelegate")
+                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
+                    done(user)
+                } else {
+                    done(nil)
+                }
+            }
+        }, withCancel: nil)
+    }
     
     func updateUser(user: User){
-        ref.child("User_Info").child((FIRAuth.auth()?.currentUser?.uid)!).setValue(
+        ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).setValue(
             ["uid": user.uid as String!,
              "email": user.email as String!,
              "firstname": user.firstname as String!,
@@ -31,39 +87,37 @@ class Database {
     
     
     func updateEmail(newEmail: String){
-        ref.child("User_Info/" + (FIRAuth.auth()?.currentUser?.uid)! + "/email").setValue(newEmail)
+        ref.child("User_Info/" + (Auth.auth().currentUser?.uid)! + "/email").setValue(newEmail)
     }
     
     func updateFirstname(newFirstname: String){
-        ref.child("User_Info/" + (FIRAuth.auth()?.currentUser?.uid)! + "/firstname").setValue(newFirstname)
+        ref.child("User_Info/" + (Auth.auth().currentUser?.uid)! + "/firstname").setValue(newFirstname)
     }
     
     func updateLastname(newLastname: String){
-        ref.child("User_Info/" + (FIRAuth.auth()?.currentUser?.uid)! + "/lastname").setValue(newLastname)
+        ref.child("User_Info/" + (Auth.auth().currentUser?.uid)! + "/lastname").setValue(newLastname)
     }
     
     func updateConnector(connectors: [Int]){
-        ref.child("User_Info/" + (FIRAuth.auth()?.currentUser?.uid)! + "/connector").setValue(connectors)
+        ref.child("User_Info/" + (Auth.auth().currentUser?.uid)! + "/connector").setValue(connectors)
     }
     
     func submitBugReport(reportedText: String){
         ref.child("customer_service").child("reported_bugs").childByAutoId().setValue(
-            ["uid": (FIRAuth.auth()?.currentUser?.uid)!,
-             "email": (FIRAuth.auth()?.currentUser?.email)!,
+            ["uid": (Auth.auth().currentUser?.uid)!,
+             "email": (Auth.auth()?.currentUser?.email)!,
              "Report": reportedText]
         )
     }
     
     func getStationsFromDatabase(done: @escaping (_ stations: [Station])-> Void){
         var stations: [Station] = []
-        let ref = FIRDatabase.database().reference()
         ref.child("stations").observe(.value, with: { (snapshot) in
             DispatchQueue.global().async {
                 if let dictionary = snapshot.value as? [String:AnyObject]{
                     for children in dictionary{
                         let eachStation = children.value as? [String: AnyObject]
                         let station = Station(dictionary: eachStation!)
-                        //stations.append(station)
                         stations.append(station)
                     }
                 }
@@ -77,14 +131,12 @@ class Database {
     
     func getFavoritesFromDatabase(done: @escaping (_ favorites: [Int:Int])-> Void){
         var favorites: [Int:Int] = [:]
-        let ref = FIRDatabase.database().reference()
-        ref.child("favorites").child((FIRAuth.auth()?.currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("favorites").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
             DispatchQueue.global().async {
                 if let dictionary = snapshot.value as? [String:AnyObject]{
                     for children in dictionary{
                         let eachStation = children.value as? [String: AnyObject]
                         favorites.updateValue(eachStation!["id"] as! Int, forKey: eachStation!["id"] as! Int)
-                        //favorites.append(eachStation!["id"] as! Int)
                     }
                 }
                 DispatchQueue.main.async {
@@ -94,15 +146,15 @@ class Database {
         }, withCancel: nil)
     }
     
-    func addFavoriteInDatabase(id: Int){
-        ref.child("favorites").child((FIRAuth.auth()?.currentUser?.uid)!).child(String(id)).setValue(
+    func addFavoriteToDatabase(id: Int){
+        ref.child("favorites").child((Auth.auth().currentUser?.uid)!).child(String(id)).setValue(
             ["id": id]
         )
-        getFavoritesFromDatabase {_ in}
     }
     
-    func removeFavoriteInDatabase(id: Int){
-        ref.child("favorites").child((FIRAuth.auth()?.currentUser?.uid)!).child(String(id)).removeValue()
-        getFavoritesFromDatabase {_ in}
+    func removeFavoriteFromDatabase(id: Int){
+        ref.child("favorites").child((Auth.auth().currentUser?.uid)!).child(String(id)).removeValue()
     }
+    
+    
 }
