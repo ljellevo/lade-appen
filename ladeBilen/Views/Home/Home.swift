@@ -16,7 +16,6 @@ import Disk
 
 class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource{
 
-    //Checking git
     var app: App?
     
     var locationManager: CLLocationManager = CLLocationManager()
