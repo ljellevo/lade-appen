@@ -49,7 +49,16 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        filteredStations = app!.filteredStations
+        if app == nil {
+            print("App er nil")
+        }
+        
+        if app!.filteredStations.count > 0 {
+            filteredStations = app!.filteredStations
+        } else {
+            app!.updateConnectorForUserInDatabase(connectors: app!.user!.connector!, willFilterStations: true)
+            filteredStations = app!.filteredStations
+        }
         mapWindow.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
@@ -66,22 +75,18 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         self.definesPresentationContext = true
     }
     
-    
-
-
-    
-    func setupNavigationBar() {
-        let searchBarContainer = SearchBarContainerView(customSearchBar: searchController.searchBar)
-        searchBarContainer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
-        navigationItem.titleView = searchBarContainer
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         filteredStations = app!.filteredStations
         self.addAnnotationsToMap()
         searchController.searchBar.sizeToFit()
     }
 
+    func setupNavigationBar() {
+        let searchBarContainer = SearchBarContainerView(customSearchBar: searchController.searchBar)
+        searchBarContainer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
+        navigationItem.titleView = searchBarContainer
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredStations!.count
@@ -103,6 +108,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         performSegue(withIdentifier: "toDetails", sender: self)
     }
     
+    //Søkealgoritmen
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
             tableViewStack.isHidden = false
@@ -268,8 +274,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     @IBAction func toFavorites(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "toFavorites", sender: self)
     }
-    
-    
 }
 
 

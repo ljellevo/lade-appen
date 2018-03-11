@@ -64,15 +64,6 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
         return connectorIndex.count
     }
     
-    /*
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if connector.index(of: connectorIndex[indexPath.row]) != nil {
-            cell.accessoryType = .checkmark
-            tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
-        }
-    }
- */
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "connectorsCells", for: indexPath)
@@ -109,33 +100,21 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
         print(connector)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nextViewController = segue.destination as? NavigationHome {
+            let home = nextViewController.viewControllers.first as! Home
+            home.app = app
+        }
+    }
+    
     @IBAction func finishedButton(_ sender: UIButton) {
         if connector.count != 0 {
             let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudStorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector)
             app!.user = user
             app!.updateUserInDatabase(user: user)
-            app!.verifyStationCache {
+            app!.initializeApplication(done: {_ in
                 self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
-            }
-            /*
-            do {
-                if Disk.exists("stations.json", in: .caches) {
-                    app!.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
-                    print("Stations is cached")
-                    performSegue(withIdentifier: "toHomeFromRegister", sender: self)
-                } else {
-                    print("Could not find stations cache, asking database")
-                    app!.database.getStationsFromDatabase {_ in
-                        self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
-                    }
-                }
-            } catch {
-                print("Could not retrieve stations cache, asking database")
-                app!.database.getStationsFromDatabase {_ in
-                    self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
-                }
-            }
- */
+            })
         } else {
           AudioServicesPlaySystemSound(Constants.VIBRATION_WEAK)
         }

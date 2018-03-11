@@ -53,6 +53,11 @@ class Login: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if app == nil {
+            print("App er nil")
+        } else {
+            print("App er ikke nil")
+        }
         inputOneTextField.delegate = self
         inputTwoTextField.delegate = self
         initialLoginView()
@@ -91,6 +96,10 @@ class Login: UIViewController, UITextFieldDelegate {
         if let nextViewController = segue.destination as? Register{
             nextViewController.uid = Auth.auth().currentUser?.uid
             nextViewController.email = self.inputOneTextField.text
+            nextViewController.app = app
+        } else if let nextViewController = segue.destination as? NavigationHome {
+            let home = nextViewController.viewControllers.first as! Home
+            home.app = app
         }
     }
     
@@ -113,24 +122,6 @@ class Login: UIViewController, UITextFieldDelegate {
                     self.app?.verifyStationCache(){
                         self.navigateUser()
                     }
-                    /*
-                    do {
-                        if Disk.exists("stations.json", in: .caches) {
-                            self.app!.stations = try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
-                            self.navigateUser()
-                        } else {
-                            print("Could not find stations cache, asking database")
-                            self.app?.getStationsFromDatabase {
-                                self.navigateUser()
-                            }
-                        }
-                    } catch {
-                        print("Could not retrieve stations cache, asking database")
-                        self.app?.getStationsFromDatabase {
-                            self.navigateUser()
-                        }
-                    }
- */
                 }
             })
         } else {
@@ -148,80 +139,19 @@ class Login: UIViewController, UITextFieldDelegate {
                 inputThreeTextField.setBottomBorderRed()
                 AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
             }
-
-                
         }
     }
     
     func navigateUser(){
         app?.verifyUserCache(){code in
             if code == 0 {
-                self.performSegue(withIdentifier: "toHome", sender: self)
+                self.app!.initializeApplication(done: {_ in
+                    self.performSegue(withIdentifier: "toHome", sender: self)
+                })
             } else {
-              self.performSegue(withIdentifier: "toRegister", sender: self)
+                self.performSegue(withIdentifier: "toRegister", sender: self)
             }
         }
-        /*
-        let ref = Database.database().reference()
-        ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in
-            if let value = snapshot.value as? NSDictionary {
-                var error: Bool = false
-                let uid = value["uid"] as? String
-                if uid == nil {
-                    error = true
-                }
-                let email = value["email"] as? String
-                if email == nil {
-                    error = true
-                }
-                let firstname = value["firstname"] as? String
-                if firstname == nil {
-                    error = true
-                }
-                let lastname = value["lastname"] as? String
-                if lastname == nil {
-                    error = true
-                }
-                let fastcharge = value["fastCharge"] as? Bool
-                if fastcharge == nil {
-                    error = true
-                }
-                let parkingfee = value["parkingFee"] as? Bool
-                if parkingfee == nil {
-                    error = true
-                }
-                let cloudstorage = value["cloudStorage"] as? Bool
-                if cloudstorage == nil {
-                    error = true
-                }
-                let notifications = value["notifications"] as? Bool
-                if notifications == nil {
-                    error = true
-                }
-                let notificationsDuration = value["notificationsDuration"] as? Int
-                if notificationsDuration == nil {
-                    error = true
-                }
-                let connector = value["connector"] as? [Int]
-                if connector == nil {
-                    error = true
-                }
-                
-                if error == false {
-                    print("User found in database, caching and navigating to home")
-                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
-                    self.app!.user = user
-                    do {
-                        try Disk.save(user, to: .caches, as: (Auth.auth().currentUser?.uid)! + ".json")
-                    } catch {
-                        print("User not stored in cache")
-                    }
-                    self.performSegue(withIdentifier: "toHome", sender: self)
-                }
-            }
-            self.performSegue(withIdentifier: "toRegister", sender: self)
-        }, withCancel: nil)
- */
     }
  
     

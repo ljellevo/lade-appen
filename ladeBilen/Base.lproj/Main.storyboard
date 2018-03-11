@@ -871,6 +871,7 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="fHQ-m9-XD3"/>
+                                <exclude reference="bcT-jA-b1i"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="KEs-6v-AnL"/>
@@ -1840,7 +1841,7 @@
         <image name="ProfileSet" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="d0I-ZH-wrF"/>
+        <segue reference="PEw-8c-Os5"/>
         <segue reference="HZU-tn-49a"/>
     </inferredMetricsTieBreakers>
 </document>

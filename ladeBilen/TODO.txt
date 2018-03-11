@@ -1,6 +1,11 @@
 Generelt:
 Må gå igjennom hver viewcontroller og sjekke om både database implementasjonen og cache implementasjonen fungerer.
 
+Login:
+Må fetche stasjonene før man blir sendt tim Home.
+Fikse glemt passord knappen.
+Fikse allerede bruker når login pannel er aktivert.
+
 Profil:
 Laste ned ny cache. Finne ut hvordan structs er persiste igjennom standby/bakgrunns kjøring.
 
@@ -17,6 +22,8 @@ Når den henter stasjoner fra databasen så må appen refreshe mapview slik at m
 Implemenetere en extention som varsler brukeren når appen henter data fra databasen. Denne kan ligge på Home.
 Søk må sjekke flere parametere en navnet på stasjonen.
 Tableview som viser søkeresultatene må fikses.
+Bytte ut knappen på info view og legge inne tap gesture.
+Legge inn long press gesture på markerene på mapkit.
 
 
 
