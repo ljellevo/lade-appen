@@ -42,16 +42,7 @@
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                         </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9ff-xW-6Xj">
-                                                <rect key="frame" x="0.0" y="10" width="320" height="157"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="157"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </view>
-                                            </collectionViewCell>
-                                        </cells>
+                                        <cells/>
                                     </collectionView>
                                 </subviews>
                             </stackView>
@@ -889,12 +880,12 @@
                     <navigationItem key="navigationItem" title="Ladestasjoner" id="vwX-8P-S8t">
                         <barButtonItem key="backBarButtonItem" title="Kart" id="nHy-K6-z2I"/>
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" image="ProfileSet" id="Osa-Y9-cNL">
+                            <barButtonItem image="ProfileSet" id="Osa-Y9-cNL">
                                 <connections>
                                     <action selector="toProfile:" destination="BYZ-38-t0r" id="ne3-OQ-Awp"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="FavoriteSet" id="2ey-C1-Q1S">
+                            <barButtonItem image="FavoriteSet" id="2ey-C1-Q1S">
                                 <connections>
                                     <action selector="toFavorites:" destination="BYZ-38-t0r" id="qRB-da-ZPL"/>
                                 </connections>

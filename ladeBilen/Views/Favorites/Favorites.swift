@@ -35,7 +35,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     func populateFavoritesArray(){
         favoriteArray = []
         followingArray = []
-        for station in app!.filteredStations{
+        for station in app!.stations{
             if app!.favorites.keys.contains(station.id!) {
                 self.favoriteArray.append(station)
                 self.followingArray.append(station)
@@ -85,7 +85,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                 cell.stationNameLabel.text = favoriteArray[row].name
                 cell.stationStreetLabel.text = favoriteArray[row].street
                 cell.stationCityLabel.text = favoriteArray[row].city
-                cell.availableContactsLabel.text = "Ledig/" + app!.algorithms!.findAvailableContacts(station: favoriteArray[row]).description
+                cell.availableContactsLabel.text = "Ledig/" + app!.findAvailableContacts(station: favoriteArray[row]).description
                 cell.station = favoriteArray[row]
                 cell = addShadowFavoritesCell(cell: cell)
                 return cell
@@ -98,7 +98,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             cell.stationNameLabel.text = favoriteArray[indexPath.row].name
             cell.stationStreetLabel.text = favoriteArray[indexPath.row].street
             cell.stationCityLabel.text = favoriteArray[indexPath.row].city
-            cell.availableContactsLabel.text = "Ledig/" + app!.algorithms!.findAvailableContacts(station: favoriteArray[indexPath.row]).description
+            cell.availableContactsLabel.text = "Ledig/" + app!.findAvailableContacts(station: favoriteArray[indexPath.row]).description
             cell.station = favoriteArray[indexPath.row]
             cell = addShadowFavoritesCell(cell: cell)
             return cell
@@ -174,6 +174,7 @@ extension Favorites: CollectionViewCellDelegate {
         if segue.identifier == "toDetailsFromFavorites"{
             if let nextViewController = segue.destination as? Details{
                 nextViewController.station = station
+                nextViewController.app = app
             }
         }
     }

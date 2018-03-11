@@ -12,7 +12,7 @@ import Disk
 
 class App {
     let database = DatabaseApp()
-    var algorithms: Algorithms?
+    var algorithms = Algorithms()
     let cacheManagement = CacheManagement()
     
     var user: User?
@@ -24,78 +24,97 @@ class App {
     func initializeApplication(done: @escaping (_ code: Int)-> Void){
         let group = DispatchGroup()
         var verificationCode: Int = -1
+        let startDateTotal: NSDate = NSDate()
+        
+        
         group.enter()
+        var startDate: NSDate = NSDate()
         verifyUserCache(){(code: Int?) -> Void in
-            print("User verified")
+            let endDate: NSDate = NSDate()
+            let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
+            print("User verified: seconds: \(timeInterval)")
             verificationCode = code!
             DispatchQueue.main.async {
                 group.leave()
             }
         }
+
+        
+        group.enter()
+        startDate = NSDate()
+        self.verifyStationCache(){
+            let endDate: NSDate = NSDate()
+            let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
+            print("Stations verified: seconds: \(timeInterval)")
+            DispatchQueue.main.async {
+                group.leave()
+            }
+        }
+        
+        group.enter()
+        startDate = NSDate()
+        self.verifyFavoritesCache {
+            let endDate: NSDate = NSDate()
+            let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
+            print("Favorites verified: seconds: \(timeInterval)")
+            DispatchQueue.main.async {
+                group.leave()
+            }
+        }
+        
+        startDate = NSDate()
         group.notify(queue: .main) {
-            print("User verified")
-            let infoGroup = DispatchGroup()
-            
-            infoGroup.enter()
-            self.verifyStationCache(){
-                print("Stations verified")
-                DispatchQueue.main.async {
-                    infoGroup.leave()
-                }
-            }
-            
-            infoGroup.enter()
-            self.verifyFavoritesCache {
-                print("Favorites verified")
-                DispatchQueue.main.async {
-                    infoGroup.leave()
-                }
-            }
-            
-            infoGroup.notify(queue: .main) {
-                print("All done")
-                self.verifyFilteredStationsCache()
-                self.algorithms = Algorithms(user: self.user!, stations: self.stations, filteredStations: self.filteredStations, favorites: self.favorites)
-                done(verificationCode)
-            }
+            print("All done")
+            self.verifyFilteredStationsCache()
+            let endDate: NSDate = NSDate()
+            var timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
+            print("FilteredStations verified: seconds: \(timeInterval)")
+            timeInterval = endDate.timeIntervalSince(startDateTotal as Date)
+            print("Done: seconds: \(timeInterval)")
+            done(verificationCode)
         }
     }
     
     func verifyStationCache(done: @escaping ()-> Void){
-        if fetchStationCache() != nil {
-            stations = fetchStationCache()!
+        if let stations = fetchStationCache(){
+            self.stations = stations
             done()
         } else {
-            database.getStationsFromDatabase {_ in 
+            print("Stations not cached, fetching from database")
+            getStationsFromDatabase {
                 done()
             }
         }
     }
     
     private func verifyFilteredStationsCache() {
-        if fetchFilteredStationsCache() != nil{
-            filteredStations = fetchFilteredStationsCache()!
+        if let filteredStations = fetchFilteredStationsCache(){
+            self.filteredStations = filteredStations
         } else {
-            //Regn ut filtrerte stasjoner
+            print("Filtered stations not cached")
+            filteredStations = algorithms.filterStations(stations: stations, user: user!)
+            _ = self.updateFilteredStationsCache()
         }
     }
     
     private func verifyFavoritesCache(done: @escaping ()-> Void){
-        if fetchFavoritesCache() != [-1:-1] {
+        if fetchFavoritesCache() != [-1:-1]{
             favorites = fetchFavoritesCache()
             done()
         } else {
-            database.getFavoritesFromDatabase(){_ in 
+            print("Favorites not cached")
+            getFavoritesFromDatabase(){
                 done()
             }
         }
     }
     
     func verifyUserCache(done: @escaping (_ code: Int) -> Void){
-        if fetchUserCache() != nil{
-            user = fetchUserCache()
+        if let user = fetchUserCache(){
+            self.user = user
             done(0)
         } else {
+            print("User not cached")
             database.fetchUserFromDatabase(){user in
                 if user != nil {
                     self.user = user
@@ -179,37 +198,51 @@ class App {
     }
     
     func updateUserInDatabase(user: User){
+        self.user = user
         database.updateUser(user: user)
         _ = updateUserCache()
     }
     
     func updateEmailForUserInDatabase(newEmail: String){
+        user!.email = newEmail
         database.updateEmail(newEmail: newEmail)
+        _ = updateUserCache()
     }
     
     func updateFirstnameForUserInDatabase(newFirstname: String){
+        user!.firstname = newFirstname
         database.updateFirstname(newFirstname: newFirstname)
+        _ = updateUserCache()
     }
     
     func updateLastnameForUserInDatabase(newLastname: String){
+        user!.lastname = newLastname
         database.updateLastname(newLastname: newLastname)
+        _ = updateUserCache()
     }
     
-    func updateConnectorForUserInDatabase(connectors: [Int]){
+    func updateConnectorForUserInDatabase(connectors: [Int], willFilterStations: Bool){
+        user!.connector = connectors
         database.updateConnector(connectors: connectors)
+        if willFilterStations{
+            findFilteredStations()
+        }
+    }
+    
+    private func findFilteredStations(){
+        DispatchQueue.global().async {
+            self.filteredStations = self.algorithms.filterStations(stations: self.stations, user: self.user!)
+            _ = self.updateUserCache()
+            _ = self.updateFilteredStationsCache()
+        }
     }
     
     func submitBugToDatabase(reportedText: String){
         database.submitBugReport(reportedText: reportedText)
     }
     
-
-    
-
-    
-
-    
-
-    
-    
+    //Algorithms
+    func findAvailableContacts(station: Station) -> Int{
+        return algorithms.findAvailableContacts(station: station, user: user!)
+    } 
 }

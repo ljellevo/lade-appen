@@ -9,23 +9,10 @@
 import Foundation
 
 class Algorithms {
-    let user: User?
-    let stations: [Station]?
-    var filteredStations: [Station]?
-    var favorites: [Int:Int] = [:]
-    let cacheManagement = CacheManagement()
-    
-    init(user: User, stations: [Station], filteredStations: [Station], favorites: [Int:Int]) {
-        self.user = user
-        self.stations = stations
-        self.filteredStations = filteredStations
-        self.favorites = favorites
-    }
-    
+
     //General (Run when fetching stations) -> Should be server side
-    func checkIfApplicable(station: Station) -> Bool{
-        _ = user?.connector
-        for connector in (user?.connector)! {
+    func checkIfApplicable(station: Station, user: User) -> Bool{
+        for connector in (user.connector)! {
             for conn in station.conn {
                 if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
                     return true
@@ -35,14 +22,14 @@ class Algorithms {
         return false
     }
     
-    func filterStations(){
-        var temp: [Station] = []
-        for station in stations! {
-            if checkIfApplicable(station: station) {
-                temp.append(station)
+    func filterStations(stations: [Station], user: User) -> [Station]{
+        var filteredStations: [Station] = []
+        for station in stations {
+            if checkIfApplicable(station: station, user: user) {
+                filteredStations.append(station)
             }
         }
-        filteredStations = temp        
+        return filteredStations
     }
 
     
@@ -56,10 +43,10 @@ class Algorithms {
         return -1
     }
     
-    func findAvailableContacts(station: Station) -> Int{
+    func findAvailableContacts(station: Station, user: User) -> Int{
         var counter: Int = 0
         for conn in station.conn {
-            for connector in user!.connector!{
+            for connector in user.connector!{
                 if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
                     counter += 1
                 }
@@ -73,7 +60,6 @@ class Algorithms {
     }
     
     func populateFavoritesArray(){
-        _ = favorites
-        _ = stations
+
     }  
 }

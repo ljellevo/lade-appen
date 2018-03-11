@@ -16,7 +16,6 @@ Implemenetere en extention som varsler brukeren når appen henter data fra datab
 
 
 Forbedringer:
-Ha en egen GlobalResource for stasjoner som oppfyller kravene og en som har alle stasjonene. Dermed vil man kunne filtrere ut de stasjonene som skal vises kjappere og man vil bruke mindre mobildata.
 
 Samle markerene slik at favoritter syntes når man zoomer ut
 

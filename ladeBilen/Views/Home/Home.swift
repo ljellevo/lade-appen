@@ -77,6 +77,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        filteredStations = app!.filteredStations
         self.addAnnotationsToMap()
         searchController.searchBar.sizeToFit()
     }
