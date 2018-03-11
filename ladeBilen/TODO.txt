@@ -7,11 +7,16 @@ Laste ned ny cache. Finne ut hvordan structs er persiste igjennom standby/bakgru
 
 Favoritter:
 Prepend favoritter slik at de havner øverst på listen.
-Kunne sortere favoritter. (Alg i algoritmer klassen)
+Kunne sortere favoritter. (Alg i algoritmer klassen).
+Mulig bug:
+Dersom man ikke har noen favoritter så vises ikke hvilke stasjoner man følger.
+
 
 Home:
 Når den henter stasjoner fra databasen så må appen refreshe mapview slik at markerene blir lagt til etter at alle er hentet. Dette gjelder kunn når cache har blitt slettet.
 Implemenetere en extention som varsler brukeren når appen henter data fra databasen. Denne kan ligge på Home.
+Søk må sjekke flere parametere en navnet på stasjonen.
+Tableview som viser søkeresultatene må fikses.
 
 
 

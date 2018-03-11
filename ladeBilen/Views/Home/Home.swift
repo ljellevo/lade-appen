@@ -159,7 +159,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 self.mapWindow.addAnnotation(annotation)
             }
         }
-        print("Added annotations")
     }
     
     
@@ -173,7 +172,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 dequeuedView.annotation = annotation
                 dequeuedView.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
                 if app!.favorites.keys.contains(annotation.id!) {
-                    print("Match")
                     dequeuedView.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
                 }
                 view = dequeuedView
@@ -181,7 +179,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
                 if app!.favorites.keys.contains(annotation.id!) {
-                    print("Match")
                     view.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
                 }
             }
@@ -238,9 +235,9 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetails"{
             var station: Station?
-            for i in 0..<filteredStations!.count{
-                if filteredStations![i].id == self.id {
-                    station = filteredStations![i]
+            for filteredStation in filteredStations!{
+                if filteredStation.id == self.id {
+                    station = filteredStation
                     break
                 }
             }
