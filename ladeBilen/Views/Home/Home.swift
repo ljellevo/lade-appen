@@ -274,6 +274,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     @IBAction func infoViewTapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "toDetails", sender: self)
+        let test = "Denne committen skal være sikker"
     }
 }
 
