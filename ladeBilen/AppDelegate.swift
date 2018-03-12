@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         //deleteCache()
-        logOut()
+        //logOut()
         if Auth.auth().currentUser != nil {
             app.initializeApplication(){(code: Int) -> Void in
                 print("----AppDelegate return value----")
