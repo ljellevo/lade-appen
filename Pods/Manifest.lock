@@ -38,6 +38,7 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
   - GTMSessionFetcher/Core (1.1.14)
   - leveldb-library (1.20)
+  - MapKitGoogleStyler (0.1.1)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - MapKitGoogleStyler
 
 SPEC CHECKSUMS:
   Disk: d1f55cd61f6ca20f368232d0c6e37e3c3dfcb63e
@@ -61,8 +63,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: 390ea358e5a0d0133153806f744662dad933d06b
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  MapKitGoogleStyler: 8efdceb664fc1748a62a9e3b50a34b67a34247bc
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: cca4e5a8460e4c87b731bacff9a66b7777d33205
+PODFILE CHECKSUM: 2e7512e050007f845cda7a54bf20be19a442f7c2
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

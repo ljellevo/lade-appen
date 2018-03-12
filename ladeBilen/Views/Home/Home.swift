@@ -14,6 +14,7 @@ import Disk
 
 
 
+
 class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource{
 
     var app: App?
@@ -48,11 +49,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        if app == nil {
-            print("App er nil")
-        }
-        
+        super.viewDidLoad()        
         if app!.filteredStations.count > 0 {
             filteredStations = app!.filteredStations
         } else {
@@ -122,6 +119,8 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         tableView.reloadData()
     }
     
+    
+    
     func initializeButtons(){
         nearestButton.layer.cornerRadius = 25
         nearestButton.clipsToBounds = true
@@ -138,7 +137,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     }
     
     func initializeView(){
-        infoViewPannel.layer.cornerRadius = 20
+        infoViewPannel.layer.cornerRadius = 10
         infoViewPannel.layer.borderWidth = 0.5
         infoViewPannel.layer.borderColor = UIColor.lightGray.cgColor
         infoViewPannel.layer.masksToBounds = true
@@ -265,17 +264,18 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         performSegue(withIdentifier: "toDetails", sender: self)
     }
     
-    
     @IBAction func toProfile(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "toProfile", sender: self)
     }
     
-    
     @IBAction func toFavorites(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "toFavorites", sender: self)
     }
+    
+    @IBAction func infoViewTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "toDetails", sender: self)
+    }
 }
-
 
 
 

@@ -10,7 +10,8 @@ target 'ladeBilen' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Disk', '~> 0.3.3'
-
+  pod 'MapKitGoogleStyler'
+  
   target 'ladeBilenTests' do
     inherit! :search_paths
     # Pods for testing
@@ -18,6 +19,7 @@ target 'ladeBilen' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Disk', '~> 0.3.3'
+    pod 'MapKitGoogleStyler'
   end
 
   target 'ladeBilenUITests' do
@@ -26,7 +28,6 @@ target 'ladeBilen' do
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
-    pod 'Disk', '~> 0.3.3'
   end
 
 end
