@@ -4,5 +4,5 @@ xcode_project: ladeBilen.xcworkspace #3
 xcode_scheme: ladeBilen #4
 xcode_sdk: iphonesimulator11.2 #5
 
-script: xcodebuild clean && xcodebuild build -sdk iphonesimulator11.2 -project ladeBilen.xcworkspace -scheme ladeBilen CODE_SIGNING_REQUIRED=NO
+script: xcodebuild clean && xcodebuild build -sdk iphonesimulator11.2 -workspace ladeBilen.xcworkspace -scheme ladeBilen CODE_SIGNING_REQUIRED=NO
 
