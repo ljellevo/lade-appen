@@ -76,6 +76,7 @@
 		83821E671FCB66EF009D304D /* Charger-Icon-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 83821E641FCB66EF009D304D /* Charger-Icon-75.png */; };
 		8385F8C71F008C8700619110 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8385F8C51F007ABC00619110 /* Login.swift */; };
 		838A827F2056D55500E6AF1D /* overlay.json in Resources */ = {isa = PBXBuildFile; fileRef = 838A827E2056D55500E6AF1D /* overlay.json */; };
+		838A82812056DD4A00E6AF1D /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 838A82802056DD4A00E6AF1D /* .travis.yml */; };
 		83A463AA1FCB1659001A5916 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A463A81FCB1659001A5916 /* CommentCell.swift */; };
 		83A463AB1FCB1659001A5916 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A463A91FCB1659001A5916 /* CommentCell.xib */; };
 		83A54F051FD09FC3002CB5B3 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A54F041FD09FC3002CB5B3 /* Profile.swift */; };
@@ -203,6 +204,7 @@
 		83821E641FCB66EF009D304D /* Charger-Icon-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Charger-Icon-75.png"; sourceTree = "<group>"; };
 		8385F8C51F007ABC00619110 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		838A827E2056D55500E6AF1D /* overlay.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = overlay.json; sourceTree = "<group>"; };
+		838A82802056DD4A00E6AF1D /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
 		83A463A81FCB1659001A5916 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		83A463A91FCB1659001A5916 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		83A54F041FD09FC3002CB5B3 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -644,6 +646,7 @@
 				83F354821EEB0696001A278A /* Info.plist */,
 				8314E22F1EF435CF00F98E3F /* GoogleService-Info.plist */,
 				83A570CE1FFC577300B98E9F /* TODO.txt */,
+				838A82802056DD4A00E6AF1D /* .travis.yml */,
 			);
 			path = ladeBilen;
 			sourceTree = "<group>";
@@ -820,6 +823,7 @@
 				835413761F82F550000A70CB /* Love_Neutral_3x.png in Resources */,
 				838A827F2056D55500E6AF1D /* overlay.json in Resources */,
 				83A926FF20420B3F0013514F /* Cancel-Icon-75.png in Resources */,
+				838A82812056DD4A00E6AF1D /* .travis.yml in Resources */,
 				835413731F82F550000A70CB /* Type_1.png in Resources */,
 				835413771F82F550000A70CB /* CCS.png in Resources */,
 				8302AE2B1FC3D074007F693A /* Pastebin.txt in Resources */,
