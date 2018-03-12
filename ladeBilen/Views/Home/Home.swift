@@ -274,6 +274,9 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     @IBAction func infoViewTapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "toDetails", sender: self)
+        //Skal sjekke om travis godkjenner denne committen
+        let test = 1
+        
     }
 }
 
