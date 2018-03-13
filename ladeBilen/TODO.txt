@@ -2,7 +2,6 @@ Generelt:
 Må gå igjennom hver viewcontroller og sjekke om både database implementasjonen og cache implementasjonen fungerer.
 
 Login:
-Må fetche stasjonene før man blir sendt tim Home.
 Fikse glemt passord knappen.
 Fikse allerede bruker når login pannel er aktivert.
 

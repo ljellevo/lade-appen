@@ -49,13 +49,18 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        filteredStations = app!.filteredStations
+
+        /*
         if app!.filteredStations.count > 0 {
             filteredStations = app!.filteredStations
         } else {
             app!.updateConnectorForUserInDatabase(connectors: app!.user!.connector!, willFilterStations: true)
             filteredStations = app!.filteredStations
         }
+ */
+ 
         mapWindow.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
