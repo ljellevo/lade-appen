@@ -205,7 +205,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let anno = view.annotation as? Annotation {
-            
             id = anno.id!
             print(id!)
             nameLabel.text = anno.title

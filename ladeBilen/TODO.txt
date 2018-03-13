@@ -1,17 +1,37 @@
-Generelt:
-Må gå igjennom hver viewcontroller og sjekke om både database implementasjonen og cache implementasjonen fungerer.
-
 Login:
 Fikse glemt passord knappen.
 Fikse allerede bruker når login pannel er aktivert.
 
 Profil:
 Laste ned ny cache. Finne ut hvordan structs er persiste igjennom standby/bakgrunns kjøring.
+Navigere bruker tilbake når nytt parameter er satt i nytt navn, etternavn, e-post og passord.
+Visuell feedback på om/at endringen er oppdatert.
+
+Rapporter feil:
+Vise at det er et textfield, eventuelt gjøre den til first responder. Nå er det ikke lett å se at det er et textfield der.
+
+Details:
+Fjerne scroll bar i oversikten over kontakter.
+Legge til antall ledige kontakter for gitt stasjon.
+Må sjekke om stasjonen er kompatibel.
+Må kunne si noe om hvor hurtig laderen er.
+Legge inn feedback på at stasjonen overvåkes hvis den har realtime.
+Dersom det ikke er noen kommetarer så må ikke en tom kommentar vises.
+Få bedre ikoner for de forskjellige konntaktene.
+Implementere følging og fjerning av følging av stasjonen.
 
 
 Favoritter:
 Prepend favoritter slik at de havner øverst på listen.
 Kunne sortere favoritter. (Alg i algoritmer klassen).
+Visuell feedback på at appen lytter etter endringer.
+Legge til telling av hvor mange som følger stasjonen. Dette må lyttes.
+Legge til algoritme for å avgjøre hvor høy etterspørselen er etter stasjonen. Dette må lyttes.
+Gjøre spørring etter hvor mange kompatible kontakter som er tilgjenglig. Her må det også lyttes.
+Legge til algoritme for regning av timestamp slik at man kan se hvor mye lenger man følger stasjonen.
+Implementere fjerning av følging av stasjonen.
+
+
 Mulig bug:
 Dersom man ikke har noen favoritter så vises ikke hvilke stasjoner man følger.
 
@@ -21,13 +41,35 @@ Når den henter stasjoner fra databasen så må appen refreshe mapview slik at m
 Implemenetere en extention som varsler brukeren når appen henter data fra databasen. Denne kan ligge på Home.
 Søk må sjekke flere parametere en navnet på stasjonen.
 Tableview som viser søkeresultatene må fikses.
-Bytte ut knappen på info view og legge inne tap gesture.
 Legge inn long press gesture på markerene på mapkit.
+
+App:
+Verifisere cache ved hjelp av checksum.
+
 
 
 
 Forbedringer:
+    Funksjonaliteter:
+        Details:
+            Legge til støtte for kommentarer i details.
+            Legge inn rapporter stasjon, her burde det ligge epost og tlf. nummer til kontaktperson.
+        Home:
+            Samle markerene slik at favoritter syntes når man zoomer ut.
 
-Samle markerene slik at favoritter syntes når man zoomer ut
+    Håndteringer:
+        SwiftyJSON biblioteket for bedre JSON håndtering.
+        ReactiveCocoa sin Signal er god for async håndtering.
+        Legge inn firebase sin analytics.
+
+Kilder:
+    https://github.com/futurice/ios-good-practices
+    https://github.com/github/swift-style-guide
+    https://github.com/raywenderlich/swift-style-guide
+    https://swift.org/documentation/api-design-guidelines/
+
+
+
+
 
 
