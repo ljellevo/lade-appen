@@ -58,10 +58,15 @@ class DatabaseApp {
                 if connector == nil {
                     connector = []
                 }
+                let timestamp = value["timestamp"] as? Int64
+                if timestamp == nil {
+                    error = true
+                }
                 
                 if error == false {
                     print("User found in database, caching and navigating to home: AppDelegate")
-                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!)
+                    
+                     let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!, timestamp: timestamp!)
                     done(user)
                 } else {
                     done(nil)
@@ -155,5 +160,13 @@ class DatabaseApp {
         ref.child("favorites").child((Auth.auth().currentUser?.uid)!).child(String(id)).removeValue()
     }
     
-    
+    func getUserTimestampFromDatabase(done: @escaping (_ done: Int64)-> Void){
+        ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).child("timestamp").observeSingleEvent(of: .value) { (snapshot) in
+            if let timestamp = snapshot.value as? Int64 {
+                done(timestamp)
+            } else {
+                done(-1)
+            }
+        }
+    }
 }

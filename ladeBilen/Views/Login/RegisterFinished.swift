@@ -109,7 +109,9 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBAction func finishedButton(_ sender: UIButton) {
         if connector.count != 0 {
-            let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudStorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector)
+
+            
+            let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudStorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector, timestamp: Date().getTimestamp())
             app!.user = user
             app!.updateUserInDatabase(user: user)
             app!.initializeApplication(done: {_ in

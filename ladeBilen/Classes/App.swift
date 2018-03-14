@@ -112,7 +112,23 @@ class App {
     func verifyUserCache(done: @escaping (_ code: Int) -> Void){
         if let user = fetchUserCache(){
             self.user = user
-            done(0)
+            getUserTimestampFromDatabase(done: { timestampReturned in
+                let timestamp = timestampReturned
+                if user.timestamp == timestamp {
+                    done(0)
+                } else {
+                    print("User cache not verified")
+                    self.database.fetchUserFromDatabase(){user in
+                        if user != nil {
+                            self.user = user
+                            _ = self.updateUserCache()
+                            done(0)
+                        } else {
+                            done(1)
+                        }
+                    }
+                }
+            })
         } else {
             print("User not cached")
             database.fetchUserFromDatabase(){user in
@@ -239,6 +255,12 @@ class App {
     
     func submitBugToDatabase(reportedText: String){
         database.submitBugReport(reportedText: reportedText)
+    }
+    
+    func getUserTimestampFromDatabase(done: @escaping (_ done: Int64)-> Void){
+        database.getUserTimestampFromDatabase(done: { timestamp in
+            done(timestamp)
+        })
     }
     
     //Algorithms

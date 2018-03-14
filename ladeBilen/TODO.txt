@@ -12,7 +12,14 @@ Details:
 Legge til antall ledige kontakter for gitt stasjon.
 Implementere lytting av ledige kontakter.
 Må sjekke om stasjonen er kompatibel.
+
+Må sjekke om kontakten er kompatibel.
+Fjerne highlighting av cellene til kontaktene.
+Må bytte ut kontakttype-id med kontakttype navn.
 Må kunne si noe om hvor hurtig laderen er.
+Må bytte ut chargerate label med tekst som sier enten "Standard", "Semi-hurtig" og "Hurtig."
+Fikse teksten i cellene som sier noe om kontaktene.
+"Is taken" og "Is operating" må lyttes etter for cellene til kontaktene.
 Legge inn feedback på at stasjonen overvåkes hvis den har realtime.
 Få bedre ikoner for de forskjellige konntaktene.
 Implementere følging og fjerning av følging av stasjonen.
@@ -42,10 +49,26 @@ Søk må sjekke flere parametere en navnet på stasjonen.
 Tableview som viser søkeresultatene må fikses.
 Legge inn long press gesture på markerene på mapkit.
 Gi søkefeltet en liten grå shade slik at man lettere ser at det er et søkefelt i navbaren.
+Infoview må støtte navn som må ha flere linjer.
 
 App:
-Verifisere cache ved hjelp av checksum.
+Verifisere stations cache, eventuelt fetche i bakgrunnen når appen kjører.
+Gjøre App til en singleton.
+Legge inn subscriptions for brukere i user objektet.
+    -Hente bruker objektet og legge inn subscriptions. DatabaseApp
+    -Oppdatere cache. App
 
+Endre favorites til å hente fra subscriptions istedet. Behandle bruker->subscriptions som listen over favoritter slik at man kan åpne en lytter på den.
+
+Backend:
+Må fjerne stedsnavn fra stasjonsnavn. Eks. "Fortum hurtigstasjon Lade Arena, Trondheim". Trenger ikke å stå "Trondheim" der.
+bruker -> subscription må ha både timestamp for oppdatering og for når stasjonen ble følgt.
+
+Info:
+Lytting av stasjoner man følger:
+Lytte etter endring av timestamp under bruker -> subscriptions.
+Hente nye data til stasjonen som oppdaterte seg under realtime -> stasjon.
+Sende ny data til view.
 
 
 

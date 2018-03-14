@@ -10,6 +10,7 @@
 		417FB3657C7BE2ABB8E032E3 /* Pods_ladeBilen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBE7FF5E7AF48C454404FE8B /* Pods_ladeBilen.framework */; };
 		8302AE2B1FC3D074007F693A /* Pastebin.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8302AE2A1FC3D074007F693A /* Pastebin.txt */; };
 		8302AE2E1FC3EA8C007F693A /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302AE2D1FC3EA8C007F693A /* Details.swift */; };
+		8312F7332059B832006671F1 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312F7322059B832006671F1 /* Extentions.swift */; };
 		831470861FBE465500DCD0CD /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831470851FBE465500DCD0CD /* Tab.swift */; };
 		8314708A1FBE4D7200DCD0CD /* Marker-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 831470881FBE4D7000DCD0CD /* Marker-Icon-50.png */; };
 		8314708C1FBE4DBC00DCD0CD /* Marker-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 8314708B1FBE4DBA00DCD0CD /* Marker-Icon-25.png */; };
@@ -141,6 +142,7 @@
 		71177A21211319348367BC64 /* Pods-ladeBilenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8302AE2A1FC3D074007F693A /* Pastebin.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pastebin.txt; sourceTree = "<group>"; };
 		8302AE2D1FC3EA8C007F693A /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
+		8312F7322059B832006671F1 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		831470851FBE465500DCD0CD /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		831470881FBE4D7000DCD0CD /* Marker-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Marker-Icon-50.png"; sourceTree = "<group>"; };
 		8314708B1FBE4DBA00DCD0CD /* Marker-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Marker-Icon-25.png"; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 		83B3DEEF203CAB690018AEE5 /* Favorite-Filled-Icon-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Favorite-Filled-Icon-75.png"; sourceTree = "<group>"; };
 		83B3DEF0203CAB690018AEE5 /* Favorite-Filled-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Favorite-Filled-Icon-25.png"; sourceTree = "<group>"; };
 		83B3DEF1203CAB690018AEE5 /* Favorite-Filled-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Favorite-Filled-Icon-50.png"; sourceTree = "<group>"; };
+		83BE69BE2059AEC4002AB442 /* ladeBilen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ladeBilen-Bridging-Header.h"; sourceTree = "<group>"; };
 		83C042851FFAEB1E00F8D8CD /* ChangeUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUserInfo.swift; sourceTree = "<group>"; };
 		83C25ECB2051F62000D67445 /* ladeBilenTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ladeBilenTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		83C25ECC2051F62100D67445 /* ladeBilenTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ladeBilenTest.swift; sourceTree = "<group>"; };
@@ -477,8 +480,10 @@
 		835413831F82F6B9000A70CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				83BE69B92059A915002AB442 /* Extentions */,
 				8302AE2A1FC3D074007F693A /* Pastebin.txt */,
 				838A827E2056D55500E6AF1D /* overlay.json */,
+				83BE69BE2059AEC4002AB442 /* ladeBilen-Bridging-Header.h */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -594,6 +599,14 @@
 				83B3DEEF203CAB690018AEE5 /* Favorite-Filled-Icon-75.png */,
 			);
 			path = "Favorites Filled";
+			sourceTree = "<group>";
+		};
+		83BE69B92059A915002AB442 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				8312F7322059B832006671F1 /* Extentions.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 		83C25ECA2051F5F400D67445 /* ladeBilenTests */ = {
@@ -1113,6 +1126,7 @@
 				8314E2351EF44E3400F98E3F /* Welcome.swift in Sources */,
 				8302AE2E1FC3EA8C007F693A /* Details.swift in Sources */,
 				83A926F1204207DB0013514F /* SubscriptionCell.swift in Sources */,
+				8312F7332059B832006671F1 /* Extentions.swift in Sources */,
 				83F9E440203C98DE009B3788 /* Initialization.swift in Sources */,
 				83498D1C1EEB0B8300C3D92A /* NavigationHome.swift in Sources */,
 				83DE760D1FFAC49A001EE4C6 /* About.swift in Sources */,
@@ -1311,6 +1325,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ladeBilen/Resources/ladeBilen-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -1326,6 +1341,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ladeBilen/Resources/ladeBilen-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
