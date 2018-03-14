@@ -160,7 +160,7 @@ class DatabaseApp {
         ref.child("favorites").child((Auth.auth().currentUser?.uid)!).child(String(id)).removeValue()
     }
     
-    func getUserTimestamp(done: @escaping (_ done: Int64)-> Void){
+    func getUserTimestampFromDatabase(done: @escaping (_ done: Int64)-> Void){
         ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).child("timestamp").observeSingleEvent(of: .value) { (snapshot) in
             if let timestamp = snapshot.value as? Int64 {
                 done(timestamp)

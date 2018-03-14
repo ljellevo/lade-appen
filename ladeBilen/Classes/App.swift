@@ -112,7 +112,7 @@ class App {
     func verifyUserCache(done: @escaping (_ code: Int) -> Void){
         if let user = fetchUserCache(){
             self.user = user
-            getUserTimestamp(done: { timestampReturned in
+            getUserTimestampFromDatabase(done: { timestampReturned in
                 let timestamp = timestampReturned
                 if user.timestamp == timestamp {
                     done(0)
@@ -257,8 +257,8 @@ class App {
         database.submitBugReport(reportedText: reportedText)
     }
     
-    func getUserTimestamp(done: @escaping (_ done: Int64)-> Void){
-        database.getUserTimestamp(done: { timestamp in
+    func getUserTimestampFromDatabase(done: @escaping (_ done: Int64)-> Void){
+        database.getUserTimestampFromDatabase(done: { timestamp in
             done(timestamp)
         })
     }
