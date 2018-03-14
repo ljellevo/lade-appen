@@ -151,7 +151,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         let cell: ConnectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectorCellIdentifier", for: indexPath as IndexPath) as! ConnectorCell
         cell.typeLabel.text = connectors![indexPath.row].connector?.description
         cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode
-        cell.compatibleLabel.text = "Mangler"
+        cell.compatibleLabel.text = "Må legges inn"
         cell.isOperatingLabel.text = connectors![indexPath.row].operationStatus
         cell.isTakenLabel.text = connectors![indexPath.row].status
         return cell
