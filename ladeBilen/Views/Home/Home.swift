@@ -49,13 +49,18 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        filteredStations = app!.filteredStations
+
+        /*
         if app!.filteredStations.count > 0 {
             filteredStations = app!.filteredStations
         } else {
             app!.updateConnectorForUserInDatabase(connectors: app!.user!.connector!, willFilterStations: true)
             filteredStations = app!.filteredStations
         }
+ */
+ 
         mapWindow.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
@@ -200,7 +205,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let anno = view.annotation as? Annotation {
-            
             id = anno.id!
             print(id!)
             nameLabel.text = anno.title
@@ -274,7 +278,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     @IBAction func infoViewTapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "toDetails", sender: self)
-        let test = "Denne committen skal være sikker"
     }
 }
 

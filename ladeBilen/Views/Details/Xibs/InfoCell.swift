@@ -23,7 +23,6 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     @IBOutlet weak var screenWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var detailsButton: UIButton!
     @IBOutlet weak var commentsButton: UIButton!
-    
     @IBOutlet weak var stationButton: UIButton!
     
     @IBOutlet weak var detailsStack: UIStackView!
@@ -60,6 +59,8 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         setConstraints()
         
         commentsView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCellIdentifier")
+        commentsView.register(UITableViewCell.self, forCellReuseIdentifier: "Label")
+
         connectorCollectionView.register(UINib(nibName: "ConnectorCell", bundle: nil), forCellWithReuseIdentifier: "ConnectorCellIdentifier")
         
         xibWidthConstraint.constant = UIScreen.main.bounds.width
@@ -117,34 +118,31 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         connectorStack.isHidden = false
 
     }
-    
-    
-    @IBAction func picturesButton(_ sender: UIButton) {
-        detailsButton.tintColor = UIColor.gray
-        commentsButton.tintColor = UIColor.gray
-        stationButton.tintColor = UIColor.gray
-        detailsStack.isHidden = true
-        commentsStack.isHidden = true
-        connectorStack.isHidden = true
 
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CommentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCellIdentifier", for: indexPath as IndexPath) as! CommentCell
-        cell.backgroundColor = UIColor.clear
-        cell.commentLabel.text = userComment
-        cell.isUserInteractionEnabled = false
-        
-        return cell
-
+        if userComment?.replacingOccurrences(of: " ", with: "") != "" {
+            let cell: CommentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCellIdentifier", for: indexPath as IndexPath) as! CommentCell
+            cell.backgroundColor = UIColor.clear
+            cell.commentLabel.text = userComment
+            cell.isUserInteractionEnabled = false
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Label", for: indexPath)
+            cell.backgroundColor = UIColor.clear
+            cell.textLabel?.textColor = UIColor.lightGray
+            cell.textLabel?.text = "Ingen kommentarer."
+            cell.isUserInteractionEnabled = false
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //!! ikke sikker, kan gi nil!!!
+        //Kan være nil.
         print("Count", connectors!.count)
         return connectors!.count
     }
