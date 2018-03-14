@@ -1,11 +1,9 @@
 Login:
-Fikse glemt passord knappen.
-Fikse allerede bruker når login pannel er aktivert.
+Fikse "glemt passord" "knappen.
+Fikse "allerede bruker" "når login pannel er aktivert.
 
 Profil:
-Laste ned ny cache. Finne ut hvordan structs er persiste igjennom standby/bakgrunns kjøring.
-Navigere bruker tilbake når nytt parameter er satt i nytt navn, etternavn, e-post og passord.
-Visuell feedback på om/at endringen er oppdatert.
+Navigere bruker tilbake når nytt parameter er satt i nytt navn, etternavn, e-post og passord, visuell feedback på om/at endringen er oppdatert.
 
 Rapporter feil:
 Vise at det er et textfield, eventuelt gjøre den til first responder. Nå er det ikke lett å se at det er et textfield der.
@@ -19,6 +17,7 @@ Legge inn feedback på at stasjonen overvåkes hvis den har realtime.
 Dersom det ikke er noen kommetarer så må ikke en tom kommentar vises.
 Få bedre ikoner for de forskjellige konntaktene.
 Implementere følging og fjerning av følging av stasjonen.
+Implementere støtte for bilder, både henting og presentering.
 
 
 Favoritter:
@@ -49,8 +48,13 @@ Verifisere cache ved hjelp av checksum.
 
 
 
+
+
 Forbedringer:
     Funksjonaliteter:
+        RegisterFinished:
+            Legge til en type tutorial med ikoner og litt tekst, dette for å vise enkelt hvordan appen funker.
+            Endre details til å bli en type modal slik som apple music, man kan dra opp og få den presentert.
         Details:
             Legge til støtte for kommentarer i details.
             Legge inn rapporter stasjon, her burde det ligge epost og tlf. nummer til kontaktperson.
