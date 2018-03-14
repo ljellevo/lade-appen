@@ -9,15 +9,15 @@ Rapporter feil:
 Vise at det er et textfield, eventuelt gjøre den til first responder. Nå er det ikke lett å se at det er et textfield der.
 
 Details:
-Fjerne scroll bar i oversikten over kontakter.
 Legge til antall ledige kontakter for gitt stasjon.
+Implementere lytting av ledige kontakter.
 Må sjekke om stasjonen er kompatibel.
 Må kunne si noe om hvor hurtig laderen er.
 Legge inn feedback på at stasjonen overvåkes hvis den har realtime.
-Dersom det ikke er noen kommetarer så må ikke en tom kommentar vises.
 Få bedre ikoner for de forskjellige konntaktene.
 Implementere følging og fjerning av følging av stasjonen.
 Implementere støtte for bilder, både henting og presentering.
+Farge på kanppene for detaljer, kommentarer og koblinger må endres til riktig blåfarge.
 
 
 Favoritter:
@@ -41,6 +41,7 @@ Implemenetere en extention som varsler brukeren når appen henter data fra datab
 Søk må sjekke flere parametere en navnet på stasjonen.
 Tableview som viser søkeresultatene må fikses.
 Legge inn long press gesture på markerene på mapkit.
+Gi søkefeltet en liten grå shade slik at man lettere ser at det er et søkefelt i navbaren.
 
 App:
 Verifisere cache ved hjelp av checksum.

@@ -530,8 +530,6 @@
 				83A463A91FCB1659001A5916 /* CommentCell.xib */,
 				8323D4261FC77A4F0049D349 /* ConnectorCell.swift */,
 				8323D4271FC77A4F0049D349 /* ConnectorCell.xib */,
-				8365D9F21FEEE6F8006510E9 /* RegisterFinishedConnectorCell.swift */,
-				8365D9F31FEEE6F8006510E9 /* RegisterFinishedConnectorCell.xib */,
 			);
 			path = "Details Xibs";
 			sourceTree = "<group>";
@@ -544,9 +542,19 @@
 			path = Modals;
 			sourceTree = "<group>";
 		};
+		83990FE02058A2FF00BD0402 /* Xibs (Old) */ = {
+			isa = PBXGroup;
+			children = (
+				8365D9F21FEEE6F8006510E9 /* RegisterFinishedConnectorCell.swift */,
+				8365D9F31FEEE6F8006510E9 /* RegisterFinishedConnectorCell.xib */,
+			);
+			path = "Xibs (Old)";
+			sourceTree = "<group>";
+		};
 		83A352F41FB7C17300742085 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				83990FE02058A2FF00BD0402 /* Xibs (Old) */,
 				8385F8C51F007ABC00619110 /* Login.swift */,
 				83DD039B1FEDCD3E00AEF6C9 /* Register.swift */,
 				83FD2BE91FEE6DE9002B8EDF /* RegisterCont.swift */,
