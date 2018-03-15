@@ -18,7 +18,6 @@ class App {
     var user: User?
     var stations: [Station] = []
     var filteredStations: [Station] = []
-    var favorites: [Int:Int] = [:]
     
     //Initialize
     func initializeApplication(done: @escaping (_ code: Int)-> Void){
@@ -51,16 +50,6 @@ class App {
             }
         }
         
-        group.enter()
-        startDate = NSDate()
-        self.verifyFavoritesCache {
-            let endDate: NSDate = NSDate()
-            let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
-            print("Favorites verified: seconds: \(timeInterval)")
-            DispatchQueue.main.async {
-                group.leave()
-            }
-        }
         
         startDate = NSDate()
         group.notify(queue: .main) {
@@ -76,7 +65,7 @@ class App {
     }
     
     func verifyStationCache(done: @escaping ()-> Void){
-        if let stations = fetchStationCache(){
+        if let stations = getStationCache(){
             self.stations = stations
             done()
         } else {
@@ -88,29 +77,19 @@ class App {
     }
     
     private func verifyFilteredStationsCache() {
-        if let filteredStations = fetchFilteredStationsCache(){
+        if let filteredStations = getFilteredStationsCache(){
             self.filteredStations = filteredStations
         } else {
             print("Filtered stations not cached")
             filteredStations = algorithms.filterStations(stations: stations, user: user!)
-            _ = self.updateFilteredStationsCache()
+            _ = self.setFilteredStationsCache()
         }
     }
     
-    private func verifyFavoritesCache(done: @escaping ()-> Void){
-        if fetchFavoritesCache() != [-1:-1]{
-            favorites = fetchFavoritesCache()
-            done()
-        } else {
-            print("Favorites not cached")
-            getFavoritesFromDatabase(){
-                done()
-            }
-        }
-    }
+    
     
     func verifyUserCache(done: @escaping (_ code: Int) -> Void){
-        if let user = fetchUserCache(){
+        if let user = getUserCache(){
             self.user = user
             getUserTimestampFromDatabase(done: { timestampReturned in
                 let timestamp = timestampReturned
@@ -118,10 +97,10 @@ class App {
                     done(0)
                 } else {
                     print("User cache not verified")
-                    self.database.fetchUserFromDatabase(){user in
+                    self.database.getUserFromDatabase(){user in
                         if user != nil {
                             self.user = user
-                            _ = self.updateUserCache()
+                            _ = self.setUserCache()
                             done(0)
                         } else {
                             done(1)
@@ -131,10 +110,10 @@ class App {
             })
         } else {
             print("User not cached")
-            database.fetchUserFromDatabase(){user in
+            database.getUserFromDatabase(){user in
                 if user != nil {
                     self.user = user
-                    _ = self.updateUserCache()
+                    _ = self.setUserCache()
                     done(0)
                 } else {
                     done(1)
@@ -144,36 +123,28 @@ class App {
     }
     
     //CacheManagement
-    func fetchUserCache() -> User?{
-        return cacheManagement.fetchUserCache()
+    func getUserCache() -> User?{
+        return cacheManagement.getUserCache()
     }
     
-    func updateUserCache() -> Bool{
-        return cacheManagement.updateUserCache(user: user!)
+    func setUserCache() -> Bool{
+        return cacheManagement.setUserCache(user: user!)
     }
     
-    func fetchStationCache() -> [Station]?{
-        return cacheManagement.fetchStationCache()
+    func getStationCache() -> [Station]?{
+        return cacheManagement.getStationCache()
     }
     
-    func updateStationCache() -> Bool{
-        return cacheManagement.updateStationCache(stations: stations)
+    func setStationCache() -> Bool{
+        return cacheManagement.setStationCache(stations: stations)
     }
     
-    func fetchFilteredStationsCache() -> [Station]?{
-        return cacheManagement.fetchFilteredStationsCache()
+    func getFilteredStationsCache() -> [Station]?{
+        return cacheManagement.getFilteredStationsCache()
     }
     
-    func updateFilteredStationsCache() -> Bool{
-        return cacheManagement.updateFilteredStationsCache(filteredStations: filteredStations)
-    }
-    
-    func fetchFavoritesCache() -> [Int:Int]{
-        return cacheManagement.fetchFavoritesCache()
-    }
-    
-    func updateFavoritesCache() -> Bool{
-        return cacheManagement.updateFavoriteCache(favorites: favorites)
+    func setFilteredStationsCache() -> Bool{
+        return cacheManagement.setFilteredStationsCache(filteredStations: filteredStations)
     }
     
     func removeAllCache() -> Bool{
@@ -184,62 +155,24 @@ class App {
     func getStationsFromDatabase(done: @escaping ()-> Void){
         database.getStationsFromDatabase(done: { stations in
             self.stations = stations
-            _ = self.updateStationCache()
+            _ = self.setStationCache()
             done()
         })
     }
     
-    func getFavoritesFromDatabase(done: @escaping ()-> Void){
-        database.getFavoritesFromDatabase { favorites in
-            self.favorites = favorites
-            _ = self.updateFavoritesCache()
-            done()
-        }
-    }
-    
-    func addFavoriteToDatabase(stationId: Int, done: @escaping ()-> Void){
-        database.addFavoriteToDatabase(id: stationId)
-        self.getFavoritesFromDatabase {
-            _ = self.updateFavoritesCache()
-            done()
-        }
-    }
-    
-    func removeFavoriteFromDatabase(stationId: Int, done: @escaping ()-> Void){
-        database.removeFavoriteFromDatabase(id: stationId)
-        self.getFavoritesFromDatabase {
-            _ = self.updateFavoritesCache()
-            done()
-        }
-    }
-    
-    func updateUserInDatabase(user: User){
+    func setUserInDatabase(user: User){
         self.user = user
-        database.updateUser(user: user)
-        _ = updateUserCache()
+        self.user!.timestamp = Date().getTimestamp()
+        database.setUserInDatabase(user: self.user!)
+        _ = setUserCache()
     }
     
-    func updateEmailForUserInDatabase(newEmail: String){
-        user!.email = newEmail
-        database.updateEmail(newEmail: newEmail)
-        _ = updateUserCache()
-    }
-    
-    func updateFirstnameForUserInDatabase(newFirstname: String){
-        user!.firstname = newFirstname
-        database.updateFirstname(newFirstname: newFirstname)
-        _ = updateUserCache()
-    }
-    
-    func updateLastnameForUserInDatabase(newLastname: String){
-        user!.lastname = newLastname
-        database.updateLastname(newLastname: newLastname)
-        _ = updateUserCache()
-    }
-    
-    func updateConnectorForUserInDatabase(connectors: [Int], willFilterStations: Bool){
-        user!.connector = connectors
-        database.updateConnector(connectors: connectors)
+    func setConnectorForUserInDatabase(connectors: [Int], willFilterStations: Bool){
+        self.user!.connector = connectors
+        self.user!.timestamp = Date().getTimestamp()
+
+        database.setUserInDatabase(user: self.user!)
+        _ = setUserCache()
         if willFilterStations{
             findFilteredStations()
         }
@@ -248,8 +181,8 @@ class App {
     private func findFilteredStations(){
         DispatchQueue.global().async {
             self.filteredStations = self.algorithms.filterStations(stations: self.stations, user: self.user!)
-            _ = self.updateUserCache()
-            _ = self.updateFilteredStationsCache()
+            _ = self.setUserCache()
+            _ = self.setFilteredStationsCache()
         }
     }
     

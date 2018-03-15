@@ -12,7 +12,7 @@ import Disk
 
 class CacheManagement {
     
-    func fetchUserCache() -> User?{
+    func getUserCache() -> User?{
         do{
             if Disk.exists((Auth.auth().currentUser?.uid)! + ".json", in: .caches) {
                 return try Disk.retrieve((Auth.auth().currentUser?.uid)! + ".json", from: .caches, as: User.self)
@@ -24,7 +24,7 @@ class CacheManagement {
         return nil
     }
     
-    func updateUserCache(user: User) -> Bool{
+    func setUserCache(user: User) -> Bool{
         do {
             try Disk.save(user, to: .caches, as: (Auth.auth().currentUser?.uid)! + ".json")
             return true
@@ -34,7 +34,7 @@ class CacheManagement {
         }
     }
     
-    func fetchStationCache() -> [Station]?{
+    func getStationCache() -> [Station]?{
         do {
             if Disk.exists("stations.json", in: .caches) {
                 return try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
@@ -45,7 +45,7 @@ class CacheManagement {
         return nil
     }
     
-    func updateStationCache(stations: [Station]) -> Bool{
+    func setStationCache(stations: [Station]) -> Bool{
         do {
             try Disk.save(stations, to: .caches, as: "stations.json")
             return true
@@ -55,7 +55,7 @@ class CacheManagement {
         }
     }
     
-    func fetchFilteredStationsCache() -> [Station]?{
+    func getFilteredStationsCache() -> [Station]?{
         do {
             if Disk.exists("filteredStations.json", in: .caches) {
                 return try Disk.retrieve("filteredStations.json", from: .caches, as: [Station].self)
@@ -67,7 +67,7 @@ class CacheManagement {
 
     }
     
-    func updateFilteredStationsCache(filteredStations: [Station]) -> Bool{
+    func setFilteredStationsCache(filteredStations: [Station]) -> Bool{
         do {
             try Disk.save(filteredStations, to: .caches, as: "filteredStations.json")
             return true

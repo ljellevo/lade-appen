@@ -33,7 +33,7 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func checkIfFavorite(){
-        if app!.favorites.keys.contains(station!.id!){
+        if app!.user!.favorites!.keys.contains(station!.id!.description){
             isFavorite = true
             favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
         }
@@ -79,19 +79,18 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             //Deretter må jeg finne høyden.
         }
     }
+    
     @IBAction func favoriteButton(_ sender: UIBarButtonItem) {
         if isFavorite {
-            app!.removeFavoriteFromDatabase(stationId: station!.id!, done: {
-                self.favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteSet")
-                self.isFavorite = false
-            })
-
+            app!.user?.favorites?.removeValue(forKey: station!.id!.description)
+            app?.setUserInDatabase(user: app!.user!)
+            self.favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteSet")
+            self.isFavorite = false
         } else {
-            app!.addFavoriteToDatabase(stationId: station!.id!, done: {
-                self.favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
-                self.isFavorite = true
-            })
-
+            app!.user?.favorites?.updateValue(Date().getTimestamp(), forKey: station!.id!.description)
+            app?.setUserInDatabase(user: app!.user!)
+            self.favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
+            self.isFavorite = true
         }        
     }
     

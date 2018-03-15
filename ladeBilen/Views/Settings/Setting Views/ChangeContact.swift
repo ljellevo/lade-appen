@@ -29,7 +29,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewWillDisappear(_ animated: Bool) {
         //Må bare kalle algoritmen og ikke hente alle stasjonene på nytt.
         print("Disapear")
-        _ = app!.updateConnectorForUserInDatabase(connectors: connector, willFilterStations: true)
+        _ = app!.setConnectorForUserInDatabase(connectors: connector, willFilterStations: true)
     }
     
 
@@ -72,7 +72,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
             connector.append(connectorIndex[indexPath.row])
-            app!.updateConnectorForUserInDatabase(connectors: connector, willFilterStations: false)
+            app!.setConnectorForUserInDatabase(connectors: connector, willFilterStations: false)
         }
     }
     
@@ -82,7 +82,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
             if let cell = tableView.cellForRow(at: indexPath) {
                 cell.accessoryType = .none
             }
-            app!.updateConnectorForUserInDatabase(connectors: connector, willFilterStations: false)
+            app!.setConnectorForUserInDatabase(connectors: connector, willFilterStations: false)
         }
     }
 }

@@ -14,7 +14,7 @@ import Disk
 class DatabaseApp {
     let ref = Database.database().reference()
     
-    func fetchUserFromDatabase(done: @escaping (_ user: User?)-> Void){
+    func getUserFromDatabase(done: @escaping (_ user: User?)-> Void){
         ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
             if let value = snapshot.value as? NSDictionary {
                 var error: Bool = false
@@ -62,11 +62,15 @@ class DatabaseApp {
                 if timestamp == nil {
                     error = true
                 }
+                var favorites = value["favorites"] as? [String:Int64]
+                if favorites == nil {
+                    favorites = [:]
+                }
                 
                 if error == false {
                     print("User found in database, caching and navigating to home: AppDelegate")
                     
-                     let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!, timestamp: timestamp!)
+                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!, timestamp: timestamp!, favorites: favorites!)
                     done(user)
                 } else {
                     done(nil)
@@ -75,7 +79,7 @@ class DatabaseApp {
         }, withCancel: nil)
     }
     
-    func updateUser(user: User){
+    func setUserInDatabase(user: User){
         ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).setValue(
             ["uid": user.uid as String!,
              "email": user.email as String!,
@@ -86,25 +90,10 @@ class DatabaseApp {
              "cloudStorage": user.cloudStorage as Bool!,
              "notifications": user.notifications as Bool!,
              "notificationsDuration": user.notificationDuration as Int!,
-             "connector": user.connector as [Int]!]
+             "connector": user.connector as [Int]!,
+             "timestamp": user.timestamp as Int64!,
+             "favorites": user.favorites as [String:Int64]!]
         )
-    }
-    
-    
-    func updateEmail(newEmail: String){
-        ref.child("User_Info/" + (Auth.auth().currentUser?.uid)! + "/email").setValue(newEmail)
-    }
-    
-    func updateFirstname(newFirstname: String){
-        ref.child("User_Info/" + (Auth.auth().currentUser?.uid)! + "/firstname").setValue(newFirstname)
-    }
-    
-    func updateLastname(newLastname: String){
-        ref.child("User_Info/" + (Auth.auth().currentUser?.uid)! + "/lastname").setValue(newLastname)
-    }
-    
-    func updateConnector(connectors: [Int]){
-        ref.child("User_Info/" + (Auth.auth().currentUser?.uid)! + "/connector").setValue(connectors)
     }
     
     func submitBugReport(reportedText: String){
@@ -133,32 +122,7 @@ class DatabaseApp {
         }, withCancel: nil)
     }
     
-    func getFavoritesFromDatabase(done: @escaping (_ favorites: [Int:Int])-> Void){
-        var favorites: [Int:Int] = [:]
-        ref.child("favorites").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
-            DispatchQueue.global().async {
-                if let dictionary = snapshot.value as? [String:AnyObject]{
-                    for children in dictionary{
-                        let eachStation = children.value as? [String: AnyObject]
-                        favorites.updateValue(eachStation!["id"] as! Int, forKey: eachStation!["id"] as! Int)
-                    }
-                }
-                DispatchQueue.main.async {
-                    done(favorites)
-                }
-            }
-        }, withCancel: nil)
-    }
     
-    func addFavoriteToDatabase(id: Int){
-        ref.child("favorites").child((Auth.auth().currentUser?.uid)!).child(String(id)).setValue(
-            ["id": id]
-        )
-    }
-    
-    func removeFavoriteFromDatabase(id: Int){
-        ref.child("favorites").child((Auth.auth().currentUser?.uid)!).child(String(id)).removeValue()
-    }
     
     func getUserTimestampFromDatabase(done: @escaping (_ done: Int64)-> Void){
         ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).child("timestamp").observeSingleEvent(of: .value) { (snapshot) in
