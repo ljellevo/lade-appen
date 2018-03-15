@@ -62,11 +62,15 @@ class DatabaseApp {
                 if timestamp == nil {
                     error = true
                 }
+                var subscriptions = value["subscriptions"] as? [String:Int64]
+                if subscriptions == nil {
+                    subscriptions = [:]
+                }
                 
                 if error == false {
                     print("User found in database, caching and navigating to home: AppDelegate")
                     
-                     let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!, timestamp: timestamp!)
+                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!, timestamp: timestamp!, subscriptions: subscriptions!)
                     done(user)
                 } else {
                     done(nil)

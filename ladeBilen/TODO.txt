@@ -60,6 +60,8 @@ Legge inn subscriptions for brukere i user objektet.
 
 Endre favorites til å hente fra subscriptions istedet. Behandle bruker->subscriptions som listen over favoritter slik at man kan åpne en lytter på den.
 
+Favoritter cache må ha uid i navnet slik at den er unik for hver bruker som er logget inn.
+
 Backend:
 Må fjerne stedsnavn fra stasjonsnavn. Eks. "Fortum hurtigstasjon Lade Arena, Trondheim". Trenger ikke å stå "Trondheim" der.
 bruker -> subscription må ha både timestamp for oppdatering og for når stasjonen ble følgt.
