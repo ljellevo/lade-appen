@@ -45,11 +45,11 @@ class ChangeUserInfo: UIViewController{
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         if rowIndex == 0 {
             app!.user!.firstname = textField.text
-            app!.updateUserInDatabase(user: app!.user!)
+            app!.setUserInDatabase(user: app!.user!)
             informationLabel.text = "Fornavn er oppdatert"
         } else {
             app!.user!.lastname = textField.text
-            app!.updateUserInDatabase(user: app!.user!)
+            app!.setUserInDatabase(user: app!.user!)
             informationLabel.text = "Etternavn er oppdatert"
         }
     }

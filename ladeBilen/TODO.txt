@@ -54,13 +54,11 @@ Infoview må støtte navn som må ha flere linjer.
 App:
 Verifisere stations cache, eventuelt fetche i bakgrunnen når appen kjører.
 Gjøre App til en singleton.
-Legge inn subscriptions for brukere i user objektet.
-    -Hente bruker objektet og legge inn subscriptions. DatabaseApp
-    -Oppdatere cache. App
+Legge inn is disabled bool i databasen som blir sjekket når appen blir lastet. Likt som timestamp.
+Sjekke om endring av passord vil logge ut andre enheter, eventuelt legge inn en bool i databasen.
 
-Endre favorites til å hente fra subscriptions istedet. Behandle bruker->subscriptions som listen over favoritter slik at man kan åpne en lytter på den.
 
-Favoritter cache må ha uid i navnet slik at den er unik for hver bruker som er logget inn.
+Socket is not connected melding når app går i bakgrund eller blir låst. Appen fetcher ikke lokasjonen når den er på home view.
 
 Backend:
 Må fjerne stedsnavn fra stasjonsnavn. Eks. "Fortum hurtigstasjon Lade Arena, Trondheim". Trenger ikke å stå "Trondheim" der.

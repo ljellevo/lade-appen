@@ -36,7 +36,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         favoriteArray = []
         followingArray = []
         for station in app!.stations{
-            if app!.favorites.keys.contains(station.id!) {
+            if app!.user!.favorites!.keys.contains(station.id!.description) {
                 self.favoriteArray.append(station)
                 self.followingArray.append(station)
             }

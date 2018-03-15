@@ -183,14 +183,14 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 as? MKMarkerAnnotationView {
                 dequeuedView.annotation = annotation
                 dequeuedView.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
-                if app!.favorites.keys.contains(annotation.id!) {
+                if app!.user!.favorites!.keys.contains(annotation.id!.description) {
                     dequeuedView.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
                 }
                 view = dequeuedView
             } else {
                 view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
-                if app!.favorites.keys.contains(annotation.id!) {
+                if app!.user!.favorites!.keys.contains(annotation.id!.description) {
                     view.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
                 }
             }
@@ -201,10 +201,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         }
     }
  
-    
-    
-    
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let anno = view.annotation as? Annotation {
             id = anno.id!

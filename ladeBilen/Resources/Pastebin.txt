@@ -89,3 +89,36 @@ func confifureHeaderFrame() {
     headerView?.addSubview(label)
     headerView?.frame = frame!
 }
+
+************Favoritter************
+
+func getFavoritesFromDatabase(done: @escaping (_ favorites: [Int:Int])-> Void){
+var favorites: [Int:Int] = [:]
+ref.child("favorites").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+DispatchQueue.global().async {
+if let dictionary = snapshot.value as? [String:AnyObject]{
+for children in dictionary{
+let eachStation = children.value as? [String: AnyObject]
+favorites.updateValue(eachStation!["id"] as! Int, forKey: eachStation!["id"] as! Int)
+}
+}
+DispatchQueue.main.async {
+done(favorites)
+}
+}
+}, withCancel: nil)
+}
+
+func addFavoriteToDatabase(station: Station){
+ref.child("User_Info/" + (Auth.auth().currentUser?.uid)! + "/subscriptions/" + (station.id?.description)!).setValue(Date().getTimestamp())
+/*
+ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).child("subscriptions").child(String(id)).setValue(
+["id": id]
+)
+*/
+}
+
+func removeFavoriteFromDatabase(station: Station){
+ref.child("User_Info/" + (Auth.auth().currentUser?.uid)! + "/subscriptions/" + (station.id?.description)!).removeValue()
+//ref.child("favorites").child((Auth.auth().currentUser?.uid)!).child(String(id)).removeValue()
+}
