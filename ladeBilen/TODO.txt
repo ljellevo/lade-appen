@@ -56,6 +56,8 @@ Verifisere stations cache, eventuelt fetche i bakgrunnen når appen kjører.
 Gjøre App til en singleton.
 Legge inn is disabled bool i databasen som blir sjekket når appen blir lastet. Likt som timestamp.
 Sjekke om endring av passord vil logge ut andre enheter, eventuelt legge inn en bool i databasen.
+Hente checksummen til stations og lagre den i en cache. Dermed så kan man sammenligne checksummen med den i databasen og dermed avgjøre om man må hente stasjonene på nytt.
+Implementere parametrene i brukerobjektet, blant annet "parkingfee", "fastcharge" og "cloudstorage".
 
 
 Socket is not connected melding når app går i bakgrund eller blir låst. Appen fetcher ikke lokasjonen når den er på home view.
