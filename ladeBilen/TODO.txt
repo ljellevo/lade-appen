@@ -1,70 +1,3 @@
-Login:
-Fikse "glemt passord" "knappen.
-Fikse "allerede bruker" "når login pannel er aktivert.
-
-Profil:
-Navigere bruker tilbake når nytt parameter er satt i nytt navn, etternavn, e-post og passord, visuell feedback på om/at endringen er oppdatert.
-
-Rapporter feil:
-Vise at det er et textfield, eventuelt gjøre den til first responder. Nå er det ikke lett å se at det er et textfield der.
-
-Details:
-Legge til antall ledige kontakter for gitt stasjon.
-Implementere lytting av ledige kontakter.
-Må sjekke om stasjonen er kompatibel.
-
-Må sjekke om kontakten er kompatibel.
-Fjerne highlighting av cellene til kontaktene.
-Må bytte ut kontakttype-id med kontakttype navn.
-Må kunne si noe om hvor hurtig laderen er.
-Må bytte ut chargerate label med tekst som sier enten "Standard", "Semi-hurtig" og "Hurtig."
-Fikse teksten i cellene som sier noe om kontaktene.
-"Is taken" og "Is operating" må lyttes etter for cellene til kontaktene.
-Legge inn feedback på at stasjonen overvåkes hvis den har realtime.
-Få bedre ikoner for de forskjellige konntaktene.
-Implementere følging og fjerning av følging av stasjonen.
-Implementere støtte for bilder, både henting og presentering.
-Farge på kanppene for detaljer, kommentarer og koblinger må endres til riktig blåfarge.
-
-
-Favoritter:
-Prepend favoritter slik at de havner øverst på listen.
-Kunne sortere favoritter. (Alg i algoritmer klassen).
-Visuell feedback på at appen lytter etter endringer.
-Legge til telling av hvor mange som følger stasjonen. Dette må lyttes.
-Legge til algoritme for å avgjøre hvor høy etterspørselen er etter stasjonen. Dette må lyttes.
-Gjøre spørring etter hvor mange kompatible kontakter som er tilgjenglig. Her må det også lyttes.
-Legge til algoritme for regning av timestamp slik at man kan se hvor mye lenger man følger stasjonen.
-Implementere fjerning av følging av stasjonen.
-
-
-Mulig bug:
-Dersom man ikke har noen favoritter så vises ikke hvilke stasjoner man følger.
-
-
-Home:
-Når den henter stasjoner fra databasen så må appen refreshe mapview slik at markerene blir lagt til etter at alle er hentet. Dette gjelder kunn når cache har blitt slettet.
-Implemenetere en extention som varsler brukeren når appen henter data fra databasen. Denne kan ligge på Home.
-Søk må sjekke flere parametere en navnet på stasjonen.
-Tableview som viser søkeresultatene må fikses.
-Legge inn long press gesture på markerene på mapkit.
-Gi søkefeltet en liten grå shade slik at man lettere ser at det er et søkefelt i navbaren.
-Infoview må støtte navn som må ha flere linjer.
-
-App:
-Verifisere stations cache, eventuelt fetche i bakgrunnen når appen kjører.
-Gjøre App til en singleton.
-Legge inn is disabled bool i databasen som blir sjekket når appen blir lastet. Likt som timestamp.
-Sjekke om endring av passord vil logge ut andre enheter, eventuelt legge inn en bool i databasen.
-Hente checksummen til stations og lagre den i en cache. Dermed så kan man sammenligne checksummen med den i databasen og dermed avgjøre om man må hente stasjonene på nytt.
-Implementere parametrene i brukerobjektet, blant annet "parkingfee", "fastcharge" og "cloudstorage".
-
-
-Socket is not connected melding når app går i bakgrund eller blir låst. Appen fetcher ikke lokasjonen når den er på home view.
-
-Backend:
-Må fjerne stedsnavn fra stasjonsnavn. Eks. "Fortum hurtigstasjon Lade Arena, Trondheim". Trenger ikke å stå "Trondheim" der.
-bruker -> subscription må ha både timestamp for oppdatering og for når stasjonen ble følgt.
 
 Info:
 Lytting av stasjoner man følger:
@@ -72,25 +5,6 @@ Lytte etter endring av timestamp under bruker -> subscriptions.
 Hente nye data til stasjonen som oppdaterte seg under realtime -> stasjon.
 Sende ny data til view.
 
-
-
-
-
-Forbedringer:
-    Funksjonaliteter:
-        RegisterFinished:
-            Legge til en type tutorial med ikoner og litt tekst, dette for å vise enkelt hvordan appen funker.
-            Endre details til å bli en type modal slik som apple music, man kan dra opp og få den presentert.
-        Details:
-            Legge til støtte for kommentarer i details.
-            Legge inn rapporter stasjon, her burde det ligge epost og tlf. nummer til kontaktperson.
-        Home:
-            Samle markerene slik at favoritter syntes når man zoomer ut.
-
-    Håndteringer:
-        SwiftyJSON biblioteket for bedre JSON håndtering.
-        ReactiveCocoa sin Signal er god for async håndtering.
-        Legge inn firebase sin analytics.
 
 Kilder:
     https://github.com/futurice/ios-good-practices
