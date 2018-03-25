@@ -37,6 +37,7 @@
 		8323D4291FC77A4F0049D349 /* ConnectorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8323D4271FC77A4F0049D349 /* ConnectorCell.xib */; };
 		833132E12040F2F800747FB1 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833132DF2040F2F800747FB1 /* FavoritesCell.swift */; };
 		833132E22040F2F800747FB1 /* FavoritesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833132E02040F2F800747FB1 /* FavoritesCell.xib */; };
+		8331D2842067F57D00E1B4A7 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331D2832067F57D00E1B4A7 /* Protocol.swift */; };
 		833B143E1FEDAA8C008016BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F354761EEB0696001A278A /* AppDelegate.swift */; };
 		8342E17E1EED87010079888F /* SettingsOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17D1EED87010079888F /* SettingsOld.swift */; };
 		8342E1801EED87170079888F /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342E17F1EED87170079888F /* Search.swift */; };
@@ -169,6 +170,7 @@
 		8323D4271FC77A4F0049D349 /* ConnectorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectorCell.xib; sourceTree = "<group>"; };
 		833132DF2040F2F800747FB1 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		833132E02040F2F800747FB1 /* FavoritesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesCell.xib; sourceTree = "<group>"; };
+		8331D2832067F57D00E1B4A7 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		8342E17D1EED87010079888F /* SettingsOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsOld.swift; sourceTree = "<group>"; };
 		8342E17F1EED87170079888F /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		83469A871EEB0DF400D9AFC1 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -378,6 +380,14 @@
 			path = Xibs;
 			sourceTree = "<group>";
 		};
+		8331D2822067F56800E1B4A7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8331D2832067F57D00E1B4A7 /* Protocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		83405959203F2AFC00ECFF99 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -480,6 +490,7 @@
 		835413831F82F6B9000A70CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8331D2822067F56800E1B4A7 /* Protocols */,
 				83BE69B92059A915002AB442 /* Extentions */,
 				8302AE2A1FC3D074007F693A /* Pastebin.txt */,
 				838A827E2056D55500E6AF1D /* overlay.json */,
@@ -1116,6 +1127,7 @@
 				8362951B1FFFE85100D6C430 /* ChangeContact.swift in Sources */,
 				83A54F051FD09FC3002CB5B3 /* Profile.swift in Sources */,
 				83F208251FC370D70075A2F0 /* Connector.swift in Sources */,
+				8331D2842067F57D00E1B4A7 /* Protocol.swift in Sources */,
 				833B143E1FEDAA8C008016BA /* AppDelegate.swift in Sources */,
 				832296351FEB3B8700401ECD /* Constants.swift in Sources */,
 				83A926ED204207380013514F /* LabelCell.swift in Sources */,

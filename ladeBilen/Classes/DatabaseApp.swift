@@ -105,13 +105,14 @@ class DatabaseApp {
     
     func getStationsFromDatabase(done: @escaping (_ stations: [Station])-> Void){
         var stations: [Station] = []
-        ref.child("stations").observe(.value, with: { (snapshot) in
+        ref.child("stations").observeSingleEvent(of: .value, with: { (snapshot) in
             DispatchQueue.global().async {
                 if let dictionary = snapshot.value as? [String:AnyObject]{
                     for children in dictionary{
                         let eachStation = children.value as? [String: AnyObject]
                         let station = Station(dictionary: eachStation!)
                         stations.append(station)
+                        print("Update")
                     }
                 }
                 
@@ -133,4 +134,5 @@ class DatabaseApp {
             }
         }
     }
+    
 }

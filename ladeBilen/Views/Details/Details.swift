@@ -32,6 +32,10 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         checkIfFavorite()
     }
     
+    func listenForChanges(){
+        
+    }
+    
     func checkIfFavorite(){
         if app!.user!.favorites!.keys.contains(station!.id!.description){
             isFavorite = true
@@ -93,6 +97,8 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             self.isFavorite = true
         }        
     }
+    
+
     
     @IBAction func followButton(_ sender: UIBarButtonItem) {
         //Legg til i følge, hvis man følger så fjerner man entryen.
