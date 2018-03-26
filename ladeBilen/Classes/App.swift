@@ -218,6 +218,10 @@ class App {
         }
     }
     
+    func detachListenerOnStation(stationId: Int){
+        database.detatchListenerOnStation(stationId: getStationIdAsString(stationId: stationId))
+    }
+    
     //Algorithms
     func findAvailableContacts(station: Station) -> Int{
         return algorithms.findAvailableContacts(station: station, user: user!)

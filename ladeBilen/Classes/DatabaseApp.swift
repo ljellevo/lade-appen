@@ -14,6 +14,7 @@ import SwiftyJSON
 
 class DatabaseApp {
     let ref = Database.database().reference()
+    var stationListenerHandle: DatabaseHandle?
     
     func getUserFromDatabase(done: @escaping (_ user: User?)-> Void){
         ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -137,7 +138,7 @@ class DatabaseApp {
     }
     
     func listenOnStation(stationId: String, done: @escaping (_ conn: NSArray)-> Void){
-        ref.child("Realtime").child(stationId).observe(.value) { (snapshot) in
+        stationListenerHandle = ref.child("Realtime").child(stationId).observe(.value) { (snapshot) in
             DispatchQueue.global().async {
                 if let dict = snapshot.value as? [String : AnyObject] {
                     let conn = dict["conn"] as? NSArray
@@ -150,4 +151,9 @@ class DatabaseApp {
             }
         }
     }
+    
+    func detatchListenerOnStation(stationId: String){
+        ref.child("Realtime").child(stationId).removeObserver(withHandle: stationListenerHandle!)
+    }
+    
 }

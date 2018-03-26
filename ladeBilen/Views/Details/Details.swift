@@ -41,6 +41,9 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         })
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        app?.detachListenerOnStation(stationId: station!.id!)
+    }
 
     
     func checkIfFavorite(){
