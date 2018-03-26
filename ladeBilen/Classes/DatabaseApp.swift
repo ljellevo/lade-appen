@@ -139,12 +139,13 @@ class DatabaseApp {
     func listenOnStation(stationId: String, done: @escaping (_ conn: NSArray)-> Void){
         ref.child("Realtime").child(stationId).observe(.value) { (snapshot) in
             DispatchQueue.global().async {
-                let dict = snapshot.value as? [String : AnyObject]
-                let conn = dict!["conn"] as? NSArray
-                print(conn![1])
-                DispatchQueue.main.async {
-                    print("Update DatabaseApp")
-                    done(conn!)
+                if let dict = snapshot.value as? [String : AnyObject] {
+                    let conn = dict["conn"] as? NSArray
+                    print(conn![1])
+                    DispatchQueue.main.async {
+                        print("Update DatabaseApp")
+                        done(conn!)
+                    }
                 }
             }
         }

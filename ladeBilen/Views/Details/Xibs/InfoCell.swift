@@ -17,6 +17,8 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     
     
     @IBOutlet weak var panelView: UIView!
+
+    var realtime: Bool?
     var userComment: String?
     var connectors: [Connector]?
     
@@ -71,6 +73,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         //219 høyden på xib for best config.
         descriptionLabel.sizeToFit()
         
+
     }
     
     func initializeApperance(){
@@ -152,17 +155,23 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         cell.typeLabel.text = connectors![indexPath.row].connector?.description
         cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode
         cell.compatibleLabel.text = "Må legges inn"
-        if connectors![indexPath.row].status == 0 {
-            cell.isTakenLabel.text = "Ledig"
+        if realtime! {
+            if connectors![indexPath.row].status == 0 {
+                cell.isTakenLabel.text = "Ledig"
+            } else {
+                cell.isTakenLabel.text = "Opptatt"
+            }
+            
+            if connectors![indexPath.row].operationStatus == 0 {
+                cell.isOperationalLabel.text = ""
+            } else {
+                cell.isOperationalLabel.text = "Ute av drift"
+            }
         } else {
-            cell.isTakenLabel.text = "Opptatt"
+            cell.isTakenLabel.text = ""
+            cell.isOperationalLabel.text = ""
         }
         
-        if connectors![indexPath.row].operationStatus == 0 {
-            cell.isOperationalLabel.text = ""
-        } else {
-            cell.isOperationalLabel.text = "Ute av drift"
-        }
 
         return cell
     }

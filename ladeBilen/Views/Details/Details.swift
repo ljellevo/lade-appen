@@ -35,7 +35,9 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         app?.listenOnStation(stationId: station!.id!, done: { station in
             print("Update view")
             self.station = station
-            self.collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         })
     }
     
@@ -66,9 +68,11 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             return cell
         } else {
             let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
+            cell.connectorCollectionView.reloadData()
+            cell.realtime = station?.realtimeInfo
             cell.nameLabel.text = station?.name
             cell.streetLabel.text = (station?.street)! + " " + (station?.houseNumber)!
-            cell.realtimeLabel.text = "Realtime: " + (station?.realtimeInfo)!
+            cell.realtimeLabel.text = "Realtime: " + (station?.realtimeInfo)!.description
             cell.fastChargeLabel.text = "Mangler"
             cell.parkingFeeLabel.text = "Parkerings avgift: " + (station?.parkingFee)!
             cell.userComment = station?.userComment
