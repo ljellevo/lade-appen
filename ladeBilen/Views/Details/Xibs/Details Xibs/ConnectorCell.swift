@@ -15,8 +15,8 @@ class ConnectorCell: UICollectionViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var chargeRateLabel: UILabel!
     @IBOutlet weak var compatibleLabel: UILabel!
-    @IBOutlet weak var isOperatingLabel: UILabel!
     @IBOutlet weak var isTakenLabel: UILabel!
+    @IBOutlet weak var isOperationalLabel: UILabel!
     
     override func awakeFromNib() { 
         super.awakeFromNib()

@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -90,8 +86,8 @@
                 <outlet property="chargeRateLabel" destination="YcU-1K-PgI" id="mig-nC-8VE"/>
                 <outlet property="compatibleLabel" destination="Flr-yK-rwz" id="imi-9g-4Ny"/>
                 <outlet property="imageView" destination="oVE-86-TXH" id="K56-Pn-AsW"/>
-                <outlet property="isOperatingLabel" destination="o67-qd-wqx" id="w5z-3A-raG"/>
-                <outlet property="isTakenLabel" destination="qS1-tw-D4K" id="bc1-9K-sto"/>
+                <outlet property="isOperationalLabel" destination="qS1-tw-D4K" id="bc1-9K-sto"/>
+                <outlet property="isTakenLabel" destination="o67-qd-wqx" id="w5z-3A-raG"/>
                 <outlet property="typeLabel" destination="ycI-6h-qcd" id="TEP-eH-n0B"/>
                 <outlet property="view" destination="zPO-7U-cRT" id="N9T-eB-ghZ"/>
             </connections>

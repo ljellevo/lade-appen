@@ -30,11 +30,16 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         self.collectionView.dataSource = self
         self.automaticallyAdjustsScrollViewInsets = false
         checkIfFavorite()
+        
+        //Må lytte etter kontakter ikke stasjon
+        app?.listenOnStation(stationId: station!.id!, done: { station in
+            print("Update view")
+            self.station = station
+            self.collectionView.reloadData()
+        })
     }
     
-    func listenForChanges(){
-        
-    }
+
     
     func checkIfFavorite(){
         if app!.user!.favorites!.keys.contains(station!.id!.description){

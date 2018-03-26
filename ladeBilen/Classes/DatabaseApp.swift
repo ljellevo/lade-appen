@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 import Disk
+import SwiftyJSON
 
 class DatabaseApp {
     let ref = Database.database().reference()
@@ -135,4 +136,17 @@ class DatabaseApp {
         }
     }
     
+    func listenOnStation(stationId: String, done: @escaping (_ conn: NSArray)-> Void){
+        ref.child("Realtime").child(stationId).observe(.value) { (snapshot) in
+            DispatchQueue.global().async {
+                let dict = snapshot.value as? [String : AnyObject]
+                let conn = dict!["conn"] as? NSArray
+                print(conn![1])
+                DispatchQueue.main.async {
+                    print("Update DatabaseApp")
+                    done(conn!)
+                }
+            }
+        }
+    }
 }
