@@ -28,7 +28,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SC6-ge-RdC" userLabel="Panel Stack">
                                         <rect key="frame" x="20" y="0.0" width="374" height="70"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xblogg130708sommer.jpg.pagespeed.ic.b6H3_U7zK2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="NT4-9S-PTm">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xblogg130708sommer.jpg.pagespeed.ic.b6H3_U7zK2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="NT4-9S-PTm">
                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="Tcd-mD-HBI"/>
@@ -37,6 +37,7 @@
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="yph-xK-fwl" userLabel="Realtime Stack">
                                                 <rect key="frame" x="141.5" y="0.0" width="86.5" height="70"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oJL-cX-b9c">
                                                         <rect key="frame" x="66.5" y="0.0" width="20" height="30"/>
@@ -94,6 +95,11 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="yph-xK-fwl"/>
+                                            </mask>
+                                        </variation>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -119,6 +125,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="222" height="94"/>
             <connections>
+                <outlet property="connectorLabel" destination="gC1-Oj-mTn" id="Vuc-kj-saG"/>
                 <outlet property="imageView" destination="NT4-9S-PTm" id="SNT-Fs-tol"/>
                 <outlet property="screenWidthConstraint" destination="Vua-u9-5UJ" id="n3M-OK-NZc"/>
                 <outlet property="view" destination="nfB-v8-kOd" id="b7j-BU-CyP"/>

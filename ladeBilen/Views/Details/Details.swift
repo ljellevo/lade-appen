@@ -12,6 +12,7 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     var station: Station?
     var app: App?
     var isFavorite: Bool = false
+    var connectors: [Connector]?
 
     @IBOutlet var collectionView: UICollectionView!
 
@@ -30,11 +31,16 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         self.collectionView.dataSource = self
         self.automaticallyAdjustsScrollViewInsets = false
         checkIfFavorite()
+        self.connectors = self.app!.sortConnectors(connectors: station!.conn)
+
         
         //Må lytte etter kontakter ikke stasjon
         app?.listenOnStation(stationId: station!.id!, done: { station in
             print("Update view")
             self.station = station
+            self.connectors = self.app!.sortConnectors(connectors: station.conn)
+
+
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -65,8 +71,16 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0{
             let cell: TopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCellIdentifier", for: indexPath as IndexPath) as! TopCell
-            //Mulige kontakter
-            //Har kompatiblitet
+            var availableConntacts: Int = 0
+            
+            for conn in station!.conn {
+                if conn.error == 0 && conn.isTaken == 0 && app!.checkIfConntactIsAppliable(connector: conn) {
+                    availableConntacts += 1
+                }
+            }
+            
+            let compatibleConntacts: Int = app!.findAvailableContacts(station: station!)
+            cell.connectorLabel.text = availableConntacts.description + "/" + compatibleConntacts.description
 
             return cell
         } else {
@@ -80,7 +94,8 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             cell.parkingFeeLabel.text = "Parkerings avgift: " + (station?.parkingFee)!
             cell.userComment = station?.userComment
             cell.descriptionLabel.text = station?.descriptionOfLocation
-            cell.connectors = station?.conn
+            cell.connectors = connectors!
+
             return cell
         }
     }

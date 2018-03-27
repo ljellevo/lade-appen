@@ -72,6 +72,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         
         //219 høyden på xib for best config.
         descriptionLabel.sizeToFit()
+        //Sort connectors etter relevanse
         
 
     }
@@ -156,13 +157,13 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode
         cell.compatibleLabel.text = "Må legges inn"
         if realtime! {
-            if connectors![indexPath.row].status == 0 {
+            if connectors![indexPath.row].isTaken == 0 {
                 cell.isTakenLabel.text = "Ledig"
             } else {
                 cell.isTakenLabel.text = "Opptatt"
             }
             
-            if connectors![indexPath.row].operationStatus == 0 {
+            if connectors![indexPath.row].error == 0 {
                 cell.isOperationalLabel.text = ""
             } else {
                 cell.isOperationalLabel.text = "Ute av drift"

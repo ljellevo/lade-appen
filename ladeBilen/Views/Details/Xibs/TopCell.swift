@@ -14,6 +14,7 @@ class TopCell: UICollectionViewCell {
     @IBOutlet weak var screenWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var connectorLabel: UILabel!
     
     
     override func awakeFromNib() {

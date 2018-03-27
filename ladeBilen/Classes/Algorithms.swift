@@ -55,6 +55,32 @@ class Algorithms {
         return counter
     }
     
+    func checkIfConntactIsAppliable(conn: Connector, user: User) -> Bool{
+        for connector in user.connector!{
+            if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func sortConnectors(connectors: [Connector], user: User) -> [Connector]{
+        var newArray: [Connector] = []
+        var found = false
+        for conn in connectors{
+            for connector in user.connector!{
+                if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
+                    newArray.insert(conn, at: 0)
+                    found = true
+                }
+            }
+            if !found {
+                newArray.append(conn)
+            }
+        }
+        return newArray
+    }
+    
     func checkIfAvailable(station: Station) -> Bool{
         return true
     }

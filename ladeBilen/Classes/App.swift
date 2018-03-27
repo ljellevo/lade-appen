@@ -11,9 +11,9 @@ import Firebase
 import Disk
 
 class App {
-    let database = DatabaseApp()
-    var algorithms = Algorithms()
-    let cacheManagement = CacheManagement()
+    private let database = DatabaseApp()
+    private var algorithms = Algorithms()
+    private let cacheManagement = CacheManagement()
     
     var user: User?
     var stations: [Station] = []
@@ -202,8 +202,8 @@ class App {
                 if var station = self.findStationWith(id: stationId) {
                     for i in 0..<station.conn.count {
                         let conn = conns[i + 1] as! [String : AnyObject]
-                        station.conn[i].operationStatus = conn["Error"] as? Int64
-                        station.conn[i].status = conn["Status"] as? Int64
+                        station.conn[i].error = conn["Error"] as? Int64
+                        station.conn[i].isTaken = conn["Status"] as? Int64
                         station.conn[i].timestamp = conn["Timestamp"] as? Int64
                     }
                     self.filteredStations = self.algorithms.filterStations(stations: self.stations, user: self.user!)
@@ -227,6 +227,10 @@ class App {
         return algorithms.findAvailableContacts(station: station, user: user!)
     }
     
+    func checkIfConntactIsAppliable(connector: Connector) -> Bool {
+        return algorithms.checkIfConntactIsAppliable(conn: connector, user: user!)
+    }
+    
     func updateStation(updatedStation: Station){
         for i in 0..<stations.count {
             if stations[i].id == updatedStation.id {
@@ -235,6 +239,10 @@ class App {
                 return
             }
         }
+    }
+    
+    func sortConnectors(connectors: [Connector]) -> [Connector]{
+        return algorithms.sortConnectors(connectors: connectors, user: user!)
     }
     
     func findStationWith(id: Int) -> Station? {
