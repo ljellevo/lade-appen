@@ -80,7 +80,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     }
     
     func initializeApperance(){
-        detailsButton.tintColor = UIColor.appleBlue()
+        detailsButton.tintColor = UIColor.themeBlue()
         panelView.layer.cornerRadius = 20
         detailsStack.isHidden = false
         commentsStack.isHidden = true
@@ -94,7 +94,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     }
     
     @IBAction func detailsButton(_ sender: UIButton) {
-        detailsButton.tintColor = UIColor.appleBlue()
+        detailsButton.tintColor = UIColor.themeBlue()
         commentsButton.tintColor = UIColor.gray
         stationButton.tintColor = UIColor.gray
         
@@ -106,7 +106,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     
     @IBAction func commentsButton(_ sender: UIButton) {
         detailsButton.tintColor = UIColor.gray
-        commentsButton.tintColor = UIColor.appleBlue()
+        commentsButton.tintColor = UIColor.themeBlue()
         stationButton.tintColor = UIColor.gray
 
         detailsStack.isHidden = true
@@ -118,7 +118,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     @IBAction func stationButton(_ sender: UIButton) {
         detailsButton.tintColor = UIColor.gray
         commentsButton.tintColor = UIColor.gray
-        stationButton.tintColor = UIColor.appleBlue()
+        stationButton.tintColor = UIColor.themeBlue()
         detailsStack.isHidden = true
         commentsStack.isHidden = true
         connectorStack.isHidden = false
@@ -198,9 +198,9 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
             }
         
             if compatibleConntacts! > indexPath.row && connectors![indexPath.row].isTaken == 0 && connectors![indexPath.row].error == 0 {
-                cell.view.layer.borderColor = UIColor(red: 0.1059, green: 0.5765, blue: 0, alpha: 1.0).cgColor
+                cell.view.layer.borderColor = UIColor.darkGreen().cgColor
             } else if compatibleConntacts! > indexPath.row && connectors![indexPath.row].isTaken == 1 && connectors![indexPath.row].error == 0 {
-                cell.view.layer.borderColor = UIColor(red: 0.898, green: 0.7922, blue: 0, alpha: 1.0).cgColor
+                cell.view.layer.borderColor = UIColor.darkYellow().cgColor
             }
         } else {
             cell.view.layer.borderColor = UIColor.lightGray.cgColor

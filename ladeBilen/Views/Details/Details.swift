@@ -33,7 +33,6 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         self.automaticallyAdjustsScrollViewInsets = false
         checkIfFavorite()
         self.connectors = self.app!.sortConnectors(connectors: station!.conn)
-        print(station!.conn.count)
         
         //Må lytte etter kontakter ikke stasjon
         app?.listenOnStation(stationId: station!.id!, done: { station in
@@ -58,13 +57,7 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
                 let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 1, section: 0)) as! InfoCell
                 infoCell.connectors = self.connectors
                 infoCell.connectorCollectionView.reloadData()
-                /*
-                UIView.performWithoutAnimation {
-                    self.collectionView.reloadItems(at: [IndexPath(row: 1, section: 0)])
-                }
- */
- 
-                //self.collectionView.reloadData()
+
             }
         })
     }
@@ -74,8 +67,6 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
 
-
-    
     func checkIfFavorite(){
         if app!.user!.favorites!.keys.contains(station!.id!.description){
             isFavorite = true
@@ -103,14 +94,15 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             }
             
             let compatibleConntacts: Int = app!.findAvailableContacts(station: station!)
-            cell.connectorLabel.text = availableConntacts.description + "/" + compatibleConntacts.description
 
             countCompatible = compatibleConntacts
             
             if station!.realtimeInfo! {
                 cell.realtimeIcon.image = #imageLiteral(resourceName: "OnlineSet")
+                cell.connectorLabel.text = availableConntacts.description + "/" + compatibleConntacts.description
             } else {
                 cell.realtimeIcon.image = #imageLiteral(resourceName: "OfflineSet")
+                cell.connectorLabel.text = compatibleConntacts.description
             }
             return cell
         } else {
@@ -120,9 +112,21 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             cell.nameLabel.text = station?.name
             cell.compatibleConntacts = countCompatible
             cell.streetLabel.text = (station?.street)! + " " + (station?.houseNumber)!
-            cell.realtimeLabel.text = "Realtime: " + (station?.realtimeInfo)!.description
-            cell.fastChargeLabel.text = "Mangler"
-            cell.parkingFeeLabel.text = "Parkerings avgift: " + (station?.parkingFee)!
+            if station!.realtimeInfo!{
+                cell.realtimeLabel.text = "Leverer sanntids informasjon"
+            } else {
+                cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
+
+            }
+            
+            //cell.fastChargeLabel.text = "Mangler"
+            
+            if station!.parkingFee! {
+                cell.parkingFeeLabel.text = "Parkerings avgift"
+            } else {
+                cell.parkingFeeLabel.text = "Gratis parkering"
+            }
+            
             cell.userComment = station?.userComment
             cell.descriptionLabel.text = station?.descriptionOfLocation
             cell.connectors = connectors!

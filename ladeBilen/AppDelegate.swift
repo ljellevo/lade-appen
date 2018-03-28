@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //UIApplication.shared.statusBarStyle = .lightContent
         
         
-        //deleteCache()
+        deleteCache()
         //logOut()
         if Auth.auth().currentUser != nil {
             app.initializeApplication(){(code: Int) -> Void in

@@ -27,7 +27,7 @@ struct Station: Codable {
     var numberOfChargingPoints: Int?
     var open24h: String?
     var ownedBy: String?
-    var parkingFee: String?
+    var parkingFee: Bool?
     var position: String?
     var publicFounding: String?
     var realtimeInfo: Bool?
@@ -60,7 +60,12 @@ struct Station: Codable {
         self.numberOfChargingPoints = dictionary["NumberCharging_points"] as? Int ?? -1
         self.open24h = dictionary["Open24h"] as? String ?? ""
         self.ownedBy = dictionary["OwnedBy"] as? String ?? ""
-        self.parkingFee = dictionary["ParkingFee"] as? String ?? ""
+        let parkingFee = dictionary["ParkingFee"] as? String ?? ""
+        if parkingFee == "Yes" {
+            self.parkingFee = true
+        } else {
+            self.parkingFee = false
+        }
         self.position = dictionary["Position"] as? String ?? ""
         self.publicFounding = dictionary["PublicFunding"] as? String ?? ""
         let realtime = dictionary["RealtimeInfo"] as? String ?? ""

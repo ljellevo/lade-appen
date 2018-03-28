@@ -47,8 +47,14 @@ extension UITextField {
 }
 
 extension UIColor {
-    static func appleBlue() -> UIColor {
-        return UIColor(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0)
+    static func themeBlue() -> UIColor {
+        return UIColor(red: 0, green: 0.4353, blue: 1, alpha: 1.0)
+    }
+    static func darkGreen() -> UIColor {
+        return UIColor(red: 0.1059, green: 0.5765, blue: 0, alpha: 1.0)
+    }
+    static func darkYellow() -> UIColor {
+        return UIColor(red: 0.898, green: 0.7922, blue: 0, alpha: 1.0)
     }
 }
 
