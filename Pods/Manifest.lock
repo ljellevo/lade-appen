@@ -44,6 +44,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Disk (~> 0.3.3)
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - MapKitGoogleStyler
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Disk: d1f55cd61f6ca20f368232d0c6e37e3c3dfcb63e
@@ -65,7 +67,8 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   MapKitGoogleStyler: 8efdceb664fc1748a62a9e3b50a34b67a34247bc
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 2e7512e050007f845cda7a54bf20be19a442f7c2
+PODFILE CHECKSUM: 04614bb7c0505936125e093fa50c40e54165fc89
 
 COCOAPODS: 1.4.0

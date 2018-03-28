@@ -11,9 +11,9 @@ import Firebase
 import Disk
 
 class App {
-    let database = DatabaseApp()
-    var algorithms = Algorithms()
-    let cacheManagement = CacheManagement()
+    private let database = DatabaseApp()
+    private var algorithms = Algorithms()
+    private let cacheManagement = CacheManagement()
     
     var user: User?
     var stations: [Station] = []
@@ -196,8 +196,81 @@ class App {
         })
     }
     
+    func listenOnStation(stationId: Int, done: @escaping (_ station: Station)-> Void){
+        database.listenOnStation(stationId: getStationIdAsString(stationId: stationId)) { conns in
+            DispatchQueue.global().async {
+                if var station = self.findStationWith(id: stationId) {
+                    for i in 0..<station.conn.count {
+                        let conn = conns[i + 1] as! [String : AnyObject]
+                        station.conn[i].error = conn["Error"] as? Int64
+                        station.conn[i].isTaken = conn["Status"] as? Int64
+                        station.conn[i].timestamp = conn["Timestamp"] as? Int64
+                    }
+                    self.filteredStations = self.algorithms.filterStations(stations: self.stations, user: self.user!)
+                    self.updateStation(updatedStation: station)
+                    _ = self.setFilteredStationsCache()
+                    print("Update App")
+                    DispatchQueue.main.async {
+                        done(station)
+                    }
+                }
+            }
+        }
+    }
+    
+    func detachListenerOnStation(stationId: Int){
+        database.detatchListenerOnStation(stationId: getStationIdAsString(stationId: stationId))
+    }
+    
     //Algorithms
     func findAvailableContacts(station: Station) -> Int{
         return algorithms.findAvailableContacts(station: station, user: user!)
-    } 
+    }
+    
+    func checkIfConntactIsAppliable(connector: Connector) -> Bool {
+        return algorithms.checkIfConntactIsAppliable(conn: connector, user: user!)
+    }
+    
+    func updateStation(updatedStation: Station){
+        for i in 0..<stations.count {
+            if stations[i].id == updatedStation.id {
+                stations[i] = updatedStation
+                _ = setStationCache()
+                return
+            }
+        }
+    }
+    
+    func sortConnectors(connectors: [Connector]) -> [Connector]{
+        return algorithms.sortConnectors(connectors: connectors, user: user!)
+    }
+    
+    func findStationWith(id: Int) -> Station? {
+        for station in stations {
+            if station.id == id {
+                return station
+            }
+        }
+        return nil
+    }
+    
+    func getStationIdAsString(stationId: Int) -> String{
+        var stationIdString: String = ""
+        if stationId < 10 {
+            stationIdString = "NOR_0000" + stationId.description
+            //Mindre en 10
+        } else if stationId < 100 {
+            stationIdString = "NOR_000" + stationId.description
+            //Mindre en 100
+        } else if stationId < 1000 {
+            stationIdString = "NOR_00" + stationId.description
+            //Mindre en 1000
+        } else if stationId < 10000 {
+            stationIdString = "NOR_0" + stationId.description
+            //Mindre en 10000
+        } else {
+            stationIdString = "NOR_" + stationId.description
+        }
+        return stationIdString
+    }
 }

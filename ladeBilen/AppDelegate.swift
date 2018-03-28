@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func deleteCache(){
         do {
             try Disk.remove((Auth.auth().currentUser?.uid)! + ".json", from: .caches)
+            try Disk.remove("filteredStations.json", from: .caches)
             try Disk.remove("stations.json", from: .caches)
             print("Removed cache")
         } catch {

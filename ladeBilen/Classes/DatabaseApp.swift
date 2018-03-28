@@ -10,9 +10,11 @@ import Foundation
 import UIKit
 import Firebase
 import Disk
+import SwiftyJSON
 
 class DatabaseApp {
     let ref = Database.database().reference()
+    var stationListenerHandle: DatabaseHandle?
     
     func getUserFromDatabase(done: @escaping (_ user: User?)-> Void){
         ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -133,6 +135,25 @@ class DatabaseApp {
                 done(-1)
             }
         }
+    }
+    
+    func listenOnStation(stationId: String, done: @escaping (_ conn: NSArray)-> Void){
+        stationListenerHandle = ref.child("Realtime").child(stationId).observe(.value) { (snapshot) in
+            DispatchQueue.global().async {
+                if let dict = snapshot.value as? [String : AnyObject] {
+                    let conn = dict["conn"] as? NSArray
+                    print(conn![1])
+                    DispatchQueue.main.async {
+                        print("Update DatabaseApp")
+                        done(conn!)
+                    }
+                }
+            }
+        }
+    }
+    
+    func detatchListenerOnStation(stationId: String){
+        ref.child("Realtime").child(stationId).removeObserver(withHandle: stationListenerHandle!)
     }
     
 }

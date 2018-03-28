@@ -17,8 +17,11 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     
     
     @IBOutlet weak var panelView: UIView!
+
+    var realtime: Bool?
     var userComment: String?
     var connectors: [Connector]?
+    var compatibleConntacts: Int?
     
     @IBOutlet weak var screenWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var detailsButton: UIButton!
@@ -64,13 +67,16 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         connectorCollectionView.register(UINib(nibName: "ConnectorCell", bundle: nil), forCellWithReuseIdentifier: "ConnectorCellIdentifier")
         
         xibWidthConstraint.constant = UIScreen.main.bounds.width
-        xibHeightConstraint.constant = UIScreen.main.bounds.height - 219
+        xibHeightConstraint.constant = 350
+        //UIScreen.main.bounds.height - 219
         
         
         
         //219 høyden på xib for best config.
         descriptionLabel.sizeToFit()
+        //Sort connectors etter relevanse
         
+
     }
     
     func initializeApperance(){
@@ -151,9 +157,55 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         let cell: ConnectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectorCellIdentifier", for: indexPath as IndexPath) as! ConnectorCell
         cell.typeLabel.text = connectors![indexPath.row].connector?.description
         cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode
-        cell.compatibleLabel.text = "Må legges inn"
-        cell.isOperatingLabel.text = connectors![indexPath.row].operationStatus
-        cell.isTakenLabel.text = connectors![indexPath.row].status
+        
+        if connectors![indexPath.row].chargerMode == "1" {
+            cell.chargeRateLabel.text = "Normal"
+        } else if connectors![indexPath.row].chargerMode == "2" {
+            cell.chargeRateLabel.text = "Semi-Hurtig"
+        } else if connectors![indexPath.row].chargerMode == "3" {
+            cell.chargeRateLabel.text = "Semi-Hurtig"
+        } else {
+            cell.chargeRateLabel.text = "Hurtig"
+
+        }
+        
+        if realtime! {
+            if connectors![indexPath.row].isTaken! == 0{
+                cell.isTakenLabel.text = "Ledig"
+            } else {
+                cell.isTakenLabel.text = "Opptatt"
+            }
+            
+            if connectors![indexPath.row].error == 0 {
+                cell.isOperationalLabel.text = ""
+            } else {
+                cell.isOperationalLabel.text = "Ute av drift"
+                cell.isTakenLabel.text = ""
+
+            }
+        } else {
+            cell.isTakenLabel.text = ""
+            cell.isOperationalLabel.text = ""
+        }
+        
+        
+        
+        if realtime! {
+            if compatibleConntacts! > indexPath.row {
+                cell.view.layer.borderColor = UIColor.red.cgColor
+            } else {
+                cell.view.layer.borderColor = UIColor.lightGray.cgColor
+            }
+        
+            if compatibleConntacts! > indexPath.row && connectors![indexPath.row].isTaken == 0 && connectors![indexPath.row].error == 0 {
+                cell.view.layer.borderColor = UIColor(red: 0.1059, green: 0.5765, blue: 0, alpha: 1.0).cgColor
+            } else if compatibleConntacts! > indexPath.row && connectors![indexPath.row].isTaken == 1 && connectors![indexPath.row].error == 0 {
+                cell.view.layer.borderColor = UIColor(red: 0.898, green: 0.7922, blue: 0, alpha: 1.0).cgColor
+            }
+        } else {
+            cell.view.layer.borderColor = UIColor.lightGray.cgColor
+        }
+        
         return cell
     }
     
