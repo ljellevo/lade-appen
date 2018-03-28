@@ -68,6 +68,7 @@ class Algorithms {
         var newArray: [Connector] = []
         var found = false
         for conn in connectors{
+            found = false
             for connector in user.connector!{
                 if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
                     newArray.insert(conn, at: 0)

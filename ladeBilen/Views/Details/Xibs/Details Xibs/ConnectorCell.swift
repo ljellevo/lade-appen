@@ -14,7 +14,6 @@ class ConnectorCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var chargeRateLabel: UILabel!
-    @IBOutlet weak var compatibleLabel: UILabel!
     @IBOutlet weak var isTakenLabel: UILabel!
     @IBOutlet weak var isOperationalLabel: UILabel!
     
@@ -27,6 +26,7 @@ class ConnectorCell: UICollectionViewCell {
         view.layer.masksToBounds = true
     }
     
+    /*
     override var isSelected: Bool{
         didSet{
             if self.isSelected {
@@ -37,4 +37,5 @@ class ConnectorCell: UICollectionViewCell {
             }
         }
     }
+ */
 }
