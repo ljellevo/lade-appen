@@ -114,7 +114,6 @@ class DatabaseApp {
                         let eachStation = children.value as? [String: AnyObject]
                         let station = Station(dictionary: eachStation!)
                         stations.append(station)
-                        print("Update")
                     }
                 }
                 
@@ -144,7 +143,6 @@ class DatabaseApp {
                     let conn = dict["conn"] as? NSArray
                     print(conn![1])
                     DispatchQueue.main.async {
-                        print("Update DatabaseApp")
                         done(conn!)
                     }
                 }
