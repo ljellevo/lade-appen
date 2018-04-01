@@ -724,20 +724,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frf-yt-d8b" userLabel="Image View">
                                 <rect key="frame" x="0.0" y="428" width="320" height="140"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xblogg130708sommer.jpg.pagespeed.ic.b6H3_U7zK2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="a5H-aD-aiG">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xblogg130708sommer.jpg.pagespeed.ic.b6H3_U7zK2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="a5H-aD-aiG">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="a5H-aD-aiG" secondAttribute="bottom" id="OFD-r7-e8D"/>
+                                    <constraint firstItem="a5H-aD-aiG" firstAttribute="leading" secondItem="frf-yt-d8b" secondAttribute="leading" id="eLL-2T-hBe"/>
+                                    <constraint firstItem="a5H-aD-aiG" firstAttribute="top" secondItem="frf-yt-d8b" secondAttribute="top" id="fKp-tZ-5qt"/>
                                     <constraint firstAttribute="height" constant="140" id="kc9-zo-8lu"/>
+                                    <constraint firstAttribute="trailing" secondItem="a5H-aD-aiG" secondAttribute="trailing" id="psm-qt-Ova"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="a5H-aD-aiG"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6uL-Kc-sva" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="498" width="320" height="70"/>
@@ -833,6 +830,7 @@
                         <outlet property="buttonsStack" destination="fHQ-m9-XD3" id="62c-gv-JOa"/>
                         <outlet property="contentView" destination="6uL-Kc-sva" id="vMH-0w-Tre"/>
                         <outlet property="contentViewHeightConstraint" destination="ILQ-YK-ygU" id="DrI-TU-xcj"/>
+                        <outlet property="image" destination="a5H-aD-aiG" id="TWv-dU-2Ab"/>
                         <outlet property="imageView" destination="frf-yt-d8b" id="1Wz-iJ-xBv"/>
                         <outlet property="imageViewBottomConstraint" destination="h5m-r0-vBB" id="67y-5n-TSS"/>
                         <outlet property="imageViewHeightConstraint" destination="kc9-zo-8lu" id="pcy-cE-aOv"/>

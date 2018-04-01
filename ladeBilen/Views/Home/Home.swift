@@ -45,6 +45,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var imageView: UIView!
+    @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
     
@@ -74,6 +75,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Søk"
         setupNavigationBar()
+        imageViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.3
         self.definesPresentationContext = true
     }
     
@@ -262,26 +264,55 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     }
     
     var height: CGFloat = 0.0
+    var startPosition: Bool = true
+
     @IBAction func contentViewIsDragging(_ sender: UIPanGestureRecognizer) {
         let gesture = sender.translation(in: view)
         self.view.endEditing(true)
-        print(gesture.y)
+        let navigationBarHeight: CGFloat = self.navigationController!.navigationBar.frame.height
         if sender.state == UIGestureRecognizerState.began {
             print("Began movement")
             height = contentViewHeightConstraint.constant
         }
+        imageView.isHidden = false
+
         
         contentViewHeightConstraint.constant = -(gesture.y - height)
+        
+
+        if startPosition {
+            if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.4 {
+                imageViewBottomConstraint.constant = contentViewHeightConstraint.constant
+            } else  {
+                imageViewBottomConstraint.constant = -((gesture.y + UIScreen.main.bounds.height * 0.1) * 2)
+            }
+        } else {
+            if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.4 {
+                imageViewBottomConstraint.constant = contentViewHeightConstraint.constant
+            } else  {
+                imageViewBottomConstraint.constant = (-((gesture.y - UIScreen.main.bounds.height * 0.4) * 2)) + navigationBarHeight
+            }
+        }
+
+
+        
+        
+        
 
         
         
         if sender.state == UIGestureRecognizerState.ended {
             print("Ended movement")
+            print(navigationBarHeight)
+
             
             if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.5 {
-                contentViewHeightConstraint.constant = UIScreen.main.bounds.height - 100
+                contentViewHeightConstraint.constant = UIScreen.main.bounds.height - imageViewHeightConstraint.constant - navigationBarHeight
+                imageViewBottomConstraint.constant = UIScreen.main.bounds.height - imageViewHeightConstraint.constant - navigationBarHeight
+                print(UIScreen.main.bounds.height)
+                print(UIScreen.main.bounds.height - imageViewHeightConstraint.constant - navigationBarHeight)
                 height = contentViewHeightConstraint.constant
-
+                startPosition = false
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
                 })
@@ -289,6 +320,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 contentViewHeightConstraint.constant = 70
                 height = contentViewHeightConstraint.constant
 
+                startPosition = true
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
                 })
