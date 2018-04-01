@@ -40,12 +40,13 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     @IBOutlet weak var buttonsStack: UIStackView!
     
     @IBOutlet var infoView: UIView!
-    @IBOutlet weak var infoViewPannel: UIView!
-    @IBOutlet weak var infoPaneStack: UIStackView!
-            @IBOutlet weak var nameLabel: UILabel!
-            @IBOutlet weak var streetLabel: UILabel!
-            @IBOutlet weak var detailsButton: UIButton!
-            @IBOutlet weak var infoPaneStackBottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var imageView: UIView!
+    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
@@ -67,7 +68,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         isInitial = true
         initializeMap()
         initializeButtons()
-        initializeView()
         
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
@@ -141,15 +141,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         mapWindow.delegate = self
     }
     
-    func initializeView(){
-        infoViewPannel.layer.cornerRadius = 10
-        infoViewPannel.layer.borderWidth = 0.5
-        infoViewPannel.layer.borderColor = UIColor.lightGray.cgColor
-        infoViewPannel.layer.masksToBounds = true
-        infoPaneStack.alpha = 0.0
-        infoPaneStackBottomConstraint.constant = -70
-        infoView.isHidden = true
-    }
     
 
     
@@ -203,12 +194,8 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         if let anno = view.annotation as? Annotation {
             id = anno.id!
             print(id!)
-            nameLabel.text = anno.title
-            streetLabel.text = anno.subtitle
             infoView.isHidden = false
-            infoPaneStackBottomConstraint.constant = 16
             UIView.animate(withDuration: 0.5) {
-                self.infoPaneStack.alpha = 1.0
                 self.infoView.layoutIfNeeded()
             }
         } else {
@@ -218,9 +205,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
 
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        infoPaneStackBottomConstraint.constant = -70
         UIView.animate(withDuration: 0.5) {
-            self.infoPaneStack.alpha = 0.0
             self.infoView.layoutIfNeeded()
         }
         self.infoView.isHidden = true
@@ -274,6 +259,44 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     @IBAction func infoViewTapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "toDetails", sender: self)
+    }
+    
+    var height: CGFloat = 0.0
+    @IBAction func contentViewIsDragging(_ sender: UIPanGestureRecognizer) {
+        let gesture = sender.translation(in: view)
+        self.view.endEditing(true)
+        print(gesture.y)
+        if sender.state == UIGestureRecognizerState.began {
+            print("Began movement")
+            height = contentViewHeightConstraint.constant
+        }
+        
+        contentViewHeightConstraint.constant = -(gesture.y - height)
+
+        
+        
+        if sender.state == UIGestureRecognizerState.ended {
+            print("Ended movement")
+            
+            if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.5 {
+                contentViewHeightConstraint.constant = UIScreen.main.bounds.height - 100
+                height = contentViewHeightConstraint.constant
+
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.view.layoutIfNeeded()
+                })
+            } else {
+                contentViewHeightConstraint.constant = 70
+                height = contentViewHeightConstraint.constant
+
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.view.layoutIfNeeded()
+                })
+            }
+            sender.setTranslation(CGPoint.zero, in: self.view)
+        }
+        
+        
     }
 }
 
