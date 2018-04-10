@@ -15,7 +15,7 @@ import Disk
 
 
 
-class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource{
+class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource{
 
     var app: App?
     
@@ -27,6 +27,15 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     var filteredStations: [Station]?
     var selectedStationSearch: Station?
+    var station: Station?
+    var countCompatible: Int?
+    var connectors: [Connector]?
+
+
+    
+    
+    var height: CGFloat = 0.0
+    var startPosition: Bool = true
 
 
     @IBOutlet weak var tableViewStack: UIStackView!
@@ -49,7 +58,9 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var greyDraggingIndicator: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         filteredStations = app!.filteredStations
@@ -75,7 +86,24 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Søk"
         setupNavigationBar()
-        imageViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.3
+        detailsStartPosition()
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        self.collectionView.register(UINib(nibName: "TopCell", bundle: nil), forCellWithReuseIdentifier: "ImageCellIdentifier")
+        self.collectionView.register(UINib(nibName: "InfoCell", bundle: nil), forCellWithReuseIdentifier: "InfoCellIdentifier")
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
+            flowLayout.estimatedItemSize = CGSize(width: 1, height: 95)
+        }
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.contentView.isHidden = true
+        imageView.isHidden = true
+        
+        greyDraggingIndicator.layer.cornerRadius = 5
+
+
+
         self.definesPresentationContext = true
     }
     
@@ -84,13 +112,64 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         self.addAnnotationsToMap()
         searchController.searchBar.sizeToFit()
     }
+    
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if station != nil {
+            let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
+            cell.connectorCollectionView.reloadData()
+            cell.realtime = station?.realtimeInfo
+            cell.nameLabel.text = station?.name
+            cell.compatibleConntacts = countCompatible
+            cell.streetLabel.text = (station?.street)! + " " + (station?.houseNumber)!
+            if station!.realtimeInfo!{
+                cell.realtimeLabel.text = "Leverer sanntids informasjon"
+            } else {
+                cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
+                    
+            }
+                
+            //cell.fastChargeLabel.text = "Mangler"
+                
+            if station!.parkingFee! {
+                cell.parkingFeeLabel.text = "Parkerings avgift"
+            } else {
+                cell.parkingFeeLabel.text = "Gratis parkering"
+            }
+                
+            cell.userComment = station?.userComment
+            cell.descriptionLabel.text = station?.descriptionOfLocation
+            cell.connectors = connectors!
+            return cell
+        }
+        let cell: TopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCellIdentifier", for: indexPath as IndexPath) as! TopCell
+        return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.row == 0 {
+            return CGSize(width: self.view.bounds.size.width, height: 94.0)
+        } else {
+            return CGSize(width: self.view.bounds.size.width, height: (UIScreen.main.bounds.height - 94))
+            //Må ta teksten i station?.descriptionofLocation og regne ut hvor stor den blir mtp høyden når fonten er en spesiell størelse.
+            //Deretter må jeg finne høyden.
+        }
+    }
 
     func setupNavigationBar() {
         let searchBarContainer = SearchBarContainerView(customSearchBar: searchController.searchBar)
         searchBarContainer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
         navigationItem.titleView = searchBarContainer
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredStations!.count
@@ -126,8 +205,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         tableView.reloadData()
     }
     
-    
-    
     func initializeButtons(){
         nearestButton.layer.cornerRadius = 25
         nearestButton.clipsToBounds = true
@@ -143,10 +220,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         mapWindow.delegate = self
     }
     
-    
-
-    
-
     func addAnnotationsToMap(){
         mapWindow.removeAnnotations(mapWindow.annotations)
         for children in filteredStations!{
@@ -163,7 +236,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
             }
         }
     }
-    
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if #available(iOS 11.0, *) {
@@ -196,7 +268,17 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         if let anno = view.annotation as? Annotation {
             id = anno.id!
             print(id!)
-            infoView.isHidden = false
+            contentView.isHidden = false
+            imageView.isHidden = false
+            
+            for filteredStation in filteredStations!{
+                if filteredStation.id == id {
+                    station = filteredStation
+                    break
+                }
+            }
+            self.connectors = self.app!.sortConnectors(connectors: station!.conn)
+            collectionView.reloadData()
             UIView.animate(withDuration: 0.5) {
                 self.infoView.layoutIfNeeded()
             }
@@ -210,7 +292,8 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         UIView.animate(withDuration: 0.5) {
             self.infoView.layoutIfNeeded()
         }
-        self.infoView.isHidden = true
+        self.contentView.isHidden = true
+        imageView.isHidden = true
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
@@ -226,13 +309,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetails"{
-            var station: Station?
-            for filteredStation in filteredStations!{
-                if filteredStation.id == self.id {
-                    station = filteredStation
-                    break
-                }
-            }
+            
             if let nextViewController = segue.destination as? Details{
                 nextViewController.station = station
                 nextViewController.app = app
@@ -262,16 +339,29 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     @IBAction func infoViewTapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "toDetails", sender: self)
     }
-    
-    var height: CGFloat = 0.0
-    var startPosition: Bool = true
 
+
+    func detailsStartPosition(){
+        imageViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.3
+        imageViewBottomConstraint.constant = -(UIScreen.main.bounds.height * 0.2)
+        contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.1
+        collectionView.isScrollEnabled = false
+        //imageView.isHidden = true
+    }
+    
+    func detailsEngagedPosition(navigationBarHeight: CGFloat){
+        contentViewHeightConstraint.constant = UIScreen.main.bounds.height - imageViewHeightConstraint.constant - navigationBarHeight
+        imageViewBottomConstraint.constant = UIScreen.main.bounds.height - imageViewHeightConstraint.constant - navigationBarHeight
+        collectionView.isScrollEnabled = true
+        //imageView.isHidden = false
+    }
+    
+    
     @IBAction func contentViewIsDragging(_ sender: UIPanGestureRecognizer) {
         let gesture = sender.translation(in: view)
         self.view.endEditing(true)
         let navigationBarHeight: CGFloat = self.navigationController!.navigationBar.frame.height
         if sender.state == UIGestureRecognizerState.began {
-            print("Began movement")
             height = contentViewHeightConstraint.constant
         }
         imageView.isHidden = false
@@ -293,43 +383,43 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 imageViewBottomConstraint.constant = (-((gesture.y - UIScreen.main.bounds.height * 0.4) * 2)) + navigationBarHeight
             }
         }
+        
+        if contentViewHeightConstraint.constant <= UIScreen.main.bounds.height * 0.1 {
+            imageView.isHidden = true
+        } else {
+            imageView.isHidden = false
+        }
+        
 
 
-        
-        
-        
-
-        
-        
         if sender.state == UIGestureRecognizerState.ended {
-            print("Ended movement")
-            print(navigationBarHeight)
-
             
             if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.5 {
-                contentViewHeightConstraint.constant = UIScreen.main.bounds.height - imageViewHeightConstraint.constant - navigationBarHeight
-                imageViewBottomConstraint.constant = UIScreen.main.bounds.height - imageViewHeightConstraint.constant - navigationBarHeight
-                print(UIScreen.main.bounds.height)
-                print(UIScreen.main.bounds.height - imageViewHeightConstraint.constant - navigationBarHeight)
+                detailsEngagedPosition(navigationBarHeight: navigationBarHeight)
                 height = contentViewHeightConstraint.constant
                 startPosition = false
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
                 })
-            } else {
-                contentViewHeightConstraint.constant = 70
-                height = contentViewHeightConstraint.constant
 
+            } else {
+                height = contentViewHeightConstraint.constant
+                detailsStartPosition()
                 startPosition = true
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
                 })
+
+                
             }
             sender.setTranslation(CGPoint.zero, in: self.view)
         }
-        
-        
     }
+    
+    
+    
+    
+    
 }
 
 
