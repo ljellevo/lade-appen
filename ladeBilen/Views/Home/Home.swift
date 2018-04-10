@@ -58,7 +58,10 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var detailsStack: UIStackView!
+        @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var startStack: UIStackView!
     
     @IBOutlet weak var greyDraggingIndicator: UIView!
     override func viewDidLoad() {
@@ -91,7 +94,9 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        self.collectionView.register(UINib(nibName: "StartCell", bundle: nil), forCellWithReuseIdentifier: "StartCellIdentifier")
         self.collectionView.register(UINib(nibName: "TopCell", bundle: nil), forCellWithReuseIdentifier: "ImageCellIdentifier")
+
         self.collectionView.register(UINib(nibName: "InfoCell", bundle: nil), forCellWithReuseIdentifier: "InfoCellIdentifier")
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 95)
@@ -124,31 +129,33 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if station != nil {
-            let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
-            cell.connectorCollectionView.reloadData()
-            cell.realtime = station?.realtimeInfo
-            cell.nameLabel.text = station?.name
-            cell.compatibleConntacts = countCompatible
-            cell.streetLabel.text = (station?.street)! + " " + (station?.houseNumber)!
-            if station!.realtimeInfo!{
-                cell.realtimeLabel.text = "Leverer sanntids informasjon"
-            } else {
-                cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
+
+                let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
+                cell.connectorCollectionView.reloadData()
+                cell.realtime = station?.realtimeInfo
+                cell.nameLabel.text = station?.name
+                cell.compatibleConntacts = countCompatible
+                cell.streetLabel.text = (station?.street)! + " " + (station?.houseNumber)!
+                if station!.realtimeInfo!{
+                    cell.realtimeLabel.text = "Leverer sanntids informasjon"
+                } else {
+                    cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
                     
-            }
+                }
                 
-            //cell.fastChargeLabel.text = "Mangler"
+                //cell.fastChargeLabel.text = "Mangler"
                 
-            if station!.parkingFee! {
-                cell.parkingFeeLabel.text = "Parkerings avgift"
-            } else {
-                cell.parkingFeeLabel.text = "Gratis parkering"
-            }
+                if station!.parkingFee! {
+                    cell.parkingFeeLabel.text = "Parkerings avgift"
+                } else {
+                    cell.parkingFeeLabel.text = "Gratis parkering"
+                }
                 
-            cell.userComment = station?.userComment
-            cell.descriptionLabel.text = station?.descriptionOfLocation
-            cell.connectors = connectors!
-            return cell
+                cell.userComment = station?.userComment
+                cell.descriptionLabel.text = station?.descriptionOfLocation
+                cell.connectors = connectors!
+                return cell
+            
         }
         let cell: TopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCellIdentifier", for: indexPath as IndexPath) as! TopCell
         return cell
@@ -270,6 +277,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
             print(id!)
             contentView.isHidden = false
             imageView.isHidden = false
+            detailsStack.alpha = 0.0
             
             for filteredStation in filteredStations!{
                 if filteredStation.id == id {
@@ -363,8 +371,10 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         let navigationBarHeight: CGFloat = self.navigationController!.navigationBar.frame.height
         if sender.state == UIGestureRecognizerState.began {
             height = contentViewHeightConstraint.constant
+            detailsStack.isHidden = false
         }
         imageView.isHidden = false
+        
 
         
         contentViewHeightConstraint.constant = -(gesture.y - height)
@@ -375,12 +385,15 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 imageViewBottomConstraint.constant = contentViewHeightConstraint.constant
             } else  {
                 imageViewBottomConstraint.constant = -((gesture.y + UIScreen.main.bounds.height * 0.1) * 2)
+                detailsStack.alpha = (-gesture.y/UIScreen.main.bounds.height * 0.6)
             }
         } else {
             if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.4 {
                 imageViewBottomConstraint.constant = contentViewHeightConstraint.constant
             } else  {
                 imageViewBottomConstraint.constant = (-((gesture.y - UIScreen.main.bounds.height * 0.4) * 2)) + navigationBarHeight
+                detailsStack.alpha = (gesture.y/UIScreen.main.bounds.height * 0.6)
+
             }
         }
         
@@ -398,6 +411,10 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 detailsEngagedPosition(navigationBarHeight: navigationBarHeight)
                 height = contentViewHeightConstraint.constant
                 startPosition = false
+                detailsStack.isHidden = false
+                detailsStack.alpha = 1.0
+                startStack.isHidden = true
+                startStack.alpha = 0.0
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
                 })
@@ -406,11 +423,14 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 height = contentViewHeightConstraint.constant
                 detailsStartPosition()
                 startPosition = true
+                detailsStack.alpha = 0.0
+                detailsStack.isHidden = true
+                startStack.isHidden = false
+                startStack.alpha = 1.0
+
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
                 })
-
-                
             }
             sender.setTranslation(CGPoint.zero, in: self.view)
         }

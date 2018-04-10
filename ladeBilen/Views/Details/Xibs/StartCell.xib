@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StartCellIdentifier" id="gTV-IL-0wX" customClass="StartCell" customModule="ladeBilen" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="357" height="49"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="357" height="49"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Smp-s7-sDc">
+                        <rect key="frame" x="0.0" y="0.0" width="357" height="49"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="HgD-l7-4JO">
+                                <rect key="frame" x="8" y="8" width="341" height="33"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ceL-KT-6zE">
+                                        <rect key="frame" x="0.0" y="0.0" width="269" height="33"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Fortum Hurtigladestasjon Lade Arena, Trondheim" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pzv-ZO-72b">
+                                                <rect key="frame" x="0.0" y="0.0" width="269" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Innheredsveien 34a" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IA6-S4-Eod">
+                                                <rect key="frame" x="0.0" y="19.5" width="269" height="13.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tqw-Rd-gzc">
+                                        <rect key="frame" x="275" y="0.0" width="30" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="cGJ-X5-Fej"/>
+                                        </constraints>
+                                        <state key="normal" image="FavoriteSet"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mli-H2-SLb">
+                                        <rect key="frame" x="311" y="0.0" width="30" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="lvX-jp-qVd"/>
+                                        </constraints>
+                                        <state key="normal" title="Følg"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="HgD-l7-4JO" secondAttribute="trailing" constant="8" id="69d-xw-6ng"/>
+                            <constraint firstItem="HgD-l7-4JO" firstAttribute="top" secondItem="Smp-s7-sDc" secondAttribute="top" constant="8" id="Cev-QZ-xZr"/>
+                            <constraint firstAttribute="bottom" secondItem="HgD-l7-4JO" secondAttribute="bottom" constant="8" id="eow-yT-6BZ"/>
+                            <constraint firstItem="HgD-l7-4JO" firstAttribute="leading" secondItem="Smp-s7-sDc" secondAttribute="leading" constant="8" id="xXu-iT-e57"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Smp-s7-sDc" secondAttribute="bottom" id="AXC-o5-EBz"/>
+                <constraint firstItem="Smp-s7-sDc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Gys-o3-mRC"/>
+                <constraint firstAttribute="trailing" secondItem="Smp-s7-sDc" secondAttribute="trailing" id="QDV-T7-paM"/>
+                <constraint firstItem="Smp-s7-sDc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="awi-lA-ui1"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="357" height="49"/>
+            <connections>
+                <outlet property="favoriteButton" destination="Tqw-Rd-gzc" id="tpo-BP-aSU"/>
+                <outlet property="stationLabel" destination="Pzv-ZO-72b" id="dur-1z-Lfm"/>
+                <outlet property="streetLabel" destination="IA6-S4-Eod" id="Qtt-77-Z4o"/>
+                <outlet property="subscribeButton" destination="mli-H2-SLb" id="t12-w8-tsc"/>
+            </connections>
+            <point key="canvasLocation" x="-60.5" y="60.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="FavoriteSet" width="25" height="25"/>
+    </resources>
+</document>
