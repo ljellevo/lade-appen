@@ -385,14 +385,14 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 imageViewBottomConstraint.constant = contentViewHeightConstraint.constant
             } else  {
                 imageViewBottomConstraint.constant = -((gesture.y + UIScreen.main.bounds.height * 0.1) * 2)
-                detailsStack.alpha = (-gesture.y/UIScreen.main.bounds.height * 0.6)
+                detailsStack.alpha = (-(gesture.y * 6)/UIScreen.main.bounds.height * 0.6)
             }
         } else {
             if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.4 {
                 imageViewBottomConstraint.constant = contentViewHeightConstraint.constant
             } else  {
                 imageViewBottomConstraint.constant = (-((gesture.y - UIScreen.main.bounds.height * 0.4) * 2)) + navigationBarHeight
-                detailsStack.alpha = (gesture.y/UIScreen.main.bounds.height * 0.6)
+                detailsStack.alpha = ((gesture.y * 6)/UIScreen.main.bounds.height * 0.6)
 
             }
         }
@@ -413,8 +413,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 startPosition = false
                 detailsStack.isHidden = false
                 detailsStack.alpha = 1.0
-                startStack.isHidden = true
-                startStack.alpha = 0.0
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
                 })
@@ -425,8 +423,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 startPosition = true
                 detailsStack.alpha = 0.0
                 detailsStack.isHidden = true
-                startStack.isHidden = false
-                startStack.alpha = 1.0
 
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
