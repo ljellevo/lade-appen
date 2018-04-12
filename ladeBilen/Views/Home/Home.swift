@@ -288,7 +288,13 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
 
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        detailsStartPosition()
         self.contentView.isHidden = true
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blurView.alpha = 0.0
+        }, completion: {(finished:Bool) in
+            
+        })
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
@@ -319,7 +325,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         }
     }
     
-
     @IBAction func toProfile(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "toProfile", sender: self)
     }
@@ -332,9 +337,8 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         performSegue(withIdentifier: "toDetails", sender: self)
     }
 
-
+    
     func detailsStartPosition(){
-
         contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.15
         collectionView.isScrollEnabled = false
         UIView.animate(withDuration: 0.5, animations: {
