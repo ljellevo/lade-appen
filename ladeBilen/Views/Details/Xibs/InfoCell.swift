@@ -67,7 +67,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         connectorCollectionView.register(UINib(nibName: "ConnectorCell", bundle: nil), forCellWithReuseIdentifier: "ConnectorCellIdentifier")
         
         xibWidthConstraint.constant = UIScreen.main.bounds.width
-        xibHeightConstraint.constant = 350
+        //xibHeightConstraint.constant = 350
         //UIScreen.main.bounds.height - 219
         
         
@@ -81,7 +81,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     
     func initializeApperance(){
         detailsButton.tintColor = UIColor.themeBlue()
-        panelView.layer.cornerRadius = 20
+        //panelView.layer.cornerRadius = 20
         detailsStack.isHidden = false
         commentsStack.isHidden = true
         connectorStack.isHidden = true
