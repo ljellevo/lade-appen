@@ -88,5 +88,7 @@ class Algorithms {
     
     func populateFavoritesArray(){
 
-    }  
+    }
+    
+    
 }

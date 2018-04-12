@@ -28,6 +28,8 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     var filteredStations: [Station]?
     var selectedStationSearch: Station?
     var station: Station?
+    var isFavorite: Bool?
+
     var countCompatible: Int?
     var connectors: [Connector]?
 
@@ -62,6 +64,12 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var startStack: UIStackView!
+        @IBOutlet weak var stationNameLabel: UILabel!
+        @IBOutlet weak var stationStreetLabel: UILabel!
+        @IBOutlet weak var favoriteButton: UIButton!
+        @IBOutlet weak var subscribeButton: UIButton!
+    
+    
     
     @IBOutlet weak var greyDraggingIndicator: UIView!
     override func viewDidLoad() {
@@ -105,7 +113,20 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         self.contentView.isHidden = true
         imageView.isHidden = true
         
-        greyDraggingIndicator.layer.cornerRadius = 5
+        greyDraggingIndicator.layer.cornerRadius = 2
+        /*
+        favoriteButton.layer.cornerRadius = 10
+        favoriteButton.layer.borderWidth = 1
+        favoriteButton.layer.borderColor = UIColor.themeBlue().cgColor
+ */
+        /*
+        subscribeButton.layer.cornerRadius = 10
+        
+        subscribeButton.titleLabel?.textColor = UIColor.themeBlue()
+        subscribeButton.layer.borderWidth = 1
+        subscribeButton.layer.borderColor = UIColor.themeBlue().cgColor
+ */
+        
 
 
 
@@ -285,6 +306,16 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                     break
                 }
             }
+            stationNameLabel.text = station!.name
+            stationStreetLabel.text = station!.street
+            if app!.user!.favorites!.keys.contains(station!.id!.description){
+                isFavorite = true
+                favoriteButton.setImage(#imageLiteral(resourceName: "FavoriteFilledSet"), for: .normal)
+
+            } else {
+                isFavorite = false
+                favoriteButton.setImage(#imageLiteral(resourceName: "FavoriteSet"), for: .normal)
+            }
             self.connectors = self.app!.sortConnectors(connectors: station!.conn)
             collectionView.reloadData()
             UIView.animate(withDuration: 0.5) {
@@ -352,7 +383,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     func detailsStartPosition(){
         imageViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.3
         imageViewBottomConstraint.constant = -(UIScreen.main.bounds.height * 0.2)
-        contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.1
+        contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.15
         collectionView.isScrollEnabled = false
         //imageView.isHidden = true
     }
@@ -384,15 +415,15 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
             if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.4 {
                 imageViewBottomConstraint.constant = contentViewHeightConstraint.constant
             } else  {
-                imageViewBottomConstraint.constant = -((gesture.y + UIScreen.main.bounds.height * 0.1) * 2)
-                detailsStack.alpha = (-(gesture.y * 6)/UIScreen.main.bounds.height * 0.6)
+                imageViewBottomConstraint.constant = -((gesture.y + UIScreen.main.bounds.height * 0.05) * 2)
+                detailsStack.alpha = (-(gesture.y * 12)/UIScreen.main.bounds.height * 0.6)
             }
         } else {
             if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.4 {
                 imageViewBottomConstraint.constant = contentViewHeightConstraint.constant
             } else  {
                 imageViewBottomConstraint.constant = (-((gesture.y - UIScreen.main.bounds.height * 0.4) * 2)) + navigationBarHeight
-                detailsStack.alpha = ((gesture.y * 6)/UIScreen.main.bounds.height * 0.6)
+                detailsStack.alpha = ((gesture.y * 12)/UIScreen.main.bounds.height * 0.6)
 
             }
         }
