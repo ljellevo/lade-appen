@@ -36,8 +36,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
 
     
     
-    var height: CGFloat = 0.0
-    var startPosition: Bool = true
+
 
 
     @IBOutlet weak var tableViewStack: UIStackView!
@@ -50,26 +49,16 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     @IBOutlet weak var buttonStackConstraintLeading: NSLayoutConstraint!
     @IBOutlet weak var buttonsStack: UIStackView!
     
-    @IBOutlet var infoView: UIView!
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var imageView: UIView!
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
+
     
     @IBOutlet weak var detailsStack: UIStackView!
         @IBOutlet weak var collectionView: UICollectionView!
     
-    @IBOutlet weak var startStack: UIStackView!
-        @IBOutlet weak var stationNameLabel: UILabel!
-        @IBOutlet weak var stationStreetLabel: UILabel!
-        @IBOutlet weak var favoriteButton: UIButton!
-        @IBOutlet weak var subscribeButton: UIButton!
-    
-    
+    @IBOutlet weak var blurView: UIView!
     
     @IBOutlet weak var greyDraggingIndicator: UIView!
     override func viewDidLoad() {
@@ -90,7 +79,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         tableView.dataSource = self
         isInitial = true
         initializeMap()
-        initializeButtons()
         
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
@@ -102,33 +90,17 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        self.collectionView.register(UINib(nibName: "StartCell", bundle: nil), forCellWithReuseIdentifier: "StartCellIdentifier")
         self.collectionView.register(UINib(nibName: "TopCell", bundle: nil), forCellWithReuseIdentifier: "ImageCellIdentifier")
-
         self.collectionView.register(UINib(nibName: "InfoCell", bundle: nil), forCellWithReuseIdentifier: "InfoCellIdentifier")
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 95)
         }
         self.automaticallyAdjustsScrollViewInsets = false
         self.contentView.isHidden = true
-        imageView.isHidden = true
         
         greyDraggingIndicator.layer.cornerRadius = 2
-        /*
-        favoriteButton.layer.cornerRadius = 10
-        favoriteButton.layer.borderWidth = 1
-        favoriteButton.layer.borderColor = UIColor.themeBlue().cgColor
- */
-        /*
-        subscribeButton.layer.cornerRadius = 10
-        
-        subscribeButton.titleLabel?.textColor = UIColor.themeBlue()
-        subscribeButton.layer.borderWidth = 1
-        subscribeButton.layer.borderColor = UIColor.themeBlue().cgColor
- */
-        
-
-
+        blurView.alpha = 0.0
+        contentView.layer.cornerRadius = 20
 
         self.definesPresentationContext = true
     }
@@ -233,11 +205,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         tableView.reloadData()
     }
     
-    func initializeButtons(){
-        nearestButton.layer.cornerRadius = 25
-        nearestButton.clipsToBounds = true
-        nearestButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
-    }
     
     func initializeMap(){
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -297,8 +264,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
             id = anno.id!
             print(id!)
             contentView.isHidden = false
-            imageView.isHidden = false
-            detailsStack.alpha = 0.0
             
             for filteredStation in filteredStations!{
                 if filteredStation.id == id {
@@ -306,21 +271,16 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                     break
                 }
             }
-            stationNameLabel.text = station!.name
-            stationStreetLabel.text = station!.street
+
             if app!.user!.favorites!.keys.contains(station!.id!.description){
                 isFavorite = true
-                favoriteButton.setImage(#imageLiteral(resourceName: "FavoriteFilledSet"), for: .normal)
 
             } else {
                 isFavorite = false
-                favoriteButton.setImage(#imageLiteral(resourceName: "FavoriteSet"), for: .normal)
             }
             self.connectors = self.app!.sortConnectors(connectors: station!.conn)
             collectionView.reloadData()
-            UIView.animate(withDuration: 0.5) {
-                self.infoView.layoutIfNeeded()
-            }
+
         } else {
             return
         }
@@ -328,11 +288,13 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
 
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        UIView.animate(withDuration: 0.5) {
-            self.infoView.layoutIfNeeded()
-        }
+        detailsStartPosition()
         self.contentView.isHidden = true
-        imageView.isHidden = true
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blurView.alpha = 0.0
+        }, completion: {(finished:Bool) in
+            
+        })
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
@@ -363,10 +325,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         }
     }
     
-    @IBAction func detailsButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "toDetails", sender: self)
-    }
-    
     @IBAction func toProfile(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "toProfile", sender: self)
     }
@@ -379,71 +337,48 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         performSegue(withIdentifier: "toDetails", sender: self)
     }
 
-
+    
     func detailsStartPosition(){
-        imageViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.3
-        imageViewBottomConstraint.constant = -(UIScreen.main.bounds.height * 0.2)
         contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.15
         collectionView.isScrollEnabled = false
-        //imageView.isHidden = true
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blurView.alpha = 0.0
+        })
     }
     
-    func detailsEngagedPosition(navigationBarHeight: CGFloat){
-        contentViewHeightConstraint.constant = UIScreen.main.bounds.height - imageViewHeightConstraint.constant - navigationBarHeight
-        imageViewBottomConstraint.constant = UIScreen.main.bounds.height - imageViewHeightConstraint.constant - navigationBarHeight
-        collectionView.isScrollEnabled = true
-        //imageView.isHidden = false
+    func detailsEngagedPosition(blur: CGFloat){
+        contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.6
+        collectionView.isScrollEnabled = false
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blurView.alpha = blur
+        })
     }
     
     
+    var height: CGFloat = 0.0
+    var startPosition: Bool = true
     @IBAction func contentViewIsDragging(_ sender: UIPanGestureRecognizer) {
         let gesture = sender.translation(in: view)
         self.view.endEditing(true)
-        let navigationBarHeight: CGFloat = self.navigationController!.navigationBar.frame.height
         if sender.state == UIGestureRecognizerState.began {
             height = contentViewHeightConstraint.constant
-            detailsStack.isHidden = false
         }
-        imageView.isHidden = false
         
 
         
         contentViewHeightConstraint.constant = -(gesture.y - height)
         
-
-        if startPosition {
-            if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.4 {
-                imageViewBottomConstraint.constant = contentViewHeightConstraint.constant
-            } else  {
-                imageViewBottomConstraint.constant = -((gesture.y + UIScreen.main.bounds.height * 0.05) * 2)
-                detailsStack.alpha = (-(gesture.y * 12)/UIScreen.main.bounds.height * 0.6)
-            }
-        } else {
-            if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.4 {
-                imageViewBottomConstraint.constant = contentViewHeightConstraint.constant
-            } else  {
-                imageViewBottomConstraint.constant = (-((gesture.y - UIScreen.main.bounds.height * 0.4) * 2)) + navigationBarHeight
-                detailsStack.alpha = ((gesture.y * 12)/UIScreen.main.bounds.height * 0.6)
-
-            }
+        if contentViewHeightConstraint.constant < UIScreen.main.bounds.height * 0.6 {
+            blurView.alpha = (contentViewHeightConstraint.constant/UIScreen.main.bounds.height * 0.45)
+            print(blurView.alpha)
         }
-        
-        if contentViewHeightConstraint.constant <= UIScreen.main.bounds.height * 0.1 {
-            imageView.isHidden = true
-        } else {
-            imageView.isHidden = false
-        }
-        
-
 
         if sender.state == UIGestureRecognizerState.ended {
             
             if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.5 {
-                detailsEngagedPosition(navigationBarHeight: navigationBarHeight)
+                detailsEngagedPosition(blur: blurView.alpha)
                 height = contentViewHeightConstraint.constant
                 startPosition = false
-                detailsStack.isHidden = false
-                detailsStack.alpha = 1.0
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
                 })
@@ -452,8 +387,6 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                 height = contentViewHeightConstraint.constant
                 detailsStartPosition()
                 startPosition = true
-                detailsStack.alpha = 0.0
-                detailsStack.isHidden = true
 
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
