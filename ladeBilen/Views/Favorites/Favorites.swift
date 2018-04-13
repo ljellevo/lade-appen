@@ -183,6 +183,6 @@ extension Favorites: CollectionViewCellDelegate {
         //var indexPath = self.collectionView.indexPath(for: cell)
         
         //Remove subscription from database
-        print("Remove button clicked")
+        print("Remove button clicked Favorite")
     }
 }

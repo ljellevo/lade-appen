@@ -29,24 +29,38 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="34"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bH8-d3-2Ga">
-                                                <rect key="frame" x="0.0" y="0.0" width="138" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="83" height="34"/>
                                                 <state key="normal" image="DetailsSet"/>
                                                 <connections>
                                                     <action selector="detailsButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="hLd-Rb-iOC"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZq-iY-CEU">
-                                                <rect key="frame" x="138" y="0.0" width="138" height="34"/>
+                                                <rect key="frame" x="83" y="0.0" width="82.5" height="34"/>
                                                 <state key="normal" image="CommentsSet"/>
                                                 <connections>
                                                     <action selector="commentsButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Y8C-TV-hGv"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYb-bQ-QrU" userLabel="Station Button">
-                                                <rect key="frame" x="276" y="0.0" width="138" height="34"/>
+                                                <rect key="frame" x="165.5" y="0.0" width="83" height="34"/>
                                                 <state key="normal" image="ChargerSet"/>
                                                 <connections>
                                                     <action selector="stationButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ZHU-jG-tJF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J54-LE-kX9" userLabel="Image Button">
+                                                <rect key="frame" x="248.5" y="0.0" width="82.5" height="34"/>
+                                                <state key="normal" image="PicturesSet"/>
+                                                <connections>
+                                                    <action selector="imageButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ipe-Ob-ZVT"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2A2-2t-guE" userLabel="Cancel Button">
+                                                <rect key="frame" x="331" y="0.0" width="83" height="34"/>
+                                                <state key="normal" image="CancelSet"/>
+                                                <connections>
+                                                    <action selector="cancelButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="MGO-aV-dPk"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -218,11 +232,20 @@
                                             <constraint firstAttribute="trailing" secondItem="Wsp-CU-hKE" secondAttribute="trailing" id="rwW-Yr-hLf"/>
                                         </constraints>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N6X-ZR-EO2">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="245"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xblogg130708sommer.jpg.pagespeed.ic.b6H3_U7zK2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="YKP-oq-mef">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="245"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="P6h-J1-kzN" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" id="6WW-A0-u9b"/>
                                     <constraint firstItem="t1E-k3-wbq" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="20" id="7S3-Jp-bll"/>
+                                    <constraint firstAttribute="trailing" secondItem="N6X-ZR-EO2" secondAttribute="trailing" id="99q-V3-ceZ"/>
                                     <constraint firstItem="CZS-nt-SiJ" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="20" id="C1S-hI-vJe"/>
                                     <constraint firstAttribute="bottom" secondItem="P6h-J1-kzN" secondAttribute="bottom" id="IXG-67-F5K"/>
                                     <constraint firstAttribute="bottom" secondItem="t1E-k3-wbq" secondAttribute="bottom" id="J3F-MF-NT5"/>
@@ -230,9 +253,11 @@
                                     <constraint firstAttribute="trailing" secondItem="CZS-nt-SiJ" secondAttribute="trailing" constant="20" id="PtR-WS-8GP"/>
                                     <constraint firstAttribute="trailing" secondItem="P6h-J1-kzN" secondAttribute="trailing" id="R9A-cJ-f7H"/>
                                     <constraint firstItem="t1E-k3-wbq" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" id="TnT-cq-raX"/>
+                                    <constraint firstItem="N6X-ZR-EO2" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" id="arb-oj-3Tq"/>
                                     <constraint firstAttribute="trailing" secondItem="t1E-k3-wbq" secondAttribute="trailing" constant="20" id="c31-hT-XLa"/>
                                     <constraint firstItem="CZS-nt-SiJ" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" constant="5" id="ddI-OL-EkO"/>
                                     <constraint firstAttribute="bottom" secondItem="CZS-nt-SiJ" secondAttribute="bottom" id="oj1-X5-SQe"/>
+                                    <constraint firstItem="N6X-ZR-EO2" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" id="pxJ-0h-xWG"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -260,6 +285,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="320" height="467"/>
             <connections>
+                <outlet property="cancelButton" destination="2A2-2t-guE" id="jhw-Vu-tcv"/>
                 <outlet property="commentStackWidthConstraint" destination="61V-s7-MPG" id="Jcx-ih-vmq"/>
                 <outlet property="commentsButton" destination="xZq-iY-CEU" id="cja-cT-cgg"/>
                 <outlet property="commentsStack" destination="t1E-k3-wbq" id="o6U-EC-yNJ"/>
@@ -270,12 +296,15 @@
                 <outlet property="detailsButton" destination="bH8-d3-2Ga" id="TyW-gJ-RUh"/>
                 <outlet property="detailsStack" destination="CZS-nt-SiJ" id="Ure-l1-5OD"/>
                 <outlet property="fastChargeLabel" destination="sBw-F1-vE1" id="kKt-2b-hXs"/>
+                <outlet property="imageButton" destination="J54-LE-kX9" id="djz-qC-WAn"/>
+                <outlet property="imageStack" destination="N6X-ZR-EO2" id="89y-mv-Vlc"/>
                 <outlet property="nameLabel" destination="DUi-fg-nGY" id="Dp9-f1-MHd"/>
                 <outlet property="panelView" destination="mBL-MQ-LsN" id="J3s-KY-QIC"/>
                 <outlet property="parkingFeeLabel" destination="fzv-sj-BoY" id="xNO-Rx-8JP"/>
                 <outlet property="realtimeLabel" destination="N24-tH-Eu4" id="ZE6-Xf-sMQ"/>
                 <outlet property="screenWidthConstraint" destination="HlI-yu-Ia5" id="LlI-UW-0OQ"/>
                 <outlet property="stationButton" destination="NYb-bQ-QrU" id="HyO-0r-Qnb"/>
+                <outlet property="stationImage" destination="YKP-oq-mef" id="Go5-KN-t9k"/>
                 <outlet property="streetLabel" destination="1xt-Lb-WDf" id="Dv6-aW-vQA"/>
                 <outlet property="xibHeightConstraint" destination="3Ly-HQ-AqL" id="del-ZO-p9K"/>
                 <outlet property="xibWidthConstraint" destination="72Z-CG-uBQ" id="y6a-WK-apY"/>
@@ -284,8 +313,11 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="CancelSet" width="25" height="25"/>
         <image name="ChargerSet" width="25" height="25"/>
         <image name="CommentsSet" width="25" height="25"/>
         <image name="DetailsSet" width="25" height="25"/>
+        <image name="PicturesSet" width="25" height="25"/>
+        <image name="xblogg130708sommer.jpg.pagespeed.ic.b6H3_U7zK2.jpg" width="360" height="245"/>
     </resources>
 </document>

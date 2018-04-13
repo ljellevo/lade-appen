@@ -748,7 +748,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ro6-W5-gt0" id="SLM-AP-Bfa">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -836,6 +836,7 @@
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="nmm-Wr-evb" appends="YES" id="Ww5-PS-Ykw"/>
+                                    <outletCollection property="gestureRecognizers" destination="ndM-eb-sgC" appends="YES" id="5M1-2Q-qyp"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -863,7 +864,6 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="fHQ-m9-XD3"/>
-                                <exclude reference="bcT-jA-b1i"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="KEs-6v-AnL"/>
@@ -911,9 +911,9 @@
                         <action selector="contentViewIsDragging:" destination="BYZ-38-t0r" id="Whs-jV-iFI"/>
                     </connections>
                 </panGestureRecognizer>
-                <tapGestureRecognizer enabled="NO" id="Us3-wO-iuW">
+                <tapGestureRecognizer id="ndM-eb-sgC">
                     <connections>
-                        <action selector="infoViewTapped:" destination="BYZ-38-t0r" id="eMR-uA-Zak"/>
+                        <action selector="detailsViewWasTapped:" destination="BYZ-38-t0r" id="cHE-wZ-UqY"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

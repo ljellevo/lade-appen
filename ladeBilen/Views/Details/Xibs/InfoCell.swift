@@ -8,25 +8,26 @@
 
 import UIKit
 
-class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout{
+class InfoCell: UICollectionViewCell{
     
-    
-    @IBOutlet weak var xibHeightConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var xibWidthConstraint: NSLayoutConstraint!
-    
-    
-    @IBOutlet weak var panelView: UIView!
-
     var realtime: Bool?
     var userComment: String?
     var connectors: [Connector]?
     var compatibleConntacts: Int?
+    weak var delegate: CollectionViewCellDelegate?
+
     
+    @IBOutlet weak var xibHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var xibWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var panelView: UIView!
+
     @IBOutlet weak var screenWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var detailsButton: UIButton!
     @IBOutlet weak var commentsButton: UIButton!
     @IBOutlet weak var stationButton: UIButton!
+    @IBOutlet weak var imageButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     @IBOutlet weak var detailsStack: UIStackView!
         @IBOutlet weak var nameLabel: UILabel!
@@ -37,94 +38,126 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
 
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    
-    
     @IBOutlet weak var commentsStack: UIStackView!
         @IBOutlet weak var commentsView: UITableView!
         @IBOutlet weak var commentStackWidthConstraint: NSLayoutConstraint!
     
-    
     @IBOutlet weak var connectorStack: UIStackView!
         @IBOutlet weak var connectorCollectionView: UICollectionView!
     
+    @IBOutlet weak var imageStack: UIStackView!
+        @IBOutlet weak var stationImage: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        commentsView.delegate = self
-        commentsView.dataSource = self
-        connectorCollectionView.delegate = self
-        connectorCollectionView.dataSource = self
+        
+        screenWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
+        commentStackWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
+        
+        loadCommentsElement()
+        loadConnectorElement()
+        
+        detailsButton.tintColor = UIColor.themeBlue()
+        detailsStack.isHidden = false
+        commentsStack.isHidden = true
+        connectorStack.isHidden = true
+        imageStack.isHidden = true
+        
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
        
+        xibWidthConstraint.constant = UIScreen.main.bounds.width
+        descriptionLabel.sizeToFit()
+    }
+    
+    @IBAction func detailsButton(_ sender: UIButton) {
+        setActiveViewFor(element: .InfoElement)
+    }
+    
+    @IBAction func commentsButton(_ sender: UIButton) {
+        setActiveViewFor(element: .CommentsElement)
+    }
+    
+    @IBAction func stationButton(_ sender: UIButton) {
+        setActiveViewFor(element: .ConnectorElement)
+    }
+    
+    @IBAction func imageButton(_ sender: UIButton) {
+        setActiveViewFor(element: .ImageElement)
+    }
+    
+    @IBAction func cancelButton(_ sender: UIButton) {
+        setActiveViewFor(element: .InfoElement)
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton)
+    }
+    
+    func setActiveViewFor(element: elements) {
+        switch element {
+        case .InfoElement:
+            detailsButton.tintColor = UIColor.themeBlue()
+            commentsButton.tintColor = UIColor.gray
+            stationButton.tintColor = UIColor.gray
+            imageButton.tintColor = UIColor.gray
+            
+            detailsStack.isHidden = false
+            commentsStack.isHidden = true
+            connectorStack.isHidden = true
+            imageStack.isHidden = true
+        case .CommentsElement:
+            detailsButton.tintColor = UIColor.gray
+            commentsButton.tintColor = UIColor.themeBlue()
+            stationButton.tintColor = UIColor.gray
+            imageButton.tintColor = UIColor.gray
+
+            
+            detailsStack.isHidden = true
+            commentsStack.isHidden = false
+            connectorStack.isHidden = true
+            imageStack.isHidden = true
+
+        case .ConnectorElement:
+            detailsButton.tintColor = UIColor.gray
+            commentsButton.tintColor = UIColor.gray
+            stationButton.tintColor = UIColor.themeBlue()
+            imageButton.tintColor = UIColor.gray
+
+            
+            detailsStack.isHidden = true
+            commentsStack.isHidden = true
+            connectorStack.isHidden = false
+            imageStack.isHidden = true
+
+            
+        case .ImageElement:
+            detailsButton.tintColor = UIColor.gray
+            commentsButton.tintColor = UIColor.gray
+            stationButton.tintColor = UIColor.gray
+            imageButton.tintColor = UIColor.themeBlue()
+            
+            
+            detailsStack.isHidden = true
+            commentsStack.isHidden = true
+            connectorStack.isHidden = true
+            imageStack.isHidden = false
+        }
+    }
+
+}
+
+private typealias CommentsElement = InfoCell
+extension CommentsElement: UITableViewDelegate, UITableViewDataSource {
+    
+    func loadCommentsElement(){
+        commentsView.delegate = self
+        commentsView.dataSource = self
+        
         commentsView.rowHeight = UITableViewAutomaticDimension
         commentsView.estimatedRowHeight = 135
-
-        initializeApperance()
-        setConstraints()
         
         commentsView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCellIdentifier")
         commentsView.register(UITableViewCell.self, forCellReuseIdentifier: "Label")
 
-        connectorCollectionView.register(UINib(nibName: "ConnectorCell", bundle: nil), forCellWithReuseIdentifier: "ConnectorCellIdentifier")
-        
-        xibWidthConstraint.constant = UIScreen.main.bounds.width
-        //xibHeightConstraint.constant = 350
-        //UIScreen.main.bounds.height - 219
-        
-        
-        
-        //219 høyden på xib for best config.
-        descriptionLabel.sizeToFit()
-        //Sort connectors etter relevanse
-        
-
     }
-    
-    func initializeApperance(){
-        detailsButton.tintColor = UIColor.themeBlue()
-        //panelView.layer.cornerRadius = 20
-        detailsStack.isHidden = false
-        commentsStack.isHidden = true
-        connectorStack.isHidden = true
-    }
-    
-    func setConstraints(){
-        screenWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
-        commentStackWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
-        
-    }
-    
-    @IBAction func detailsButton(_ sender: UIButton) {
-        detailsButton.tintColor = UIColor.themeBlue()
-        commentsButton.tintColor = UIColor.gray
-        stationButton.tintColor = UIColor.gray
-        
-        detailsStack.isHidden = false
-        commentsStack.isHidden = true
-        connectorStack.isHidden = true
-
-    }
-    
-    @IBAction func commentsButton(_ sender: UIButton) {
-        detailsButton.tintColor = UIColor.gray
-        commentsButton.tintColor = UIColor.themeBlue()
-        stationButton.tintColor = UIColor.gray
-
-        detailsStack.isHidden = true
-        commentsStack.isHidden = false
-        connectorStack.isHidden = true
-
-    }
-    
-    @IBAction func stationButton(_ sender: UIButton) {
-        detailsButton.tintColor = UIColor.gray
-        commentsButton.tintColor = UIColor.gray
-        stationButton.tintColor = UIColor.themeBlue()
-        detailsStack.isHidden = true
-        commentsStack.isHidden = true
-        connectorStack.isHidden = false
-
-    }
-
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -146,6 +179,19 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
             return cell
         }
     }
+
+}
+
+private typealias ConnectorElement = InfoCell
+extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout{
+    
+    func loadConnectorElement(){
+        connectorCollectionView.delegate = self
+        connectorCollectionView.dataSource = self
+        
+        connectorCollectionView.register(UINib(nibName: "ConnectorCell", bundle: nil), forCellWithReuseIdentifier: "ConnectorCellIdentifier")
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //Kan være nil.
@@ -166,7 +212,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
             cell.chargeRateLabel.text = "Semi-Hurtig"
         } else {
             cell.chargeRateLabel.text = "Hurtig"
-
+            
         }
         
         if realtime! {
@@ -181,7 +227,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
             } else {
                 cell.isOperationalLabel.text = "Ute av drift"
                 cell.isTakenLabel.text = ""
-
+                
             }
         } else {
             cell.isTakenLabel.text = ""
@@ -196,7 +242,7 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
             } else {
                 cell.view.layer.borderColor = UIColor.lightGray.cgColor
             }
-        
+            
             if compatibleConntacts! > indexPath.row && connectors![indexPath.row].isTaken == 0 && connectors![indexPath.row].error == 0 {
                 cell.view.layer.borderColor = UIColor.darkGreen().cgColor
             } else if compatibleConntacts! > indexPath.row && connectors![indexPath.row].isTaken == 1 && connectors![indexPath.row].error == 0 {
@@ -213,4 +259,12 @@ class InfoCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         //Sette størelsen på containerene i collectionview
         return CGSize(width: (UIScreen.main.bounds.width - 100), height: (UIScreen.main.bounds.width - 100))
     }
+
+}
+
+enum elements {
+    case InfoElement
+    case CommentsElement
+    case ConnectorElement
+    case ImageElement
 }

@@ -12,10 +12,7 @@ import CoreLocation
 import Firebase
 import Disk
 
-
-
-
-class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource{
+class Home: UIViewController{
 
     var app: App?
     
@@ -32,12 +29,9 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
 
     var countCompatible: Int?
     var connectors: [Connector]?
-
-
     
-    
-
-
+    var height: CGFloat = 0.0
+    var startPosition: Bool = true
 
     @IBOutlet weak var tableViewStack: UIStackView!
     @IBOutlet weak var tableViewStackBottomConstraint: NSLayoutConstraint!
@@ -49,21 +43,28 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     @IBOutlet weak var buttonStackConstraintLeading: NSLayoutConstraint!
     @IBOutlet weak var buttonsStack: UIStackView!
     
-    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
-    
-
     
     @IBOutlet weak var detailsStack: UIStackView!
         @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var blurView: UIView!
-    
     @IBOutlet weak var greyDraggingIndicator: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         filteredStations = app!.filteredStations
+        
+        
+        loadDetailsElement()
+        loadMapElement()
+        loadSearchElement()
+        
+        
+
 
         /*
         if app!.filteredStations.count > 0 {
@@ -74,19 +75,102 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         }
  */
  
-        mapWindow.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
-        isInitial = true
-        initializeMap()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        filteredStations = app!.filteredStations
+        self.addAnnotationsToMap()
+        searchController.searchBar.sizeToFit()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetails"{
+            
+            if let nextViewController = segue.destination as? Details{
+                nextViewController.station = station
+                nextViewController.app = app
+            }
+        } else {
+            if let nextViewController = segue.destination as? Profile{
+                nextViewController.app = app
+            }
+            if let nextViewController = segue.destination as? Favorites{
+                nextViewController.app = app
+            }
+        }
+    }
+    
+    
+    
+    @IBAction func toProfile(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "toProfile", sender: self)
+    }
+    
+    @IBAction func toFavorites(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "toFavorites", sender: self)
+    }
+    
+    @IBAction func detailsViewWasTapped(_ sender: UITapGestureRecognizer) {
+        detailsEngagedPosition(blur: 0.26)
+        height = contentViewHeightConstraint.constant
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+
+    @IBAction func contentViewIsDragging(_ sender: UIPanGestureRecognizer) {
+        let gesture = sender.translation(in: view)
+        let velocity = sender.velocity(in: self.view).y
+
+        print(velocity)
+        self.view.endEditing(true)
+        if sender.state == UIGestureRecognizerState.began {
+            height = contentViewHeightConstraint.constant
+        }
         
-        searchController.searchResultsUpdater = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Søk"
-        setupNavigationBar()
-        detailsStartPosition()
+        contentViewHeightConstraint.constant = -(gesture.y - height)
         
+        if contentViewHeightConstraint.constant < UIScreen.main.bounds.height * 0.6 {
+            blurView.alpha = (contentViewHeightConstraint.constant/UIScreen.main.bounds.height * 0.45)
+        }
+
+        if sender.state == UIGestureRecognizerState.ended {
+            if velocity < -800 {
+                detailsEngagedPosition(blur: 0.26)
+                UIView.animate(withDuration: TimeInterval(UIScreen.main.bounds.height/velocity), delay: 0.0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
+                    self.view.layoutIfNeeded()
+                })
+            } else if velocity > 800 {
+                detailsStartPosition()
+                UIView.animate(withDuration: TimeInterval(UIScreen.main.bounds.height/velocity), delay: 0.0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
+                    self.view.layoutIfNeeded()
+                })
+                
+            } else {
+                if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.25 {
+                    detailsEngagedPosition(blur: 0.26)
+                    UIView.animate(withDuration: 0.5, delay: 0.0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
+                        self.view.layoutIfNeeded()
+                    })
+                    
+                } else {
+                    detailsStartPosition()
+                    UIView.animate(withDuration: 0.5, delay: 0.0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
+                        self.view.layoutIfNeeded()
+                    })
+                }
+            }
+            
+            sender.setTranslation(CGPoint.zero, in: self.view)
+        }
+    }
+    
+}
+private typealias DetailsElement = Home
+extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
+
+    func loadDetailsElement(){
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -96,22 +180,16 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 95)
         }
         self.automaticallyAdjustsScrollViewInsets = false
+        
         self.contentView.isHidden = true
         
         greyDraggingIndicator.layer.cornerRadius = 2
         blurView.alpha = 0.0
         contentView.layer.cornerRadius = 20
-
-        self.definesPresentationContext = true
+        
+        detailsStartPosition()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        filteredStations = app!.filteredStations
-        self.addAnnotationsToMap()
-        searchController.searchBar.sizeToFit()
-    }
-    
-
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -122,32 +200,33 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if station != nil {
-
-                let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
-                cell.connectorCollectionView.reloadData()
-                cell.realtime = station?.realtimeInfo
-                cell.nameLabel.text = station?.name
-                cell.compatibleConntacts = countCompatible
-                cell.streetLabel.text = (station?.street)! + " " + (station?.houseNumber)!
-                if station!.realtimeInfo!{
-                    cell.realtimeLabel.text = "Leverer sanntids informasjon"
-                } else {
-                    cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
-                    
-                }
+            
+            let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
+            cell.connectorCollectionView.reloadData()
+            cell.delegate = self as CollectionViewCellDelegate
+            cell.realtime = station?.realtimeInfo
+            cell.nameLabel.text = station?.name
+            cell.compatibleConntacts = countCompatible
+            cell.streetLabel.text = (station?.street)! + " " + (station?.houseNumber)!
+            if station!.realtimeInfo!{
+                cell.realtimeLabel.text = "Leverer sanntids informasjon"
+            } else {
+                cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
                 
-                //cell.fastChargeLabel.text = "Mangler"
-                
-                if station!.parkingFee! {
-                    cell.parkingFeeLabel.text = "Parkerings avgift"
-                } else {
-                    cell.parkingFeeLabel.text = "Gratis parkering"
-                }
-                
-                cell.userComment = station?.userComment
-                cell.descriptionLabel.text = station?.descriptionOfLocation
-                cell.connectors = connectors!
-                return cell
+            }
+            
+            //cell.fastChargeLabel.text = "Mangler"
+            
+            if station!.parkingFee! {
+                cell.parkingFeeLabel.text = "Parkerings avgift"
+            } else {
+                cell.parkingFeeLabel.text = "Gratis parkering"
+            }
+            
+            cell.userComment = station?.userComment
+            cell.descriptionLabel.text = station?.descriptionOfLocation
+            cell.connectors = connectors!
+            return cell
             
         }
         let cell: TopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCellIdentifier", for: indexPath as IndexPath) as! TopCell
@@ -164,55 +243,45 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
             //Deretter må jeg finne høyden.
         }
     }
+    
+    
+    func detailsStartPosition(){
+        contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.15
+        height = contentViewHeightConstraint.constant
 
-    func setupNavigationBar() {
-        let searchBarContainer = SearchBarContainerView(customSearchBar: searchController.searchBar)
-        searchBarContainer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
-        navigationItem.titleView = searchBarContainer
+        collectionView.isScrollEnabled = false
+        startPosition = true
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blurView.alpha = 0.0
+        })
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredStations!.count
+    func detailsEngagedPosition(blur: CGFloat){
+        contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.6
+        height = contentViewHeightConstraint.constant
+
+        collectionView.isScrollEnabled = false
+        startPosition = false
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blurView.alpha = blur
+        })
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        if let result = filteredStations {
-            cell.textLabel!.text = result[indexPath.row].name
-        } else {
-            cell.textLabel!.text = filteredStations![indexPath.row].name
-        }
-        return cell
-    }
+
+}
+
+private typealias MapElement = Home
+extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        id = filteredStations![indexPath.row].id
-        performSegue(withIdentifier: "toDetails", sender: self)
-    }
-    
-    //Søkealgoritmen
-    func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            tableViewStack.isHidden = false
-            filteredStations = filteredStations!.filter { filteredStations in
-                return (filteredStations.name?.lowercased().contains(searchText.lowercased()))!
-            }
-        } else {
-            tableViewStack.isHidden = true
-            filteredStations = app?.filteredStations
-        }
-        tableView.reloadData()
-    }
-    
-    
-    func initializeMap(){
+    func loadMapElement(){
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         mapWindow.showsUserLocation = true
         mapWindow.delegate = self
+        isInitial = true
+        
     }
     
     func addAnnotationsToMap(){
@@ -258,7 +327,7 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
             return nil
         }
     }
- 
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let anno = view.annotation as? Annotation {
             id = anno.id!
@@ -271,29 +340,27 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
                     break
                 }
             }
-
+            
             if app!.user!.favorites!.keys.contains(station!.id!.description){
                 isFavorite = true
-
+                
             } else {
                 isFavorite = false
             }
             self.connectors = self.app!.sortConnectors(connectors: station!.conn)
             collectionView.reloadData()
-
+            
         } else {
             return
         }
     }
     
-
+    
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         detailsStartPosition()
         self.contentView.isHidden = true
         UIView.animate(withDuration: 0.5, animations: {
             self.blurView.alpha = 0.0
-        }, completion: {(finished:Bool) in
-            
         })
     }
     
@@ -308,100 +375,81 @@ class Home: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISe
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDetails"{
-            
-            if let nextViewController = segue.destination as? Details{
-                nextViewController.station = station
-                nextViewController.app = app
-            }
-        } else {
-            if let nextViewController = segue.destination as? Profile{
-                nextViewController.app = app
-            }
-            if let nextViewController = segue.destination as? Favorites{
-                nextViewController.app = app
-            }
-        }
-    }
-    
-    @IBAction func toProfile(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "toProfile", sender: self)
-    }
-    
-    @IBAction func toFavorites(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "toFavorites", sender: self)
-    }
-    
-    @IBAction func infoViewTapped(_ sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "toDetails", sender: self)
-    }
-
-    
-    func detailsStartPosition(){
-        contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.15
-        collectionView.isScrollEnabled = false
-        UIView.animate(withDuration: 0.5, animations: {
-            self.blurView.alpha = 0.0
-        })
-    }
-    
-    func detailsEngagedPosition(blur: CGFloat){
-        contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.6
-        collectionView.isScrollEnabled = false
-        UIView.animate(withDuration: 0.5, animations: {
-            self.blurView.alpha = blur
-        })
-    }
-    
-    
-    var height: CGFloat = 0.0
-    var startPosition: Bool = true
-    @IBAction func contentViewIsDragging(_ sender: UIPanGestureRecognizer) {
-        let gesture = sender.translation(in: view)
-        self.view.endEditing(true)
-        if sender.state == UIGestureRecognizerState.began {
-            height = contentViewHeightConstraint.constant
-        }
-        
-
-        
-        contentViewHeightConstraint.constant = -(gesture.y - height)
-        
-        if contentViewHeightConstraint.constant < UIScreen.main.bounds.height * 0.6 {
-            blurView.alpha = (contentViewHeightConstraint.constant/UIScreen.main.bounds.height * 0.45)
-            print(blurView.alpha)
-        }
-
-        if sender.state == UIGestureRecognizerState.ended {
-            
-            if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.5 {
-                detailsEngagedPosition(blur: blurView.alpha)
-                height = contentViewHeightConstraint.constant
-                startPosition = false
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.view.layoutIfNeeded()
-                })
-
-            } else {
-                height = contentViewHeightConstraint.constant
-                detailsStartPosition()
-                startPosition = true
-
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.view.layoutIfNeeded()
-                })
-            }
-            sender.setTranslation(CGPoint.zero, in: self.view)
-        }
-    }
-    
-    
-    
-    
-    
 }
 
+private typealias SearchElement = Home
+extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource {
+    
+    func loadSearchElement(){
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Søk"
+        
+        self.definesPresentationContext = true
+        
+        setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        let searchBarContainer = SearchBarContainerView(customSearchBar: searchController.searchBar)
+        searchBarContainer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
+        navigationItem.titleView = searchBarContainer
+    }
+    
+    //Søkealgoritmen
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            tableViewStack.isHidden = false
+            filteredStations = filteredStations!.filter { filteredStations in
+                return (filteredStations.name?.lowercased().contains(searchText.lowercased()))!
+            }
+        } else {
+            tableViewStack.isHidden = true
+            filteredStations = app?.filteredStations
+        }
+        tableView.reloadData()
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredStations!.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        if let result = filteredStations {
+            cell.textLabel!.text = result[indexPath.row].name
+        } else {
+            cell.textLabel!.text = filteredStations![indexPath.row].name
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        id = filteredStations![indexPath.row].id
+        performSegue(withIdentifier: "toDetails", sender: self)
+    }
+}
 
-
+private typealias Protocols = Home
+extension Protocols: CollectionViewCellDelegate  {
+    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton) {
+        print("Remove button clicked Home")
+        if !startPosition {
+            detailsStartPosition()
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+                self.blurView.alpha = 0.0
+            })
+        } else {
+            self.contentView.isHidden = true
+            self.mapWindow.deselectAnnotation(mapWindow.selectedAnnotations[0], animated: true)
+        }
+    }
+}
 
