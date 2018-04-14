@@ -7,7 +7,13 @@
 //
 
 import Foundation
+import UIKit
 
 protocol stationConntactWasUpdated {
     func stationConntactWasUpdated()
+}
+
+
+protocol CollectionViewCellDelegate: class {
+    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action)
 }

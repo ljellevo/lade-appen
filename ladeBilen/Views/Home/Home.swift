@@ -100,8 +100,6 @@ class Home: UIViewController{
         }
     }
     
-    
-    
     @IBAction func toProfile(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "toProfile", sender: self)
     }
@@ -123,7 +121,6 @@ class Home: UIViewController{
         let gesture = sender.translation(in: view)
         let velocity = sender.velocity(in: self.view).y
 
-        print(velocity)
         self.view.endEditing(true)
         if sender.state == UIGestureRecognizerState.began {
             height = contentViewHeightConstraint.constant
@@ -223,6 +220,14 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.parkingFeeLabel.text = "Gratis parkering"
             }
             
+            if isFavorite! {
+                cell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
+                cell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
+            } else {
+                cell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
+                cell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
+            }
+            
             cell.userComment = station?.userComment
             cell.descriptionLabel.text = station?.descriptionOfLocation
             cell.connectors = connectors!
@@ -285,18 +290,22 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func addAnnotationsToMap(){
-        mapWindow.removeAnnotations(mapWindow.annotations)
-        for children in filteredStations!{
-            var position = children.position
-            position = position?.replacingOccurrences(of: "(", with: "")
-            position = position?.replacingOccurrences(of: ")", with: "")
-            let positionArray = position!.components(separatedBy: ",")
-            let lat = Double(positionArray[0])
-            let lon = Double(positionArray[1])
-            let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
-            let annotation = Annotation(title: children.name!, subtitle: children.street! + " " + children.houseNumber!, id: children.id!, coordinate: coordinates)
-            DispatchQueue.main.async {
-                self.mapWindow.addAnnotation(annotation)
+        self.mapWindow.removeAnnotations(self.mapWindow.annotations)
+
+        DispatchQueue.global().async {
+            for children in self.filteredStations!{
+                var position = children.position
+                position = position?.replacingOccurrences(of: "(", with: "")
+                position = position?.replacingOccurrences(of: ")", with: "")
+                let positionArray = position!.components(separatedBy: ",")
+                let lat = Double(positionArray[0])
+                let lon = Double(positionArray[1])
+                let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
+                let annotation = Annotation(title: children.name!, subtitle: children.street! + " " + children.houseNumber!, id: children.id!, coordinate: coordinates)
+                DispatchQueue.main.async {
+
+                    self.mapWindow.addAnnotation(annotation)
+                }
             }
         }
     }
@@ -341,9 +350,12 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
                 }
             }
             
+            listenOnStation()
+            
+            
+            
             if app!.user!.favorites!.keys.contains(station!.id!.description){
                 isFavorite = true
-                
             } else {
                 isFavorite = false
             }
@@ -357,8 +369,10 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        print("Deselect")
         detailsStartPosition()
         self.contentView.isHidden = true
+        detatchAllListeners()
         UIView.animate(withDuration: 0.5, animations: {
             self.blurView.alpha = 0.0
         })
@@ -438,18 +452,78 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
 
 private typealias Protocols = Home
 extension Protocols: CollectionViewCellDelegate  {
-    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton) {
-        print("Remove button clicked Home")
-        if !startPosition {
-            detailsStartPosition()
-            UIView.animate(withDuration: 0.5, animations: {
-                self.view.layoutIfNeeded()
-                self.blurView.alpha = 0.0
-            })
-        } else {
-            self.contentView.isHidden = true
-            self.mapWindow.deselectAnnotation(mapWindow.selectedAnnotations[0], animated: true)
+    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action) {
+        switch action {
+        case .cancel:
+            if !startPosition {
+                detailsStartPosition()
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.view.layoutIfNeeded()
+                    self.blurView.alpha = 0.0
+                })
+            } else {
+                self.contentView.isHidden = true
+                self.mapWindow.deselectAnnotation(mapWindow.selectedAnnotations[0], animated: true)
+            }
+        case .favorite:
+            if isFavorite! {
+                app!.user?.favorites?.removeValue(forKey: station!.id!.description)
+                app?.setUserInDatabase(user: app!.user!)
+                let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                infoCell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
+                infoCell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
+                isFavorite = false
+            } else {
+                app!.user?.favorites?.updateValue(Date().getTimestamp(), forKey: station!.id!.description)
+                app?.setUserInDatabase(user: app!.user!)
+                let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                infoCell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
+                infoCell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
+                isFavorite = true
+            }
+            addAnnotationsToMap()
+        case .subscribe:
+            //MARK: Subscribe to station implementation
+            print("Følg stasjon")
         }
     }
 }
 
+private typealias Service = Home
+extension Service {
+    func listenOnStation(){
+        app?.listenOnStation(stationId: station!.id!, done: { station in
+            print("Listening")
+            self.station = station
+            self.connectors = self.app!.sortConnectors(connectors: station.conn)
+            
+            
+            DispatchQueue.main.async {
+                
+                var availableConntacts: Int = 0
+                
+                for conn in station.conn {
+                    if conn.error == 0 && conn.isTaken == 0 && self.app!.checkIfConntactIsAppliable(connector: conn) {
+                        availableConntacts += 1
+                    }
+                }
+                
+                let compatibleConntacts: Int = self.app!.findAvailableContacts(station: station)
+                //Available/Applicable contacts for station label.
+                _ = availableConntacts.description + "/" + compatibleConntacts.description
+                
+                
+                let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                infoCell.connectors = self.connectors
+                infoCell.compatibleConntacts = compatibleConntacts
+                infoCell.connectorCollectionView.reloadData()
+                
+            }
+        })
+    }
+    
+    func detatchAllListeners(){
+        print("Detatch")
+        app?.detachListenerOnStation(stationId: station!.id!)
+    }
+}

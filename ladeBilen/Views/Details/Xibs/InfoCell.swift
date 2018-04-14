@@ -35,7 +35,9 @@ class InfoCell: UICollectionViewCell{
         @IBOutlet weak var realtimeLabel: UILabel!
         @IBOutlet weak var fastChargeLabel: UILabel!
         @IBOutlet weak var parkingFeeLabel: UILabel!
-
+        @IBOutlet weak var favoriteButton: UIButton!
+        @IBOutlet weak var subscribeButton: UIButton!
+    
     @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var commentsStack: UIStackView!
@@ -55,6 +57,7 @@ class InfoCell: UICollectionViewCell{
         screenWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
         commentStackWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
         
+        loadDetailsElement()
         loadCommentsElement()
         loadConnectorElement()
         
@@ -67,6 +70,7 @@ class InfoCell: UICollectionViewCell{
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
        
         xibWidthConstraint.constant = UIScreen.main.bounds.width
+        xibHeightConstraint.constant = UIScreen.main.bounds.height * 0.6
         descriptionLabel.sizeToFit()
     }
     
@@ -87,8 +91,7 @@ class InfoCell: UICollectionViewCell{
     }
     
     @IBAction func cancelButton(_ sender: UIButton) {
-        setActiveViewFor(element: .InfoElement)
-        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton)
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .cancel)
     }
     
     func setActiveViewFor(element: elements) {
@@ -142,6 +145,22 @@ class InfoCell: UICollectionViewCell{
         }
     }
 
+    @IBAction func favoriteButton(_ sender: UIButton) {
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .favorite)
+    }
+    
+    @IBAction func subscribeButton(_ sender: UIButton) {
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .subscribe)
+    }
+}
+
+private typealias DetailsElement = InfoCell
+extension DetailsElement {
+    func loadDetailsElement(){
+        favoriteButton.layer.cornerRadius = 10
+        subscribeButton.layer.cornerRadius = 10
+    
+    }
 }
 
 private typealias CommentsElement = InfoCell
@@ -236,7 +255,7 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
         
         
         
-        if realtime! {
+        if compatibleConntacts != nil && realtime! {
             if compatibleConntacts! > indexPath.row {
                 cell.view.layer.borderColor = UIColor.red.cgColor
             } else {
@@ -262,9 +281,4 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
 
 }
 
-enum elements {
-    case InfoElement
-    case CommentsElement
-    case ConnectorElement
-    case ImageElement
-}
+

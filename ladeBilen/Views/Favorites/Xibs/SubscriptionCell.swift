@@ -8,9 +8,6 @@
 
 import UIKit
 
-protocol CollectionViewCellDelegate: class {
-    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton)
-}
 
 class SubscriptionCell: UICollectionViewCell {
     
@@ -36,7 +33,7 @@ class SubscriptionCell: UICollectionViewCell {
     }
     
     @IBAction func cancelSubscriptionButton(_ sender: UIButton) {
-        self.delegate?.collectionViewCell(self, buttonTapped: cancelSubscriptionButton)
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelSubscriptionButton, action: .cancel)
     }
     
 

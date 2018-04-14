@@ -179,10 +179,12 @@ extension Favorites: CollectionViewCellDelegate {
         }
     }
     
-    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton) {
+    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action) {
         //var indexPath = self.collectionView.indexPath(for: cell)
         
         //Remove subscription from database
-        print("Remove button clicked Favorite")
+        if action == .cancel {
+            print("Remove button clicked Favorite")
+        }
     }
 }

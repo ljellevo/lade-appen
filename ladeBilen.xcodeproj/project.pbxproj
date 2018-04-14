@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		417FB3657C7BE2ABB8E032E3 /* Pods_ladeBilen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBE7FF5E7AF48C454404FE8B /* Pods_ladeBilen.framework */; };
+		8300524D20818001008DAEEF /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8300524C20818001008DAEEF /* Enums.swift */; };
 		8302AE2B1FC3D074007F693A /* Pastebin.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8302AE2A1FC3D074007F693A /* Pastebin.txt */; };
 		8302AE2E1FC3EA8C007F693A /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302AE2D1FC3EA8C007F693A /* Details.swift */; };
 		8312F7332059B832006671F1 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312F7322059B832006671F1 /* Extentions.swift */; };
@@ -152,6 +153,7 @@
 		20189C346CDCFD95DE48E18F /* Pods_ladeBilenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56C3BD95A982F1DB28336552 /* Pods-ladeBilen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilen/Pods-ladeBilen.debug.xcconfig"; sourceTree = "<group>"; };
 		71177A21211319348367BC64 /* Pods-ladeBilenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8300524C20818001008DAEEF /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		8302AE2A1FC3D074007F693A /* Pastebin.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pastebin.txt; sourceTree = "<group>"; };
 		8302AE2D1FC3EA8C007F693A /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 		8312F7322059B832006671F1 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
@@ -311,6 +313,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8300524B20817FF3008DAEEF /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				8300524C20818001008DAEEF /* Enums.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		8302AE2C1FC3EA6E007F693A /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,6 +527,7 @@
 		835413831F82F6B9000A70CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8300524B20817FF3008DAEEF /* Enums */,
 				8331D2822067F56800E1B4A7 /* Protocols */,
 				83BE69B92059A915002AB442 /* Extentions */,
 				8302AE2A1FC3D074007F693A /* Pastebin.txt */,
@@ -1212,6 +1223,7 @@
 				8312F7332059B832006671F1 /* Extentions.swift in Sources */,
 				83F9E440203C98DE009B3788 /* Initialization.swift in Sources */,
 				83498D1C1EEB0B8300C3D92A /* NavigationHome.swift in Sources */,
+				8300524D20818001008DAEEF /* Enums.swift in Sources */,
 				83DE760D1FFAC49A001EE4C6 /* About.swift in Sources */,
 				83C042861FFAEB1E00F8D8CD /* ChangeUserInfo.swift in Sources */,
 				8323D4281FC77A4F0049D349 /* ConnectorCell.swift in Sources */,

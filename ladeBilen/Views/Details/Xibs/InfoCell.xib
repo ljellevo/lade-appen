@@ -118,26 +118,38 @@
                                                     <constraint firstAttribute="height" id="Rv0-WB-C7j"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Fortum Hurtiglader Nova" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUi-fg-nGY">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="23"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPK-9V-hmO">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Fortum Hurtiglader Nova" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUi-fg-nGY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="324" height="50"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxB-Hg-1D5">
+                                                        <rect key="frame" x="324" y="0.0" width="50" height="50"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="iEZ-eU-qqc"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Falkenborgveien 20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xt-Lb-WDf">
-                                                <rect key="frame" x="0.0" y="23" width="374" height="18"/>
+                                                <rect key="frame" x="0.0" y="50" width="374" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q14-8P-Yf3">
-                                                <rect key="frame" x="0.0" y="41" width="374" height="10"/>
+                                                <rect key="frame" x="0.0" y="68" width="374" height="10"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="10" id="dVF-XR-cTS"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Realtime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N24-tH-Eu4">
-                                                <rect key="frame" x="0.0" y="51" width="374" height="18"/>
+                                                <rect key="frame" x="0.0" y="78" width="374" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -150,13 +162,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Parkerings avgift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzv-sj-BoY">
-                                                <rect key="frame" x="0.0" y="69" width="374" height="18"/>
+                                                <rect key="frame" x="0.0" y="96" width="374" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vzq-0O-pWb">
-                                                <rect key="frame" x="0.0" y="87" width="374" height="10"/>
+                                                <rect key="frame" x="0.0" y="114" width="374" height="10"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="10" id="LMW-8V-eK0"/>
                                                 </constraints>
@@ -168,21 +180,56 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gy4-nq-Mbk">
-                                                <rect key="frame" x="0.0" y="97" width="374" height="18"/>
+                                                <rect key="frame" x="0.0" y="124" width="374" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5Q-xG-Vcd">
-                                                <rect key="frame" x="0.0" y="115" width="374" height="5"/>
+                                                <rect key="frame" x="0.0" y="142" width="374" height="5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="lAN-Oj-Y5a"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="qDA-Cr-Cxi">
-                                                <rect key="frame" x="0.0" y="120" width="374" height="254"/>
+                                                <rect key="frame" x="0.0" y="147" width="374" height="157"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3lA-ea-2f6">
+                                                <rect key="frame" x="0.0" y="304" width="374" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sum-Pg-7HQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="179.5" height="40"/>
+                                                        <color key="backgroundColor" red="0.29934144020080566" green="0.8520500659942627" blue="0.39177721738815308" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="Legg til favoritter">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="favoriteButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="CpN-09-Iej"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vor-V1-j6D">
+                                                        <rect key="frame" x="194.5" y="0.0" width="179.5" height="40"/>
+                                                        <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="Følg">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="subscribeButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="nWr-ye-Hpm"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="w0L-0K-g1g"/>
+                                                </constraints>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IF3-De-wod">
+                                                <rect key="frame" x="0.0" y="344" width="374" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="akb-Ko-MNc"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -259,6 +306,13 @@
                                     <constraint firstAttribute="bottom" secondItem="CZS-nt-SiJ" secondAttribute="bottom" id="oj1-X5-SQe"/>
                                     <constraint firstItem="N6X-ZR-EO2" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" id="pxJ-0h-xWG"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="t1E-k3-wbq"/>
+                                        <exclude reference="P6h-J1-kzN"/>
+                                        <exclude reference="N6X-ZR-EO2"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -296,6 +350,7 @@
                 <outlet property="detailsButton" destination="bH8-d3-2Ga" id="TyW-gJ-RUh"/>
                 <outlet property="detailsStack" destination="CZS-nt-SiJ" id="Ure-l1-5OD"/>
                 <outlet property="fastChargeLabel" destination="sBw-F1-vE1" id="kKt-2b-hXs"/>
+                <outlet property="favoriteButton" destination="sum-Pg-7HQ" id="eNS-84-giZ"/>
                 <outlet property="imageButton" destination="J54-LE-kX9" id="djz-qC-WAn"/>
                 <outlet property="imageStack" destination="N6X-ZR-EO2" id="89y-mv-Vlc"/>
                 <outlet property="nameLabel" destination="DUi-fg-nGY" id="Dp9-f1-MHd"/>
@@ -306,6 +361,7 @@
                 <outlet property="stationButton" destination="NYb-bQ-QrU" id="HyO-0r-Qnb"/>
                 <outlet property="stationImage" destination="YKP-oq-mef" id="Go5-KN-t9k"/>
                 <outlet property="streetLabel" destination="1xt-Lb-WDf" id="Dv6-aW-vQA"/>
+                <outlet property="subscribeButton" destination="vor-V1-j6D" id="ken-YY-D5N"/>
                 <outlet property="xibHeightConstraint" destination="3Ly-HQ-AqL" id="del-ZO-p9K"/>
                 <outlet property="xibWidthConstraint" destination="72Z-CG-uBQ" id="y6a-WK-apY"/>
             </connections>
