@@ -22,6 +22,7 @@ class Annotation: NSObject, MKAnnotation {
         self.coordinate = coordinate
     }
 }
+
 extension MKPinAnnotationView {
     class func bluePinColor() -> UIColor {
         return UIColor.yellow

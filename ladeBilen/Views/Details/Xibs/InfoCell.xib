@@ -280,10 +280,10 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N6X-ZR-EO2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="245"/>
+                                        <rect key="frame" x="8" y="0.0" width="398" height="245"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xblogg130708sommer.jpg.pagespeed.ic.b6H3_U7zK2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="YKP-oq-mef">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="245"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xblogg130708sommer.jpg.pagespeed.ic.b6H3_U7zK2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="YKP-oq-mef">
+                                                <rect key="frame" x="0.0" y="0.0" width="398" height="245"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
@@ -292,7 +292,7 @@
                                 <constraints>
                                     <constraint firstItem="P6h-J1-kzN" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" id="6WW-A0-u9b"/>
                                     <constraint firstItem="t1E-k3-wbq" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="20" id="7S3-Jp-bll"/>
-                                    <constraint firstAttribute="trailing" secondItem="N6X-ZR-EO2" secondAttribute="trailing" id="99q-V3-ceZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="N6X-ZR-EO2" secondAttribute="trailing" constant="8" id="99q-V3-ceZ"/>
                                     <constraint firstItem="CZS-nt-SiJ" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="20" id="C1S-hI-vJe"/>
                                     <constraint firstAttribute="bottom" secondItem="P6h-J1-kzN" secondAttribute="bottom" id="IXG-67-F5K"/>
                                     <constraint firstAttribute="bottom" secondItem="t1E-k3-wbq" secondAttribute="bottom" id="J3F-MF-NT5"/>
@@ -304,15 +304,8 @@
                                     <constraint firstAttribute="trailing" secondItem="t1E-k3-wbq" secondAttribute="trailing" constant="20" id="c31-hT-XLa"/>
                                     <constraint firstItem="CZS-nt-SiJ" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" constant="5" id="ddI-OL-EkO"/>
                                     <constraint firstAttribute="bottom" secondItem="CZS-nt-SiJ" secondAttribute="bottom" id="oj1-X5-SQe"/>
-                                    <constraint firstItem="N6X-ZR-EO2" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" id="pxJ-0h-xWG"/>
+                                    <constraint firstItem="N6X-ZR-EO2" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="8" id="pxJ-0h-xWG"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="t1E-k3-wbq"/>
-                                        <exclude reference="P6h-J1-kzN"/>
-                                        <exclude reference="N6X-ZR-EO2"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

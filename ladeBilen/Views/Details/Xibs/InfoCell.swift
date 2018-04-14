@@ -60,6 +60,7 @@ class InfoCell: UICollectionViewCell{
         loadDetailsElement()
         loadCommentsElement()
         loadConnectorElement()
+        loadImageElement()
         
         detailsButton.tintColor = UIColor.themeBlue()
         detailsStack.isHidden = false
@@ -153,6 +154,7 @@ class InfoCell: UICollectionViewCell{
         self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .subscribe)
     }
 }
+
 
 private typealias DetailsElement = InfoCell
 extension DetailsElement {
@@ -281,4 +283,11 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
 
 }
 
+private typealias ImageElement = InfoCell
+extension ImageElement {
+    func loadImageElement(){
+        stationImage.layer.masksToBounds = true
+        stationImage.layer.cornerRadius = 10
+    }
+}
 

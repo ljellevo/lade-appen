@@ -32,6 +32,9 @@ class Home: UIViewController{
     
     var height: CGFloat = 0.0
     var startPosition: Bool = true
+    
+    var willDeselectMarker: Bool = true
+
 
     @IBOutlet weak var tableViewStack: UIStackView!
     @IBOutlet weak var tableViewStackBottomConstraint: NSLayoutConstraint!
@@ -73,7 +76,13 @@ class Home: UIViewController{
             app!.updateConnectorForUserInDatabase(connectors: app!.user!.connector!, willFilterStations: true)
             filteredStations = app!.filteredStations
         }
- */
+ 
+
+         
+         
+         
+         
+         */
  
     }
     
@@ -184,7 +193,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
         blurView.alpha = 0.0
         contentView.layer.cornerRadius = 20
         
-        detailsStartPosition()
+        detailsDismissedPosition()
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -251,6 +260,8 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     func detailsStartPosition(){
+        contentView.isHidden = false
+
         contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.15
         height = contentViewHeightConstraint.constant
 
@@ -270,6 +281,11 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
         UIView.animate(withDuration: 0.5, animations: {
             self.blurView.alpha = blur
         })
+    }
+    
+    func detailsDismissedPosition(){
+        detailsStartPosition()
+        contentView.isHidden = true
     }
     
 
@@ -341,7 +357,10 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
         if let anno = view.annotation as? Annotation {
             id = anno.id!
             print(id!)
-            contentView.isHidden = false
+            
+            if willDeselectMarker {
+                detailsStartPosition()
+            }
             
             for filteredStation in filteredStations!{
                 if filteredStation.id == id {
@@ -352,12 +371,13 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
             
             listenOnStation()
             
-            
-            
             if app!.user!.favorites!.keys.contains(station!.id!.description){
                 isFavorite = true
             } else {
                 isFavorite = false
+            }
+            if let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? InfoCell {
+                infoCell.setActiveViewFor(element: .InfoElement)
             }
             self.connectors = self.app!.sortConnectors(connectors: station!.conn)
             collectionView.reloadData()
@@ -369,14 +389,15 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        print("Deselect")
-        detailsStartPosition()
-        self.contentView.isHidden = true
-        detatchAllListeners()
-        UIView.animate(withDuration: 0.5, animations: {
-            self.blurView.alpha = 0.0
-        })
+        if willDeselectMarker {
+            detailsDismissedPosition()
+            detatchAllListeners()
+            UIView.animate(withDuration: 0.5, animations: {
+                self.blurView.alpha = 0.0
+            })
+        }
     }
+
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         if isInitial == true {
@@ -386,6 +407,21 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
             isInitial = false
         } else {
             return
+        }
+    }
+
+    
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        if !willDeselectMarker {
+            for annotation in views {
+                if let anno = annotation.annotation as? Annotation {
+                    if anno.id == station!.id! {
+                        mapWindow.selectAnnotation(anno, animated: false)
+                        willDeselectMarker = true
+                        break
+                    }
+                }
+            }
         }
     }
     
@@ -463,7 +499,9 @@ extension Protocols: CollectionViewCellDelegate  {
                 })
             } else {
                 self.contentView.isHidden = true
-                self.mapWindow.deselectAnnotation(mapWindow.selectedAnnotations[0], animated: true)
+                if (mapWindow.selectedAnnotations.count > 0) {
+                    self.mapWindow.deselectAnnotation(mapWindow.selectedAnnotations[0], animated: true)
+                }
             }
         case .favorite:
             if isFavorite! {
@@ -481,7 +519,10 @@ extension Protocols: CollectionViewCellDelegate  {
                 infoCell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
                 isFavorite = true
             }
+
+            willDeselectMarker = false
             addAnnotationsToMap()
+            
         case .subscribe:
             //MARK: Subscribe to station implementation
             print("Følg stasjon")
