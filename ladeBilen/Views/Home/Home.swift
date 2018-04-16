@@ -210,7 +210,13 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
             cell.connectorCollectionView.reloadData()
             cell.delegate = self as CollectionViewCellDelegate
-            cell.realtime = station?.realtimeInfo
+            cell.realtime = station!.realtimeInfo
+            print(station?.userComment)
+            if station!.realtimeInfo! {
+                cell.animateRealtime()
+            } else {
+                cell.killAllAnimations()
+            }
             cell.nameLabel.text = station?.name
             cell.compatibleConntacts = countCompatible
             cell.streetLabel.text = (station?.street)! + " " + (station?.houseNumber)!
@@ -220,8 +226,6 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
                 
             }
-            
-            //cell.fastChargeLabel.text = "Mangler"
             
             if station!.parkingFee! {
                 cell.parkingFeeLabel.text = "Parkerings avgift"
@@ -362,12 +366,16 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
                 detailsStartPosition()
             }
             
+
+            
             for filteredStation in filteredStations!{
                 if filteredStation.id == id {
                     station = filteredStation
                     break
                 }
             }
+            
+
             
             listenOnStation()
             

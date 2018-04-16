@@ -10,6 +10,7 @@ import UIKit
 
 class InfoCell: UICollectionViewCell{
     
+    var run: Bool = false
     var realtime: Bool?
     var userComment: String?
     var connectors: [Connector]?
@@ -37,8 +38,8 @@ class InfoCell: UICollectionViewCell{
         @IBOutlet weak var parkingFeeLabel: UILabel!
         @IBOutlet weak var favoriteButton: UIButton!
         @IBOutlet weak var subscribeButton: UIButton!
-    
-    @IBOutlet weak var descriptionLabel: UILabel!
+        @IBOutlet weak var realtimeView: UIView!
+        @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var commentsStack: UIStackView!
         @IBOutlet weak var commentsView: UITableView!
@@ -161,7 +162,67 @@ extension DetailsElement {
     func loadDetailsElement(){
         favoriteButton.layer.cornerRadius = 10
         subscribeButton.layer.cornerRadius = 10
+        realtimeView.layer.backgroundColor = UIColor.white.cgColor
+    }
     
+    func killAllAnimations(){
+        run = false
+    }
+    
+    func animateRealtime(){
+        var x = 5
+        let y = 10
+        var counter = 0
+        
+        let firstDot = UIView(frame: CGRect(x: x, y: y, width: 10, height: 10))
+        x += 15
+        let secondDot = UIView(frame: CGRect(x: x, y: y, width: 10, height: 10))
+        x += 15
+        let thirdDot = UIView(frame: CGRect(x: x, y: y, width: 10, height: 10))
+        
+        firstDot.backgroundColor = UIColor.appleGreen()
+        firstDot.layer.cornerRadius = 5
+        firstDot.alpha = 0.0
+        
+        secondDot.backgroundColor = UIColor.appleYellow()
+        secondDot.layer.cornerRadius = 5
+        secondDot.alpha = 0.0
+
+        thirdDot.backgroundColor = UIColor.appleRed()
+        thirdDot.layer.cornerRadius = 5
+        thirdDot.alpha = 0.0
+
+        let dots = [firstDot, secondDot, thirdDot]
+        self.realtimeView.addSubview(firstDot)
+        self.realtimeView.addSubview(secondDot)
+        self.realtimeView.addSubview(thirdDot)
+        run = true
+        animation(dots: dots)
+    }
+    
+    func animation(dots: [UIView]){
+        if realtime! {
+            UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
+                dots[0].alpha = 1.0
+            }) { (completion) in
+                UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
+                    dots[1].alpha = 1.0
+                }, completion: { (completed) in
+                    UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
+                        dots[2].alpha = 1.0
+                    }, completion: { (com) in
+                        UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
+                            dots[0].alpha = 0.0
+                            dots[1].alpha = 0.0
+                            dots[2].alpha = 0.0
+                        }, completion: { (c) in
+                            self.animation(dots: dots)
+                        })
+                        
+                    })
+                })
+            }
+        }
     }
 }
 
@@ -185,7 +246,7 @@ extension CommentsElement: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if userComment?.replacingOccurrences(of: " ", with: "") != "" {
+        if userComment!.replacingOccurrences(of: " ", with: "") != "" {
             let cell: CommentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCellIdentifier", for: indexPath as IndexPath) as! CommentCell
             cell.backgroundColor = UIColor.clear
             cell.commentLabel.text = userComment

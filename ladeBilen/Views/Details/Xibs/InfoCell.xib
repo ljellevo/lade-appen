@@ -248,7 +248,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="t1E-k3-wbq" userLabel="Comments Stack">
                                         <rect key="frame" x="20" y="0.0" width="374" height="379"/>
                                         <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nk6-nm-VXm">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nk6-nm-VXm">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="379"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -350,6 +350,7 @@
                 <outlet property="panelView" destination="mBL-MQ-LsN" id="J3s-KY-QIC"/>
                 <outlet property="parkingFeeLabel" destination="fzv-sj-BoY" id="xNO-Rx-8JP"/>
                 <outlet property="realtimeLabel" destination="N24-tH-Eu4" id="ZE6-Xf-sMQ"/>
+                <outlet property="realtimeView" destination="mxB-Hg-1D5" id="TCf-nh-4kH"/>
                 <outlet property="screenWidthConstraint" destination="HlI-yu-Ia5" id="LlI-UW-0OQ"/>
                 <outlet property="stationButton" destination="NYb-bQ-QrU" id="HyO-0r-Qnb"/>
                 <outlet property="stationImage" destination="YKP-oq-mef" id="Go5-KN-t9k"/>
