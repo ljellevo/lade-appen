@@ -721,22 +721,6 @@
                                     <constraint firstAttribute="bottom" secondItem="1OD-l0-du2" secondAttribute="bottom" id="nlN-ZP-dtD"/>
                                 </constraints>
                             </stackView>
-                            <view userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jL9-jX-usB">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fHQ-m9-XD3" userLabel="Buttons Stack">
-                                <rect key="frame" x="234" y="441" width="70" height="70"/>
-                                <subviews>
-                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCO-2u-frz">
-                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                        <color key="backgroundColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" image="Location_Icon_2x.png">
-                                            <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bcT-jA-b1i" userLabel="TableView Stack">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
@@ -754,6 +738,22 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                </subviews>
+                            </stackView>
+                            <view userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jL9-jX-usB">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fHQ-m9-XD3" userLabel="Buttons Stack">
+                                <rect key="frame" x="234" y="441" width="70" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCO-2u-frz">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                        <color key="backgroundColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" image="Location_Icon_2x.png">
+                                            <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6uL-Kc-sva" userLabel="Content View">

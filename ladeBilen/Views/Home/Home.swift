@@ -209,9 +209,9 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             
             let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
             cell.connectorCollectionView.reloadData()
+            cell.commentsView.reloadData()
             cell.delegate = self as CollectionViewCellDelegate
             cell.realtime = station!.realtimeInfo
-            print(station?.userComment)
             if station!.realtimeInfo! {
                 cell.animateRealtime()
             } else {
@@ -219,12 +219,16 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             }
             cell.nameLabel.text = station?.name
             cell.compatibleConntacts = countCompatible
-            cell.streetLabel.text = (station?.street)! + " " + (station?.houseNumber)!
+            if station!.houseNumber != "" {
+                cell.streetLabel.text = station!.street! + " " + station!.houseNumber! + ", " + station!.city!
+            } else {
+                cell.streetLabel.text = station!.street! + ", " + station!.city!
+            }
+            
             if station!.realtimeInfo!{
                 cell.realtimeLabel.text = "Leverer sanntids informasjon"
             } else {
                 cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
-                
             }
             
             if station!.parkingFee! {
@@ -490,7 +494,22 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         id = filteredStations![indexPath.row].id
-        performSegue(withIdentifier: "toDetails", sender: self)
+        station = filteredStations![indexPath.row]
+        listenOnStation()
+        
+        if app!.user!.favorites!.keys.contains(station!.id!.description){
+            isFavorite = true
+        } else {
+            isFavorite = false
+        }
+        if let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? InfoCell {
+            infoCell.setActiveViewFor(element: .InfoElement)
+        }
+        self.connectors = self.app!.sortConnectors(connectors: station!.conn)
+        collectionView.reloadData()
+        detailsStartPosition()
+        detailsEngagedPosition(blur: 0.26)
+
     }
 }
 
