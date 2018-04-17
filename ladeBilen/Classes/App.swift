@@ -64,6 +64,11 @@ class App {
         }
     }
     
+    
+}
+
+private typealias AuthenticationMethods = App
+extension AuthenticationMethods {
     func verifyStationCache(done: @escaping ()-> Void){
         if let stations = getStationCache(){
             self.stations = stations
@@ -121,8 +126,10 @@ class App {
             }
         }
     }
-    
-    //CacheManagement
+}
+
+private typealias CacheManagementMethods = App
+extension CacheManagementMethods {
     func getUserCache() -> User?{
         return cacheManagement.getUserCache()
     }
@@ -150,8 +157,10 @@ class App {
     func removeAllCache() -> Bool{
         return cacheManagement.removeAllCache()
     }
-    
-    //Database
+}
+
+private typealias DatabaseMethods = App
+extension DatabaseMethods {
     func getStationsFromDatabase(done: @escaping ()-> Void){
         database.getStationsFromDatabase(done: { stations in
             self.stations = stations
@@ -170,7 +179,7 @@ class App {
     func setConnectorForUserInDatabase(connectors: [Int], willFilterStations: Bool){
         self.user!.connector = connectors
         self.user!.timestamp = Date().getTimestamp()
-
+        
         database.setUserInDatabase(user: self.user!)
         _ = setUserCache()
         if willFilterStations{
@@ -221,8 +230,10 @@ class App {
     func detachListenerOnStation(stationId: Int){
         database.detatchListenerOnStation(stationId: getStationIdAsString(stationId: stationId))
     }
-    
-    //Algorithms
+}
+
+private typealias AlgorithmsMethods = App
+extension AlgorithmsMethods {
     func findAvailableContacts(station: Station) -> Int{
         return algorithms.findAvailableContacts(station: station, user: user!)
     }

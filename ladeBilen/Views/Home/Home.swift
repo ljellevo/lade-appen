@@ -148,7 +148,7 @@ class Home: UIViewController{
                     self.view.layoutIfNeeded()
                 })
             } else if velocity > 800 {
-                detailsStartPosition()
+                detailsStartPosition(withAnimation: true)
                 UIView.animate(withDuration: TimeInterval(UIScreen.main.bounds.height/velocity), delay: 0.0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
                     self.view.layoutIfNeeded()
                 })
@@ -161,7 +161,7 @@ class Home: UIViewController{
                     })
                     
                 } else {
-                    detailsStartPosition()
+                    detailsStartPosition(withAnimation: true)
                     UIView.animate(withDuration: 0.5, delay: 0.0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
                         self.view.layoutIfNeeded()
                     })
@@ -267,7 +267,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     
-    func detailsStartPosition(){
+    func detailsStartPosition(withAnimation: Bool){
         contentView.isHidden = false
 
         contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.15
@@ -275,9 +275,14 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
 
         collectionView.isScrollEnabled = false
         startPosition = true
-        UIView.animate(withDuration: 0.5, animations: {
+        if withAnimation {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.blurView.alpha = 0.0
+            })
+        } else {
             self.blurView.alpha = 0.0
-        })
+        }
+        
     }
     
     func detailsEngagedPosition(blur: CGFloat){
@@ -292,7 +297,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func detailsDismissedPosition(){
-        detailsStartPosition()
+        detailsStartPosition(withAnimation: true)
         contentView.isHidden = true
     }
     
@@ -367,7 +372,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
             print(id!)
             
             if willDeselectMarker {
-                detailsStartPosition()
+                detailsStartPosition(withAnimation: true)
             }
             
 
@@ -507,9 +512,15 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         }
         self.connectors = self.app!.sortConnectors(connectors: station!.conn)
         collectionView.reloadData()
-        detailsStartPosition()
-        detailsEngagedPosition(blur: 0.26)
-
+        if startPosition {
+            detailsStartPosition(withAnimation: false)
+            self.view.layoutIfNeeded()
+            detailsEngagedPosition(blur: 0.26)
+            UIView.animate(withDuration: 0.5) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        searchController.searchBar.endEditing(true)
     }
 }
 
@@ -519,7 +530,7 @@ extension Protocols: CollectionViewCellDelegate  {
         switch action {
         case .cancel:
             if !startPosition {
-                detailsStartPosition()
+                detailsStartPosition(withAnimation: true)
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
                     self.blurView.alpha = 0.0

@@ -14,9 +14,8 @@ class CacheManagement {
     
     func getUserCache() -> User?{
         do{
-            if Disk.exists((Auth.auth().currentUser?.uid)! + ".json", in: .caches) {
-                return try Disk.retrieve((Auth.auth().currentUser?.uid)! + ".json", from: .caches, as: User.self)
-                //return true
+            if Disk.exists(Constants.PATHS.USER_CACHE_PATH, in: .caches) {
+                return try Disk.retrieve(Constants.PATHS.USER_CACHE_PATH, from: .caches, as: User.self)
             }
         } catch {
             print("User not cached.")
@@ -26,7 +25,7 @@ class CacheManagement {
     
     func setUserCache(user: User) -> Bool{
         do {
-            try Disk.save(user, to: .caches, as: (Auth.auth().currentUser?.uid)! + ".json")
+            try Disk.save(user, to: .caches, as: Constants.PATHS.USER_CACHE_PATH)
             return true
         } catch {
             print("User cache not updated.")
@@ -36,8 +35,8 @@ class CacheManagement {
     
     func getStationCache() -> [Station]?{
         do {
-            if Disk.exists("stations.json", in: .caches) {
-                return try Disk.retrieve("stations.json", from: .caches, as: [Station].self)
+            if Disk.exists(Constants.PATHS.STATION_CACHE_PATH, in: .caches) {
+                return try Disk.retrieve(Constants.PATHS.STATION_CACHE_PATH, from: .caches, as: [Station].self)
             }
         } catch {
             print("Stations not cached.")
@@ -47,7 +46,7 @@ class CacheManagement {
     
     func setStationCache(stations: [Station]) -> Bool{
         do {
-            try Disk.save(stations, to: .caches, as: "stations.json")
+            try Disk.save(stations, to: .caches, as: Constants.PATHS.STATION_CACHE_PATH)
             return true
         } catch {
             print("Stations cache not updated.")
@@ -57,8 +56,8 @@ class CacheManagement {
     
     func getFilteredStationsCache() -> [Station]?{
         do {
-            if Disk.exists("filteredStations.json", in: .caches) {
-                return try Disk.retrieve("filteredStations.json", from: .caches, as: [Station].self)
+            if Disk.exists(Constants.PATHS.FILTERED_STATION_CACHE, in: .caches) {
+                return try Disk.retrieve(Constants.PATHS.FILTERED_STATION_CACHE, from: .caches, as: [Station].self)
             }
         } catch {
             print("Filtered Stations not cached.")
@@ -69,7 +68,7 @@ class CacheManagement {
     
     func setFilteredStationsCache(filteredStations: [Station]) -> Bool{
         do {
-            try Disk.save(filteredStations, to: .caches, as: "filteredStations.json")
+            try Disk.save(filteredStations, to: .caches, as: Constants.PATHS.FILTERED_STATION_CACHE)
             return true
         } catch {
             print("Filtered stations cache not updated.")
@@ -77,34 +76,13 @@ class CacheManagement {
         }
     }
     
-    func fetchFavoritesCache() -> [Int:Int]{
-        do {
-            if Disk.exists("favorites.json", in: .caches){
-                return try Disk.retrieve("favorites.json", from: .caches, as: [Int:Int].self)
-            }
-        } catch {
-            print("Favorites not cached.")
-        }
-        return [-1:-1]
 
-    }
-    
-    func updateFavoriteCache(favorites: [Int:Int]) -> Bool{
-        do {
-            try Disk.save(favorites, to: .caches, as: "favorites.json")
-            return true
-        } catch {
-            print("Favorite cache not updated.")
-            return false
-        }
-    }
     
     func removeAllCache() -> Bool{
         do {
-            try Disk.remove((Auth.auth().currentUser?.uid)! + ".json", from: .caches)
-            try Disk.remove("stations.json", from: .caches)
-            try Disk.remove("favorites.json", from: .caches)
-            try Disk.remove("filteredStations.json", from: .caches)
+            try Disk.remove(Constants.PATHS.USER_CACHE_PATH, from: .caches)
+            try Disk.remove(Constants.PATHS.STATION_CACHE_PATH, from: .caches)
+            try Disk.remove(Constants.PATHS.FILTERED_STATION_CACHE, from: .caches)
             return true
         } catch {
             print("Cache not deleted")
