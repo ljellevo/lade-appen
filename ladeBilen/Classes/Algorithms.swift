@@ -14,7 +14,7 @@ class Algorithms {
     func checkIfApplicable(station: Station, user: User) -> Bool{
         for connector in (user.connector)! {
             for conn in station.conn {
-                if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
+                if conn.connector == connector {
                     return true
                 }
             }
@@ -47,7 +47,7 @@ class Algorithms {
         var counter: Int = 0
         for conn in station.conn {
             for connector in user.connector!{
-                if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
+                if conn.connector == connector {
                     counter += 1
                 }
             }
@@ -57,7 +57,7 @@ class Algorithms {
     
     func checkIfConntactIsAppliable(conn: Connector, user: User) -> Bool{
         for connector in user.connector!{
-            if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
+            if conn.connector == connector {
                 return true
             }
         }
@@ -70,7 +70,7 @@ class Algorithms {
         for conn in connectors{
             found = false
             for connector in user.connector!{
-                if (Int(conn.connector!) != nil) &&  Int(conn.connector!)! == connector {
+                if conn.connector == connector {
                     newArray.insert(conn, at: 0)
                     found = true
                 }

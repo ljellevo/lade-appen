@@ -66,6 +66,7 @@ class Home: UIViewController{
         loadMapElement()
         loadSearchElement()
         
+        print(app!.stations.count)
         
 
 
@@ -76,12 +77,6 @@ class Home: UIViewController{
             app!.updateConnectorForUserInDatabase(connectors: app!.user!.connector!, willFilterStations: true)
             filteredStations = app!.filteredStations
         }
- 
-
-         
-         
-         
-         
          */
  
     }
@@ -93,19 +88,11 @@ class Home: UIViewController{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDetails"{
-            
-            if let nextViewController = segue.destination as? Details{
-                nextViewController.station = station
-                nextViewController.app = app
-            }
-        } else {
-            if let nextViewController = segue.destination as? Profile{
-                nextViewController.app = app
-            }
-            if let nextViewController = segue.destination as? Favorites{
-                nextViewController.app = app
-            }
+        if let nextViewController = segue.destination as? Profile{
+            nextViewController.app = app
+        }
+        if let nextViewController = segue.destination as? Favorites{
+            nextViewController.app = app
         }
     }
     
@@ -171,8 +158,8 @@ class Home: UIViewController{
             sender.setTranslation(CGPoint.zero, in: self.view)
         }
     }
-    
 }
+
 private typealias DetailsElement = Home
 extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
 

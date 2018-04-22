@@ -283,14 +283,16 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ConnectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectorCellIdentifier", for: indexPath as IndexPath) as! ConnectorCell
-        cell.typeLabel.text = connectors![indexPath.row].connector?.description
-        cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode
         
-        if connectors![indexPath.row].chargerMode == "1" {
+        //Endre fra description til int sammenligning
+        cell.typeLabel.text = connectors![indexPath.row].connector?.description
+        cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode?.description
+        
+        if connectors![indexPath.row].chargerMode?.description == "1" {
             cell.chargeRateLabel.text = "Normal"
-        } else if connectors![indexPath.row].chargerMode == "2" {
+        } else if connectors![indexPath.row].chargerMode?.description == "2" {
             cell.chargeRateLabel.text = "Semi-Hurtig"
-        } else if connectors![indexPath.row].chargerMode == "3" {
+        } else if connectors![indexPath.row].chargerMode?.description == "3" {
             cell.chargeRateLabel.text = "Semi-Hurtig"
         } else {
             cell.chargeRateLabel.text = "Hurtig"
