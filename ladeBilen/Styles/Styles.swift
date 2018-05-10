@@ -119,6 +119,17 @@ extension UIView {
         mask.path = path.cgPath
         self.layer.mask = mask
     }
+    
+    func addShadow(){
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        self.layer.shadowRadius = 4.0
+        self.layer.shadowOpacity = 1.0
+        self.layer.masksToBounds = false
+        //view.layer.shadowPath = UIBezierPath(roundedRect: view.bounds, cornerRadius: view.layer.cornerRadius).cgPath
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = UIScreen.main.scale
+    }
 }
 
 

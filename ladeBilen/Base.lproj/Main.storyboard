@@ -29,7 +29,7 @@
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rAQ-ck-95O">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fZM-3B-hUm">
                                             <size key="itemSize" width="320" height="157"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -151,7 +151,7 @@
                         <outlet property="contentViewHeightConstraint" destination="VTG-Qf-6FV" id="HBK-di-o4l"/>
                         <outlet property="detailsCollectionView" destination="lh1-RA-fqj" id="ZRp-Sl-4cO"/>
                         <outlet property="detailsStack" destination="ERo-FZ-XB2" id="K14-jY-W8H"/>
-                        <outlet property="greyDraggingIndicator" destination="QbS-PA-2x3" id="0El-nO-93H"/>
+                        <outlet property="greyDraggingIndicator" destination="7YC-31-xNK" id="lh8-RG-fdG"/>
                         <segue destination="pit-r4-Zzf" kind="show" identifier="toDetailsFromFavorites" id="e7W-QR-Fgf"/>
                     </connections>
                 </viewController>

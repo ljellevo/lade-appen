@@ -11,7 +11,6 @@ import Disk
 
 class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    //let database = Database()
     var app: App?
     var favoriteArray: [Station] = []
     var followingArray: [Station] = []
@@ -36,7 +35,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         @IBOutlet weak var detailsCollectionView: UICollectionView!
     
     @IBOutlet weak var blurView: UIView!
-    @IBOutlet weak var greyDraggingIndicator: UIView!
+        @IBOutlet weak var greyDraggingIndicator: UIView!
     
     
     override func viewDidLoad() {
@@ -265,6 +264,8 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
     
+
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == detailsCollectionView {
             if indexPath.row == 0 {
@@ -336,7 +337,8 @@ extension DetailsElement {
         greyDraggingIndicator.layer.cornerRadius = 2
         blurView.alpha = 0.0
         contentView.layer.cornerRadius = 20
-        
+        contentView.addShadow()
+
         detailsDismissedPosition()
     }
     
@@ -390,7 +392,14 @@ extension Favorites: CollectionViewCellDelegate {
         
         //Remove subscription from database
         if action == .cancel {
-            print("Remove button clicked Favorite")
+            if startPosition {
+                detailsDismissedPosition()
+            } else {
+                detailsStartPosition(withAnimation: true)
+                UIView.animate(withDuration: 0.5) {
+                    self.view.layoutIfNeeded()
+                }
+            }
         }
     }
 }

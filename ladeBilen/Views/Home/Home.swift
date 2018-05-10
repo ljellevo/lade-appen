@@ -179,6 +179,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
         greyDraggingIndicator.layer.cornerRadius = 2
         blurView.alpha = 0.0
         contentView.layer.cornerRadius = 20
+        contentView.addShadow()
         
         detailsDismissedPosition()
     }
