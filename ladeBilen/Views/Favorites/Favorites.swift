@@ -21,11 +21,6 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     var connectors: [Connector]?
     var countCompatible: Int?
 
-
-
-
-
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var contentView: UIView!
@@ -46,7 +41,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         collectionView.register(UINib(nibName: "LabelCell", bundle: nil), forCellWithReuseIdentifier: "LabelCell")
         collectionView.register(UINib(nibName: "SubscriptionCell", bundle: nil), forCellWithReuseIdentifier: "SubscriptionCell")
         
-        isFavorite = true
+
         
         loadDetailsElement()
     }
@@ -120,122 +115,6 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         collectionView.reloadData()
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == detailsCollectionView {
-            return 1
-        } else {
-            if followingArray.count != 0{
-                return favoriteArray.count + followingArray.count + 2
-            } else {
-                return favoriteArray.count
-            }
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == detailsCollectionView {
-            if station != nil {
-                
-                let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
-                cell.connectorCollectionView.reloadData()
-                cell.commentsView.reloadData()
-                cell.delegate = self as CollectionViewCellDelegate
-                cell.realtime = station!.realtimeInfo
-                if station!.realtimeInfo! {
-                    cell.animateRealtime()
-                } else {
-                    cell.killAllAnimations()
-                }
-                cell.nameLabel.text = station?.name
-                cell.compatibleConntacts = countCompatible
-                if station!.houseNumber != "" {
-                    cell.streetLabel.text = station!.street! + " " + station!.houseNumber! + ", " + station!.city!
-                } else {
-                    cell.streetLabel.text = station!.street! + ", " + station!.city!
-                }
-                
-                if station!.realtimeInfo!{
-                    cell.realtimeLabel.text = "Leverer sanntids informasjon"
-                } else {
-                    cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
-                }
-                
-                if station!.parkingFee! {
-                    cell.parkingFeeLabel.text = "Parkerings avgift"
-                } else {
-                    cell.parkingFeeLabel.text = "Gratis parkering"
-                }
-                
-                if isFavorite! {
-                    cell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
-                    cell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
-                } else {
-                    cell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
-                    cell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
-                }
-                
-                cell.userComment = station?.userComment
-                cell.descriptionLabel.text = station?.descriptionOfLocation
-                cell.connectors = connectors!
-                return cell
-                
-            }
-            let cell: TopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCellIdentifier", for: indexPath as IndexPath) as! TopCell
-            return cell
-        } else {
-            if followingArray.count != 0 {
-                if indexPath.row == 0{
-                    //Følger label cell
-                    let cell: LabelCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCell", for: indexPath as IndexPath) as! LabelCell
-                    cell.label.text = "Følger"
-                    return cell
-                } else if indexPath.row == followingArray.count + 1{
-                    //Favoritter label cell
-                    let cell: LabelCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCell", for: indexPath as IndexPath) as! LabelCell
-                    cell.label.text = "Favoritter"
-                    return cell
-                } else if indexPath.row <= followingArray.count{
-                    //subscription cell
-                    let row = indexPath.row - 1
-                    var cell: SubscriptionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SubscriptionCell", for: indexPath as IndexPath) as! SubscriptionCell
-                    cell.delegate = self as CollectionViewCellDelegate
-                    cell.stationNameLabel.text = followingArray[row].name
-                    cell = addShadowSubscriptionCell(cell: cell)
-                    return cell
-                }  else {
-                    //Favoritter cell
-                    let row = indexPath.row - (followingArray.count + 2)
-                    var cell: FavoritesCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCell", for: indexPath as IndexPath) as! FavoritesCell
-                    cell.activityLabel.text = "Høy"
-                    cell.subscriberAmountLabel.text = "20"
-                    cell.stationNameLabel.text = favoriteArray[row].name
-                    cell.stationStreetLabel.text = favoriteArray[row].street
-                    cell.stationCityLabel.text = favoriteArray[row].city
-                    cell.availableContactsLabel.text = "Ledig/" + app!.findAvailableContacts(station: favoriteArray[row]).description
-                    cell.station = favoriteArray[row]
-                    cell = addShadowFavoritesCell(cell: cell)
-                    return cell
-                }
-            } else {
-                //Favoritter cell
-                var cell: FavoritesCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCell", for: indexPath as IndexPath) as! FavoritesCell
-                cell.activityLabel.text = "Høy"
-                cell.subscriberAmountLabel.text = "20"
-                cell.stationNameLabel.text = favoriteArray[indexPath.row].name
-                cell.stationStreetLabel.text = favoriteArray[indexPath.row].street
-                cell.stationCityLabel.text = favoriteArray[indexPath.row].city
-                cell.availableContactsLabel.text = "Ledig/" + app!.findAvailableContacts(station: favoriteArray[indexPath.row]).description
-                cell.station = favoriteArray[indexPath.row]
-                cell = addShadowFavoritesCell(cell: cell)
-                return cell
-            }
-        }
-    }
-    
     func addShadowFavoritesCell(cell: FavoritesCell) -> FavoritesCell{
         cell.contentView.layer.cornerRadius = 10
         cell.contentView.layer.borderWidth = 1.0
@@ -266,57 +145,9 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
 
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == detailsCollectionView {
-            if indexPath.row == 0 {
-                return CGSize(width: self.view.bounds.size.width, height: 94.0)
-            } else {
-                return CGSize(width: self.view.bounds.size.width, height: (UIScreen.main.bounds.height - 94))
-                //Må ta teksten i station?.descriptionofLocation og regne ut hvor stor den blir mtp høyden når fonten er en spesiell størelse.
-                //Deretter må jeg finne høyden.
-            }
-        } else {
-            var height = self.view.frame.size.width * 0.35
-            let width  = self.view.frame.size.width * 0.9
-            
-            if followingArray.count != 0{
-                if indexPath.row == 0{
-                    height = 25
-                } else if indexPath.row == followingArray.count + 1{
-                    height = 25
-                } else if indexPath.row <= followingArray.count {
-                    height = 39
-                } else {
-                    height = self.view.frame.size.width * 0.35
-                }
-            }
-            return CGSize(width: width, height: height)
-        }
-    }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == self.collectionView {
-            if followingArray.count != 0{
-                if indexPath.row >= followingArray.count + 2 {
-                    let row = indexPath.row - (followingArray.count + 2)
-                    station = favoriteArray[row]
-                    self.connectors = self.app!.sortConnectors(connectors: station!.conn)
-                    detailsStartPosition(withAnimation: true)
-                    detailsCollectionView.reloadData()
-
-                } else if indexPath.row != 0 && indexPath.row <= followingArray.count{
-                    let row = indexPath.row - 1
-                    station = followingArray[row]
-                    self.connectors = self.app!.sortConnectors(connectors: station!.conn)
-                    detailsStartPosition(withAnimation: true)
-                    detailsCollectionView.reloadData()
-                }
-            } else {
-                station = favoriteArray[indexPath.row]
-                detailsEngagedPosition(blur: 0.26)
-            }
-        }
-    }
+    
+    
 }
 
 private typealias DetailsElement = Favorites
@@ -377,15 +208,189 @@ extension DetailsElement {
     }
 }
 
-extension Favorites: CollectionViewCellDelegate {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDetailsFromFavorites"{
-            if let nextViewController = segue.destination as? Details{
-                nextViewController.station = station
-                nextViewController.app = app
+private typealias CollectionViewLayoutMethods = Favorites
+extension CollectionViewLayoutMethods {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == detailsCollectionView {
+            return 1
+        } else {
+            if followingArray.count != 0{
+                return favoriteArray.count + followingArray.count + 2
+            } else {
+                return favoriteArray.count
             }
         }
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == detailsCollectionView {
+            if station != nil {
+                
+                let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
+                cell.connectorCollectionView.reloadData()
+                cell.commentsView.reloadData()
+                cell.delegate = self as CollectionViewCellDelegate
+                cell.realtime = station!.realtimeInfo
+                if station!.realtimeInfo! {
+                    cell.animateRealtime()
+                } else {
+                    cell.killAllAnimations()
+                }
+                cell.nameLabel.text = station?.name
+                cell.compatibleConntacts = countCompatible
+                if station!.houseNumber != "" {
+                    cell.streetLabel.text = station!.street! + " " + station!.houseNumber! + ", " + station!.city!
+                } else {
+                    cell.streetLabel.text = station!.street! + ", " + station!.city!
+                }
+                
+                if station!.realtimeInfo!{
+                    cell.realtimeLabel.text = "Leverer sanntids informasjon"
+                } else {
+                    cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
+                }
+                
+                if station!.parkingFee! {
+                    cell.parkingFeeLabel.text = "Parkerings avgift"
+                } else {
+                    cell.parkingFeeLabel.text = "Gratis parkering"
+                }
+                
+                if app!.user!.favorites!.keys.contains(station!.id!.description){
+                    isFavorite = true
+                } else {
+                    isFavorite = false
+                }
+                
+                if isFavorite! {
+                    cell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
+                    cell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
+                } else {
+                    cell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
+                    cell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
+                }
+                
+                cell.userComment = station?.userComment
+                cell.descriptionLabel.text = station?.descriptionOfLocation
+                cell.connectors = connectors!
+                return cell
+                
+            }
+            let cell: TopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCellIdentifier", for: indexPath as IndexPath) as! TopCell
+            return cell
+        } else {
+            if followingArray.count != 0 {
+                if indexPath.row == 0{
+                    //Følger label cell
+                    let cell: LabelCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCell", for: indexPath as IndexPath) as! LabelCell
+                    cell.label.text = "Følger"
+                    return cell
+                } else if indexPath.row == followingArray.count + 1{
+                    //Favoritter label cell
+                    let cell: LabelCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCell", for: indexPath as IndexPath) as! LabelCell
+                    cell.label.text = "Favoritter"
+                    return cell
+                } else if indexPath.row <= followingArray.count{
+                    //subscription cell
+                    let row = indexPath.row - 1
+                    var cell: SubscriptionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SubscriptionCell", for: indexPath as IndexPath) as! SubscriptionCell
+                    cell.delegate = self as CollectionViewCellDelegate
+                    cell.stationNameLabel.text = followingArray[row].name
+                    cell = addShadowSubscriptionCell(cell: cell)
+                    return cell
+                }  else {
+                    //Favoritter cell
+                    let row = indexPath.row - (followingArray.count + 2)
+                    var cell: FavoritesCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCell", for: indexPath as IndexPath) as! FavoritesCell
+                    cell.activityLabel.text = "Høy"
+                    cell.subscriberAmountLabel.text = "20"
+                    cell.stationNameLabel.text = favoriteArray[row].name
+                    cell.stationStreetLabel.text = favoriteArray[row].street! + " " + favoriteArray[row].houseNumber!
+                    cell.stationCityLabel.text = favoriteArray[row].city
+                    cell.availableContactsLabel.text = "Ledig/" + app!.findAvailableContacts(station: favoriteArray[row]).description
+                    cell.station = favoriteArray[row]
+                    cell = addShadowFavoritesCell(cell: cell)
+                    return cell
+                }
+            } else {
+                //Favoritter cell
+                var cell: FavoritesCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCell", for: indexPath as IndexPath) as! FavoritesCell
+                cell.activityLabel.text = "Høy"
+                cell.subscriberAmountLabel.text = "20"
+                cell.stationNameLabel.text = favoriteArray[indexPath.row].name
+                cell.stationStreetLabel.text = favoriteArray[indexPath.row].street
+                cell.stationCityLabel.text = favoriteArray[indexPath.row].city
+                cell.availableContactsLabel.text = "Ledig/" + app!.findAvailableContacts(station: favoriteArray[indexPath.row]).description
+                cell.station = favoriteArray[indexPath.row]
+                cell = addShadowFavoritesCell(cell: cell)
+                return cell
+            }
+        }
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == detailsCollectionView {
+            if indexPath.row == 0 {
+                return CGSize(width: self.view.bounds.size.width, height: 94.0)
+            } else {
+                return CGSize(width: self.view.bounds.size.width, height: (UIScreen.main.bounds.height - 94))
+                //Må ta teksten i station?.descriptionofLocation og regne ut hvor stor den blir mtp høyden når fonten er en spesiell størelse.
+                //Deretter må jeg finne høyden.
+            }
+        } else {
+            var height = self.view.frame.size.width * 0.35
+            let width  = self.view.frame.size.width * 0.9
+            
+            if followingArray.count != 0{
+                if indexPath.row == 0{
+                    height = 25
+                } else if indexPath.row == followingArray.count + 1{
+                    height = 25
+                } else if indexPath.row <= followingArray.count {
+                    height = 39
+                } else {
+                    height = self.view.frame.size.width * 0.35
+                }
+            }
+            return CGSize(width: width, height: height)
+        }
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.collectionView {
+            if followingArray.count != 0{
+                if indexPath.row >= followingArray.count + 2 {
+                    let row = indexPath.row - (followingArray.count + 2)
+                    station = favoriteArray[row]
+                    self.connectors = self.app!.sortConnectors(connectors: station!.conn)
+                    detailsStartPosition(withAnimation: true)
+                    detailsCollectionView.reloadData()
+                    
+                } else if indexPath.row != 0 && indexPath.row <= followingArray.count{
+                    let row = indexPath.row - 1
+                    station = followingArray[row]
+                    self.connectors = self.app!.sortConnectors(connectors: station!.conn)
+                    detailsStartPosition(withAnimation: true)
+                    detailsCollectionView.reloadData()
+                }
+            } else {
+                station = favoriteArray[indexPath.row]
+                detailsEngagedPosition(blur: 0.26)
+            }
+        }
+    }
+}
+
+private typealias Delegate = Favorites
+extension Delegate: CollectionViewCellDelegate {
     
     func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action) {
         //var indexPath = self.collectionView.indexPath(for: cell)
@@ -400,6 +405,26 @@ extension Favorites: CollectionViewCellDelegate {
                     self.view.layoutIfNeeded()
                 }
             }
+        } else if action == .favorite {
+            if isFavorite! {
+                app!.user?.favorites?.removeValue(forKey: station!.id!.description)
+                app?.setUserInDatabase(user: app!.user!)
+                let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                infoCell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
+                infoCell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
+                isFavorite = false
+            } else {
+                app!.user?.favorites?.updateValue(Date().getTimestamp(), forKey: station!.id!.description)
+                app?.setUserInDatabase(user: app!.user!)
+                let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                infoCell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
+                infoCell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
+                isFavorite = true
+            }
+            populateFavoritesArray()
+            
+        } else if action == .subscribe {
+            print("Subscribe")
         }
     }
 }
