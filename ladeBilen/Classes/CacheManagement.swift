@@ -75,7 +75,6 @@ class CacheManagement {
             return false
         }
     }
-    
 
     
     func removeAllCache() -> Bool{
