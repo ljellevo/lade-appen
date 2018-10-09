@@ -100,9 +100,6 @@
 		83A926EE204207380013514F /* LabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A926EC204207380013514F /* LabelCell.xib */; };
 		83A926F1204207DB0013514F /* SubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A926EF204207DB0013514F /* SubscriptionCell.swift */; };
 		83A926F2204207DB0013514F /* SubscriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A926F0204207DB0013514F /* SubscriptionCell.xib */; };
-		83A926FD20420B3F0013514F /* Cancel-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A926FA20420B3E0013514F /* Cancel-Icon-50.png */; };
-		83A926FE20420B3F0013514F /* Cancel-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A926FB20420B3E0013514F /* Cancel-Icon-25.png */; };
-		83A926FF20420B3F0013514F /* Cancel-Icon-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A926FC20420B3E0013514F /* Cancel-Icon-75.png */; };
 		83B3DEF2203CAB6A0018AEE5 /* Favorite-Filled-Icon-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B3DEEF203CAB690018AEE5 /* Favorite-Filled-Icon-75.png */; };
 		83B3DEF3203CAB6A0018AEE5 /* Favorite-Filled-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B3DEF0203CAB690018AEE5 /* Favorite-Filled-Icon-25.png */; };
 		83B3DEF4203CAB6A0018AEE5 /* Favorite-Filled-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B3DEF1203CAB690018AEE5 /* Favorite-Filled-Icon-50.png */; };
@@ -243,9 +240,6 @@
 		83A926EC204207380013514F /* LabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelCell.xib; sourceTree = "<group>"; };
 		83A926EF204207DB0013514F /* SubscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCell.swift; sourceTree = "<group>"; };
 		83A926F0204207DB0013514F /* SubscriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubscriptionCell.xib; sourceTree = "<group>"; };
-		83A926FA20420B3E0013514F /* Cancel-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cancel-Icon-50.png"; sourceTree = "<group>"; };
-		83A926FB20420B3E0013514F /* Cancel-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cancel-Icon-25.png"; sourceTree = "<group>"; };
-		83A926FC20420B3E0013514F /* Cancel-Icon-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cancel-Icon-75.png"; sourceTree = "<group>"; };
 		83B3DEEF203CAB690018AEE5 /* Favorite-Filled-Icon-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Favorite-Filled-Icon-75.png"; sourceTree = "<group>"; };
 		83B3DEF0203CAB690018AEE5 /* Favorite-Filled-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Favorite-Filled-Icon-25.png"; sourceTree = "<group>"; };
 		83B3DEF1203CAB690018AEE5 /* Favorite-Filled-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Favorite-Filled-Icon-50.png"; sourceTree = "<group>"; };
@@ -336,7 +330,6 @@
 				83868F9020803AE90058C771 /* Cancel */,
 				8373B86F206AF7F00085EA89 /* Offline */,
 				8373B868206AF75B0085EA89 /* Online */,
-				83A926F320420B140013514F /* Cancel Color */,
 				83B3DEE2203CAAE20018AEE5 /* Favorites Filled */,
 				83821E611FCB66A5009D304D /* Charger */,
 				836B7DD81FCA285100B4B94E /* Comments */,
@@ -647,16 +640,6 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		83A926F320420B140013514F /* Cancel Color */ = {
-			isa = PBXGroup;
-			children = (
-				83A926FB20420B3E0013514F /* Cancel-Icon-25.png */,
-				83A926FA20420B3E0013514F /* Cancel-Icon-50.png */,
-				83A926FC20420B3E0013514F /* Cancel-Icon-75.png */,
-			);
-			path = "Cancel Color";
-			sourceTree = "<group>";
-		};
 		83AC00321FC0DFA400A215B8 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
@@ -937,7 +920,6 @@
 				8314708E1FBE4ED600DCD0CD /* Marker-Icon-75.png in Resources */,
 				835413761F82F550000A70CB /* Love_Neutral_3x.png in Resources */,
 				838A827F2056D55500E6AF1D /* overlay.json in Resources */,
-				83A926FF20420B3F0013514F /* Cancel-Icon-75.png in Resources */,
 				838A82812056DD4A00E6AF1D /* .travis.yml in Resources */,
 				835413731F82F550000A70CB /* Type_1.png in Resources */,
 				835413771F82F550000A70CB /* CCS.png in Resources */,
@@ -953,7 +935,6 @@
 				836B7DD11FCA27E800B4B94E /* Details-Icon-25.png in Resources */,
 				835413741F82F550000A70CB /* CHAdeMO.png in Resources */,
 				836B7DD61FCA27F300B4B94E /* Pictures-Icon-50.png in Resources */,
-				83A926FD20420B3F0013514F /* Cancel-Icon-50.png in Resources */,
 				83F3547E1EEB0696001A278A /* Assets.xcassets in Resources */,
 				83B3DEF2203CAB6A0018AEE5 /* Favorite-Filled-Icon-75.png in Resources */,
 				836B7DDE1FCA286700B4B94E /* Comments-Icon-50.png in Resources */,
@@ -973,7 +954,6 @@
 				83B3DEF4203CAB6A0018AEE5 /* Favorite-Filled-Icon-50.png in Resources */,
 				8354137D1F82F550000A70CB /* IEC_60309_5-pin_type_1.png in Resources */,
 				8314709C1FBE518500DCD0CD /* Search-Icon-75.png in Resources */,
-				83A926FE20420B3F0013514F /* Cancel-Icon-25.png in Resources */,
 				83B3DEF3203CAB6A0018AEE5 /* Favorite-Filled-Icon-25.png in Resources */,
 				8373B874206AF8230085EA89 /* Offline-Icon-50.png in Resources */,
 				8323D4291FC77A4F0049D349 /* ConnectorCell.xib in Resources */,
@@ -1415,12 +1395,15 @@
 			baseConfigurationReference = 56C3BD95A982F1DB28336552 /* Pods-ladeBilen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2X8N6D5K7V;
 				INFOPLIST_FILE = ladeBilen/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ladeBilen/Resources/ladeBilen-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
@@ -1431,12 +1414,15 @@
 			baseConfigurationReference = DC9EF150DA9B89419D446B17 /* Pods-ladeBilen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2X8N6D5K7V;
 				INFOPLIST_FILE = ladeBilen/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ladeBilen/Resources/ladeBilen-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};

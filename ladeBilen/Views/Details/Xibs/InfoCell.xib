@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -359,15 +359,15 @@
                 <outlet property="xibHeightConstraint" destination="3Ly-HQ-AqL" id="del-ZO-p9K"/>
                 <outlet property="xibWidthConstraint" destination="72Z-CG-uBQ" id="y6a-WK-apY"/>
             </connections>
-            <point key="canvasLocation" x="34" y="280"/>
+            <point key="canvasLocation" x="33.75" y="279.92957746478874"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="CancelSet" width="25" height="25"/>
-        <image name="ChargerSet" width="25" height="25"/>
-        <image name="CommentsSet" width="25" height="25"/>
-        <image name="DetailsSet" width="25" height="25"/>
-        <image name="PicturesSet" width="25" height="25"/>
+        <image name="CancelSet" width="20.809247970581055" height="20.809247970581055"/>
+        <image name="ChargerSet" width="40" height="40"/>
+        <image name="CommentsSet" width="40" height="40"/>
+        <image name="DetailsSet" width="40" height="40"/>
+        <image name="PicturesSet" width="40" height="40"/>
         <image name="xblogg130708sommer.jpg.pagespeed.ic.b6H3_U7zK2.jpg" width="360" height="245"/>
     </resources>
 </document>

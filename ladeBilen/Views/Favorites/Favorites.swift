@@ -370,14 +370,14 @@ extension CollectionViewLayoutMethods {
                 if indexPath.row >= followingArray.count + 2 {
                     let row = indexPath.row - (followingArray.count + 2)
                     station = favoriteArray[row]
-                    self.connectors = self.app!.sortConnectors(connectors: station!.conn)
+                    self.connectors = self.app!.sortConnectors(station: station!).conn
                     detailsStartPosition(withAnimation: true)
                     detailsCollectionView.reloadData()
                     
                 } else if indexPath.row != 0 && indexPath.row <= followingArray.count{
                     let row = indexPath.row - 1
                     station = followingArray[row]
-                    self.connectors = self.app!.sortConnectors(connectors: station!.conn)
+                    self.connectors = self.app!.sortConnectors(station: station!).conn
                     detailsStartPosition(withAnimation: true)
                     detailsCollectionView.reloadData()
                 }

@@ -55,6 +55,15 @@ class InfoCell: UICollectionViewCell{
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let leftConstraint = contentView.leftAnchor.constraint(equalTo: leftAnchor)
+        let rightConstraint = contentView.rightAnchor.constraint(equalTo: rightAnchor)
+        let topConstraint = contentView.topAnchor.constraint(equalTo: topAnchor)
+        let bottomConstraint = contentView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        NSLayoutConstraint.activate([leftConstraint, rightConstraint, topConstraint, bottomConstraint])
+        print("Loading nib")
+        
         screenWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
         commentStackWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
         
@@ -163,6 +172,7 @@ extension DetailsElement {
         favoriteButton.layer.cornerRadius = 10
         subscribeButton.layer.cornerRadius = 10
         realtimeView.layer.backgroundColor = UIColor.white.cgColor
+        print("Loading details element")
     }
     
     func killAllAnimations(){

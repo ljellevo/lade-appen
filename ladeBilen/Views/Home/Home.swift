@@ -87,6 +87,13 @@ class Home: UIViewController{
         searchController.searchBar.sizeToFit()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // The following line makes cells size properly in iOS 12.
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextViewController = segue.destination as? Profile{
             nextViewController.app = app
@@ -170,7 +177,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
         self.collectionView.register(UINib(nibName: "TopCell", bundle: nil), forCellWithReuseIdentifier: "ImageCellIdentifier")
         self.collectionView.register(UINib(nibName: "InfoCell", bundle: nil), forCellWithReuseIdentifier: "InfoCellIdentifier")
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
-            flowLayout.estimatedItemSize = CGSize(width: 1, height: 95)
+            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
         }
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -194,6 +201,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if station != nil {
+            print("Details loaded")
             
             let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
             cell.connectorCollectionView.reloadData()
@@ -384,7 +392,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
             if let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? InfoCell {
                 infoCell.setActiveViewFor(element: .InfoElement)
             }
-            self.connectors = self.app!.sortConnectors(connectors: station!.conn)
+            self.connectors = self.app!.sortConnectors(station: station!).conn
             collectionView.reloadData()
             
         } else {
@@ -498,7 +506,7 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         if let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? InfoCell {
             infoCell.setActiveViewFor(element: .InfoElement)
         }
-        self.connectors = self.app!.sortConnectors(connectors: station!.conn)
+        self.connectors = self.app!.sortConnectors(station: station!).conn
         collectionView.reloadData()
         if startPosition {
             detailsStartPosition(withAnimation: false)
@@ -562,7 +570,7 @@ extension Service {
         app?.listenOnStation(stationId: station!.id!, done: { station in
             print("Listening")
             self.station = station
-            self.connectors = self.app!.sortConnectors(connectors: station.conn)
+            self.connectors = self.app!.sortConnectors(station: station).conn
             
             
             DispatchQueue.main.async {

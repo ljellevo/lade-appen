@@ -32,12 +32,12 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         self.collectionView.dataSource = self
         self.automaticallyAdjustsScrollViewInsets = false
         checkIfFavorite()
-        self.connectors = self.app!.sortConnectors(connectors: station!.conn)
+        self.connectors = self.app!.sortConnectors(station: station!).conn
         
         //Må lytte etter kontakter ikke stasjon
         app?.listenOnStation(stationId: station!.id!, done: { station in
             self.station = station
-            self.connectors = self.app!.sortConnectors(connectors: station.conn)
+            self.connectors = self.app!.sortConnectors(station: station).conn
 
 
             DispatchQueue.main.async {

@@ -64,8 +64,57 @@ class Algorithms {
         return false
     }
     
+    //Sorts connectros applicable to user first in array
+    func sortConnectors(station: Station, user: User) -> Station{
+        var sortedStation = station
+        var newArray: [Connector] = []
+        var vacantConn: [Connector] = []
+        var busyConn: [Connector] = []
+        var errorConn: [Connector] = []
+        
+        var found = false
+        if station.realtimeInfo! {
+            for conn in station.conn{
+                found = false
+                for connector in user.connector!{
+                    if conn.connector == connector {
+                        if conn.isTaken == 0 {
+                            vacantConn.append(conn)
+                        } else if conn.isTaken == 1 {
+                            busyConn.append(conn)
+                        } else {
+                            errorConn.append(conn)
+                        }
+                        found = true
+                    }
+                }
+                if !found {
+                    newArray.append(conn)
+                }
+            }
+            newArray = vacantConn + busyConn + errorConn + newArray
+        } else {
+            for conn in station.conn{
+                found = false
+                for connector in user.connector!{
+                    if conn.connector == connector {
+                        newArray.insert(conn, at: 0)
+                        found = true
+                    }
+                }
+                if !found {
+                    newArray.append(conn)
+                }
+            }
+        }
+        
+        sortedStation.conn = newArray
+        return sortedStation
+    }
+    /*
     func sortConnectors(connectors: [Connector], user: User) -> [Connector]{
         var newArray: [Connector] = []
+        
         var found = false
         for conn in connectors{
             found = false
@@ -81,7 +130,7 @@ class Algorithms {
         }
         return newArray
     }
-    
+    */
     func checkIfAvailable(station: Station) -> Bool{
         return true
     }

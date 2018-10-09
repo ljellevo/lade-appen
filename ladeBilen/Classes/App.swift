@@ -252,8 +252,8 @@ extension AlgorithmsMethods {
         }
     }
     
-    func sortConnectors(connectors: [Connector]) -> [Connector]{
-        return algorithms.sortConnectors(connectors: connectors, user: user!)
+    func sortConnectors(station: Station) -> Station{
+        return algorithms.sortConnectors(station: station, user: user!)
     }
     
     func findStationWith(id: Int) -> Station? {
