@@ -75,6 +75,27 @@ class CacheManagement {
             return false
         }
     }
+    
+    func getConnectorDescriptionCache() -> [Int:String]?{
+        do {
+            if Disk.exists(Constants.PATHS.FILTERED_STATION_CACHE, in: .caches) {
+                return try Disk.retrieve(Constants.PATHS.CONNECTOR_DESCRIPTION_PATH, from: .caches, as: [Int:String].self)
+            }
+        } catch {
+            print("Connector Descriptions not cached.")
+        }
+        return nil
+    }
+    
+    func setConnectorDescriptionCache(connectorDescription: [Int:String]) -> Bool {
+        do {
+            try Disk.save(connectorDescription, to: .caches, as: Constants.PATHS.CONNECTOR_DESCRIPTION_PATH)
+            return true
+        } catch {
+            print("Connector Descriptions cache not updated.")
+            return false
+        }
+    }
 
     
     func removeAllCache() -> Bool{

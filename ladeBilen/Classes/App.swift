@@ -18,6 +18,7 @@ class App {
     var user: User?
     var stations: [Station] = []
     var filteredStations: [Station] = []
+    var connectorDescription: [Int: String] = [:]
     
     //Initialize
     func initializeApplication(done: @escaping (_ code: Int)-> Void){
@@ -45,6 +46,17 @@ class App {
             let endDate: NSDate = NSDate()
             let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
             print("Stations verified: seconds: \(timeInterval)")
+            DispatchQueue.main.async {
+                group.leave()
+            }
+        }
+        
+        group.enter()
+        startDate = NSDate()
+        self.verifyConnectorDescriptionCache(){
+            let endDate: NSDate = NSDate()
+            let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
+            print("Connector descriptions verified: seconds: \(timeInterval)")
             DispatchQueue.main.async {
                 group.leave()
             }
@@ -88,6 +100,18 @@ extension AuthenticationMethods {
             print("Filtered stations not cached")
             filteredStations = algorithms.filterStations(stations: stations, user: user!)
             _ = self.setFilteredStationsCache()
+        }
+    }
+    
+    private func verifyConnectorDescriptionCache(done: @escaping ()-> Void) {
+        if let connectorDescription = getConnectorDescriptionCache(){
+            self.connectorDescription = connectorDescription
+            done()
+        } else {
+            print("Connector descriptions not cached, fetching from database")
+            getConnectorDescriptionFromDatabase {
+                done()
+            }
         }
     }
     
@@ -135,7 +159,7 @@ extension CacheManagementMethods {
     }
     
     func setUserCache() -> Bool{
-        return cacheManagement.setUserCache(user: user!)
+        return cacheManagement.setUserCache(user: self.user!)
     }
     
     func getStationCache() -> [Station]?{
@@ -143,7 +167,7 @@ extension CacheManagementMethods {
     }
     
     func setStationCache() -> Bool{
-        return cacheManagement.setStationCache(stations: stations)
+        return cacheManagement.setStationCache(stations: self.stations)
     }
     
     func getFilteredStationsCache() -> [Station]?{
@@ -151,7 +175,15 @@ extension CacheManagementMethods {
     }
     
     func setFilteredStationsCache() -> Bool{
-        return cacheManagement.setFilteredStationsCache(filteredStations: filteredStations)
+        return cacheManagement.setFilteredStationsCache(filteredStations: self.filteredStations)
+    }
+    
+    func getConnectorDescriptionCache() -> [Int:String]?{
+        return cacheManagement.getConnectorDescriptionCache()
+    }
+    
+    func setConnectorDescriptionCache() -> Bool{
+        return cacheManagement.setConnectorDescriptionCache(connectorDescription: self.connectorDescription)
     }
     
     func removeAllCache() -> Bool{
@@ -165,6 +197,14 @@ extension DatabaseMethods {
         database.getStationsFromDatabase(done: { stations in
             self.stations = stations
             _ = self.setStationCache()
+            done()
+        })
+    }
+    
+    func getConnectorDescriptionFromDatabase(done: @escaping ()-> Void){
+        database.getConnectorDescriptionFromDatabase(done: { connectorDescription in
+            self.connectorDescription = connectorDescription
+            _ = self.setConnectorDescriptionCache()
             done()
         })
     }

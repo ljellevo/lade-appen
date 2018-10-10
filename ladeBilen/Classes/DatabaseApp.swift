@@ -124,6 +124,20 @@ class DatabaseApp {
         }, withCancel: nil)
     }
     
+    func getConnectorDescriptionFromDatabase(done: @escaping (_ stations: [Int:String])-> Void){
+        var connectorDescription: [Int:String] = [:]
+        ref.child("nobil_database_static").child("connectors").observeSingleEvent(of: .value, with: { (snapshot) in
+            DispatchQueue.global().async {
+                print(snapshot)
+                for children in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
+                    connectorDescription.updateValue(children.value as! String, forKey: Int(children.key)!)
+                }
+                DispatchQueue.main.async {
+                    done(connectorDescription)
+                }
+            }
+        }, withCancel: nil)
+    }
     
     
     func getUserTimestampFromDatabase(done: @escaping (_ done: Int64)-> Void){

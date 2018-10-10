@@ -15,6 +15,7 @@ class InfoCell: UICollectionViewCell{
     var userComment: String?
     var connectors: [Connector]?
     var compatibleConntacts: Int?
+    var connectorDescription: [Int: String]?
     weak var delegate: CollectionViewCellDelegate?
 
     
@@ -77,6 +78,7 @@ class InfoCell: UICollectionViewCell{
         commentsStack.isHidden = true
         connectorStack.isHidden = true
         imageStack.isHidden = true
+        
         
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
        
@@ -295,7 +297,8 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
         let cell: ConnectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectorCellIdentifier", for: indexPath as IndexPath) as! ConnectorCell
         
         //Endre fra description til int sammenligning
-        cell.typeLabel.text = connectors![indexPath.row].connector?.description
+        //cell.typeLabel.text = connectors![indexPath.row].connector?.description //HEr
+        cell.typeLabel.text = connectorDescription![connectors![indexPath.row].connector!]
         cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode?.description
         
         if connectors![indexPath.row].chargerMode?.description == "1" {

@@ -23,6 +23,7 @@ struct Constants {
         static let STATION_CACHE_PATH: String = "stations.json"
         static let FILTERED_STATION_CACHE: String = Auth.auth().currentUser!.uid + "_stations.json"
             //Auth.auth().currentUser!.uid + "_stations.json"
+        static let CONNECTOR_DESCRIPTION_PATH: String = Auth.auth().currentUser!.uid + "_connectorDescriptions.json"
     }
     
 }

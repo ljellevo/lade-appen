@@ -23,6 +23,7 @@ class Home: UIViewController{
     let searchController = UISearchController(searchResultsController: nil)
     
     var filteredStations: [Station]?
+    var connectorDescription: [Int:String]?
     var selectedStationSearch: Station?
     var station: Station?
     var isFavorite: Bool?
@@ -60,7 +61,7 @@ class Home: UIViewController{
         super.viewDidLoad()
         
         filteredStations = app!.filteredStations
-        
+        connectorDescription = app!.connectorDescription
         
         loadDetailsElement()
         loadMapElement()
@@ -206,6 +207,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
             cell.connectorCollectionView.reloadData()
             cell.commentsView.reloadData()
+            cell.connectorDescription = connectorDescription
             cell.delegate = self as CollectionViewCellDelegate
             cell.realtime = station!.realtimeInfo
             if station!.realtimeInfo! {
@@ -508,6 +510,18 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         }
         self.connectors = self.app!.sortConnectors(station: station!).conn
         collectionView.reloadData()
+        tableViewStack.isHidden = true
+        //Move map to correct position
+        var position = station!.position
+        position = position?.replacingOccurrences(of: "(", with: "")
+        position = position?.replacingOccurrences(of: ")", with: "")
+        let positionArray = position!.components(separatedBy: ",")
+        let lat = Double(positionArray[0])! - 0.007
+        let lon = Double(positionArray[1])
+        let coordinates = CLLocationCoordinate2D(latitude:lat, longitude:lon!)
+        mapWindow.setCenter(coordinates, animated: true)
+        
+        
         if startPosition {
             detailsStartPosition(withAnimation: false)
             self.view.layoutIfNeeded()
