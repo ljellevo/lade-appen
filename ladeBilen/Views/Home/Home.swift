@@ -55,6 +55,7 @@ class Home: UIViewController{
     
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var greyDraggingIndicator: UIView!
+    @IBOutlet weak var centerMapButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -120,7 +121,10 @@ class Home: UIViewController{
         })
     }
     
-
+    @IBAction func centerMapOnUserLocation(_ sender: UIButton) {
+        mapWindow.setCenter((locationManager.location?.coordinate)!, animated: true)
+    }
+    
     @IBAction func contentViewIsDragging(_ sender: UIPanGestureRecognizer) {
         let gesture = sender.translation(in: view)
         let velocity = sender.velocity(in: self.view).y
@@ -313,6 +317,8 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
         mapWindow.showsUserLocation = true
         mapWindow.delegate = self
         isInitial = true
+        centerMapButton.layer.cornerRadius = 5
+        centerMapButton.addShadow()
         
     }
     

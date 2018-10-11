@@ -946,6 +946,18 @@
                                     <outletCollection property="gestureRecognizers" destination="ndM-eb-sgC" appends="YES" id="5M1-2Q-qyp"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNl-6i-5mL">
+                                <rect key="frame" x="272" y="94" width="27" height="27"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="GWs-c4-Kno"/>
+                                    <constraint firstAttribute="width" constant="27" id="h1W-xe-myc"/>
+                                </constraints>
+                                <state key="normal" image="TargetSet"/>
+                                <connections>
+                                    <action selector="centerMapOnUserLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vqB-ZX-vAs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -963,6 +975,8 @@
                             <constraint firstItem="iYL-Hw-tZv" firstAttribute="top" secondItem="fHQ-m9-XD3" secondAttribute="bottom" constant="8" id="YDB-vL-KXf"/>
                             <constraint firstAttribute="trailing" secondItem="jL9-jX-usB" secondAttribute="trailing" id="a8l-tI-jcd"/>
                             <constraint firstAttribute="bottom" secondItem="bDK-wx-8YK" secondAttribute="bottom" id="aSj-Ng-B56"/>
+                            <constraint firstItem="eNl-6i-5mL" firstAttribute="top" secondItem="02A-yD-k2M" secondAttribute="bottom" constant="30" id="aZi-lA-DKy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eNl-6i-5mL" secondAttribute="trailing" constant="5" id="g5e-JG-M3o"/>
                             <constraint firstItem="bDK-wx-8YK" firstAttribute="top" secondItem="02A-yD-k2M" secondAttribute="bottom" id="geO-gc-UT7"/>
                             <constraint firstAttribute="trailing" secondItem="6uL-Kc-sva" secondAttribute="trailing" id="ih2-ix-ffW"/>
                             <constraint firstAttribute="trailing" secondItem="bcT-jA-b1i" secondAttribute="trailing" id="qyO-fM-FcQ"/>
@@ -997,6 +1011,7 @@
                         <outlet property="buttonStackConstraintLeading" destination="KEs-6v-AnL" id="PUZ-xK-9Im"/>
                         <outlet property="buttonStackConstraintTrailing" destination="7wM-qv-5Zk" id="Z4w-Js-YVF"/>
                         <outlet property="buttonsStack" destination="fHQ-m9-XD3" id="62c-gv-JOa"/>
+                        <outlet property="centerMapButton" destination="eNl-6i-5mL" id="qAv-jH-erN"/>
                         <outlet property="collectionView" destination="RA1-OK-qc8" id="0aJ-S1-zJo"/>
                         <outlet property="contentView" destination="6uL-Kc-sva" id="vMH-0w-Tre"/>
                         <outlet property="contentViewHeightConstraint" destination="ILQ-YK-ygU" id="DrI-TU-xcj"/>
@@ -1946,6 +1961,7 @@
         <image name="Location_Icon_2x.png" width="70" height="70"/>
         <image name="MarkerSet" width="40" height="40"/>
         <image name="ProfileSet" width="40" height="40"/>
+        <image name="TargetSet" width="37.5" height="37.5"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="PEw-8c-Os5"/>

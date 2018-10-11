@@ -125,6 +125,9 @@
 		83F9E440203C98DE009B3788 /* Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9E43F203C98DE009B3788 /* Initialization.swift */; };
 		83FD2BEA1FEE6DE9002B8EDF /* RegisterCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD2BE91FEE6DE9002B8EDF /* RegisterCont.swift */; };
 		AF3F3AAA148AB995D9D565AE /* Pods_ladeBilenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4FD70E2300928D5DD5CA905 /* Pods_ladeBilenTests.framework */; };
+		B4203397216F910400CF692A /* Target-75.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203394216F910400CF692A /* Target-75.png */; };
+		B4203398216F910400CF692A /* Target-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203395216F910400CF692A /* Target-25.png */; };
+		B4203399216F910400CF692A /* Target-50.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203396216F910400CF692A /* Target-50.png */; };
 		C80FCBA5A734B9589C5D8F32 /* Pods_ladeBilenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20189C346CDCFD95DE48E18F /* Pods_ladeBilenUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -273,6 +276,9 @@
 		83F9E43F203C98DE009B3788 /* Initialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initialization.swift; sourceTree = "<group>"; };
 		83FD2BE91FEE6DE9002B8EDF /* RegisterCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCont.swift; sourceTree = "<group>"; };
 		A11AA552B6632E680D391088 /* Pods-ladeBilenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B4203394216F910400CF692A /* Target-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-75.png"; sourceTree = "<group>"; };
+		B4203395216F910400CF692A /* Target-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-25.png"; sourceTree = "<group>"; };
+		B4203396216F910400CF692A /* Target-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-50.png"; sourceTree = "<group>"; };
 		CBE7FF5E7AF48C454404FE8B /* Pods_ladeBilen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC9EF150DA9B89419D446B17 /* Pods-ladeBilen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilen.release.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilen/Pods-ladeBilen.release.xcconfig"; sourceTree = "<group>"; };
 		DFCF9A4B9C38A92BB5C6750D /* Pods-ladeBilenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -327,6 +333,7 @@
 		8314708F1FBE4FD800DCD0CD /* IconSets */ = {
 			isa = PBXGroup;
 			children = (
+				B420338D216F90D000CF692A /* Target */,
 				83868F9020803AE90058C771 /* Cancel */,
 				8373B86F206AF7F00085EA89 /* Offline */,
 				8373B868206AF75B0085EA89 /* Online */,
@@ -770,6 +777,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B420338D216F90D000CF692A /* Target */ = {
+			isa = PBXGroup;
+			children = (
+				B4203395216F910400CF692A /* Target-25.png */,
+				B4203396216F910400CF692A /* Target-50.png */,
+				B4203394216F910400CF692A /* Target-75.png */,
+			);
+			path = Target;
+			sourceTree = "<group>";
+		};
 		FB049DAA8D4B5278F5C66507 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -928,6 +945,7 @@
 				83A463AB1FCB1659001A5916 /* CommentCell.xib in Resources */,
 				8314E2301EF435CF00F98E3F /* GoogleService-Info.plist in Resources */,
 				83F354811EEB0696001A278A /* LaunchScreen.storyboard in Resources */,
+				B4203399216F910400CF692A /* Target-50.png in Resources */,
 				836B7DCF1FCA27E800B4B94E /* Details-Icon-50.png in Resources */,
 				8373B873206AF8230085EA89 /* Offline-Icon-25.png in Resources */,
 				83868F9620803B730058C771 /* Cancel-Icon-75.png in Resources */,
@@ -954,6 +972,7 @@
 				83B3DEF4203CAB6A0018AEE5 /* Favorite-Filled-Icon-50.png in Resources */,
 				8354137D1F82F550000A70CB /* IEC_60309_5-pin_type_1.png in Resources */,
 				8314709C1FBE518500DCD0CD /* Search-Icon-75.png in Resources */,
+				B4203398216F910400CF692A /* Target-25.png in Resources */,
 				83B3DEF3203CAB6A0018AEE5 /* Favorite-Filled-Icon-25.png in Resources */,
 				8373B874206AF8230085EA89 /* Offline-Icon-50.png in Resources */,
 				8323D4291FC77A4F0049D349 /* ConnectorCell.xib in Resources */,
@@ -972,6 +991,7 @@
 				836B7DDC1FCA286700B4B94E /* Comments-Icon-75.png in Resources */,
 				836B7DD51FCA27F300B4B94E /* Pictures-Icon-25.png in Resources */,
 				835413811F82F550000A70CB /* Schuko_CEE_7_4.png in Resources */,
+				B4203397216F910400CF692A /* Target-75.png in Resources */,
 				831470A21FBE523300DCD0CD /* Profile-Icon-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
