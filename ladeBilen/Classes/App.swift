@@ -255,8 +255,8 @@ extension DatabaseMethods {
                         station.conn[i].isTaken = conn["Status"] as? Int64
                         station.conn[i].timestamp = conn["Timestamp"] as? Int64
                     }
-                    self.filteredStations = self.algorithms.filterStations(stations: self.stations, user: self.user!)
                     self.updateStation(updatedStation: station)
+                    self.filteredStations = self.algorithms.filterStations(stations: self.stations, user: self.user!)
                     _ = self.setFilteredStationsCache()
                     print("Update App")
                     DispatchQueue.main.async {

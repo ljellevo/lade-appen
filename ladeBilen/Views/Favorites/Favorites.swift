@@ -21,6 +21,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     var connectors: [Connector]?
     var countCompatible: Int?
     var connectorDescription: [Int:String]?
+    
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -104,6 +105,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         }
     }
     
+    
     func populateFavoritesArray(){
         favoriteArray = []
         followingArray = []
@@ -111,9 +113,11 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             if app!.user!.favorites!.keys.contains(station.id!.description) {
                 self.favoriteArray.append(station)
                 self.followingArray.append(station)
+                listenOnStation(stationId: station.id!) //Need to skip first response
             }
         }
         collectionView.reloadData()
+        detailsCollectionView.reloadData()
     }
     
     func addShadowFavoritesCell(cell: FavoritesCell) -> FavoritesCell{
@@ -143,12 +147,6 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
         return cell
     }
-    
-
-    
-    
-    
-    
 }
 
 private typealias DetailsElement = Favorites
@@ -433,5 +431,25 @@ extension Delegate: CollectionViewCellDelegate {
         } else if action == .subscribe {
             print("Subscribe")
         }
+    }
+}
+
+private typealias Service = Favorites
+extension Service {
+    
+    func listenOnStation(stationId: Int){
+        print("Run")
+        app?.listenOnStation(stationId: stationId, done: { _ in
+            print("Listening")
+            DispatchQueue.main.async {
+                self.populateFavoritesArray()
+            }
+        })
+    }
+    
+    func detatchAllListeners(){
+        print("Detatch")
+        //Needs to detach all listeners
+        app?.detachListenerOnStation(stationId: station!.id!)
     }
 }
