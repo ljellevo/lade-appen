@@ -274,7 +274,7 @@ extension DatabaseMethods {
 
 private typealias AlgorithmsMethods = App
 extension AlgorithmsMethods {
-    func findAvailableContacts(station: Station) -> Int{
+    func findAvailableContacts(station: Station) -> [Int]{
         return algorithms.findAvailableContacts(station: station, user: user!)
     }
     

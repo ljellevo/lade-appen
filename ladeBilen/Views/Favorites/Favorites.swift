@@ -20,6 +20,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     var isFavorite: Bool?
     var connectors: [Connector]?
     var countCompatible: Int?
+    var connectorDescription: [Int:String]?
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -40,7 +41,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         collectionView.register(UINib(nibName: "FavoritesCell", bundle: nil), forCellWithReuseIdentifier: "FavoritesCell")
         collectionView.register(UINib(nibName: "LabelCell", bundle: nil), forCellWithReuseIdentifier: "LabelCell")
         collectionView.register(UINib(nibName: "SubscriptionCell", bundle: nil), forCellWithReuseIdentifier: "SubscriptionCell")
-        
+        connectorDescription = app!.connectorDescription
 
         
         loadDetailsElement()
@@ -235,11 +236,15 @@ extension CollectionViewLayoutMethods {
                 let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
                 cell.connectorCollectionView.reloadData()
                 cell.commentsView.reloadData()
+                cell.connectorDescription = connectorDescription
                 cell.delegate = self as CollectionViewCellDelegate
                 cell.realtime = station!.realtimeInfo
                 if station!.realtimeInfo! {
                     cell.animateRealtime()
+                    var availableConnectors = app!.findAvailableContacts(station: station!)
+                    cell.realtimeConnectorCounterLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
                 } else {
+                    cell.realtimeConnectorCounterLabel.text = ""
                     cell.killAllAnimations()
                 }
                 cell.nameLabel.text = station?.name
@@ -313,7 +318,8 @@ extension CollectionViewLayoutMethods {
                     cell.stationNameLabel.text = favoriteArray[row].name
                     cell.stationStreetLabel.text = favoriteArray[row].street! + " " + favoriteArray[row].houseNumber!
                     cell.stationCityLabel.text = favoriteArray[row].city
-                    cell.availableContactsLabel.text = "Ledig/" + app!.findAvailableContacts(station: favoriteArray[row]).description
+                    var availableConnectors = app!.findAvailableContacts(station: favoriteArray[row])
+                    cell.availableContactsLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
                     cell.station = favoriteArray[row]
                     cell = addShadowFavoritesCell(cell: cell)
                     return cell
@@ -326,7 +332,8 @@ extension CollectionViewLayoutMethods {
                 cell.stationNameLabel.text = favoriteArray[indexPath.row].name
                 cell.stationStreetLabel.text = favoriteArray[indexPath.row].street
                 cell.stationCityLabel.text = favoriteArray[indexPath.row].city
-                cell.availableContactsLabel.text = "Ledig/" + app!.findAvailableContacts(station: favoriteArray[indexPath.row]).description
+                var availableConnectors = app!.findAvailableContacts(station: favoriteArray[indexPath.row])
+                cell.availableContactsLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
                 cell.station = favoriteArray[indexPath.row]
                 cell = addShadowFavoritesCell(cell: cell)
                 return cell

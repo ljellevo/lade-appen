@@ -216,7 +216,10 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.realtime = station!.realtimeInfo
             if station!.realtimeInfo! {
                 cell.animateRealtime()
+                var availableConnectors = app!.findAvailableContacts(station: station!)
+                cell.realtimeConnectorCounterLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
             } else {
+                cell.realtimeConnectorCounterLabel.text = ""
                 cell.killAllAnimations()
             }
             cell.nameLabel.text = station?.name
@@ -603,14 +606,14 @@ extension Service {
                     }
                 }
                 
-                let compatibleConntacts: Int = self.app!.findAvailableContacts(station: station)
+                let compatibleConntacts: [Int] = self.app!.findAvailableContacts(station: station)
                 //Available/Applicable contacts for station label.
-                _ = availableConntacts.description + "/" + compatibleConntacts.description
+                _ = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
                 
                 
                 let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                 infoCell.connectors = self.connectors
-                infoCell.compatibleConntacts = compatibleConntacts
+                infoCell.compatibleConntacts = compatibleConntacts[0]
                 infoCell.connectorCollectionView.reloadData()
                 
             }

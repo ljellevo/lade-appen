@@ -9,7 +9,7 @@ Home
 - 2.3 Bruker skal kunne sentrere kartet på possisjonen til brukeren. (D)
 - 2.4 Bruker skal kunne trykke på en stasjon for så å se detaljene til stasjonen. (D)
 - 2.5 Bruker skal kunne trykke på søkeresultatet for så å se detaljene om stasjonen. (D)
-- __2.6 Bruker skal kunne se om en stasjon er lagt til favoritter baset på fargen til markøren på kartet.__
+- 2.6 Bruker skal kunne se om en stasjon er lagt til favoritter baset på fargen til markøren på kartet. (D)
 - 2.7 Bruker skal kunne justere størrelsen på detalje vinduet ved hjelp av fingerbevegelse. (D)
 
 Detaljer
@@ -18,7 +18,7 @@ Detaljer
 - __3.3 Bruker skal kunne følge satsjonen for så å få push-notifikasjoner ang stasjonen i en gitt tid.__
 - 3.4 Bruker skal kunne se detaljene om en stasjon (navn, gate, by, sanntid, parkeringsavgift, beskrivelse, ...) (D).
 - 3.5 Bruker skal kunne se kommentarer som er relevante for den aktuelle stasjonen. (D)
-- __3.6 Bruker skal kunne se hvor mange kontakter som er ledige dersom stasjonen leverer sanntidsinformasjon.__
+- 3.6 Bruker skal kunne se hvor mange kontakter som er ledige dersom stasjonen leverer sanntidsinformasjon. (D)
 - __3.7 Bruker skal kunne se en oversikt over hvilke kontakter stasjonen har og statusen på disse (Ledig, opptatt og ute av drift). Det skal også være en tid som sier noe om når siste oppdatering ble levert. (Gjelder kunn for sanntids stasjoner).__
 - __3.8 Bruker skal kunne se eventuelle bilder av stasjonen.__
 - __3.9 Bruker skal se en nedtelling som sier noe om hvor lenge brukeren vil få notifikasjoner.__

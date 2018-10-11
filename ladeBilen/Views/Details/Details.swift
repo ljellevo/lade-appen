@@ -51,8 +51,8 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
                     }
                 }
                 
-                let compatibleConntacts: Int = self.app!.findAvailableContacts(station: station)
-                topCell.connectorLabel.text = availableConntacts.description + "/" + compatibleConntacts.description
+                let compatibleConntacts: [Int] = self.app!.findAvailableContacts(station: station)
+                topCell.connectorLabel.text = availableConntacts.description + "/" + compatibleConntacts[1].description
  
                 let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 1, section: 0)) as! InfoCell
                 infoCell.connectors = self.connectors
@@ -93,9 +93,9 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
                 }
             }
             
-            let compatibleConntacts: Int = app!.findAvailableContacts(station: station!)
+            let compatibleConntacts: [Int] = app!.findAvailableContacts(station: station!)
 
-            countCompatible = compatibleConntacts
+            countCompatible = compatibleConntacts[1]
             
             if station!.realtimeInfo! {
                 cell.realtimeIcon.image = #imageLiteral(resourceName: "OnlineSet")

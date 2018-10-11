@@ -43,12 +43,16 @@ class Algorithms {
         return -1
     }
     
-    func findAvailableContacts(station: Station, user: User) -> Int{
-        var counter: Int = 0
+    //Returns array with [Available, Applicable]
+    func findAvailableContacts(station: Station, user: User) -> [Int]{
+        var counter: [Int] = [0, 0]
         for conn in station.conn {
             for connector in user.connector!{
                 if conn.connector == connector {
-                    counter += 1
+                    if conn.isTaken == 0 {
+                        counter[0] += 1
+                    }
+                    counter[1] += 1
                 }
             }
         }

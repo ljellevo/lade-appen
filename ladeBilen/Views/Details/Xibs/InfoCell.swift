@@ -41,6 +41,7 @@ class InfoCell: UICollectionViewCell{
         @IBOutlet weak var subscribeButton: UIButton!
         @IBOutlet weak var realtimeView: UIView!
         @IBOutlet weak var descriptionLabel: UILabel!
+        @IBOutlet weak var realtimeConnectorCounterLabel: UILabel!
     
     @IBOutlet weak var commentsStack: UIStackView!
         @IBOutlet weak var commentsView: UITableView!
@@ -298,6 +299,8 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
         
         //Endre fra description til int sammenligning
         //cell.typeLabel.text = connectors![indexPath.row].connector?.description //HEr
+        print(indexPath.row)
+        print(connectors![indexPath.row].connector!)
         cell.typeLabel.text = connectorDescription![connectors![indexPath.row].connector!]
         cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode?.description
         
