@@ -258,7 +258,6 @@ extension DatabaseMethods {
                     self.updateStation(updatedStation: station)
                     self.filteredStations = self.algorithms.filterStations(stations: self.stations, user: self.user!)
                     _ = self.setFilteredStationsCache()
-                    print("Update App")
                     DispatchQueue.main.async {
                         done(station)
                     }

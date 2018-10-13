@@ -377,6 +377,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
         if let anno = view.annotation as? Annotation {
             id = anno.id!
             print(id!)
+            print("----------Selected, setting up listener----------")
             
             if willDeselectMarker {
                 detailsStartPosition(withAnimation: true)
@@ -392,7 +393,6 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
             }
             
 
-            
             listenOnStation()
             
             if app!.user!.favorites!.keys.contains(station!.id!.description){
@@ -610,10 +610,11 @@ extension Service {
                 //Available/Applicable contacts for station label.
                 _ = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
                 
-                
+                //self.collectionView.reloadData()
                 let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                 infoCell.connectors = self.connectors
                 infoCell.compatibleConntacts = compatibleConntacts[0]
+                infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
                 infoCell.connectorCollectionView.reloadData()
                 
             }

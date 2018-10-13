@@ -155,6 +155,7 @@ class DatabaseApp {
             DispatchQueue.global().async {
                 if let dict = snapshot.value as? [String : AnyObject] {
                     let conn = dict["conn"] as? NSArray
+                    print(stationId)
                     print(conn![1])
                     DispatchQueue.main.async {
                         done(conn!)

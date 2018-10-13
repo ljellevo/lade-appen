@@ -63,8 +63,8 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                 }) //Need to skip first response
             }
         }
-        collectionView.reloadData()
-        detailsCollectionView.reloadData()
+        //collectionView.reloadData()
+        //detailsCollectionView.reloadData()
     }
     
     @IBAction func contentViewIsTapped(_ sender: UITapGestureRecognizer) {
