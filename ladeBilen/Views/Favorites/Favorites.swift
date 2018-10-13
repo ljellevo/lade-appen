@@ -49,8 +49,24 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        populateFavoritesArray()
+        //populateFavoritesArray()
+        for station in app!.stations{
+            if app!.user!.favorites!.keys.contains(station.id!.description) {
+                self.favoriteArray.append(station)
+                self.followingArray.append(station)
+                listenOnStation(station: station, done: { stationId in
+                    if station.id == self.station?.id{
+                        print("Matching stations")
+                        self.station = station
+                    }
+                    self.populateFavoritesArray()
+                }) //Need to skip first response
+            }
+        }
+        collectionView.reloadData()
+        detailsCollectionView.reloadData()
     }
+    
     @IBAction func contentViewIsTapped(_ sender: UITapGestureRecognizer) {
         detailsEngagedPosition(blur: 0.26)
         height = contentViewHeightConstraint.constant
@@ -107,13 +123,13 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     
     func populateFavoritesArray(){
+        print("Refreshing collectionviews")
         favoriteArray = []
         followingArray = []
         for station in app!.stations{
             if app!.user!.favorites!.keys.contains(station.id!.description) {
                 self.favoriteArray.append(station)
                 self.followingArray.append(station)
-                listenOnStation(stationId: station.id!) //Need to skip first response
             }
         }
         collectionView.reloadData()
@@ -173,10 +189,12 @@ extension DetailsElement {
     }
     
     func detailsStartPosition(withAnimation: Bool){
-        contentView.isHidden = false
+        
         
         contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.15
+        print(UIScreen.main.bounds.height * 0.15)
         height = contentViewHeightConstraint.constant
+        contentView.isHidden = false
         
         detailsCollectionView.isScrollEnabled = false
         startPosition = true
@@ -203,6 +221,10 @@ extension DetailsElement {
     
     func detailsDismissedPosition(){
         detailsStartPosition(withAnimation: true)
+        if let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? InfoCell{
+            infoCell.killAllAnimations()
+        }
+        
         contentView.isHidden = true
     }
 }
@@ -230,6 +252,7 @@ extension CollectionViewLayoutMethods {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == detailsCollectionView {
             if station != nil {
+                print("Building details collectionview")
                 
                 let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
                 cell.connectorCollectionView.reloadData()
@@ -426,7 +449,8 @@ extension Delegate: CollectionViewCellDelegate {
                 infoCell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
                 isFavorite = true
             }
-            populateFavoritesArray()
+            self.populateFavoritesArray()
+            
             
         } else if action == .subscribe {
             print("Subscribe")
@@ -437,19 +461,17 @@ extension Delegate: CollectionViewCellDelegate {
 private typealias Service = Favorites
 extension Service {
     
-    func listenOnStation(stationId: Int){
-        print("Run")
-        app?.listenOnStation(stationId: stationId, done: { _ in
-            print("Listening")
+    func listenOnStation(station: Station, done: @escaping (_ stationId: Int)-> Void){
+        app?.listenOnStation(stationId: station.id!, done: { _ in
+            print("Update on: " + station.id!.description)
             DispatchQueue.main.async {
-                self.populateFavoritesArray()
+                done(station.id!)
             }
         })
     }
     
     func detatchAllListeners(){
         print("Detatch")
-        //Needs to detach all listeners
-        app?.detachListenerOnStation(stationId: station!.id!)
+        app?.detatchAllListeners()
     }
 }

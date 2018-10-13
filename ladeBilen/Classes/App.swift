@@ -270,6 +270,11 @@ extension DatabaseMethods {
     func detachListenerOnStation(stationId: Int){
         database.detatchListenerOnStation(stationId: getStationIdAsString(stationId: stationId))
     }
+    
+    func detatchAllListeners(){
+        //All stations
+        database.detatchAllListeners()
+    }
 }
 
 private typealias AlgorithmsMethods = App

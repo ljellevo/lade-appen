@@ -299,8 +299,6 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
         
         //Endre fra description til int sammenligning
         //cell.typeLabel.text = connectors![indexPath.row].connector?.description //HEr
-        print(indexPath.row)
-        print(connectors![indexPath.row].connector!)
         cell.typeLabel.text = connectorDescription![connectors![indexPath.row].connector!]
         cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode?.description
         

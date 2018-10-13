@@ -168,4 +168,9 @@ class DatabaseApp {
         ref.child("Realtime").child(stationId).removeObserver(withHandle: stationListenerHandle!)
     }
     
+    
+    func detatchAllListeners(){
+        ref.child("Realtime").removeAllObservers()
+    }
+    
 }
