@@ -357,7 +357,13 @@ extension CollectionViewLayoutMethods {
                     cell.stationStreetLabel.text = favoriteArray[row].street! + " " + favoriteArray[row].houseNumber!
                     cell.stationCityLabel.text = favoriteArray[row].city
                     var availableConnectors = app!.findAvailableContacts(station: favoriteArray[row])
-                    cell.availableContactsLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
+                    if favoriteArray[row].realtimeInfo! {
+                        cell.availableConntactsLabelMessage.text = "Kontakter"
+                        cell.availableContactsLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
+                    } else {
+                        cell.availableConntactsLabelMessage.text = ""
+                        cell.availableContactsLabel.text = ""
+                    }
                     cell.station = favoriteArray[row]
                     cell = addShadowFavoritesCell(cell: cell)
                     return cell

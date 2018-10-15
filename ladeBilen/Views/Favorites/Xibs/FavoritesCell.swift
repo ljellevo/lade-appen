@@ -25,6 +25,7 @@ class FavoritesCell: UICollectionViewCell {
     @IBOutlet weak var stationStreetLabel: UILabel!
     @IBOutlet weak var stationCityLabel: UILabel!
     
+    @IBOutlet weak var availableConntactsLabelMessage: UILabel!
     @IBOutlet weak var availableContactsLabel: UILabel!
     @IBOutlet weak var isAvailableLabel: UILabel!
     
