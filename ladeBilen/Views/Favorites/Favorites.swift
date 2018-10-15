@@ -54,17 +54,33 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             if app!.user!.favorites!.keys.contains(station.id!.description) {
                 self.favoriteArray.append(station)
                 self.followingArray.append(station)
-                listenOnStation(station: station, done: { stationId in
-                    if station.id == self.station?.id{
+                listenOnStation(station: station, done: { updatedStation in
+                    if updatedStation.id == self.station?.id{
                         print("Matching stations")
-                        self.station = station
+                        self.station = updatedStation
+                        let compatibleConntacts: [Int] = self.app!.findAvailableContacts(station: updatedStation)
+                        let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                        infoCell.connectors = self.connectors
+                        infoCell.compatibleConntacts = compatibleConntacts[0]
+                        infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
+                        infoCell.connectorCollectionView.reloadData()
                     }
-                    self.populateFavoritesArray()
-                }) //Need to skip first response
+                    for i in 0..<self.favoriteArray.count {
+                        if self.favoriteArray[i].id == updatedStation.id {
+                            self.favoriteArray[i] = updatedStation
+                            self.collectionView.reloadData()
+                            break
+                        }
+                    }
+                })
             }
         }
-        //collectionView.reloadData()
-        //detailsCollectionView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        for fav in favoriteArray {
+            detachListenerOnStation(stationId: fav.id!)
+        }
     }
     
     @IBAction func contentViewIsTapped(_ sender: UITapGestureRecognizer) {
@@ -123,6 +139,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     
     func populateFavoritesArray(){
+        //Needs refactoring, not nessecary to itterate all stations
         print("Refreshing collectionviews")
         favoriteArray = []
         followingArray = []
@@ -133,7 +150,6 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             }
         }
         collectionView.reloadData()
-        detailsCollectionView.reloadData()
     }
     
     func addShadowFavoritesCell(cell: FavoritesCell) -> FavoritesCell{
@@ -311,6 +327,7 @@ extension CollectionViewLayoutMethods {
             let cell: TopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCellIdentifier", for: indexPath as IndexPath) as! TopCell
             return cell
         } else {
+            print("Building favorites collection view")
             if followingArray.count != 0 {
                 if indexPath.row == 0{
                     //Følger label cell
@@ -461,11 +478,11 @@ extension Delegate: CollectionViewCellDelegate {
 private typealias Service = Favorites
 extension Service {
     
-    func listenOnStation(station: Station, done: @escaping (_ stationId: Int)-> Void){
-        app?.listenOnStation(stationId: station.id!, done: { _ in
+    func listenOnStation(station: Station, done: @escaping (_ updatedStation: Station)-> Void){
+        app?.listenOnStation(stationId: station.id!, done: { station in
             print("Update on: " + station.id!.description)
             DispatchQueue.main.async {
-                done(station.id!)
+                done(station)
             }
         })
     }
@@ -473,5 +490,9 @@ extension Service {
     func detatchAllListeners(){
         print("Detatch")
         app?.detatchAllListeners()
+    }
+    
+    func detachListenerOnStation(stationId: Int){
+        app?.detachListenerOnStation(stationId: stationId)
     }
 }
