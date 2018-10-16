@@ -19,6 +19,7 @@ class App {
     var stations: [Station] = []
     var filteredStations: [Station] = []
     var connectorDescription: [Int: String] = [:]
+    var subscriptions: [String: [String: Int64]] = [:]
     
     //Initialize
     func initializeApplication(done: @escaping (_ code: Int)-> Void){
@@ -61,6 +62,21 @@ class App {
                 group.leave()
             }
         }
+        
+        
+        group.enter()
+        startDate = NSDate()
+        self.getSubscriptionsFromDatabase(){
+            let endDate: NSDate = NSDate()
+            let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
+            print("Subscriptions fetched in : \(timeInterval)")
+            DispatchQueue.main.async {
+                group.leave()
+            }
+        }
+ 
+        
+        
         
         
         startDate = NSDate()
@@ -263,6 +279,24 @@ extension DatabaseMethods {
                     }
                 }
             }
+        }
+    }
+    
+    func subscribeToStation(station: Station){
+        //Set sub locally
+        database.subscribeToStation(stationId: getStationIdAsString(stationId: station.id!), user: self.user!)
+    }
+    
+    func unsubscribeToStation(station: Station){
+        //Remove sub locally
+        database.unsubscribeToStation(stationId: getStationIdAsString(stationId: station.id!), user: self.user!)
+    }
+    
+    func getSubscriptionsFromDatabase(done: @escaping ()-> Void){
+        //var subscriptions: [String: [String: Int64]] = [:]
+        database.getSubscriptionsFromDatabase(user: self.user!){ subscriptions in
+            self.subscriptions = subscriptions
+            done()
         }
     }
     

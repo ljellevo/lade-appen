@@ -165,6 +165,35 @@ class DatabaseApp {
         }
     }
     
+    func subscribeToStation(stationId: String, user: User){
+        ref.child("User_Info").child(user.uid!).child("subscriptions").child(stationId).setValue(
+            ["update": Date().getTimestamp(),
+             "from": Date().getTimestamp(),
+             "to": (Date().getTimestamp() + Int64(user.notificationDuration!))]
+        )
+        ref.child("subscriptions").child(stationId).child("members_subscriptions").updateChildValues([user.uid!: Date().getTimestamp()])
+    }
+    
+    func unsubscribeToStation(stationId: String, user: User){
+        ref.child("User_Info").child(user.uid!).child("subscriptions").child(stationId).removeValue()
+        ref.child("subscriptions").child(stationId).child("members_subscriptions").updateChildValues([user.uid!: NSNull()])
+        
+    }
+    
+    func getSubscriptionsFromDatabase(user: User, done: @escaping (_ subscriptions: [String: [String: Int64]])-> Void){
+        ref.child("User_Info").child(user.uid!).child("subscriptions").observeSingleEvent(of: .value) { (snapshot) in
+            var subscriptions = [String: [String: Int64]]()
+            
+            for sub in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
+                print(sub)
+                subscriptions.updateValue(sub.value as! [String : Int64], forKey: sub.key)
+            }
+            print(subscriptions)
+            done(subscriptions)
+
+        }
+    }
+    
     func detatchListenerOnStation(stationId: String){
         ref.child("Realtime").child(stationId).removeObserver(withHandle: stationListenerHandle!)
     }

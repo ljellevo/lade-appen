@@ -473,10 +473,9 @@ extension Delegate: CollectionViewCellDelegate {
                 isFavorite = true
             }
             self.populateFavoritesArray()
-            
-            
         } else if action == .subscribe {
             print("Subscribe")
+            app!.subscribeToStation(station: station!)
         }
     }
 }
