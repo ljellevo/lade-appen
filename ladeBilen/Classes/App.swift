@@ -21,7 +21,16 @@ class App {
     var connectorDescription: [Int: String] = [:]
     var subscriptions: [String: [String: Int64]] = [:]
     
-    //Initialize
+    /**
+     Checks if data is available in cache, if not then it fetches from database before app i loaded.
+     
+     
+     Parameter:
+     - done: Callback(Status code).
+     
+     Returns
+     - Void.
+     */
     func initializeApplication(done: @escaping (_ code: Int)-> Void){
         let group = DispatchGroup()
         var verificationCode: Int = -1
@@ -35,9 +44,16 @@ class App {
             let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
             print("User verified: seconds: \(timeInterval)")
             verificationCode = code!
-            DispatchQueue.main.async {
-                group.leave()
+            startDate = NSDate()
+            self.getSubscriptionsFromDatabase(){
+                let endDate: NSDate = NSDate()
+                let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
+                print("Subscriptions fetched in : \(timeInterval)")
+                DispatchQueue.main.async {
+                    group.leave()
+                }
             }
+            
         }
 
         
@@ -58,18 +74,6 @@ class App {
             let endDate: NSDate = NSDate()
             let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
             print("Connector descriptions verified: seconds: \(timeInterval)")
-            DispatchQueue.main.async {
-                group.leave()
-            }
-        }
-        
-        
-        group.enter()
-        startDate = NSDate()
-        self.getSubscriptionsFromDatabase(){
-            let endDate: NSDate = NSDate()
-            let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
-            print("Subscriptions fetched in : \(timeInterval)")
             DispatchQueue.main.async {
                 group.leave()
             }
@@ -97,6 +101,15 @@ class App {
 
 private typealias AuthenticationMethods = App
 extension AuthenticationMethods {
+    /**
+     Tries to load stations from cache, if stations is not cached or something went wron then it fetches from database.
+     
+     Parameters:
+     - done: Callback(Void)
+     
+     Returns:
+     - Void
+     */
     func verifyStationCache(done: @escaping ()-> Void){
         if let stations = getStationCache(){
             self.stations = stations
@@ -108,6 +121,15 @@ extension AuthenticationMethods {
             }
         }
     }
+    /**
+     Tries to laod filtered stations from cache, if cache does noit exist or something went wrong it fetches from database.
+     
+     Parameters:
+     - none
+     
+     Returns:
+     - Void
+     */
     
     private func verifyFilteredStationsCache() {
         if let filteredStations = getFilteredStationsCache(){
@@ -118,6 +140,16 @@ extension AuthenticationMethods {
             _ = self.setFilteredStationsCache()
         }
     }
+    
+    /**
+     Tries to load a dict with connector id: connector string from cache. If it is not found it fetches from database.
+     
+     Parameters:
+     - done: Callback(Void)
+     
+     Returns:
+     - Void
+     */
     
     private func verifyConnectorDescriptionCache(done: @escaping ()-> Void) {
         if let connectorDescription = getConnectorDescriptionCache(){
@@ -131,7 +163,15 @@ extension AuthenticationMethods {
         }
     }
     
-    
+    /**
+     Tries to load user from cache, if this does not work then it fetches from database.
+     
+     Parameters:
+     - done: Callback(Status code)
+     
+     Returns:
+     - void:
+     */
     
     func verifyUserCache(done: @escaping (_ code: Int) -> Void){
         if let user = getUserCache(){
@@ -170,38 +210,119 @@ extension AuthenticationMethods {
 
 private typealias CacheManagementMethods = App
 extension CacheManagementMethods {
+    /**
+     Calls getUserCache in cacheManagement.
+     
+     Parameters:
+     - None.
+     
+     Returns:
+     - User object if possible.
+     */
     func getUserCache() -> User?{
         return cacheManagement.getUserCache()
     }
     
+    /**
+     Calls setUserCache in cacheManagement.
+     
+     Parameters:
+     - User object.
+     
+     Returns:
+     - Bool.
+     */
     func setUserCache() -> Bool{
         return cacheManagement.setUserCache(user: self.user!)
     }
     
+    /**
+     Calls getStationCache in cacheManagement.
+     
+     Parameters:
+     - None.
+     
+     Returns:
+     - Array with station object if possible.
+     */
     func getStationCache() -> [Station]?{
         return cacheManagement.getStationCache()
     }
     
+    /**
+     Calls setStationCache in cacheManagement.
+     
+     Parameters:
+     - Array with stations objects.
+     
+     Returns:
+     - Bool.
+     */
     func setStationCache() -> Bool{
         return cacheManagement.setStationCache(stations: self.stations)
     }
     
+    /**
+     Calls getFilteredStationsCache in cacheManagement.
+     
+     Parameters:
+     - None.
+     
+     Returns:
+     - Array with station object if possible.
+     */
     func getFilteredStationsCache() -> [Station]?{
         return cacheManagement.getFilteredStationsCache()
     }
     
+    /**
+     Calls setFilteredStationsCache in cacheManagement.
+     
+     Parameters:
+     - Array with filtered station objects.
+     
+     Returns:
+     - Bool.
+     */
     func setFilteredStationsCache() -> Bool{
         return cacheManagement.setFilteredStationsCache(filteredStations: self.filteredStations)
     }
     
+    /**
+     Calls getConnectorDescriptionCache in cacheManagement.
+     
+     Parameters:
+     - None.
+     
+     Returns:
+     - Dictionary with connector id/connector name if possible.
+     */
     func getConnectorDescriptionCache() -> [Int:String]?{
         return cacheManagement.getConnectorDescriptionCache()
     }
     
+    /**
+     Calls setConnectorDescriptionCache in cacheManagement.
+     
+     Parameters:
+     - Dictionary with connectorDescriptions.
+     
+     Returns:
+     - Bool.
+     */
     func setConnectorDescriptionCache() -> Bool{
         return cacheManagement.setConnectorDescriptionCache(connectorDescription: self.connectorDescription)
     }
     
+    /**
+    Calls removeAllCache in cacheManagement.
+     
+     Parameters:
+     - None.
+     
+     Returns:
+     - Bool.
+     */
     func removeAllCache() -> Bool{
         return cacheManagement.removeAllCache()
     }
@@ -283,19 +404,26 @@ extension DatabaseMethods {
     }
     
     func subscribeToStation(station: Station){
-        //Set sub locally
+        self.subscriptions.updateValue(["update": Date().getTimestamp(),
+                                        "from": Date().getTimestamp(),
+                                        "to": (Date().getTimestamp() + Int64(self.user!.notificationDuration!))],
+                                       forKey: getStationIdAsString(stationId: station.id!))
+        
         database.subscribeToStation(stationId: getStationIdAsString(stationId: station.id!), user: self.user!)
     }
     
     func unsubscribeToStation(station: Station){
-        //Remove sub locally
+        self.subscriptions.removeValue(forKey: getStationIdAsString(stationId: station.id!))
         database.unsubscribeToStation(stationId: getStationIdAsString(stationId: station.id!), user: self.user!)
     }
     
     func getSubscriptionsFromDatabase(done: @escaping ()-> Void){
         //var subscriptions: [String: [String: Int64]] = [:]
         database.getSubscriptionsFromDatabase(user: self.user!){ subscriptions in
-            self.subscriptions = subscriptions
+            if subscriptions != nil {
+                self.subscriptions = subscriptions ?? [:]
+            }
+            
             done()
         }
     }
@@ -361,5 +489,10 @@ extension AlgorithmsMethods {
             stationIdString = "NOR_" + stationId.description
         }
         return stationIdString
+    }
+    
+    func getStationIdFromString(stationId: String) -> Int{
+        var stationInt = Int(stationId.replacingOccurrences(of: "NOR_", with: ""))
+        return stationInt!
     }
 }

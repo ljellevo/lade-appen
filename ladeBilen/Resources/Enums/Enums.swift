@@ -19,6 +19,7 @@ enum action {
     case cancel
     case favorite
     case subscribe
+    case unsubscribe
 }
 
 

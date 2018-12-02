@@ -547,6 +547,9 @@ private typealias Protocols = Home
 extension Protocols: CollectionViewCellDelegate  {
     func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action) {
         switch action {
+        case .unsubscribe:
+            print("Unsubscibe")
+        
         case .cancel:
             if !startPosition {
                 detailsStartPosition(withAnimation: true)
@@ -582,7 +585,8 @@ extension Protocols: CollectionViewCellDelegate  {
             
         case .subscribe:
             //MARK: Subscribe to station implementation
-            print("Følg stasjon")
+            print("Subscribe")
+            app!.subscribeToStation(station: station!)
         }
     }
 }

@@ -33,7 +33,7 @@ class SubscriptionCell: UICollectionViewCell {
     }
     
     @IBAction func cancelSubscriptionButton(_ sender: UIButton) {
-        self.delegate?.collectionViewCell(self, buttonTapped: cancelSubscriptionButton, action: .cancel)
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelSubscriptionButton, action: .unsubscribe)
     }
     
 

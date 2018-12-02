@@ -13,6 +13,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 
     var app: App?
     var favoriteArray: [Station] = []
+    var realtimeArray: [Int] = []
     var followingArray: [Station] = []
     var station: Station?
     var height: CGFloat = 0.0
@@ -49,11 +50,20 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //populateFavoritesArray()
+        for sub in self.app!.subscriptions{
+            let id = self.app!.getStationIdFromString(stationId: sub.key)
+            for station in self.app!.stations{
+                if station.id == id{
+                    self.followingArray.append(station)
+                }
+            }
+        }
+        
         for station in app!.stations{
             if app!.user!.favorites!.keys.contains(station.id!.description) {
                 self.favoriteArray.append(station)
-                self.followingArray.append(station)
+                self.realtimeArray.append(station.id!)
+                print("Setting up listener on: " + station.id!.description)
                 listenOnStation(station: station, done: { updatedStation in
                     if updatedStation.id == self.station?.id{
                         print("Matching stations")
@@ -78,8 +88,9 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        for fav in favoriteArray {
-            detachListenerOnStation(stationId: fav.id!)
+        for station in realtimeArray {
+            print("Removed listener on station: " + station.description)
+            detachListenerOnStation(stationId: station)
         }
     }
     
@@ -140,13 +151,20 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     func populateFavoritesArray(){
         //Needs refactoring, not nessecary to itterate all stations
+        self.followingArray = []
+        for sub in app!.subscriptions{
+            let id = app!.getStationIdFromString(stationId: sub.key)
+            for station in app!.stations{
+                if station.id == id{
+                    self.followingArray.append(station)
+                }
+            }
+        }
+        self.favoriteArray = []
         print("Refreshing collectionviews")
-        favoriteArray = []
-        followingArray = []
         for station in app!.stations{
             if app!.user!.favorites!.keys.contains(station.id!.description) {
                 self.favoriteArray.append(station)
-                self.followingArray.append(station)
             }
         }
         collectionView.reloadData()
@@ -419,6 +437,7 @@ extension CollectionViewLayoutMethods {
         if collectionView == self.collectionView {
             if followingArray.count != 0{
                 if indexPath.row >= followingArray.count + 2 {
+                    print("selected 1")
                     let row = indexPath.row - (followingArray.count + 2)
                     station = favoriteArray[row]
                     self.connectors = self.app!.sortConnectors(station: station!).conn
@@ -426,16 +445,41 @@ extension CollectionViewLayoutMethods {
                     detailsCollectionView.reloadData()
                     
                 } else if indexPath.row != 0 && indexPath.row <= followingArray.count{
+                    print("selected 2")
                     let row = indexPath.row - 1
                     station = followingArray[row]
                     self.connectors = self.app!.sortConnectors(station: station!).conn
                     detailsStartPosition(withAnimation: true)
                     detailsCollectionView.reloadData()
+                    listenOnStation(station: station!, done: { updatedStation in
+                        if updatedStation.id == self.station?.id{
+                            print("Matching stations")
+                            self.station = updatedStation
+                            let compatibleConntacts: [Int] = self.app!.findAvailableContacts(station: updatedStation)
+                            DispatchQueue.main.async {
+                                let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                                print(self.connectors)
+                                infoCell.connectors = self.connectors
+                                infoCell.compatibleConntacts = compatibleConntacts[0]
+                                infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
+                                infoCell.connectorCollectionView.reloadData()
+                            }
+                        }
+                    })
                 }
             } else {
+                print("selected 3")
                 station = favoriteArray[indexPath.row]
-                detailsEngagedPosition(blur: 0.26)
+                self.connectors = self.app!.sortConnectors(station: station!).conn
+                detailsStartPosition(withAnimation: true)
+                detailsCollectionView.reloadData()
             }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if indexPath.row != 0 && indexPath.row <= followingArray.count{
+            self.detachListenerOnStation(stationId: self.followingArray[indexPath.row - 1].id!)
         }
     }
 }
@@ -444,10 +488,19 @@ private typealias Delegate = Favorites
 extension Delegate: CollectionViewCellDelegate {
     
     func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action) {
-        //var indexPath = self.collectionView.indexPath(for: cell)
+        var indexPath = self.collectionView.indexPath(for: cell)
         
-        //Remove subscription from database
-        if action == .cancel {
+        if action == .unsubscribe {
+            let alert = UIAlertController(title: "Slutte å følge?", message: "Du vil ikke lenger få oppdateringer angående denne stasjonen.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ja", style: UIAlertActionStyle.default, handler: { action in
+                print("Unsubbing")
+                self.app!.unsubscribeToStation(station: self.followingArray[indexPath!.row - 1])
+                self.populateFavoritesArray()
+            }))
+            alert.addAction(UIAlertAction(title: "Nei", style: UIAlertActionStyle.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if action == .cancel {
             if startPosition {
                 detailsDismissedPosition()
             } else {
@@ -476,6 +529,7 @@ extension Delegate: CollectionViewCellDelegate {
         } else if action == .subscribe {
             print("Subscribe")
             app!.subscribeToStation(station: station!)
+            self.populateFavoritesArray()
         }
     }
 }
@@ -492,12 +546,8 @@ extension Service {
         })
     }
     
-    func detatchAllListeners(){
-        print("Detatch")
-        app?.detatchAllListeners()
-    }
-    
     func detachListenerOnStation(stationId: Int){
+        print("Detached listener")
         app?.detachListenerOnStation(stationId: stationId)
     }
 }

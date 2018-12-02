@@ -82,7 +82,7 @@ class DatabaseApp {
     }
     
     func setUserInDatabase(user: User){
-        ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).setValue(
+        ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).updateChildValues(
             ["uid": user.uid as String!,
              "email": user.email as String!,
              "firstname": user.firstname as String!,
@@ -180,7 +180,7 @@ class DatabaseApp {
         
     }
     
-    func getSubscriptionsFromDatabase(user: User, done: @escaping (_ subscriptions: [String: [String: Int64]])-> Void){
+    func getSubscriptionsFromDatabase(user: User, done: @escaping (_ subscriptions: [String: [String: Int64]]?)-> Void){
         ref.child("User_Info").child(user.uid!).child("subscriptions").observeSingleEvent(of: .value) { (snapshot) in
             var subscriptions = [String: [String: Int64]]()
             
@@ -195,7 +195,7 @@ class DatabaseApp {
     }
     
     func detatchListenerOnStation(stationId: String){
-        ref.child("Realtime").child(stationId).removeObserver(withHandle: stationListenerHandle!)
+        ref.child("Realtime").child(stationId).removeAllObservers()
     }
     
     
