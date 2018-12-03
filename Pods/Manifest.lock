@@ -1,5 +1,5 @@
 PODS:
-  - Disk (0.3.3)
+  - Disk (0.4.0)
   - Firebase/Auth (5.13.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.5)
@@ -61,7 +61,6 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
   - leveldb-library (1.20)
-  - MapKitGoogleStyler (0.1.1)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -70,11 +69,10 @@ PODS:
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
-  - Disk (~> 0.3.3)
+  - Disk (~> 0.4.0)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
-  - MapKitGoogleStyler
   - SwiftyJSON
 
 SPEC REPOS:
@@ -91,12 +89,11 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - leveldb-library
-    - MapKitGoogleStyler
     - nanopb
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Disk: d1f55cd61f6ca20f368232d0c6e37e3c3dfcb63e
+  Disk: ef2956657d5bb56034b38b29b352170165226440
   Firebase: 6df9a6114bc9f106a98fe83d5438d4d9833c2019
   FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
   FirebaseAuth: 9299ab178271bec7426967b05b2718bb6fc31f17
@@ -108,10 +105,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  MapKitGoogleStyler: 8efdceb664fc1748a62a9e3b50a34b67a34247bc
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 04614bb7c0505936125e093fa50c40e54165fc89
+PODFILE CHECKSUM: d70bfa62acb52ed6ea88f9e18ff52a723b6c8912
 
 COCOAPODS: 1.6.0.beta.2

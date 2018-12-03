@@ -9,8 +9,7 @@ target 'ladeBilen' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
-  pod 'Disk', '~> 0.3.3'
-  pod 'MapKitGoogleStyler'
+  pod 'Disk', '~> 0.4.0'
   pod 'SwiftyJSON'
   
   target 'ladeBilenTests' do
@@ -19,8 +18,7 @@ target 'ladeBilen' do
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
-    pod 'Disk', '~> 0.3.3'
-    pod 'MapKitGoogleStyler'
+    pod 'Disk', '~> 0.4.0'
     pod 'SwiftyJSON'
   end
 
