@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		417FB3657C7BE2ABB8E032E3 /* Pods_ladeBilen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBE7FF5E7AF48C454404FE8B /* Pods_ladeBilen.framework */; };
 		8300524D20818001008DAEEF /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8300524C20818001008DAEEF /* Enums.swift */; };
 		8302AE2B1FC3D074007F693A /* Pastebin.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8302AE2A1FC3D074007F693A /* Pastebin.txt */; };
 		8302AE2E1FC3EA8C007F693A /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302AE2D1FC3EA8C007F693A /* Details.swift */; };
@@ -105,6 +104,7 @@
 		83B3DEF4203CAB6A0018AEE5 /* Favorite-Filled-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B3DEF1203CAB690018AEE5 /* Favorite-Filled-Icon-50.png */; };
 		83C042861FFAEB1E00F8D8CD /* ChangeUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C042851FFAEB1E00F8D8CD /* ChangeUserInfo.swift */; };
 		83C25ECD2051F62100D67445 /* ladeBilenTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C25ECC2051F62100D67445 /* ladeBilenTest.swift */; };
+		83C7486AC2A19B0E5B45913E /* Pods_ladeBilenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7E05682F9A5E2509E969076 /* Pods_ladeBilenTests.framework */; };
 		83C83A7D1FF1B6D40088C10C /* GlobalResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C83A7C1FF1B6D40088C10C /* GlobalResources.swift */; };
 		83C83A811FF1D35A0088C10C /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C83A7F1FF1D35A0088C10C /* EntryCell.swift */; };
 		83C83A821FF1D35A0088C10C /* EntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C83A801FF1D35A0088C10C /* EntryCell.xib */; };
@@ -124,11 +124,11 @@
 		83F354811EEB0696001A278A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F3547F1EEB0696001A278A /* LaunchScreen.storyboard */; };
 		83F9E440203C98DE009B3788 /* Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9E43F203C98DE009B3788 /* Initialization.swift */; };
 		83FD2BEA1FEE6DE9002B8EDF /* RegisterCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD2BE91FEE6DE9002B8EDF /* RegisterCont.swift */; };
-		AF3F3AAA148AB995D9D565AE /* Pods_ladeBilenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4FD70E2300928D5DD5CA905 /* Pods_ladeBilenTests.framework */; };
 		B4203397216F910400CF692A /* Target-75.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203394216F910400CF692A /* Target-75.png */; };
 		B4203398216F910400CF692A /* Target-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203395216F910400CF692A /* Target-25.png */; };
 		B4203399216F910400CF692A /* Target-50.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203396216F910400CF692A /* Target-50.png */; };
-		C80FCBA5A734B9589C5D8F32 /* Pods_ladeBilenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20189C346CDCFD95DE48E18F /* Pods_ladeBilenUITests.framework */; };
+		EBD3534A21044C2BEFD3CD63 /* Pods_ladeBilenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A1E4AB7B01863D6AAA35C6 /* Pods_ladeBilenUITests.framework */; };
+		FAB7FB7CDBE77CFA9ECF188C /* Pods_ladeBilen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D4C07A805BF1A88148B92F /* Pods_ladeBilen.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,10 +149,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		195161A362649329F8C1E31F /* Pods-ladeBilenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests.release.xcconfig"; sourceTree = "<group>"; };
-		20189C346CDCFD95DE48E18F /* Pods_ladeBilenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		56C3BD95A982F1DB28336552 /* Pods-ladeBilen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilen/Pods-ladeBilen.debug.xcconfig"; sourceTree = "<group>"; };
-		71177A21211319348367BC64 /* Pods-ladeBilenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3488CCF2047C47459F7FD694 /* Pods-ladeBilenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenTests.release.xcconfig"; path = "Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests.release.xcconfig"; sourceTree = "<group>"; };
+		34D4C07A805BF1A88148B92F /* Pods_ladeBilen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E8A15E764EAFCAE6B3E4A07 /* Pods-ladeBilenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenTests.debug.xcconfig"; path = "Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests.debug.xcconfig"; sourceTree = "<group>"; };
+		454B12087C202B728EE57E44 /* Pods-ladeBilenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenUITests.release.xcconfig"; path = "Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4AFC20A8B1C8B9F96B8672D2 /* Pods-ladeBilenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenUITests.debug.xcconfig"; path = "Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5B458A0E35F347D7C743C8BD /* Pods-ladeBilen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilen.release.xcconfig"; path = "Target Support Files/Pods-ladeBilen/Pods-ladeBilen.release.xcconfig"; sourceTree = "<group>"; };
+		6A6BA573D3C4BAE4E3977D39 /* Pods-ladeBilen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilen.debug.xcconfig"; path = "Target Support Files/Pods-ladeBilen/Pods-ladeBilen.debug.xcconfig"; sourceTree = "<group>"; };
 		8300524C20818001008DAEEF /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		8302AE2A1FC3D074007F693A /* Pastebin.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pastebin.txt; sourceTree = "<group>"; };
 		8302AE2D1FC3EA8C007F693A /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
@@ -275,14 +278,11 @@
 		83F354921EEB0697001A278A /* ladeBilenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ladeBilenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F9E43F203C98DE009B3788 /* Initialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initialization.swift; sourceTree = "<group>"; };
 		83FD2BE91FEE6DE9002B8EDF /* RegisterCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCont.swift; sourceTree = "<group>"; };
-		A11AA552B6632E680D391088 /* Pods-ladeBilenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B2A1E4AB7B01863D6AAA35C6 /* Pods_ladeBilenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4203394216F910400CF692A /* Target-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-75.png"; sourceTree = "<group>"; };
 		B4203395216F910400CF692A /* Target-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-25.png"; sourceTree = "<group>"; };
 		B4203396216F910400CF692A /* Target-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-50.png"; sourceTree = "<group>"; };
-		CBE7FF5E7AF48C454404FE8B /* Pods_ladeBilen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC9EF150DA9B89419D446B17 /* Pods-ladeBilen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilen.release.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilen/Pods-ladeBilen.release.xcconfig"; sourceTree = "<group>"; };
-		DFCF9A4B9C38A92BB5C6750D /* Pods-ladeBilenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		F4FD70E2300928D5DD5CA905 /* Pods_ladeBilenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7E05682F9A5E2509E969076 /* Pods_ladeBilenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,7 +290,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				417FB3657C7BE2ABB8E032E3 /* Pods_ladeBilen.framework in Frameworks */,
+				FAB7FB7CDBE77CFA9ECF188C /* Pods_ladeBilen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +298,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF3F3AAA148AB995D9D565AE /* Pods_ladeBilenTests.framework in Frameworks */,
+				83C7486AC2A19B0E5B45913E /* Pods_ladeBilenTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +306,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C80FCBA5A734B9589C5D8F32 /* Pods_ladeBilenUITests.framework in Frameworks */,
+				EBD3534A21044C2BEFD3CD63 /* Pods_ladeBilenUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,8 +717,8 @@
 				83F354751EEB0696001A278A /* ladeBilen */,
 				83C25ECA2051F5F400D67445 /* ladeBilenTests */,
 				83F354741EEB0696001A278A /* Products */,
-				A05DFF1A7DC21554909AC87E /* Pods */,
-				FB049DAA8D4B5278F5C66507 /* Frameworks */,
+				C261FEA92027189C2CD74AA9 /* Pods */,
+				95FDD5A02808BDF2FA497CEA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -764,17 +764,14 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		A05DFF1A7DC21554909AC87E /* Pods */ = {
+		95FDD5A02808BDF2FA497CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				56C3BD95A982F1DB28336552 /* Pods-ladeBilen.debug.xcconfig */,
-				DC9EF150DA9B89419D446B17 /* Pods-ladeBilen.release.xcconfig */,
-				71177A21211319348367BC64 /* Pods-ladeBilenTests.debug.xcconfig */,
-				195161A362649329F8C1E31F /* Pods-ladeBilenTests.release.xcconfig */,
-				DFCF9A4B9C38A92BB5C6750D /* Pods-ladeBilenUITests.debug.xcconfig */,
-				A11AA552B6632E680D391088 /* Pods-ladeBilenUITests.release.xcconfig */,
+				34D4C07A805BF1A88148B92F /* Pods_ladeBilen.framework */,
+				D7E05682F9A5E2509E969076 /* Pods_ladeBilenTests.framework */,
+				B2A1E4AB7B01863D6AAA35C6 /* Pods_ladeBilenUITests.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B420338D216F90D000CF692A /* Target */ = {
@@ -787,14 +784,18 @@
 			path = Target;
 			sourceTree = "<group>";
 		};
-		FB049DAA8D4B5278F5C66507 /* Frameworks */ = {
+		C261FEA92027189C2CD74AA9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CBE7FF5E7AF48C454404FE8B /* Pods_ladeBilen.framework */,
-				F4FD70E2300928D5DD5CA905 /* Pods_ladeBilenTests.framework */,
-				20189C346CDCFD95DE48E18F /* Pods_ladeBilenUITests.framework */,
+				6A6BA573D3C4BAE4E3977D39 /* Pods-ladeBilen.debug.xcconfig */,
+				5B458A0E35F347D7C743C8BD /* Pods-ladeBilen.release.xcconfig */,
+				3E8A15E764EAFCAE6B3E4A07 /* Pods-ladeBilenTests.debug.xcconfig */,
+				3488CCF2047C47459F7FD694 /* Pods-ladeBilenTests.release.xcconfig */,
+				4AFC20A8B1C8B9F96B8672D2 /* Pods-ladeBilenUITests.debug.xcconfig */,
+				454B12087C202B728EE57E44 /* Pods-ladeBilenUITests.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -804,12 +805,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83F3549B1EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilen" */;
 			buildPhases = (
-				365A5A99050873845064042E /* [CP] Check Pods Manifest.lock */,
+				28974689C6A01EF073346214 /* [CP] Check Pods Manifest.lock */,
 				83F3546F1EEB0696001A278A /* Sources */,
 				83F354701EEB0696001A278A /* Frameworks */,
 				83F354711EEB0696001A278A /* Resources */,
-				11A08E65CAC7654BFEBBF106 /* [CP] Embed Pods Frameworks */,
-				AA15E83CAD451C308E88CB86 /* [CP] Copy Pods Resources */,
+				EA5ED9F7DE95FA01397F0A8E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -824,12 +824,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83F3549E1EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilenTests" */;
 			buildPhases = (
-				5F5449DE7B049CA95EFB2B80 /* [CP] Check Pods Manifest.lock */,
+				89DDA3509E306A2F3AFAA8DA /* [CP] Check Pods Manifest.lock */,
 				83F354831EEB0697001A278A /* Sources */,
 				83F354841EEB0697001A278A /* Frameworks */,
 				83F354851EEB0697001A278A /* Resources */,
-				8A179A3AABC7C7FE9B71C54F /* [CP] Embed Pods Frameworks */,
-				E2117BFD871981782668BD14 /* [CP] Copy Pods Resources */,
+				F1F702A0A4DB49BC258EDE16 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -845,12 +844,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83F354A11EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilenUITests" */;
 			buildPhases = (
-				BCA8EC72F701D1277CC464E8 /* [CP] Check Pods Manifest.lock */,
+				BECB6974EB1C527A665DF1F8 /* [CP] Check Pods Manifest.lock */,
 				83F3548E1EEB0697001A278A /* Sources */,
 				83F3548F1EEB0697001A278A /* Frameworks */,
 				83F354901EEB0697001A278A /* Resources */,
-				E7BBF7AC4233CFD758F07B06 /* [CP] Embed Pods Frameworks */,
-				9E56832283D4C144DBD47FD5 /* [CP] Copy Pods Resources */,
+				5F719FA8773624F31869617F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1013,46 +1011,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		11A08E65CAC7654BFEBBF106 /* [CP] Embed Pods Frameworks */ = {
+		28974689C6A01EF073346214 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ladeBilen/Pods-ladeBilen-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapKitGoogleStyler.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ladeBilen/Pods-ladeBilen-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		365A5A99050873845064042E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ladeBilen-checkManifestLockResult.txt",
 			);
@@ -1061,16 +1033,48 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5F5449DE7B049CA95EFB2B80 /* [CP] Check Pods Manifest.lock */ = {
+		5F719FA8773624F31869617F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89DDA3509E306A2F3AFAA8DA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ladeBilenTests-checkManifestLockResult.txt",
 			);
@@ -1079,76 +1083,20 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8A179A3AABC7C7FE9B71C54F /* [CP] Embed Pods Frameworks */ = {
+		BECB6974EB1C527A665DF1F8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapKitGoogleStyler.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9E56832283D4C144DBD47FD5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AA15E83CAD451C308E88CB86 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ladeBilen/Pods-ladeBilen-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BCA8EC72F701D1277CC464E8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ladeBilenUITests-checkManifestLockResult.txt",
 			);
@@ -1157,43 +1105,72 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E2117BFD871981782668BD14 /* [CP] Copy Pods Resources */ = {
+		EA5ED9F7DE95FA01397F0A8E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E7BBF7AC4233CFD758F07B06 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ladeBilen/Pods-ladeBilen-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapKitGoogleStyler.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ladeBilen/Pods-ladeBilen-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1F702A0A4DB49BC258EDE16 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapKitGoogleStyler.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1412,7 +1389,7 @@
 		};
 		83F3549C1EEB0697001A278A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56C3BD95A982F1DB28336552 /* Pods-ladeBilen.debug.xcconfig */;
+			baseConfigurationReference = 6A6BA573D3C4BAE4E3977D39 /* Pods-ladeBilen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1431,7 +1408,7 @@
 		};
 		83F3549D1EEB0697001A278A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC9EF150DA9B89419D446B17 /* Pods-ladeBilen.release.xcconfig */;
+			baseConfigurationReference = 5B458A0E35F347D7C743C8BD /* Pods-ladeBilen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1450,7 +1427,7 @@
 		};
 		83F3549F1EEB0697001A278A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71177A21211319348367BC64 /* Pods-ladeBilenTests.debug.xcconfig */;
+			baseConfigurationReference = 3E8A15E764EAFCAE6B3E4A07 /* Pods-ladeBilenTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1480,7 +1457,7 @@
 		};
 		83F354A01EEB0697001A278A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 195161A362649329F8C1E31F /* Pods-ladeBilenTests.release.xcconfig */;
+			baseConfigurationReference = 3488CCF2047C47459F7FD694 /* Pods-ladeBilenTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1509,7 +1486,7 @@
 		};
 		83F354A21EEB0697001A278A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFCF9A4B9C38A92BB5C6750D /* Pods-ladeBilenUITests.debug.xcconfig */;
+			baseConfigurationReference = 4AFC20A8B1C8B9F96B8672D2 /* Pods-ladeBilenUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 2X8N6D5K7V;
@@ -1524,7 +1501,7 @@
 		};
 		83F354A31EEB0697001A278A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A11AA552B6632E680D391088 /* Pods-ladeBilenUITests.release.xcconfig */;
+			baseConfigurationReference = 454B12087C202B728EE57E44 /* Pods-ladeBilenUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 2X8N6D5K7V;
