@@ -48,9 +48,9 @@ class ReportBug: UIViewController, UITextViewDelegate {
 
     @IBAction func sendButtonClicked(_ sender: UIBarButtonItem) {
         if !textView.text.isEmpty {
-            let alert = UIAlertController(title: "Rapporter Feil", message: "Er du klar til å levere inn en rapport?", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Rapporter Feil", message: "Er du klar til å levere inn en rapport?", preferredStyle: UIAlertController.Style.alert)
             
-            alert.addAction(UIAlertAction(title: "Send", style: UIAlertActionStyle.default, handler: { action in
+            alert.addAction(UIAlertAction(title: "Send", style: UIAlertAction.Style.default, handler: { action in
                 AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
                 self.textViewDidEndEditing(self.textView)
                 self.app!.submitBugToDatabase(reportedText: self.textView.text)
@@ -58,7 +58,7 @@ class ReportBug: UIViewController, UITextViewDelegate {
                 self.textView.textColor = UIColor.lightGray
                 
             }))
-            alert.addAction(UIAlertAction(title: "Tilbake", style: UIAlertActionStyle.cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Tilbake", style: UIAlertAction.Style.cancel, handler: nil))
             
 
             self.present(alert, animated: true, completion: nil)

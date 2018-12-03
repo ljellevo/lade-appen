@@ -24,7 +24,7 @@ extension UITextField {
 
 extension UITextField {
     func setBottomBorderGray() {
-        self.borderStyle = UITextBorderStyle.none;
+        self.borderStyle = UITextField.BorderStyle.none;
         let border = CALayer()
         let width = CGFloat(1.0)
         border.borderColor = UIColor.lightGray.cgColor
@@ -35,7 +35,7 @@ extension UITextField {
     }
     
     func setBottomBorderRed() {
-        self.borderStyle = UITextBorderStyle.none;
+        self.borderStyle = UITextField.BorderStyle.none;
         let border = CALayer()
         let width = CGFloat(1.0)
         border.borderColor = UIColor.red.cgColor

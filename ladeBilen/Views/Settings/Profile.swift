@@ -87,8 +87,8 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row < (items[indexPath.section].count - 1) && indexPath.section == 0 {
-            let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "CellId")
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CellId")
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             cell.textLabel?.text = items[indexPath.section][indexPath.row]
             cell.detailTextLabel?.text = userInfo[indexPath.row]
             return cell
@@ -99,7 +99,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell: DefaultCell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath) as! DefaultCell
             cell.label.text = items[indexPath.section][indexPath.row]
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             return cell
         }
     }
@@ -157,12 +157,12 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func deleteCache(){
-        let alert = UIAlertController(title: "Sletting av lagrede data", message: "Sikker på at du vil slette den lagrede dataen? Dette vil ikke logge deg ut.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ja", style: UIAlertActionStyle.default, handler: { action in
+        let alert = UIAlertController(title: "Sletting av lagrede data", message: "Sikker på at du vil slette den lagrede dataen? Dette vil ikke logge deg ut.", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ja", style: UIAlertAction.Style.default, handler: { action in
             AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
             _ = self.app!.removeAllCache()
         }))
-        alert.addAction(UIAlertAction(title: "Nei", style: UIAlertActionStyle.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Nei", style: UIAlertAction.Style.cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
         if let index = self.tableView.indexPathForSelectedRow{
@@ -171,8 +171,8 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func logOut(){
-        let alert = UIAlertController(title: "Logge ut", message: "Sikker på at du vil logge ut?", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ja", style: UIAlertActionStyle.default, handler: { action in
+        let alert = UIAlertController(title: "Logge ut", message: "Sikker på at du vil logge ut?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ja", style: UIAlertAction.Style.default, handler: { action in
             do{
                 try Auth.auth().signOut()
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -183,7 +183,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print ("Error")
             }
         }))
-        alert.addAction(UIAlertAction(title: "Nei", style: UIAlertActionStyle.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Nei", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
         if let index = self.tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: index, animated: true)

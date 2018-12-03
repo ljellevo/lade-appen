@@ -246,7 +246,7 @@ extension CommentsElement: UITableViewDelegate, UITableViewDataSource {
         commentsView.delegate = self
         commentsView.dataSource = self
         
-        commentsView.rowHeight = UITableViewAutomaticDimension
+        commentsView.rowHeight = UITableView.automaticDimension
         commentsView.estimatedRowHeight = 135
         
         commentsView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCellIdentifier")

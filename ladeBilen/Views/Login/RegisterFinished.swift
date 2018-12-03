@@ -70,9 +70,9 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.textLabel?.text = connectorString[indexPath.row]
         cell.selectionStyle = .none
         if connector.index(of: connectorIndex[indexPath.row]) != nil {
-            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            cell.accessoryType = UITableViewCell.AccessoryType.checkmark
         } else {
-            cell.accessoryType = UITableViewCellAccessoryType.none
+            cell.accessoryType = UITableViewCell.AccessoryType.none
         }
         
         return cell

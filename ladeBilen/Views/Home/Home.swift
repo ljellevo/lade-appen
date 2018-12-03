@@ -130,7 +130,7 @@ class Home: UIViewController{
         let velocity = sender.velocity(in: self.view).y
 
         self.view.endEditing(true)
-        if sender.state == UIGestureRecognizerState.began {
+        if sender.state == UIGestureRecognizer.State.began {
             height = contentViewHeightConstraint.constant
         }
         
@@ -140,7 +140,7 @@ class Home: UIViewController{
             blurView.alpha = (contentViewHeightConstraint.constant/UIScreen.main.bounds.height * 0.45)
         }
 
-        if sender.state == UIGestureRecognizerState.ended {
+        if sender.state == UIGestureRecognizer.State.ended {
             if velocity < -800 {
                 detailsEngagedPosition(blur: 0.26)
                 UIView.animate(withDuration: TimeInterval(UIScreen.main.bounds.height/velocity), delay: 0.0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
@@ -426,7 +426,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         if isInitial == true {
             let regionRadius = CLLocationDistance(1500)
-            let coordinateRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, regionRadius, regionRadius)
+            let coordinateRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
             mapView.setRegion( coordinateRegion, animated: true)
             isInitial = false
         } else {
