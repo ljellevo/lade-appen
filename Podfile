@@ -11,6 +11,7 @@ target 'ladeBilen' do
   pod 'Firebase/Database'
   pod 'Disk', '~> 0.4.0'
   pod 'SwiftyJSON'
+  pod 'NotificationBannerSwift'
   
   target 'ladeBilenTests' do
     inherit! :search_paths
@@ -20,6 +21,7 @@ target 'ladeBilen' do
     pod 'Firebase/Database'
     pod 'Disk', '~> 0.4.0'
     pod 'SwiftyJSON'
+    pod 'NotificationBannerSwift'
   end
 
   target 'ladeBilenUITests' do

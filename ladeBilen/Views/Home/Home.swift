@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import Firebase
 import Disk
+import NotificationBannerSwift
 
 class Home: UIViewController{
 
@@ -587,6 +588,8 @@ extension Protocols: CollectionViewCellDelegate  {
             //MARK: Subscribe to station implementation
             print("Subscribe")
             app!.subscribeToStation(station: station!)
+            let banner = StatusBarNotificationBanner(title: "Du følger nå denne stasjonen", style: .success)
+            banner.show()
         }
     }
 }
