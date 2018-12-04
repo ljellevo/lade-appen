@@ -18,9 +18,9 @@ struct User: Codable {
     var cloudStorage: Bool?
     var notifications: Bool?
     var notificationDuration: Int?
-    var connector: [Int]?
+    var connector: [Int] = []
     var timestamp: Int64?
-    var favorites: [String: Int64]?
+    var favorites: [String: Int64] = [:]
     
     var dictionary: [String: Any] {
         return ["uid": uid!,
@@ -34,7 +34,7 @@ struct User: Codable {
                 "notificationsDuration": notificationDuration!,
                 "connector": [connector],
                 "timestamp": timestamp!,
-                "favorites": favorites!
+                "favorites": favorites
         ]
     }
     

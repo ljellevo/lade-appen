@@ -50,38 +50,65 @@ extension UIColor {
     static func themeBlue() -> UIColor {
         return UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
     }
+    
     static func darkGreen() -> UIColor {
         return UIColor(red: 0.1059, green: 0.5765, blue: 0, alpha: 1.0)
     }
+    
     static func darkYellow() -> UIColor {
         return UIColor(red: 0.898, green: 0.7922, blue: 0, alpha: 1.0)
     }
-    
 
     static func appleRed() -> UIColor {
         return UIColor(red: 255/255, green: 59/255, blue: 48/255, alpha: 1.0)
     }
+    
     static func appleOrange() -> UIColor {
         return UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1.0)
     }
+    
     static func appleYellow() -> UIColor {
         return UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1.0)
     }
+    
     static func appleGreen() -> UIColor {
         return UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1.0)
     }
+    
     static func appleTeal() -> UIColor {
         return UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 1.0)
     }
+    
     static func appleBlue() -> UIColor {
         return UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
     }
+    
     static func applePurple() -> UIColor {
         return UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1.0)
     }
+    
     static func applePink() -> UIColor {
         return UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1.0)
     }
+    
+    static func sunflower() -> UIColor {
+        return UIColor(red:0.97, green:0.80, blue:0.27, alpha:1.0)
+    }
+    
+    static func casablanca() -> UIColor {
+        return UIColor(red:0.95, green:0.67, blue:0.32, alpha:1.0)
+    }
+    
+    static func pictonBlue() -> UIColor {
+        return UIColor(red:0.35, green:0.60, blue:0.83, alpha:1.0)
+    }
+    
+    static func pictonBlueDisabled() -> UIColor {
+        return UIColor(red:0.55, green:0.68, blue:0.80, alpha:1.0)
+    }
+    
+    
+    
     
     
 }

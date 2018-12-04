@@ -12,7 +12,7 @@ class Algorithms {
 
     //General (Run when fetching stations) -> Should be server side
     func checkIfApplicable(station: Station, user: User) -> Bool{
-        for connector in (user.connector)! {
+        for connector in (user.connector) {
             for conn in station.conn {
                 if conn.connector == connector {
                     return true
@@ -47,7 +47,7 @@ class Algorithms {
     func findAvailableContacts(station: Station, user: User) -> [Int]{
         var counter: [Int] = [0, 0]
         for conn in station.conn {
-            for connector in user.connector!{
+            for connector in user.connector{
                 if conn.connector == connector {
                     if conn.isTaken == 0 {
                         counter[0] += 1
@@ -60,7 +60,7 @@ class Algorithms {
     }
     
     func checkIfConntactIsAppliable(conn: Connector, user: User) -> Bool{
-        for connector in user.connector!{
+        for connector in user.connector{
             if conn.connector == connector {
                 return true
             }
@@ -80,7 +80,7 @@ class Algorithms {
         if station.realtimeInfo! {
             for conn in station.conn{
                 found = false
-                for connector in user.connector!{
+                for connector in user.connector{
                     if conn.connector == connector {
                         if conn.isTaken == 0 {
                             vacantConn.append(conn)
@@ -100,7 +100,7 @@ class Algorithms {
         } else {
             for conn in station.conn{
                 found = false
-                for connector in user.connector!{
+                for connector in user.connector{
                     if conn.connector == connector {
                         newArray.insert(conn, at: 0)
                         found = true

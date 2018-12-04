@@ -20,7 +20,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        connector = app!.user!.connector!
+        connector = app!.user!.connector
         tableView.delegate = self
         tableView.dataSource = self
         for connDesc in app!.connectorDescription{

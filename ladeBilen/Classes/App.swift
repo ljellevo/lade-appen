@@ -346,10 +346,12 @@ extension DatabaseMethods {
         })
     }
     
-    func setUserInDatabase(user: User){
+    func setUserInDatabase(user: User, done: @escaping (_ code: Int)-> Void){
         self.user = user
         self.user!.timestamp = Date().getTimestamp()
-        database.setUserInDatabase(user: self.user!)
+        database.setUserInDatabase(user: self.user!, done: { code in
+            done(code)
+        })
         _ = setUserCache()
     }
     
@@ -357,7 +359,7 @@ extension DatabaseMethods {
         self.user!.connector = connectors
         self.user!.timestamp = Date().getTimestamp()
         
-        database.setUserInDatabase(user: self.user!)
+        database.setUserInDatabase(user: self.user!, done: { _ in })
         _ = setUserCache()
         if willFilterStations{
             findFilteredStations()
@@ -403,18 +405,22 @@ extension DatabaseMethods {
         }
     }
     
-    func subscribeToStation(station: Station){
+    func subscribeToStation(station: Station, done: @escaping (_ code: Int)-> Void){
         self.subscriptions.updateValue(["update": Date().getTimestamp(),
                                         "from": Date().getTimestamp(),
                                         "to": (Date().getTimestamp() + Int64(self.user!.notificationDuration!))],
                                        forKey: getStationIdAsString(stationId: station.id!))
         
-        database.subscribeToStation(stationId: getStationIdAsString(stationId: station.id!), user: self.user!)
+        database.subscribeToStation(stationId: getStationIdAsString(stationId: station.id!), user: self.user!, done: { code in
+            done(code)
+        })
     }
     
-    func unsubscribeToStation(station: Station){
+    func unsubscribeToStation(station: Station, done: @escaping (_ code: Int)-> Void){
         self.subscriptions.removeValue(forKey: getStationIdAsString(stationId: station.id!))
-        database.unsubscribeToStation(stationId: getStationIdAsString(stationId: station.id!), user: self.user!)
+        database.unsubscribeToStation(stationId: getStationIdAsString(stationId: station.id!), user: self.user!, done:{ code in
+            done(code)
+        })
     }
     
     func getSubscriptionsFromDatabase(done: @escaping ()-> Void){
@@ -423,7 +429,6 @@ extension DatabaseMethods {
             if subscriptions != nil {
                 self.subscriptions = subscriptions ?? [:]
             }
-            
             done()
         }
     }

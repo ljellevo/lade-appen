@@ -81,21 +81,29 @@ class DatabaseApp {
         }, withCancel: nil)
     }
     
-    func setUserInDatabase(user: User){
+    func setUserInDatabase(user: User, done: @escaping (_ code: Int)-> Void){
         ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).updateChildValues(
-            ["uid": user.uid as String!,
-             "email": user.email as String!,
-             "firstname": user.firstname as String!,
-             "lastname": user.lastname as String!,
-             "fastCharge": user.fastCharge as Bool!,
-             "parkingFee": user.parkingFee as Bool!,
-             "cloudStorage": user.cloudStorage as Bool!,
-             "notifications": user.notifications as Bool!,
-             "notificationsDuration": user.notificationDuration as Int!,
-             "connector": user.connector as [Int]!,
-             "timestamp": user.timestamp as Int64!,
-             "favorites": user.favorites as [String:Int64]!]
-        )
+            ["uid": user.uid! as String,
+             "email": user.email! as String,
+             "firstname": user.firstname! as String,
+             "lastname": user.lastname! as String,
+             "fastCharge": user.fastCharge! as Bool,
+             "parkingFee": user.parkingFee! as Bool,
+             "cloudStorage": user.cloudStorage! as Bool,
+             "notifications": user.notifications! as Bool,
+             "notificationsDuration": user.notificationDuration! as Int,
+             "connector": user.connector as [Int],
+             "timestamp": user.timestamp! as Int64,
+             "favorites": user.favorites as [String:Int64]
+            ]
+        ){
+            (error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                done(0)
+            } else {
+                done(1)
+            }
+        }
     }
     
     func submitBugReport(reportedText: String){
@@ -165,19 +173,66 @@ class DatabaseApp {
         }
     }
     
-    func subscribeToStation(stationId: String, user: User){
+    
+    func subscribeToStation(stationId: String, user: User, done: @escaping (_ code: Int)-> Void){
+        var errorCode = 1
+        let susbscribeTask = DispatchGroup()
+        susbscribeTask.enter()
+        
         ref.child("User_Info").child(user.uid!).child("subscriptions").child(stationId).setValue(
             ["update": Date().getTimestamp(),
              "from": Date().getTimestamp(),
              "to": (Date().getTimestamp() + Int64(user.notificationDuration!))]
-        )
-        ref.child("subscriptions").child(stationId).child("members_subscriptions").updateChildValues([user.uid!: Date().getTimestamp()])
+        ){(error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                errorCode = 0
+            }
+            defer {
+                susbscribeTask.leave()
+            }
+            
+        }
+        
+        susbscribeTask.enter()
+        ref.child("subscriptions").child(stationId).child("members_subscriptions").updateChildValues([user.uid!: Date().getTimestamp()]){(error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                errorCode = 0
+            }
+            defer {
+                susbscribeTask.leave()
+            }
+        }
+        
+        susbscribeTask.notify(queue: DispatchQueue.main, work: DispatchWorkItem(block: {
+            done(errorCode)
+        }))
     }
     
-    func unsubscribeToStation(stationId: String, user: User){
-        ref.child("User_Info").child(user.uid!).child("subscriptions").child(stationId).removeValue()
-        ref.child("subscriptions").child(stationId).child("members_subscriptions").updateChildValues([user.uid!: NSNull()])
+    func unsubscribeToStation(stationId: String, user: User, done: @escaping (_ code: Int)-> Void){
+        var errorCode = 1
+        let unsusbscribeTask = DispatchGroup()
+        unsusbscribeTask.enter()
+        ref.child("User_Info").child(user.uid!).child("subscriptions").child(stationId).removeValue(){(error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                errorCode = 0
+            }
+            defer {
+                unsusbscribeTask.leave()
+            }
+        }
         
+        unsusbscribeTask.enter()
+        ref.child("subscriptions").child(stationId).child("members_subscriptions").updateChildValues([user.uid!: NSNull()]){(error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                errorCode = 0
+            }
+            defer {
+                unsusbscribeTask.leave()
+            }
+        }
+        unsusbscribeTask.notify(queue: DispatchQueue.main, work: DispatchWorkItem(block: {
+            done(errorCode)
+        }))
     }
     
     func getSubscriptionsFromDatabase(user: User, done: @escaping (_ subscriptions: [String: [String: Int64]]?)-> Void){

@@ -68,7 +68,7 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
 
     func checkIfFavorite(){
-        if app!.user!.favorites!.keys.contains(station!.id!.description){
+        if app!.user!.favorites.keys.contains(station!.id!.description){
             isFavorite = true
             favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
         }
@@ -149,13 +149,13 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     @IBAction func favoriteButton(_ sender: UIBarButtonItem) {
         if isFavorite {
-            app!.user?.favorites?.removeValue(forKey: station!.id!.description)
-            app?.setUserInDatabase(user: app!.user!)
+            app!.user?.favorites.removeValue(forKey: station!.id!.description)
+            app?.setUserInDatabase(user: app!.user!, done: {_ in})
             self.favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteSet")
             self.isFavorite = false
         } else {
-            app!.user?.favorites?.updateValue(Date().getTimestamp(), forKey: station!.id!.description)
-            app?.setUserInDatabase(user: app!.user!)
+            app!.user?.favorites.updateValue(Date().getTimestamp(), forKey: station!.id!.description)
+            app?.setUserInDatabase(user: app!.user!, done: {_ in})
             self.favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
             self.isFavorite = true
         }        

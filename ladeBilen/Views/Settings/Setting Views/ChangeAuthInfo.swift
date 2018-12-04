@@ -102,7 +102,7 @@ class ChangeAuthInfo: UIViewController {
                             AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
                         } else {
                             self.app!.user!.email = self.firstTextField.text!
-                            self.app!.setUserInDatabase(user: self.app!.user!)
+                            self.app!.setUserInDatabase(user: self.app!.user!, done: {_ in})
                             self.infoLabel.text = "Epost oppdatert"
                         }
                     }

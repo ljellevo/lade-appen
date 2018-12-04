@@ -233,8 +233,13 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             
             if station!.realtimeInfo!{
                 cell.realtimeLabel.text = "Leverer sanntids informasjon"
+                cell.subscribeButton.isEnabled = true
+                cell.subscribeButton.layer.backgroundColor = UIColor.pictonBlue().cgColor
             } else {
                 cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
+                cell.subscribeButton.isEnabled = false
+                cell.subscribeButton.layer.backgroundColor = UIColor.pictonBlueDisabled().cgColor
+
             }
             
             if station!.parkingFee! {
@@ -249,6 +254,16 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             } else {
                 cell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
                 cell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
+            }
+            
+            if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id!)] != nil {
+                //Bruker følger denne stasjonen skal få presentert teksten "Slutte å følge"
+                cell.subscribeButton.setTitle("Slutte å følge", for: .normal)
+                cell.subscribeButton.layer.backgroundColor = UIColor.appleYellow().cgColor
+
+            } else {
+                //Bruker følger ikke denne stasjonen skal få presentert teksten "Følg"
+                cell.subscribeButton.setTitle("Følg", for: .normal)
             }
             
             cell.userComment = station?.userComment
@@ -356,14 +371,14 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
                 as? MKMarkerAnnotationView {
                 dequeuedView.annotation = annotation
                 dequeuedView.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
-                if app!.user!.favorites!.keys.contains(annotation.id!.description) {
+                if app!.user!.favorites.keys.contains(annotation.id!.description) {
                     dequeuedView.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
                 }
                 view = dequeuedView
             } else {
                 view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
-                if app!.user!.favorites!.keys.contains(annotation.id!.description) {
+                if app!.user!.favorites.keys.contains(annotation.id!.description) {
                     view.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
                 }
             }
@@ -396,7 +411,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
 
             listenOnStation()
             
-            if app!.user!.favorites!.keys.contains(station!.id!.description){
+            if app!.user!.favorites.keys.contains(station!.id!.description){
                 isFavorite = true
             } else {
                 isFavorite = false
@@ -510,7 +525,7 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         station = filteredStations![indexPath.row]
         listenOnStation()
         
-        if app!.user!.favorites!.keys.contains(station!.id!.description){
+        if app!.user!.favorites.keys.contains(station!.id!.description){
             isFavorite = true
         } else {
             isFavorite = false
@@ -566,30 +581,52 @@ extension Protocols: CollectionViewCellDelegate  {
             }
         case .favorite:
             if isFavorite! {
-                app!.user?.favorites?.removeValue(forKey: station!.id!.description)
-                app?.setUserInDatabase(user: app!.user!)
-                let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
-                infoCell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
-                infoCell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
-                isFavorite = false
+                app!.user?.favorites.removeValue(forKey: station!.id!.description)
+                app?.setUserInDatabase(user: app!.user!, done: { code in
+                    let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                    infoCell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
+                    infoCell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
+                    self.isFavorite = false
+                    let banner = StatusBarNotificationBanner(title: "Fjernet fra favoritter", style: .success)
+                    banner.show()
+                    self.willDeselectMarker = false
+                    self.addAnnotationsToMap()
+                })
+                
             } else {
-                app!.user?.favorites?.updateValue(Date().getTimestamp(), forKey: station!.id!.description)
-                app?.setUserInDatabase(user: app!.user!)
-                let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
-                infoCell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
-                infoCell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
-                isFavorite = true
+                app!.user?.favorites.updateValue(Date().getTimestamp(), forKey: station!.id!.description)
+                app?.setUserInDatabase(user: app!.user!, done: { code in
+                    let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                    infoCell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
+                    infoCell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
+                    self.isFavorite = true
+                    let banner = StatusBarNotificationBanner(title: "Lagt til favoritter", style: .success)
+                    banner.show()
+                    self.willDeselectMarker = false
+                    self.addAnnotationsToMap()
+                })
             }
 
-            willDeselectMarker = false
-            addAnnotationsToMap()
+            
             
         case .subscribe:
-            //MARK: Subscribe to station implementation
-            print("Subscribe")
-            app!.subscribeToStation(station: station!)
-            let banner = StatusBarNotificationBanner(title: "Du følger nå denne stasjonen", style: .success)
-            banner.show()
+            if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id!)] != nil {
+                let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                app!.unsubscribeToStation(station: station!, done: { _ in
+                    infoCell.subscribeButton.setTitle("Følg", for: .normal)
+                    infoCell.subscribeButton.layer.backgroundColor = UIColor.pictonBlue().cgColor
+                    let banner = StatusBarNotificationBanner(title: "Du følger ikke lenger denne stasjonen", style: .warning)
+                    banner.show()
+                })
+            } else {
+                let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                app!.subscribeToStation(station: station!, done: { _ in
+                    infoCell.subscribeButton.setTitle("Slutt å følg", for: .normal)
+                    infoCell.subscribeButton.layer.backgroundColor = UIColor.appleYellow().cgColor
+                    let banner = StatusBarNotificationBanner(title: "Du følger nå denne stasjonen", style: .warning)
+                    banner.show()
+                })
+            }
         }
     }
 }
