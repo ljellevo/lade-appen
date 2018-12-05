@@ -408,7 +408,7 @@ extension DatabaseMethods {
     func subscribeToStation(station: Station, done: @escaping (_ code: Int)-> Void){
         self.subscriptions.updateValue(["update": Date().getTimestamp(),
                                         "from": Date().getTimestamp(),
-                                        "to": (Date().getTimestamp() + Int64(self.user!.notificationDuration!))],
+                                        "to": (Date().getTimestamp() + Int64(self.user!.notificationDuration! * 60))],
                                        forKey: getStationIdAsString(stationId: station.id!))
         
         database.subscribeToStation(stationId: getStationIdAsString(stationId: station.id!), user: self.user!, done: { code in

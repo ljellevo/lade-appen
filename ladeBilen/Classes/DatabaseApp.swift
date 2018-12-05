@@ -182,7 +182,7 @@ class DatabaseApp {
         ref.child("User_Info").child(user.uid!).child("subscriptions").child(stationId).setValue(
             ["update": Date().getTimestamp(),
              "from": Date().getTimestamp(),
-             "to": (Date().getTimestamp() + Int64(user.notificationDuration!))]
+             "to": (Date().getTimestamp() + Int64(user.notificationDuration! * 60))]
         ){(error:Error?, ref:DatabaseReference) in
             if error != nil {
                 errorCode = 0

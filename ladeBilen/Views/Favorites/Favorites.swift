@@ -24,6 +24,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     var connectors: [Connector]?
     var countCompatible: Int?
     var connectorDescription: [Int:String]?
+    var timer = Timer()
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -46,7 +47,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         collectionView.register(UINib(nibName: "LabelCell", bundle: nil), forCellWithReuseIdentifier: "LabelCell")
         collectionView.register(UINib(nibName: "SubscriptionCell", bundle: nil), forCellWithReuseIdentifier: "SubscriptionCell")
         connectorDescription = app!.connectorDescription
-        
+        countdownSubscriptions()
         
         loadDetailsElement()
     }
@@ -99,6 +100,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         for station in realtimeArray {
             print("Removed listener on station: " + station.description)
             detachListenerOnStation(stationId: station)
+            timer.invalidate()
         }
     }
     
@@ -285,7 +287,7 @@ extension CollectionViewLayoutMethods {
             if followingArray.count != 0{
                 return favoriteArray.count + followingArray.count + 2
             } else {
-                return favoriteArray.count
+                return favoriteArray.count + 2
             }
         }
     }
@@ -373,65 +375,61 @@ extension CollectionViewLayoutMethods {
             let cell: TopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCellIdentifier", for: indexPath as IndexPath) as! TopCell
             return cell
         } else {
-            print("Building favorites collection view")
-            if followingArray.count != 0 {
-                if indexPath.row == 0{
-                    //Følger label cell
-                    let cell: LabelCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCell", for: indexPath as IndexPath) as! LabelCell
-                    cell.label.text = "Følger"
-                    return cell
-                } else if indexPath.row == followingArray.count + 1{
-                    //Favoritter label cell
-                    let cell: LabelCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCell", for: indexPath as IndexPath) as! LabelCell
-                    cell.label.text = "Favoritter"
-                    return cell
-                } else if indexPath.row <= followingArray.count{
-                    //subscription cell
-                    let row = indexPath.row - 1
-                    var cell: SubscriptionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SubscriptionCell", for: indexPath as IndexPath) as! SubscriptionCell
-                    cell.delegate = self as CollectionViewCellDelegate
-                    cell.stationNameLabel.text = followingArray[row].name
-                    cell = addShadowSubscriptionCell(cell: cell)
-                    return cell
-                }  else {
-                    //Favoritter cell
-                    let row = indexPath.row - (followingArray.count + 2)
-                    var cell: FavoritesCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCell", for: indexPath as IndexPath) as! FavoritesCell
-                    cell.activityLabel.text = "-Høy-"
-                    cell.subscriberAmountLabel.text = "-20-"
-                    cell.stationNameLabel.text = favoriteArray[row].name
-                    cell.stationStreetLabel.text = favoriteArray[row].street! + " " + favoriteArray[row].houseNumber!
-                    cell.stationCityLabel.text = favoriteArray[row].city
-                    var availableConnectors = app!.findAvailableContacts(station: favoriteArray[row])
-                    if favoriteArray[row].realtimeInfo! {
-                        cell.availableConntactsLabelMessage.text = "Kontakter"
-                        cell.availableContactsLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
+            if indexPath.row == 0{
+                //Følger label cell
+                let cell: LabelCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCell", for: indexPath as IndexPath) as! LabelCell
+                cell.label.text = "Følger"
+                return cell
+            } else if indexPath.row == followingArray.count + 1{
+                //Favoritter label cell
+                let cell: LabelCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCell", for: indexPath as IndexPath) as! LabelCell
+                cell.label.text = "Favoritter"
+                return cell
+            } else if indexPath.row <= followingArray.count{
+                //subscription cell
+                let row = indexPath.row - 1
+                var cell: SubscriptionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SubscriptionCell", for: indexPath as IndexPath) as! SubscriptionCell
+                cell.delegate = self as CollectionViewCellDelegate
+                cell.stationNameLabel.text = followingArray[row].name
+                cell = addShadowSubscriptionCell(cell: cell)
+                print(followingArray[row].id!)
+                if let timeTo = app!.subscriptions[app!.getStationIdAsString(stationId: followingArray[row].id!)]?["to"] {
+                    let timeRemaining = NSNumber(value: (timeTo.subtractingReportingOverflow(Date().getTimestamp())).partialValue).intValue
+                    
+                    var timeLabel: String = ""
+                    if timeRemaining > 3600 {
+                        let hours = Int(timeRemaining) / 3600
+                        let minutes = Int(timeRemaining) / 60 % 60
+                        timeLabel = hours.description + "t " + minutes.description + "m"
+                    } else if timeRemaining > 60 {
+                        let minutes = Int(timeRemaining) / 60 % 60
+                        let seconds = Int(timeRemaining) % 60
+                        timeLabel = minutes.description + "m " + seconds.description + "s"
                     } else {
-                        cell.availableConntactsLabelMessage.text = ""
-                        cell.availableContactsLabel.text = ""
+                        let seconds = Int(timeRemaining) % 60
+                        timeLabel = seconds.description + "s"
                     }
-                    cell.station = favoriteArray[row]
-                    cell = addShadowFavoritesCell(cell: cell)
-                    cell.isAvailableLabel.text = "-Mangler-"
-                    return cell
+                    cell.remainingTimeLabel.text = timeLabel
                 }
-            } else {
+                return cell
+            }  else {
                 //Favoritter cell
+                let row = indexPath.row - (followingArray.count + 2)
                 var cell: FavoritesCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCell", for: indexPath as IndexPath) as! FavoritesCell
                 cell.activityLabel.text = "-Høy-"
                 cell.subscriberAmountLabel.text = "-20-"
-                cell.stationNameLabel.text = favoriteArray[indexPath.row].name
-                cell.stationStreetLabel.text = favoriteArray[indexPath.row].street
-                cell.stationCityLabel.text = favoriteArray[indexPath.row].city
-                var availableConnectors = app!.findAvailableContacts(station: favoriteArray[indexPath.row])
-                if favoriteArray[indexPath.row].realtimeInfo! {
+                cell.stationNameLabel.text = favoriteArray[row].name
+                cell.stationStreetLabel.text = favoriteArray[row].street! + " " + favoriteArray[row].houseNumber!
+                cell.stationCityLabel.text = favoriteArray[row].city
+                var availableConnectors = app!.findAvailableContacts(station: favoriteArray[row])
+                if favoriteArray[row].realtimeInfo! {
                     cell.availableConntactsLabelMessage.text = "Kontakter"
                     cell.availableContactsLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
                 } else {
                     cell.availableConntactsLabelMessage.text = ""
                     cell.availableContactsLabel.text = ""
                 }
-                cell.station = favoriteArray[indexPath.row]
+                cell.station = favoriteArray[row]
                 cell = addShadowFavoritesCell(cell: cell)
                 cell.isAvailableLabel.text = "-Mangler-"
                 return cell
@@ -452,73 +450,75 @@ extension CollectionViewLayoutMethods {
         } else {
             var height = self.view.frame.size.width * 0.35
             let width  = self.view.frame.size.width * 0.9
-            
-            if followingArray.count != 0{
-                if indexPath.row == 0{
-                    height = 25
-                } else if indexPath.row == followingArray.count + 1{
-                    height = 25
-                } else if indexPath.row <= followingArray.count {
-                    height = 39
-                } else {
-                    height = self.view.frame.size.width * 0.35
-                }
+            if indexPath.row == 0{
+                height = 25
+            } else if indexPath.row == followingArray.count + 1{
+                height = 25
+            } else if indexPath.row <= followingArray.count {
+                height = 39
+            } else {
+                height = self.view.frame.size.width * 0.35
             }
             return CGSize(width: width, height: height)
         }
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
-            if followingArray.count != 0{
-                if indexPath.row >= followingArray.count + 2 {
-                    isDetailsAFavoriteStation = true
-                    print("selected 1")
-                    let row = indexPath.row - (followingArray.count + 2)
-                    station = favoriteArray[row]
-                    self.connectors = self.app!.sortConnectors(station: station!).conn
-                    detailsStartPosition(withAnimation: true)
-                    detailsCollectionView.reloadData()
-                    
-                } else if indexPath.row != 0 && indexPath.row <= followingArray.count{
-                    isDetailsAFavoriteStation = false
-                    print("selected 2")
-                    let row = indexPath.row - 1
-                    station = followingArray[row]
-                    self.connectors = self.app!.sortConnectors(station: station!).conn
-                    detailsStartPosition(withAnimation: true)
-                    detailsCollectionView.reloadData()
-                    listenOnStation(station: station!, done: { uStation in
-                        if uStation.id == self.station?.id{
-                            print("Matching stations")
-                            let updatedStation = uStation
-                            self.connectors = self.app!.sortConnectors(station: updatedStation).conn
-                            let compatibleConntacts: [Int] = self.app!.findAvailableContacts(station: updatedStation)
-                            DispatchQueue.main.async {
-                                let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
-                                infoCell.connectors = self.connectors
-                                infoCell.compatibleConntacts = compatibleConntacts[0]
-                                infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
-                                infoCell.connectorCollectionView.reloadData()
-                            }
-                        }
-                    })
-                }
-            } else {
-                print("selected 3")
+            if indexPath.row >= followingArray.count + 2 {
                 isDetailsAFavoriteStation = true
-                station = favoriteArray[indexPath.row]
+                print("selected 1")
+                let row = indexPath.row - (followingArray.count + 2)
+                station = favoriteArray[row]
                 self.connectors = self.app!.sortConnectors(station: station!).conn
                 detailsStartPosition(withAnimation: true)
                 detailsCollectionView.reloadData()
+                
+            } else if indexPath.row != 0 && indexPath.row <= followingArray.count{
+                isDetailsAFavoriteStation = false
+                print("selected 2")
+                let row = indexPath.row - 1
+                station = followingArray[row]
+                self.connectors = self.app!.sortConnectors(station: station!).conn
+                detailsStartPosition(withAnimation: true)
+                detailsCollectionView.reloadData()
+                listenOnStation(station: station!, done: { uStation in
+                    if uStation.id == self.station?.id{
+                        print("Matching stations")
+                        let updatedStation = uStation
+                        self.connectors = self.app!.sortConnectors(station: updatedStation).conn
+                        let compatibleConntacts: [Int] = self.app!.findAvailableContacts(station: updatedStation)
+                        DispatchQueue.main.async {
+                            let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                            infoCell.connectors = self.connectors
+                            infoCell.compatibleConntacts = compatibleConntacts[0]
+                            infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
+                            infoCell.connectorCollectionView.reloadData()
+                        }
+                    }
+                })
             }
+            
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if indexPath.row != 0 && indexPath.row <= followingArray.count{
             self.detachListenerOnStation(stationId: self.followingArray[indexPath.row - 1].id!)
+        }
+    }
+    
+    func countdownSubscriptions() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTimer() {
+        //Hente ut alle subscription cellene.
+        //Sjekke om de fortsatt skal presenteres.
+        for i in 0..<followingArray.count {
+            UIView.performWithoutAnimation {
+                collectionView.reloadItems(at: [IndexPath(row: i+1, section: 0)])
+            }
         }
     }
 }
