@@ -45,13 +45,16 @@ class App {
             print("User verified: seconds: \(timeInterval)")
             verificationCode = code!
             startDate = NSDate()
-            self.getSubscriptionsFromDatabase(){
-                let endDate: NSDate = NSDate()
-                let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
-                print("Subscriptions fetched in : \(timeInterval)")
-                DispatchQueue.main.async {
-                    group.leave()
-                }
+//            self.getSubscriptionsFromDatabase(){
+//                let endDate: NSDate = NSDate()
+//                let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
+//                print("Subscriptions fetched in : \(timeInterval)")
+//                DispatchQueue.main.async {
+//                    group.leave()
+//                }
+//            }
+            DispatchQueue.main.async {
+                group.leave()
             }
             
         }

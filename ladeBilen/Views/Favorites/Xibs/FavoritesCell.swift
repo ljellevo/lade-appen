@@ -30,7 +30,10 @@ class FavoritesCell: UICollectionViewCell {
     @IBOutlet weak var isAvailableLabel: UILabel!
     
     @IBOutlet weak var toDetailsButton: UIButton!
-
+    
+    @IBOutlet weak var realtimeActivityStackView: UIStackView!
+    @IBOutlet weak var realtimeSeperatorStackView: UIStackView!
+    
     
     
     override func awakeFromNib() {
@@ -40,9 +43,22 @@ class FavoritesCell: UICollectionViewCell {
     
     func configLayout(){
         
-        indicatorColor.layer.cornerRadius = 10
+        //indicatorColor.layer.cornerRadius = 10
         whitePanel.layer.cornerRadius = 0
         separatorLine.layer.cornerRadius = 1
+    }
+    
+    func isRealtime(realtime: Bool){
+        if !realtime {
+            realtimeActivityStackView.isHidden = true
+            realtimeSeperatorStackView.isHidden = true
+            indicatorColor.backgroundColor = UIColor.pictonBlue()
+            return
+        }
+        realtimeActivityStackView.isHidden = false
+        realtimeSeperatorStackView.isHidden = false
+        indicatorColor.backgroundColor = UIColor.faluRed()
+        
     }
     
     

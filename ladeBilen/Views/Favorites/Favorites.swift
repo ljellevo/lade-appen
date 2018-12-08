@@ -24,8 +24,6 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     var connectors: [Connector]?
     var countCompatible: Int?
     var connectorDescription: [Int:String]?
-    var timer = Timer()
-    
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -47,17 +45,30 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         collectionView.register(UINib(nibName: "LabelCell", bundle: nil), forCellWithReuseIdentifier: "LabelCell")
         collectionView.register(UINib(nibName: "SubscriptionCell", bundle: nil), forCellWithReuseIdentifier: "SubscriptionCell")
         connectorDescription = app!.connectorDescription
-        countdownSubscriptions()
         
         loadDetailsElement()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        for sub in self.app!.subscriptions{
-            let id = self.app!.getStationIdFromString(stationId: sub.key)
-            for station in self.app!.stations{
-                if station.id == id{
-                    self.followingArray.append(station)
+        if app!.subscriptions.count == 0 {
+            app?.getSubscriptionsFromDatabase {
+                for sub in self.app!.subscriptions{
+                    let id = self.app!.getStationIdFromString(stationId: sub.key)
+                    for station in self.app!.stations{
+                        if station.id == id{
+                            self.followingArray.append(station)
+                        }
+                    }
+                }
+                self.collectionView.reloadData()
+            }
+        } else {
+            for sub in self.app!.subscriptions{
+                let id = self.app!.getStationIdFromString(stationId: sub.key)
+                for station in self.app!.stations{
+                    if station.id == id{
+                        self.followingArray.append(station)
+                    }
                 }
             }
         }
@@ -100,7 +111,6 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         for station in realtimeArray {
             print("Removed listener on station: " + station.description)
             detachListenerOnStation(stationId: station)
-            timer.invalidate()
         }
     }
     
@@ -162,11 +172,25 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     func populateFavoritesArray(){
         //Needs refactoring, not nessecary to itterate all stations
         self.followingArray = []
-        for sub in app!.subscriptions{
-            let id = app!.getStationIdFromString(stationId: sub.key)
-            for station in app!.stations{
-                if station.id == id{
-                    self.followingArray.append(station)
+        if app!.subscriptions.count == 0 {
+            app?.getSubscriptionsFromDatabase {
+                for sub in self.app!.subscriptions{
+                    let id = self.app!.getStationIdFromString(stationId: sub.key)
+                    for station in self.app!.stations{
+                        if station.id == id{
+                            self.followingArray.append(station)
+                        }
+                    }
+                }
+                self.collectionView.reloadData()
+            }
+        } else {
+            for sub in self.app!.subscriptions{
+                let id = self.app!.getStationIdFromString(stationId: sub.key)
+                for station in self.app!.stations{
+                    if station.id == id{
+                        self.followingArray.append(station)
+                    }
                 }
             }
         }
@@ -181,7 +205,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
     
     func addShadowFavoritesCell(cell: FavoritesCell) -> FavoritesCell{
-        cell.contentView.layer.cornerRadius = 10
+        //cell.contentView.layer.cornerRadius = 10
         cell.contentView.layer.borderWidth = 1.0
         cell.contentView.layer.borderColor = UIColor.clear.cgColor
         cell.contentView.layer.masksToBounds = true
@@ -195,7 +219,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
     
     func addShadowSubscriptionCell(cell: SubscriptionCell) -> SubscriptionCell{
-        cell.contentView.layer.cornerRadius = 10
+        //cell.contentView.layer.cornerRadius = 10
         cell.contentView.layer.borderWidth = 1.0
         cell.contentView.layer.borderColor = UIColor.clear.cgColor
         cell.contentView.layer.masksToBounds = true
@@ -304,31 +328,12 @@ extension CollectionViewLayoutMethods {
                 cell.connectorDescription = connectorDescription
                 cell.delegate = self as CollectionViewCellDelegate
                 cell.realtime = station!.realtimeInfo
-                if station!.realtimeInfo! {
-                    cell.animateRealtime()
-                    var availableConnectors = app!.findAvailableContacts(station: station!)
-                    cell.realtimeConnectorCounterLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
-                } else {
-                    cell.realtimeConnectorCounterLabel.text = ""
-                    cell.killAllAnimations()
-                }
                 cell.nameLabel.text = station?.name
                 cell.compatibleConntacts = countCompatible
                 if station!.houseNumber != "" {
                     cell.streetLabel.text = station!.street! + " " + station!.houseNumber! + ", " + station!.city!
                 } else {
                     cell.streetLabel.text = station!.street! + ", " + station!.city!
-                }
-                
-                if station!.realtimeInfo!{
-                    cell.realtimeLabel.text = "Leverer sanntids informasjon"
-                    cell.subscribeButton.isEnabled = true
-                    cell.subscribeButton.layer.backgroundColor = UIColor.pictonBlue().cgColor
-                } else {
-                    cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
-                    cell.subscribeButton.isEnabled = false
-                    cell.subscribeButton.layer.backgroundColor = UIColor.pictonBlueDisabled().cgColor
-                    
                 }
                 
                 if station!.parkingFee! {
@@ -338,24 +343,19 @@ extension CollectionViewLayoutMethods {
                 }
                 
                 if app!.user!.favorites.keys.contains(station!.id!.description){
-                    isFavorite = true
-                } else {
-                    isFavorite = false
-                }
-                
-                if isFavorite! {
                     cell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
                     cell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
+                    isFavorite = true
                 } else {
                     cell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
                     cell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
+                    isFavorite = false
                 }
                 
                 if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id!)] != nil {
                     //Bruker følger denne stasjonen skal få presentert teksten "Slutte å følge"
                     cell.subscribeButton.setTitle("Slutte å følge", for: .normal)
                     cell.subscribeButton.layer.backgroundColor = UIColor.appleYellow().cgColor
-                    
                 } else {
                     //Bruker følger ikke denne stasjonen skal få presentert teksten "Følg"
                     cell.subscribeButton.setTitle("Følg", for: .normal)
@@ -364,13 +364,23 @@ extension CollectionViewLayoutMethods {
                 cell.userComment = station?.userComment
                 cell.descriptionLabel.text = station?.descriptionOfLocation
                 cell.connectors = self.app!.sortConnectors(station: station!).conn
-                
-                let compatibleConntacts: [Int] = self.app!.findAvailableContacts(station: station!)
-                cell.compatibleConntacts = compatibleConntacts[0]
-                cell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
-                cell.connectorCollectionView.reloadData()
+                if station!.realtimeInfo!{
+                    cell.animateRealtime()
+                    let compatibleConntacts: [Int] = self.app!.findAvailableContacts(station: station!)
+                    cell.compatibleConntacts = compatibleConntacts[0]
+                    cell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
+                    cell.connectorCollectionView.reloadData()
+                    cell.realtimeLabel.text = "Leverer sanntids informasjon"
+                    cell.subscribeButton.isEnabled = true
+                    cell.subscribeButton.layer.backgroundColor = UIColor.pictonBlue().cgColor
+                } else {
+                    cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
+                    cell.subscribeButton.isEnabled = false
+                    cell.subscribeButton.layer.backgroundColor = UIColor.pictonBlueDisabled().cgColor
+                    cell.realtimeConnectorCounterLabel.text = ""
+                    cell.killAllAnimations()
+                }
                 return cell
-                
             }
             let cell: TopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCellIdentifier", for: indexPath as IndexPath) as! TopCell
             return cell
@@ -393,24 +403,9 @@ extension CollectionViewLayoutMethods {
                 cell.stationNameLabel.text = followingArray[row].name
                 cell = addShadowSubscriptionCell(cell: cell)
                 print(followingArray[row].id!)
-                if let timeTo = app!.subscriptions[app!.getStationIdAsString(stationId: followingArray[row].id!)]?["to"] {
-                    let timeRemaining = NSNumber(value: (timeTo.subtractingReportingOverflow(Date().getTimestamp())).partialValue).intValue
-                    
-                    var timeLabel: String = ""
-                    if timeRemaining > 3600 {
-                        let hours = Int(timeRemaining) / 3600
-                        let minutes = Int(timeRemaining) / 60 % 60
-                        timeLabel = hours.description + "t " + minutes.description + "m"
-                    } else if timeRemaining > 60 {
-                        let minutes = Int(timeRemaining) / 60 % 60
-                        let seconds = Int(timeRemaining) % 60
-                        timeLabel = minutes.description + "m " + seconds.description + "s"
-                    } else {
-                        let seconds = Int(timeRemaining) % 60
-                        timeLabel = seconds.description + "s"
-                    }
-                    cell.remainingTimeLabel.text = timeLabel
-                }
+//              Må fikse denne, ikke sikkert at following array eksisterer
+                cell.timeTo = (app!.subscriptions[app!.getStationIdAsString(stationId: followingArray[row].id!)]?["to"])!
+                cell.updateTimer()
                 return cell
             }  else {
                 //Favoritter cell
@@ -422,6 +417,7 @@ extension CollectionViewLayoutMethods {
                 cell.stationStreetLabel.text = favoriteArray[row].street! + " " + favoriteArray[row].houseNumber!
                 cell.stationCityLabel.text = favoriteArray[row].city
                 var availableConnectors = app!.findAvailableContacts(station: favoriteArray[row])
+                cell.isRealtime(realtime: favoriteArray[row].realtimeInfo!)
                 if favoriteArray[row].realtimeInfo! {
                     cell.availableConntactsLabelMessage.text = "Kontakter"
                     cell.availableContactsLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
@@ -507,34 +503,21 @@ extension CollectionViewLayoutMethods {
             self.detachListenerOnStation(stationId: self.followingArray[indexPath.row - 1].id!)
         }
     }
-    
-    func countdownSubscriptions() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
-    }
-    
-    @objc func updateTimer() {
-        //Hente ut alle subscription cellene.
-        //Sjekke om de fortsatt skal presenteres.
-        for i in 0..<followingArray.count {
-            UIView.performWithoutAnimation {
-                collectionView.reloadItems(at: [IndexPath(row: i+1, section: 0)])
-            }
-        }
-    }
 }
 
 private typealias Delegate = Favorites
 extension Delegate: CollectionViewCellDelegate {
     
     func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action) {
-        var indexPath = self.collectionView.indexPath(for: cell)
         
         if action == .unsubscribe {
             let alert = UIAlertController(title: "Slutte å følge?", message: "Du vil ikke lenger få oppdateringer angående denne stasjonen.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Ja", style: UIAlertAction.Style.default, handler: { action in
                 print("Unsubbing")
+                var indexPath = self.collectionView.indexPath(for: cell)
                 self.app!.unsubscribeToStation(station: self.followingArray[indexPath!.row - 1], done: {_ in
                     self.populateFavoritesArray()
+                    self.detailsCollectionView.reloadData()
                     let banner = StatusBarNotificationBanner(title: "Du følger ikke lenger denne stasjonen", style: .warning)
                     banner.show()
                 })
