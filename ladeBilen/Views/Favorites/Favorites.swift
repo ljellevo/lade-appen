@@ -453,7 +453,11 @@ extension CollectionViewLayoutMethods {
             } else if indexPath.row <= followingArray.count {
                 height = 39
             } else {
-                height = self.view.frame.size.width * 0.35
+                if favoriteArray[indexPath.row - (2 + followingArray.count)].realtimeInfo! {
+                    height = self.view.frame.size.width * 0.35
+                } else {
+                    height = self.view.frame.size.width * 0.20
+                }
             }
             return CGSize(width: width, height: height)
         }

@@ -202,6 +202,7 @@
                             <constraint firstItem="5hO-PY-77g" firstAttribute="top" secondItem="H4x-Y0-IXh" secondAttribute="top" id="WYJ-u8-D0m"/>
                             <constraint firstAttribute="bottom" secondItem="5hO-PY-77g" secondAttribute="bottom" id="c9m-Q8-q7m"/>
                             <constraint firstItem="5hO-PY-77g" firstAttribute="leading" secondItem="H4x-Y0-IXh" secondAttribute="leading" constant="8" id="h6W-61-Iqh"/>
+                            <constraint firstAttribute="height" constant="163" id="mHb-xT-hRp"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -218,6 +219,8 @@
                 <outlet property="activityLabel" destination="c9b-7o-U2V" id="LZ0-pH-4cT"/>
                 <outlet property="availableConntactsLabelMessage" destination="vfS-40-f3u" id="2Ia-7B-iTX"/>
                 <outlet property="availableContactsLabel" destination="FJu-pA-9Lk" id="ZCD-iL-nM0"/>
+                <outlet property="cellHeightConstraint" destination="mHb-xT-hRp" id="l0K-lt-rDf"/>
+                <outlet property="contactsStackView" destination="Dvk-Me-BR2" id="zMW-5c-7GK"/>
                 <outlet property="indicatorColor" destination="H4x-Y0-IXh" id="EjN-eJ-3rI"/>
                 <outlet property="isAvailableLabel" destination="rqf-de-I7l" id="p8G-xj-sEf"/>
                 <outlet property="realtimeActivityStackView" destination="wPL-f0-t0I" id="tWi-IO-ha8"/>

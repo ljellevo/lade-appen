@@ -52,6 +52,11 @@ class SubscriptionCell: UICollectionViewCell {
         let timeRemaining = NSNumber(value: (timeTo.subtractingReportingOverflow(Date().getTimestamp())).partialValue).intValue
         
         var timeLabel: String = ""
+        if timeRemaining < 0 {
+            self.delegate?.collectionViewCell(self, buttonTapped: cancelSubscriptionButton, action: .unsubscribe)
+            return
+        }
+        
         if timeRemaining > 3600 {
             let hours = Int(timeRemaining) / 3600
             let minutes = Int(timeRemaining) / 60 % 60

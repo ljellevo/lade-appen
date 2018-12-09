@@ -33,7 +33,9 @@ class FavoritesCell: UICollectionViewCell {
     
     @IBOutlet weak var realtimeActivityStackView: UIStackView!
     @IBOutlet weak var realtimeSeperatorStackView: UIStackView!
+    @IBOutlet weak var cellHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var contactsStackView: UIStackView!
     
     
     override func awakeFromNib() {
@@ -52,13 +54,14 @@ class FavoritesCell: UICollectionViewCell {
         if !realtime {
             realtimeActivityStackView.isHidden = true
             realtimeSeperatorStackView.isHidden = true
+            contactsStackView.isHidden = true
             indicatorColor.backgroundColor = UIColor.pictonBlue()
             return
         }
         realtimeActivityStackView.isHidden = false
         realtimeSeperatorStackView.isHidden = false
+        contactsStackView.isHidden = false
         indicatorColor.backgroundColor = UIColor.faluRed()
-        
     }
     
     
