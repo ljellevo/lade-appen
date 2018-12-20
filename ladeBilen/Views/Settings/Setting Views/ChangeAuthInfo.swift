@@ -86,7 +86,7 @@ class ChangeAuthInfo: UIViewController {
             
             let user = Auth.auth().currentUser
             //let credentialTest = credential(withEmail: , password: )
-            let credential = EmailAuthProvider.credential(withEmail: app!.user!.email!, password: thirdTextField.text!)
+            let credential = EmailAuthProvider.credential(withEmail: app!.user!.email, password: thirdTextField.text!)
             
             user?.reauthenticate(with: credential) { error in
                 if error != nil {
@@ -117,7 +117,7 @@ class ChangeAuthInfo: UIViewController {
                 return
             }
             let user = Auth.auth().currentUser
-            let credential = EmailAuthProvider.credential(withEmail: app!.user!.email!, password: thirdTextField.text!)
+            let credential = EmailAuthProvider.credential(withEmail: app!.user!.email, password: thirdTextField.text!)
             
             user?.reauthenticate(with: credential) { error in
                 if error != nil {

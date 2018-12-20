@@ -15,5 +15,5 @@ protocol stationConntactWasUpdated {
 
 
 protocol CollectionViewCellDelegate: class {
-    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action)
+    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action, skipConfirmation: Bool)
 }

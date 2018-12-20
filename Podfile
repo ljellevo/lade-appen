@@ -10,7 +10,6 @@ target 'ladeBilen' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Disk', '~> 0.4.0'
-  pod 'SwiftyJSON'
   pod 'NotificationBannerSwift'
   
   target 'ladeBilenTests' do
@@ -20,7 +19,6 @@ target 'ladeBilen' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Disk', '~> 0.4.0'
-    pod 'SwiftyJSON'
     pod 'NotificationBannerSwift'
   end
 

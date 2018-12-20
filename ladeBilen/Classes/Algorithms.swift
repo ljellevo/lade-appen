@@ -77,7 +77,7 @@ class Algorithms {
         var errorConn: [Connector] = []
         
         var found = false
-        if station.realtimeInfo! {
+        if station.realtimeInfo {
             for conn in station.conn{
                 found = false
                 for connector in user.connector{
@@ -135,6 +135,8 @@ class Algorithms {
         return newArray
     }
     */
+    
+    /* Mangler */
     func checkIfAvailable(station: Station) -> Bool{
         return true
     }

@@ -393,9 +393,9 @@ extension DatabaseMethods {
                 if var station = self.findStationWith(id: stationId) {
                     for i in 0..<station.conn.count {
                         let conn = conns[i + 1] as! [String : AnyObject]
-                        station.conn[i].error = conn["Error"] as? Int64
-                        station.conn[i].isTaken = conn["Status"] as? Int64
-                        station.conn[i].timestamp = conn["Timestamp"] as? Int64
+                        station.conn[i].error = conn["Error"] as! Int
+                        station.conn[i].isTaken = conn["Status"] as! Int
+                        station.conn[i].timestamp = conn["Timestamp"] as! Int64
                     }
                     self.updateStation(updatedStation: station)
                     self.filteredStations = self.algorithms.filterStations(stations: self.stations, user: self.user!)
@@ -411,17 +411,17 @@ extension DatabaseMethods {
     func subscribeToStation(station: Station, done: @escaping (_ code: Int)-> Void){
         self.subscriptions.updateValue(["update": Date().getTimestamp(),
                                         "from": Date().getTimestamp(),
-                                        "to": (Date().getTimestamp() + Int64(self.user!.notificationDuration! * 60))],
-                                       forKey: getStationIdAsString(stationId: station.id!))
+                                        "to": (Date().getTimestamp() + Int64(self.user!.notificationDuration * 60))],
+                                       forKey: getStationIdAsString(stationId: station.id))
         
-        database.subscribeToStation(stationId: getStationIdAsString(stationId: station.id!), user: self.user!, done: { code in
+        database.subscribeToStation(stationId: getStationIdAsString(stationId: station.id), user: self.user!, done: { code in
             done(code)
         })
     }
     
     func unsubscribeToStation(station: Station, done: @escaping (_ code: Int)-> Void){
-        self.subscriptions.removeValue(forKey: getStationIdAsString(stationId: station.id!))
-        database.unsubscribeToStation(stationId: getStationIdAsString(stationId: station.id!), user: self.user!, done:{ code in
+        self.subscriptions.removeValue(forKey: getStationIdAsString(stationId: station.id))
+        database.unsubscribeToStation(stationId: getStationIdAsString(stationId: station.id), user: self.user!, done:{ code in
             done(code)
         })
     }
@@ -500,7 +500,7 @@ extension AlgorithmsMethods {
     }
     
     func getStationIdFromString(stationId: String) -> Int{
-        var stationInt = Int(stationId.replacingOccurrences(of: "NOR_", with: ""))
+        let stationInt = Int(stationId.replacingOccurrences(of: "NOR_", with: ""))
         return stationInt!
     }
 }

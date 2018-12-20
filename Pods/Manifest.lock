@@ -71,7 +71,6 @@ PODS:
     - MarqueeLabel/Swift (~> 3.2.0)
     - SnapKit (~> 4.0.1)
   - SnapKit (4.0.1)
-  - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - Disk (~> 0.4.0)
@@ -79,7 +78,6 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - NotificationBannerSwift
-  - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -99,7 +97,6 @@ SPEC REPOS:
     - nanopb
     - NotificationBannerSwift
     - SnapKit
-    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Disk: ef2956657d5bb56034b38b29b352170165226440
@@ -118,8 +115,7 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NotificationBannerSwift: 49fc4be7fabada55b189b50e72184c92edd5f7f7
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 91b6705521a92234032467bfd4dbe6a7d5fe6348
+PODFILE CHECKSUM: 4b0853f6cc9d02154cb6ce7c176fecfa30e30b31
 
 COCOAPODS: 1.6.0.beta.2

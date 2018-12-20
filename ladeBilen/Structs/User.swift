@@ -9,31 +9,31 @@
 import Foundation
 
 struct User: Codable {
-    var uid: String?
-    var email: String?
-    var firstname: String?
-    var lastname: String?
-    var fastCharge: Bool?
-    var parkingFee: Bool?
-    var cloudStorage: Bool?
-    var notifications: Bool?
-    var notificationDuration: Int?
+    var uid: String = ""
+    var email: String = ""
+    var firstname: String = ""
+    var lastname: String = ""
+    var fastCharge: Bool = false
+    var parkingFee: Bool = false
+    var cloudStorage: Bool = false
+    var notifications: Bool = false
+    var notificationDuration: Int = -1
     var connector: [Int] = []
-    var timestamp: Int64?
+    var timestamp: Int64 = -1
     var favorites: [String: Int64] = [:]
     
     var dictionary: [String: Any] {
-        return ["uid": uid!,
-                "email": email!,
-                "firstname": firstname!,
-                "lastname": lastname!,
-                "fastcharge": fastCharge!,
-                "parkingFee": parkingFee!,
-                "cloudStorage": cloudStorage!,
-                "notifications": notifications!,
-                "notificationsDuration": notificationDuration!,
+        return ["uid": uid,
+                "email": email,
+                "firstname": firstname,
+                "lastname": lastname,
+                "fastcharge": fastCharge,
+                "parkingFee": parkingFee,
+                "cloudStorage": cloudStorage,
+                "notifications": notifications,
+                "notificationsDuration": notificationDuration,
                 "connector": [connector],
-                "timestamp": timestamp!,
+                "timestamp": timestamp,
                 "favorites": favorites
         ]
     }

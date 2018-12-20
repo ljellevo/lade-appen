@@ -74,10 +74,10 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         }
         
         for station in app!.stations{
-            if app!.user!.favorites.keys.contains(station.id!.description) {
+            if app!.user!.favorites.keys.contains(station.id.description) {
                 self.favoriteArray.append(station)
-                self.realtimeArray.append(station.id!)
-                print("Setting up listener on: " + station.id!.description)
+                self.realtimeArray.append(station.id)
+                print("Setting up listener on: " + station.id.description)
                 listenOnStation(station: station, done: { updatedStation in
                     if updatedStation.id == self.station?.id{
                         print("Matching stations")
@@ -197,7 +197,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         self.favoriteArray = []
         print("Refreshing collectionviews")
         for station in app!.stations{
-            if app!.user!.favorites.keys.contains(station.id!.description) {
+            if app!.user!.favorites.keys.contains(station.id.description) {
                 self.favoriteArray.append(station)
             }
         }
@@ -331,18 +331,18 @@ extension CollectionViewLayoutMethods {
                 cell.nameLabel.text = station?.name
                 cell.compatibleConntacts = countCompatible
                 if station!.houseNumber != "" {
-                    cell.streetLabel.text = station!.street! + " " + station!.houseNumber! + ", " + station!.city!
+                    cell.streetLabel.text = station!.street + " " + station!.houseNumber + ", " + station!.city
                 } else {
-                    cell.streetLabel.text = station!.street! + ", " + station!.city!
+                    cell.streetLabel.text = station!.street + ", " + station!.city
                 }
                 
-                if station!.parkingFee! {
+                if station!.parkingFee {
                     cell.parkingFeeLabel.text = "Parkerings avgift"
                 } else {
                     cell.parkingFeeLabel.text = "Gratis parkering"
                 }
                 
-                if app!.user!.favorites.keys.contains(station!.id!.description){
+                if app!.user!.favorites.keys.contains(station!.id.description){
                     cell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
                     cell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
                     isFavorite = true
@@ -352,7 +352,7 @@ extension CollectionViewLayoutMethods {
                     isFavorite = false
                 }
                 
-                if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id!)] != nil {
+                if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
                     //Bruker følger denne stasjonen skal få presentert teksten "Slutte å følge"
                     cell.subscribeButton.setTitle("Slutte å følge", for: .normal)
                     cell.subscribeButton.layer.backgroundColor = UIColor.appleYellow().cgColor
@@ -364,7 +364,7 @@ extension CollectionViewLayoutMethods {
                 cell.userComment = station?.userComment
                 cell.descriptionLabel.text = station?.descriptionOfLocation
                 cell.connectors = self.app!.sortConnectors(station: station!).conn
-                if station!.realtimeInfo!{
+                if station!.realtimeInfo{
                     cell.animateRealtime()
                     let compatibleConntacts: [Int] = self.app!.findAvailableContacts(station: station!)
                     cell.compatibleConntacts = compatibleConntacts[0]
@@ -402,9 +402,9 @@ extension CollectionViewLayoutMethods {
                 cell.delegate = self as CollectionViewCellDelegate
                 cell.stationNameLabel.text = followingArray[row].name
                 cell = addShadowSubscriptionCell(cell: cell)
-                print(followingArray[row].id!)
+                print(followingArray[row].id)
 //              Må fikse denne, ikke sikkert at following array eksisterer
-                cell.timeTo = (app!.subscriptions[app!.getStationIdAsString(stationId: followingArray[row].id!)]?["to"])!
+                cell.timeTo = (app!.subscriptions[app!.getStationIdAsString(stationId: followingArray[row].id)]?["to"])!
                 cell.updateTimer()
                 return cell
             }  else {
@@ -414,11 +414,11 @@ extension CollectionViewLayoutMethods {
                 cell.activityLabel.text = "-Høy-"
                 cell.subscriberAmountLabel.text = "-20-"
                 cell.stationNameLabel.text = favoriteArray[row].name
-                cell.stationStreetLabel.text = favoriteArray[row].street! + " " + favoriteArray[row].houseNumber!
+                cell.stationStreetLabel.text = favoriteArray[row].street + " " + favoriteArray[row].houseNumber
                 cell.stationCityLabel.text = favoriteArray[row].city
                 var availableConnectors = app!.findAvailableContacts(station: favoriteArray[row])
-                cell.isRealtime(realtime: favoriteArray[row].realtimeInfo!)
-                if favoriteArray[row].realtimeInfo! {
+                cell.isRealtime(realtime: favoriteArray[row].realtimeInfo)
+                if favoriteArray[row].realtimeInfo {
                     cell.availableConntactsLabelMessage.text = "Kontakter"
                     cell.availableContactsLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
                 } else {
@@ -453,7 +453,7 @@ extension CollectionViewLayoutMethods {
             } else if indexPath.row <= followingArray.count {
                 height = 39
             } else {
-                if favoriteArray[indexPath.row - (2 + followingArray.count)].realtimeInfo! {
+                if favoriteArray[indexPath.row - (2 + followingArray.count)].realtimeInfo {
                     height = self.view.frame.size.width * 0.35
                 } else {
                     height = self.view.frame.size.width * 0.20
@@ -504,7 +504,7 @@ extension CollectionViewLayoutMethods {
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if indexPath.row != 0 && indexPath.row <= followingArray.count{
-            self.detachListenerOnStation(stationId: self.followingArray[indexPath.row - 1].id!)
+            self.detachListenerOnStation(stationId: self.followingArray[indexPath.row - 1].id)
         }
     }
 }
@@ -512,28 +512,35 @@ extension CollectionViewLayoutMethods {
 private typealias Delegate = Favorites
 extension Delegate: CollectionViewCellDelegate {
     
-    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action) {
-        
+    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action, skipConfirmation: Bool) {
         if action == .unsubscribe {
-            let alert = UIAlertController(title: "Slutte å følge?", message: "Du vil ikke lenger få oppdateringer angående denne stasjonen.", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Ja", style: UIAlertAction.Style.default, handler: { action in
-                print("Unsubbing")
+            if !skipConfirmation {
+                let alert = UIAlertController(title: "Slutte å følge?", message: "Du vil ikke lenger få oppdateringer angående denne stasjonen.", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ja", style: UIAlertAction.Style.default, handler: { action in
+                    print("Unsubbing")
+                    var indexPath = self.collectionView.indexPath(for: cell)
+                    self.app!.unsubscribeToStation(station: self.followingArray[indexPath!.row - 1], done: {_ in
+                        self.populateFavoritesArray()
+                        self.detailsCollectionView.reloadData()
+                        let banner = StatusBarNotificationBanner(title: "Du følger ikke lenger denne stasjonen", style: .warning)
+                        banner.show()
+                    })
+                }))
+                alert.addAction(UIAlertAction(title: "Nei", style: UIAlertAction.Style.cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
                 var indexPath = self.collectionView.indexPath(for: cell)
                 self.app!.unsubscribeToStation(station: self.followingArray[indexPath!.row - 1], done: {_ in
                     self.populateFavoritesArray()
                     self.detailsCollectionView.reloadData()
-                    let banner = StatusBarNotificationBanner(title: "Du følger ikke lenger denne stasjonen", style: .warning)
-                    banner.show()
                 })
-            }))
-            alert.addAction(UIAlertAction(title: "Nei", style: UIAlertAction.Style.cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            }
         }
         else if action == .cancel {
             if startPosition {
                 detailsDismissedPosition()
                 if !isDetailsAFavoriteStation {
-                    detachListenerOnStation(stationId: station!.id!)
+                    detachListenerOnStation(stationId: station!.id)
                 }
             } else {
                 detailsStartPosition(withAnimation: true)
@@ -543,7 +550,7 @@ extension Delegate: CollectionViewCellDelegate {
             }
         } else if action == .favorite {
             if isFavorite! {
-                app!.user?.favorites.removeValue(forKey: station!.id!.description)
+                app!.user?.favorites.removeValue(forKey: station!.id.description)
                 app?.setUserInDatabase(user: app!.user!, done: { code in
                     let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                     infoCell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
@@ -554,7 +561,7 @@ extension Delegate: CollectionViewCellDelegate {
                     self.populateFavoritesArray()
                 })
             } else {
-                app!.user?.favorites.updateValue(Date().getTimestamp(), forKey: station!.id!.description)
+                app!.user?.favorites.updateValue(Date().getTimestamp(), forKey: station!.id.description)
                 app?.setUserInDatabase(user: app!.user!, done: { code in
                     let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                     infoCell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
@@ -566,7 +573,7 @@ extension Delegate: CollectionViewCellDelegate {
                 })
             }
         } else if action == .subscribe {
-            if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id!)] != nil {
+            if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
                 let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                 app!.unsubscribeToStation(station: station!, done: { _ in
                     infoCell.subscribeButton.setTitle("Følg", for: .normal)
@@ -593,8 +600,8 @@ private typealias Service = Favorites
 extension Service {
     
     func listenOnStation(station: Station, done: @escaping (_ updatedStation: Station)-> Void){
-        app?.listenOnStation(stationId: station.id!, done: { station in
-            print("Update on: " + station.id!.description)
+        app?.listenOnStation(stationId: station.id, done: { station in
+            print("Update on: " + station.id.description)
             DispatchQueue.main.async {
                 done(station)
             }

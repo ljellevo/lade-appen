@@ -40,7 +40,7 @@ class SubscriptionCell: UICollectionViewCell {
 //    timer.invalidate()
     
     @IBAction func cancelSubscriptionButton(_ sender: UIButton) {
-        self.delegate?.collectionViewCell(self, buttonTapped: cancelSubscriptionButton, action: .unsubscribe)
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelSubscriptionButton, action: .unsubscribe, skipConfirmation: false)
     }
     
     func countdownSubscriptions() {
@@ -53,7 +53,7 @@ class SubscriptionCell: UICollectionViewCell {
         
         var timeLabel: String = ""
         if timeRemaining < 0 {
-            self.delegate?.collectionViewCell(self, buttonTapped: cancelSubscriptionButton, action: .unsubscribe)
+            self.delegate?.collectionViewCell(self, buttonTapped: cancelSubscriptionButton, action: .unsubscribe, skipConfirmation: true)
             return
         }
         

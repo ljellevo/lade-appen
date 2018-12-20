@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import Firebase
 import Disk
-import SwiftyJSON
 
 class DatabaseApp {
     let ref = Database.database().reference()
@@ -83,17 +82,17 @@ class DatabaseApp {
     
     func setUserInDatabase(user: User, done: @escaping (_ code: Int)-> Void){
         ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).updateChildValues(
-            ["uid": user.uid! as String,
-             "email": user.email! as String,
-             "firstname": user.firstname! as String,
-             "lastname": user.lastname! as String,
-             "fastCharge": user.fastCharge! as Bool,
-             "parkingFee": user.parkingFee! as Bool,
-             "cloudStorage": user.cloudStorage! as Bool,
-             "notifications": user.notifications! as Bool,
-             "notificationsDuration": user.notificationDuration! as Int,
+            ["uid": user.uid as String,
+             "email": user.email as String,
+             "firstname": user.firstname as String,
+             "lastname": user.lastname as String,
+             "fastCharge": user.fastCharge as Bool,
+             "parkingFee": user.parkingFee as Bool,
+             "cloudStorage": user.cloudStorage as Bool,
+             "notifications": user.notifications as Bool,
+             "notificationsDuration": user.notificationDuration as Int,
              "connector": user.connector as [Int],
-             "timestamp": user.timestamp! as Int64,
+             "timestamp": user.timestamp as Int64,
              "favorites": user.favorites as [String:Int64]
             ]
         ){
@@ -179,10 +178,10 @@ class DatabaseApp {
         let susbscribeTask = DispatchGroup()
         susbscribeTask.enter()
         
-        ref.child("User_Info").child(user.uid!).child("subscriptions").child(stationId).setValue(
+        ref.child("User_Info").child(user.uid).child("subscriptions").child(stationId).setValue(
             ["update": Date().getTimestamp(),
              "from": Date().getTimestamp(),
-             "to": (Date().getTimestamp() + Int64(user.notificationDuration! * 60))]
+             "to": (Date().getTimestamp() + Int64(user.notificationDuration * 60))]
         ){(error:Error?, ref:DatabaseReference) in
             if error != nil {
                 errorCode = 0
@@ -194,7 +193,7 @@ class DatabaseApp {
         }
         
         susbscribeTask.enter()
-        ref.child("subscriptions").child(stationId).child("members_subscriptions").updateChildValues([user.uid!: Date().getTimestamp()]){(error:Error?, ref:DatabaseReference) in
+        ref.child("subscriptions").child(stationId).child("members_subscriptions").updateChildValues([user.uid: Date().getTimestamp()]){(error:Error?, ref:DatabaseReference) in
             if error != nil {
                 errorCode = 0
             }
@@ -212,7 +211,7 @@ class DatabaseApp {
         var errorCode = 1
         let unsusbscribeTask = DispatchGroup()
         unsusbscribeTask.enter()
-        ref.child("User_Info").child(user.uid!).child("subscriptions").child(stationId).removeValue(){(error:Error?, ref:DatabaseReference) in
+        ref.child("User_Info").child(user.uid).child("subscriptions").child(stationId).removeValue(){(error:Error?, ref:DatabaseReference) in
             if error != nil {
                 errorCode = 0
             }
@@ -222,7 +221,7 @@ class DatabaseApp {
         }
         
         unsusbscribeTask.enter()
-        ref.child("subscriptions").child(stationId).child("members_subscriptions").updateChildValues([user.uid!: NSNull()]){(error:Error?, ref:DatabaseReference) in
+        ref.child("subscriptions").child(stationId).child("members_subscriptions").updateChildValues([user.uid: NSNull()]){(error:Error?, ref:DatabaseReference) in
             if error != nil {
                 errorCode = 0
             }
@@ -236,7 +235,7 @@ class DatabaseApp {
     }
     
     func getSubscriptionsFromDatabase(user: User, done: @escaping (_ subscriptions: [String: [String: Int64]]?)-> Void){
-        ref.child("User_Info").child(user.uid!).child("subscriptions").observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("User_Info").child(user.uid).child("subscriptions").observeSingleEvent(of: .value) { (snapshot) in
             var subscriptions = [String: [String: Int64]]()
             for sub in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
                 let values = sub.value as! [String : Int64]

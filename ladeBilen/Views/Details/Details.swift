@@ -35,7 +35,7 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         self.connectors = self.app!.sortConnectors(station: station!).conn
         
         //Må lytte etter kontakter ikke stasjon
-        app?.listenOnStation(stationId: station!.id!, done: { station in
+        app?.listenOnStation(stationId: station!.id, done: { station in
             self.station = station
             self.connectors = self.app!.sortConnectors(station: station).conn
 
@@ -63,12 +63,12 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        app?.detachListenerOnStation(stationId: station!.id!)
+        app?.detachListenerOnStation(stationId: station!.id)
     }
     
 
     func checkIfFavorite(){
-        if app!.user!.favorites.keys.contains(station!.id!.description){
+        if app!.user!.favorites.keys.contains(station!.id.description){
             isFavorite = true
             favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
         }
@@ -97,7 +97,7 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
 
             countCompatible = compatibleConntacts[1]
             
-            if station!.realtimeInfo! {
+            if station!.realtimeInfo {
                 cell.realtimeIcon.image = #imageLiteral(resourceName: "OnlineSet")
                 cell.connectorLabel.text = availableConntacts.description + "/" + compatibleConntacts.description
             } else {
@@ -112,7 +112,7 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             cell.nameLabel.text = station?.name
             cell.compatibleConntacts = countCompatible
             cell.streetLabel.text = (station?.street)! + " " + (station?.houseNumber)!
-            if station!.realtimeInfo!{
+            if station!.realtimeInfo{
                 cell.realtimeLabel.text = "Leverer sanntids informasjon"
             } else {
                 cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
@@ -121,7 +121,7 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             
             //cell.fastChargeLabel.text = "Mangler"
             
-            if station!.parkingFee! {
+            if station!.parkingFee {
                 cell.parkingFeeLabel.text = "Parkerings avgift"
             } else {
                 cell.parkingFeeLabel.text = "Gratis parkering"
@@ -149,12 +149,12 @@ class Details: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     @IBAction func favoriteButton(_ sender: UIBarButtonItem) {
         if isFavorite {
-            app!.user?.favorites.removeValue(forKey: station!.id!.description)
+            app!.user?.favorites.removeValue(forKey: station!.id.description)
             app?.setUserInDatabase(user: app!.user!, done: {_ in})
             self.favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteSet")
             self.isFavorite = false
         } else {
-            app!.user?.favorites.updateValue(Date().getTimestamp(), forKey: station!.id!.description)
+            app!.user?.favorites.updateValue(Date().getTimestamp(), forKey: station!.id.description)
             app?.setUserInDatabase(user: app!.user!, done: {_ in})
             self.favoriteBarButtonItem.image = #imageLiteral(resourceName: "FavoriteFilledSet")
             self.isFavorite = true

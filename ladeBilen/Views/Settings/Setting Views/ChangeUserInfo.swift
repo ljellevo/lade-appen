@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NotificationBannerSwift
 
 class ChangeUserInfo: UIViewController{
     
@@ -44,16 +45,17 @@ class ChangeUserInfo: UIViewController{
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         if rowIndex == 0 {
-            app!.user!.firstname = textField.text
-            app!.setUserInDatabase(user: app!.user!, done: {_ in})
-            informationLabel.text = "Fornavn er oppdatert"
+            app!.user!.firstname = textField.text!
+            app!.setUserInDatabase(user: app!.user!, done: {_ in
+                let banner = StatusBarNotificationBanner(title: "Fornavn er oppdatert", style: .success)
+                banner.show()
+            })
         } else {
-            app!.user!.lastname = textField.text
-            app!.setUserInDatabase(user: app!.user!, done: {_ in})
-            informationLabel.text = "Etternavn er oppdatert"
+            app!.user!.lastname = textField.text!
+            app!.setUserInDatabase(user: app!.user!, done: {_ in
+                let banner = StatusBarNotificationBanner(title: "Etternavn er oppdatert", style: .success)
+                banner.show()
+            })
         }
     }
-    
-
-
 }

@@ -105,7 +105,7 @@ class InfoCell: UICollectionViewCell{
     }
     
     @IBAction func cancelButton(_ sender: UIButton) {
-        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .cancel)
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .cancel, skipConfirmation: false)
     }
     
     func setActiveViewFor(element: elements) {
@@ -160,11 +160,11 @@ class InfoCell: UICollectionViewCell{
     }
 
     @IBAction func favoriteButton(_ sender: UIButton) {
-        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .favorite)
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .favorite, skipConfirmation: false)
     }
     
     @IBAction func subscribeButton(_ sender: UIButton) {
-        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .subscribe)
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .subscribe, skipConfirmation: false)
     }
 }
 
@@ -185,7 +185,6 @@ extension DetailsElement {
     func animateRealtime(){
         var x = 5
         let y = 10
-        var counter = 0
         
         let firstDot = UIView(frame: CGRect(x: x, y: y, width: 10, height: 10))
         x += 15
@@ -299,22 +298,22 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
         
         //Endre fra description til int sammenligning
         //cell.typeLabel.text = connectors![indexPath.row].connector?.description //HEr
-        cell.typeLabel.text = connectorDescription![connectors![indexPath.row].connector!]
-        cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode?.description
-        
-        if connectors![indexPath.row].chargerMode?.description == "1" {
+        cell.typeLabel.text = connectorDescription![connectors![indexPath.row].connector]
+        cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode.description
+        if connectors![indexPath.row].chargerMode == -1 {
+            cell.chargeRateLabel.text = "Mangler"
+        } else if connectors![indexPath.row].chargerMode == 1{
             cell.chargeRateLabel.text = "Normal"
-        } else if connectors![indexPath.row].chargerMode?.description == "2" {
+        } else if connectors![indexPath.row].chargerMode == 2 {
             cell.chargeRateLabel.text = "Semi-Hurtig"
-        } else if connectors![indexPath.row].chargerMode?.description == "3" {
+        } else if connectors![indexPath.row].chargerMode == 3 {
             cell.chargeRateLabel.text = "Semi-Hurtig"
         } else {
             cell.chargeRateLabel.text = "Hurtig"
-            
         }
         
         if realtime! {
-            if connectors![indexPath.row].isTaken! == 0{
+            if connectors![indexPath.row].isTaken == 0{
                 cell.isTakenLabel.text = "Ledig"
             } else {
                 cell.isTakenLabel.text = "Opptatt"
@@ -325,7 +324,6 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
             } else {
                 cell.isOperationalLabel.text = "Ute av drift"
                 cell.isTakenLabel.text = ""
-                
             }
         } else {
             cell.isTakenLabel.text = ""
