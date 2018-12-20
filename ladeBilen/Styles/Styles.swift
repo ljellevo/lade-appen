@@ -111,6 +111,16 @@ extension UIColor {
         return UIColor(red:0.53, green:0.13, blue:0.07, alpha:1.0)
     }
     
+    static func appTheme() -> UIColor {
+        return UIColor(red:0.28, green:0.36, blue:0.52, alpha:1.0)
+    }
+    
+    static func appThemeDark() -> UIColor {
+        return UIColor(red:0.19, green:0.25, blue:0.36, alpha:1.0)
+    }
+    
+    
+    
     
     
     

@@ -478,6 +478,10 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Søk"
+        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.backgroundColor = UIColor.appThemeDark()
+        textFieldInsideSearchBar?.textColor = UIColor.white
+        searchController.searchBar.setValue("Avbryt", forKey:"_cancelButtonText")
         
         self.definesPresentationContext = true
         
