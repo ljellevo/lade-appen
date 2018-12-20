@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import AudioToolbox
+import NotificationBannerSwift
 
 
 
@@ -37,10 +38,10 @@ class ChangeAuthInfo: UIViewController {
         whitePanel.layer.cornerRadius = 20
         
         if rowIndex == 2 {
-            firstTextField.placeholder = "Ny email"
+            firstTextField.placeholder = "Ny e-post"
             firstTextField.isSecureTextEntry = false
             firstTextField.keyboardType = .emailAddress
-            secondTextField.placeholder = "Gjenta ny email"
+            secondTextField.placeholder = "Gjenta ny e-post"
             secondTextField.isSecureTextEntry = false
             secondTextField.keyboardType = .emailAddress
             thirdTextField.placeholder = "Passord"
@@ -79,7 +80,7 @@ class ChangeAuthInfo: UIViewController {
             if firstTextField.text != secondTextField.text {
                 firstTextField.setBottomBorderRed()
                 secondTextField.setBottomBorderRed()
-                infoLabel.text = "Epostene er ulike"
+                infoLabel.text = "E-postene er ulike"
                 AudioServicesPlaySystemSound(Constants.VIBRATION_WEAK)
                 return
             }
@@ -98,12 +99,15 @@ class ChangeAuthInfo: UIViewController {
                         if error != nil {
                             self.firstTextField.setBottomBorderRed()
                             self.secondTextField.setBottomBorderRed()
-                            self.infoLabel.text = "Epost er tatt"
+                            self.infoLabel.text = "E-post er tatt"
                             AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
                         } else {
                             self.app!.user!.email = self.firstTextField.text!
-                            self.app!.setUserInDatabase(user: self.app!.user!, done: {_ in})
-                            self.infoLabel.text = "Epost oppdatert"
+                            self.app!.setUserInDatabase(user: self.app!.user!, done: {_ in
+                                let banner = StatusBarNotificationBanner(title: "E-post er oppdatert", style: .success)
+                                banner.show()
+                            })
+                            
                         }
                     }
                 }
@@ -132,7 +136,8 @@ class ChangeAuthInfo: UIViewController {
                             self.infoLabel.text = "Passord kunne ikke bli oppdatert"
                             AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
                         } else {
-                            self.infoLabel.text = "Passord oppdatert"
+                            let banner = StatusBarNotificationBanner(title: "Passord er oppdatert", style: .success)
+                            banner.show()
                         }
                     }
                 }

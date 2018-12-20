@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         let app = App()
         
-        //UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.statusBarStyle = .lightContent
         
         
         //deleteCache()

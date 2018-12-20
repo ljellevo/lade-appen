@@ -45,11 +45,12 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         collectionView.register(UINib(nibName: "LabelCell", bundle: nil), forCellWithReuseIdentifier: "LabelCell")
         collectionView.register(UINib(nibName: "SubscriptionCell", bundle: nil), forCellWithReuseIdentifier: "SubscriptionCell")
         connectorDescription = app!.connectorDescription
-        
         loadDetailsElement()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.followingArray = []
+        self.favoriteArray = []
         if app!.subscriptions.count == 0 {
             app?.getSubscriptionsFromDatabase {
                 for sub in self.app!.subscriptions{

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NotificationBannerSwift
 
 class ChangePreferences: UIViewController {
     var app: App?
@@ -61,6 +62,10 @@ class ChangePreferences: UIViewController {
         app!.user?.cloudStorage = cloudStorageSwitch.isOn
         app!.user?.notifications = notificationSwitch.isOn
         app!.user?.notificationDuration = notificationDuration
-        app!.setUserInDatabase(user: app!.user!, done: {_ in})
+        app!.setUserInDatabase(user: app!.user!, done: {_ in
+            let banner = StatusBarNotificationBanner(title: "Instillinger er oppdatert", style: .success)
+            banner.show()
+        })
+        
     }
 }

@@ -103,8 +103,6 @@
 		83B3DEF3203CAB6A0018AEE5 /* Favorite-Filled-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B3DEF0203CAB690018AEE5 /* Favorite-Filled-Icon-25.png */; };
 		83B3DEF4203CAB6A0018AEE5 /* Favorite-Filled-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B3DEF1203CAB690018AEE5 /* Favorite-Filled-Icon-50.png */; };
 		83C042861FFAEB1E00F8D8CD /* ChangeUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C042851FFAEB1E00F8D8CD /* ChangeUserInfo.swift */; };
-		83C25ECD2051F62100D67445 /* ladeBilenTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C25ECC2051F62100D67445 /* ladeBilenTest.swift */; };
-		83C7486AC2A19B0E5B45913E /* Pods_ladeBilenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7E05682F9A5E2509E969076 /* Pods_ladeBilenTests.framework */; };
 		83C83A7D1FF1B6D40088C10C /* GlobalResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C83A7C1FF1B6D40088C10C /* GlobalResources.swift */; };
 		83C83A811FF1D35A0088C10C /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C83A7F1FF1D35A0088C10C /* EntryCell.swift */; };
 		83C83A821FF1D35A0088C10C /* EntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C83A801FF1D35A0088C10C /* EntryCell.xib */; };
@@ -127,26 +125,8 @@
 		B4203397216F910400CF692A /* Target-75.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203394216F910400CF692A /* Target-75.png */; };
 		B4203398216F910400CF692A /* Target-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203395216F910400CF692A /* Target-25.png */; };
 		B4203399216F910400CF692A /* Target-50.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203396216F910400CF692A /* Target-50.png */; };
-		EBD3534A21044C2BEFD3CD63 /* Pods_ladeBilenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A1E4AB7B01863D6AAA35C6 /* Pods_ladeBilenUITests.framework */; };
 		FAB7FB7CDBE77CFA9ECF188C /* Pods_ladeBilen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D4C07A805BF1A88148B92F /* Pods_ladeBilen.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		83F354881EEB0697001A278A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83F3546B1EEB0696001A278A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83F354721EEB0696001A278A;
-			remoteInfo = ladeBilen;
-		};
-		83F354931EEB0697001A278A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83F3546B1EEB0696001A278A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83F354721EEB0696001A278A;
-			remoteInfo = ladeBilen;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3488CCF2047C47459F7FD694 /* Pods-ladeBilenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilenTests.release.xcconfig"; path = "Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -274,8 +254,6 @@
 		83F3547D1EEB0696001A278A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83F354801EEB0696001A278A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83F354821EEB0696001A278A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83F354871EEB0697001A278A /* ladeBilenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ladeBilenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		83F354921EEB0697001A278A /* ladeBilenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ladeBilenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F9E43F203C98DE009B3788 /* Initialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initialization.swift; sourceTree = "<group>"; };
 		83FD2BE91FEE6DE9002B8EDF /* RegisterCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCont.swift; sourceTree = "<group>"; };
 		B2A1E4AB7B01863D6AAA35C6 /* Pods_ladeBilenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -291,22 +269,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAB7FB7CDBE77CFA9ECF188C /* Pods_ladeBilen.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83F354841EEB0697001A278A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83C7486AC2A19B0E5B45913E /* Pods_ladeBilenTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83F3548F1EEB0697001A278A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EBD3534A21044C2BEFD3CD63 /* Pods_ladeBilenUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,8 +688,6 @@
 			isa = PBXGroup;
 			children = (
 				83F354731EEB0696001A278A /* ladeBilen.app */,
-				83F354871EEB0697001A278A /* ladeBilenTests.xctest */,
-				83F354921EEB0697001A278A /* ladeBilenUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -819,46 +779,6 @@
 			productReference = 83F354731EEB0696001A278A /* ladeBilen.app */;
 			productType = "com.apple.product-type.application";
 		};
-		83F354861EEB0697001A278A /* ladeBilenTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 83F3549E1EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilenTests" */;
-			buildPhases = (
-				89DDA3509E306A2F3AFAA8DA /* [CP] Check Pods Manifest.lock */,
-				83F354831EEB0697001A278A /* Sources */,
-				83F354841EEB0697001A278A /* Frameworks */,
-				83F354851EEB0697001A278A /* Resources */,
-				F1F702A0A4DB49BC258EDE16 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				83F354891EEB0697001A278A /* PBXTargetDependency */,
-			);
-			name = ladeBilenTests;
-			productName = ladeBilenTests;
-			productReference = 83F354871EEB0697001A278A /* ladeBilenTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		83F354911EEB0697001A278A /* ladeBilenUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 83F354A11EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilenUITests" */;
-			buildPhases = (
-				BECB6974EB1C527A665DF1F8 /* [CP] Check Pods Manifest.lock */,
-				83F3548E1EEB0697001A278A /* Sources */,
-				83F3548F1EEB0697001A278A /* Frameworks */,
-				83F354901EEB0697001A278A /* Resources */,
-				5F719FA8773624F31869617F /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				83F354941EEB0697001A278A /* PBXTargetDependency */,
-			);
-			name = ladeBilenUITests;
-			productName = ladeBilenUITests;
-			productReference = 83F354921EEB0697001A278A /* ladeBilenUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -866,7 +786,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Ludvig Ellevold";
 				TargetAttributes = {
 					83F354721EEB0696001A278A = {
@@ -878,19 +798,6 @@
 								enabled = 0;
 							};
 						};
-					};
-					83F354861EEB0697001A278A = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 2X8N6D5K7V;
-						LastSwiftMigration = 0920;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 83F354721EEB0696001A278A;
-					};
-					83F354911EEB0697001A278A = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 2X8N6D5K7V;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 83F354721EEB0696001A278A;
 					};
 				};
 			};
@@ -908,8 +815,6 @@
 			projectRoot = "";
 			targets = (
 				83F354721EEB0696001A278A /* ladeBilen */,
-				83F354861EEB0697001A278A /* ladeBilenTests */,
-				83F354911EEB0697001A278A /* ladeBilenUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -993,20 +898,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83F354851EEB0697001A278A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83F354901EEB0697001A278A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1026,78 +917,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ladeBilen-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5F719FA8773624F31869617F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ladeBilenUITests/Pods-ladeBilenUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		89DDA3509E306A2F3AFAA8DA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ladeBilenTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BECB6974EB1C527A665DF1F8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ladeBilenUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1138,42 +957,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ladeBilen/Pods-ladeBilen-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F1F702A0A4DB49BC258EDE16 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ladeBilenTests/Pods-ladeBilenTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1233,35 +1016,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83F354831EEB0697001A278A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83C25ECD2051F62100D67445 /* ladeBilenTest.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83F3548E1EEB0697001A278A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		83F354891EEB0697001A278A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83F354721EEB0696001A278A /* ladeBilen */;
-			targetProxy = 83F354881EEB0697001A278A /* PBXContainerItemProxy */;
-		};
-		83F354941EEB0697001A278A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83F354721EEB0696001A278A /* ladeBilen */;
-			targetProxy = 83F354931EEB0697001A278A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		83F3547A1EEB0696001A278A /* Main.storyboard */ = {
@@ -1297,6 +1052,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1304,6 +1060,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1354,6 +1111,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1361,6 +1119,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1428,93 +1187,6 @@
 			};
 			name = Release;
 		};
-		83F3549F1EEB0697001A278A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E8A15E764EAFCAE6B3E4A07 /* Pods-ladeBilenTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 2X8N6D5K7V;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
-					"${PODS_ROOT}/Firebase/Core/Sources",
-				);
-				INFOPLIST_FILE = ladeBilenTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilenTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "ladeBilenTests/ladeBilenTests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladeBilen.app/ladeBilen";
-			};
-			name = Debug;
-		};
-		83F354A01EEB0697001A278A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3488CCF2047C47459F7FD694 /* Pods-ladeBilenTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 2X8N6D5K7V;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
-					"${PODS_ROOT}/Firebase/Core/Sources",
-				);
-				INFOPLIST_FILE = ladeBilenTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilenTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "ladeBilenTests/ladeBilenTests-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladeBilen.app/ladeBilen";
-			};
-			name = Release;
-		};
-		83F354A21EEB0697001A278A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AFC20A8B1C8B9F96B8672D2 /* Pods-ladeBilenUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 2X8N6D5K7V;
-				INFOPLIST_FILE = ladeBilenUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilenUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = ladeBilen;
-			};
-			name = Debug;
-		};
-		83F354A31EEB0697001A278A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 454B12087C202B728EE57E44 /* Pods-ladeBilenUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 2X8N6D5K7V;
-				INFOPLIST_FILE = ladeBilenUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = luelProd.ladeBilenUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = ladeBilen;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1532,24 +1204,6 @@
 			buildConfigurations = (
 				83F3549C1EEB0697001A278A /* Debug */,
 				83F3549D1EEB0697001A278A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		83F3549E1EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilenTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				83F3549F1EEB0697001A278A /* Debug */,
-				83F354A01EEB0697001A278A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		83F354A11EEB0697001A278A /* Build configuration list for PBXNativeTarget "ladeBilenUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				83F354A21EEB0697001A278A /* Debug */,
-				83F354A31EEB0697001A278A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
