@@ -14,12 +14,16 @@ class Annotation: NSObject, MKAnnotation {
     var subtitle: String?
     var id: Int?
     var coordinate: CLLocationCoordinate2D
+    var realtime: Bool?
+    var fastcharge: Bool?
     
-    init(title: String, subtitle: String, id: Int, coordinate: CLLocationCoordinate2D) {
+    init(title: String, subtitle: String, id: Int, coordinate: CLLocationCoordinate2D, realtime: Bool, fastcharge: Bool) {
         self.title = title
         self.subtitle = subtitle
         self.id = id
         self.coordinate = coordinate
+        self.realtime = realtime
+        self.fastcharge = fastcharge
     }
 }
 

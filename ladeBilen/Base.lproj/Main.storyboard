@@ -946,12 +946,13 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNl-6i-5mL">
-                                <rect key="frame" x="272" y="30" width="27" height="27"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="266" y="30" width="33" height="33"/>
+                                <color key="backgroundColor" red="0.28115430470000002" green="0.3608010411" blue="0.52158755059999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="27" id="GWs-c4-Kno"/>
-                                    <constraint firstAttribute="width" constant="27" id="h1W-xe-myc"/>
+                                    <constraint firstAttribute="height" constant="33" id="GWs-c4-Kno"/>
+                                    <constraint firstAttribute="width" constant="33" id="h1W-xe-myc"/>
                                 </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="TargetSet"/>
                                 <connections>
                                     <action selector="centerMapOnUserLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vqB-ZX-vAs"/>

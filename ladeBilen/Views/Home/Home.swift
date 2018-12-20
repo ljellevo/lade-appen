@@ -336,7 +336,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
         mapWindow.showsUserLocation = true
         mapWindow.delegate = self
         isInitial = true
-        centerMapButton.layer.cornerRadius = 5
+        centerMapButton.layer.cornerRadius = 10
         centerMapButton.addShadow()
         
     }
@@ -353,9 +353,14 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
                 let lat = Double(positionArray[0])
                 let lon = Double(positionArray[1])
                 let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
-                let annotation = Annotation(title: children.name, subtitle: children.street + " " + children.houseNumber, id: children.id, coordinate: coordinates)
+                var hasFastcharge = false
+                for conn in children.conn {
+                    if conn.chargerMode > 3 {
+                        hasFastcharge = true
+                    }
+                }
+                let annotation = Annotation(title: children.name, subtitle: children.street + " " + children.houseNumber, id: children.id, coordinate: coordinates, realtime: children.realtimeInfo, fastcharge: hasFastcharge)
                 DispatchQueue.main.async {
-
                     self.mapWindow.addAnnotation(annotation)
                 }
             }
@@ -370,16 +375,37 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
             if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
                 as? MKMarkerAnnotationView {
                 dequeuedView.annotation = annotation
-                dequeuedView.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
+                dequeuedView.markerTintColor = UIColor.pictonBlue()
+                
+                if annotation.realtime! {
+                    dequeuedView.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
+                }
                 if app!.user!.favorites.keys.contains(annotation.id!.description) {
                     dequeuedView.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
                 }
+                
+                if annotation.fastcharge! {
+                    dequeuedView.glyphImage = UIImage(named: "Station fast")
+                } else {
+                  dequeuedView.glyphImage = UIImage(named: "Station")
+                }
+                
                 view = dequeuedView
             } else {
                 view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
+                view.markerTintColor = UIColor.pictonBlue()
+                
+                if annotation.realtime! {
+                    view.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
+                }
                 if app!.user!.favorites.keys.contains(annotation.id!.description) {
                     view.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
+                }
+                
+                if annotation.fastcharge! {
+                    view.glyphImage = UIImage(named: "Station fast")
+                } else {
+                    view.glyphImage = UIImage(named: "Station")
                 }
             }
             return view
