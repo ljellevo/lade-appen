@@ -10,7 +10,7 @@ import UIKit
 import NotificationBannerSwift
 
 class ChangePreferences: UIViewController {
-    var app: App?
+    var app: App!
     var notificationDuration: Int = 30
     
     @IBOutlet weak var whitePannel: UIView!
@@ -22,11 +22,9 @@ class ChangePreferences: UIViewController {
     @IBOutlet weak var parkingFeeSwitch: UISwitch!
     
     @IBOutlet weak var cloudStorageLabel: UILabel!
-    
     @IBOutlet weak var cloudStorageSwitch: UISwitch!
     
     @IBOutlet weak var notificationLabel: UILabel!
-    
     @IBOutlet weak var notificationSwitch: UISwitch!
     
     @IBOutlet weak var durationLabel: UILabel!
@@ -39,6 +37,21 @@ class ChangePreferences: UIViewController {
         super.viewDidLoad()
         whitePannel.layer.cornerRadius = 20
         saveButton.layer.cornerRadius = 20
+        fastchargeSwitch.isOn = app.user!.fastCharge
+        parkingFeeSwitch.isOn = app.user!.parkingFee
+        cloudStorageSwitch.isOn = app.user!.cloudStorage
+        notificationSwitch.isOn = app.user!.notifications
+        durationSlider.value = Float(app.user!.notificationDuration)
+        let value = app.user!.notificationDuration
+        if value < 60 {
+            durationTimeLabel.text = String(value) + " min"
+        } else if value == 60{
+            durationTimeLabel.text = "1 time"
+        } else if value < 120 {
+            durationTimeLabel.text = String(value / 60) + " time, " + String(value % 60) + " min"
+        } else if value == 120{
+            durationTimeLabel.text = "2 timer"
+        }
     }
 
     
@@ -57,12 +70,15 @@ class ChangePreferences: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
-        app!.user?.fastCharge = fastchargeSwitch.isOn
-        app!.user?.parkingFee = parkingFeeSwitch.isOn
-        app!.user?.cloudStorage = cloudStorageSwitch.isOn
-        app!.user?.notifications = notificationSwitch.isOn
-        app!.user?.notificationDuration = notificationDuration
-        app!.setUserInDatabase(user: app!.user!, done: {_ in
+        app.user?.fastCharge = fastchargeSwitch.isOn
+        app.user?.parkingFee = parkingFeeSwitch.isOn
+        app.user?.cloudStorage = cloudStorageSwitch.isOn
+        app.user?.notifications = notificationSwitch.isOn
+        app.user?.notificationDuration = notificationDuration
+        app.setUserInDatabase(user: app!.user!, done: {_ in
+            if let navController = self.navigationController {
+                navController.popViewController(animated: true)
+            }
             let banner = StatusBarNotificationBanner(title: "Instillinger er oppdatert", style: .success)
             banner.show()
         })

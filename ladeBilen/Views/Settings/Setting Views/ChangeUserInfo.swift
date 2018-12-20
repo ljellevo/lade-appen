@@ -47,12 +47,18 @@ class ChangeUserInfo: UIViewController{
         if rowIndex == 0 {
             app!.user!.firstname = textField.text!
             app!.setUserInDatabase(user: app!.user!, done: {_ in
+                if let navController = self.navigationController {
+                    navController.popViewController(animated: true)
+                }
                 let banner = StatusBarNotificationBanner(title: "Fornavn er oppdatert", style: .success)
                 banner.show()
             })
         } else {
             app!.user!.lastname = textField.text!
             app!.setUserInDatabase(user: app!.user!, done: {_ in
+                if let navController = self.navigationController {
+                    navController.popViewController(animated: true)
+                }
                 let banner = StatusBarNotificationBanner(title: "Etternavn er oppdatert", style: .success)
                 banner.show()
             })

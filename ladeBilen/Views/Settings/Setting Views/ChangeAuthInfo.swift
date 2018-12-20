@@ -104,6 +104,9 @@ class ChangeAuthInfo: UIViewController {
                         } else {
                             self.app!.user!.email = self.firstTextField.text!
                             self.app!.setUserInDatabase(user: self.app!.user!, done: {_ in
+                                if let navController = self.navigationController {
+                                    navController.popViewController(animated: true)
+                                }
                                 let banner = StatusBarNotificationBanner(title: "E-post er oppdatert", style: .success)
                                 banner.show()
                             })
@@ -136,6 +139,9 @@ class ChangeAuthInfo: UIViewController {
                             self.infoLabel.text = "Passord kunne ikke bli oppdatert"
                             AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
                         } else {
+                            if let navController = self.navigationController {
+                                navController.popViewController(animated: true)
+                            }
                             let banner = StatusBarNotificationBanner(title: "Passord er oppdatert", style: .success)
                             banner.show()
                         }
