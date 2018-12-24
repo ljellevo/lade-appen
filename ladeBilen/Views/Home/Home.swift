@@ -553,7 +553,8 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         if let result = filteredStations {
-            cell.textLabel!.text = result[indexPath.row].name
+            cell.textLabel?.text = result[indexPath.row].name
+            cell.detailTextLabel?.text = result[indexPath.row].city + " " + result[indexPath.row].street + " " + result[indexPath.row].houseNumber
         } else {
             cell.textLabel!.text = filteredStations![indexPath.row].name
         }
@@ -586,13 +587,20 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         let coordinates = CLLocationCoordinate2D(latitude:lat, longitude:lon!)
         mapWindow.setCenter(coordinates, animated: true)
         
-        
         if startPosition {
             detailsStartPosition(withAnimation: false)
             self.view.layoutIfNeeded()
             detailsEngagedPosition(blur: 0.26)
             UIView.animate(withDuration: 0.5) {
                 self.view.layoutIfNeeded()
+            }
+        }
+        for anno in mapWindow.annotations{
+            if anno is Annotation {
+                let annotation = anno as! Annotation
+                if annotation.id == id! {
+                    mapWindow.selectAnnotation(anno, animated: true)
+                }
             }
         }
         searchController.searchBar.endEditing(true)
