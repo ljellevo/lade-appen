@@ -88,6 +88,8 @@ class Home: UIViewController{
         filteredStations = app!.filteredStations
         self.addAnnotationsToMap()
         searchController.searchBar.sizeToFit()
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapElement.handleTapOnMap(_:)))
+        mapWindow.addGestureRecognizer(gestureRecognizer)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -415,6 +417,8 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
         }
     }
     
+
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let anno = view.annotation as? Annotation {
             id = anno.id!
@@ -457,10 +461,16 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         if willDeselectMarker {
             detailsDismissedPosition()
-            detatchAllListeners()
+            detachListenerOnStation()
             UIView.animate(withDuration: 0.5, animations: {
                 self.blurView.alpha = 0.0
             })
+        }
+    }
+    
+    @objc func handleTapOnMap(_ sender: UITapGestureRecognizer) {
+        if searchController.isActive == true && tableViewStack.isHidden == true {
+            searchController.isActive = false
         }
     }
 
@@ -695,7 +705,7 @@ extension Service {
         })
     }
     
-    func detatchAllListeners(){
+    func detachListenerOnStation(){
         print("Detatch")
         app?.detachListenerOnStation(stationId: station!.id)
     }
