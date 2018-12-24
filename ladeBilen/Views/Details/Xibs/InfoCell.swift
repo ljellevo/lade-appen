@@ -353,7 +353,7 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         //Sette størelsen på containerene i collectionview
-        return CGSize(width: (UIScreen.main.bounds.width - 100), height: (UIScreen.main.bounds.width - 100))
+        return CGSize(width: ((collectionView.frame.size.width - 65)/2), height: 84)
     }
 
 }

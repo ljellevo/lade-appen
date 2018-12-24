@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,45 +12,43 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ConnectorCell" customModule="ladeBilen" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="248" height="248"/>
+            <rect key="frame" x="0.0" y="0.0" width="180" height="84"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="248" height="248"/>
+                <rect key="frame" x="0.0" y="0.0" width="180" height="84"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPO-7U-cRT">
-                        <rect key="frame" x="0.0" y="0.0" width="248" height="248"/>
+                        <rect key="frame" x="0.0" y="0.0" width="180" height="84"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CHAdeMO.png" translatesAutoresizingMaskIntoConstraints="NO" id="oVE-86-TXH">
-                                <rect key="frame" x="68" y="18" width="112" height="112"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="oVE-86-TXH" secondAttribute="height" multiplier="1:1" id="3mz-nj-t95"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CHAdeMO" translatesAutoresizingMaskIntoConstraints="NO" id="oVE-86-TXH">
+                                <rect key="frame" x="8" y="13" width="58" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jHu-iQ-f0d">
-                                <rect key="frame" x="8" y="138" width="232" height="74.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="jHu-iQ-f0d">
+                                <rect key="frame" x="8" y="5" width="164" height="74"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChaDeMo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycI-6h-qcd">
-                                        <rect key="frame" x="78" y="0.0" width="76" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="ChaDeMo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycI-6h-qcd">
+                                        <rect key="frame" x="100" y="0.0" width="64" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hurtig" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-1K-PgI">
-                                        <rect key="frame" x="94.5" y="20.5" width="43" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="123.5" y="23" width="40.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fungerer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o67-qd-wqx">
-                                        <rect key="frame" x="85" y="38.5" width="62" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="105.5" y="40" width="58.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opptatt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qS1-tw-D4K">
-                                        <rect key="frame" x="89.5" y="56.5" width="53" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="114" y="57" width="50" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -62,12 +57,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="jHu-iQ-f0d" secondAttribute="bottom" constant="5" id="Ags-wb-Hcr"/>
                             <constraint firstAttribute="trailing" secondItem="jHu-iQ-f0d" secondAttribute="trailing" constant="8" id="Gnn-N3-LLT"/>
-                            <constraint firstItem="oVE-86-TXH" firstAttribute="top" secondItem="zPO-7U-cRT" secondAttribute="topMargin" constant="10" id="Lfs-TP-q3e"/>
-                            <constraint firstItem="jHu-iQ-f0d" firstAttribute="top" secondItem="oVE-86-TXH" secondAttribute="bottom" constant="8" id="QCu-dz-rE6"/>
-                            <constraint firstItem="oVE-86-TXH" firstAttribute="centerX" secondItem="zPO-7U-cRT" secondAttribute="centerX" id="ljH-Sr-qmJ"/>
+                            <constraint firstItem="jHu-iQ-f0d" firstAttribute="top" secondItem="zPO-7U-cRT" secondAttribute="top" constant="5" id="OPQ-2S-x1J"/>
                             <constraint firstItem="jHu-iQ-f0d" firstAttribute="leading" secondItem="zPO-7U-cRT" secondAttribute="leading" constant="8" id="mJY-BB-zWZ"/>
-                            <constraint firstAttribute="centerY" secondItem="oVE-86-TXH" secondAttribute="centerY" constant="50" id="zL8-Ax-R9j"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -79,7 +72,7 @@
                 <constraint firstItem="zPO-7U-cRT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="vSM-l1-B0d"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="248" height="247"/>
+            <size key="customSize" width="180" height="83"/>
             <connections>
                 <outlet property="chargeRateLabel" destination="YcU-1K-PgI" id="mig-nC-8VE"/>
                 <outlet property="imageView" destination="oVE-86-TXH" id="K56-Pn-AsW"/>
@@ -88,10 +81,10 @@
                 <outlet property="typeLabel" destination="ycI-6h-qcd" id="TEP-eH-n0B"/>
                 <outlet property="view" destination="zPO-7U-cRT" id="N9T-eB-ghZ"/>
             </connections>
-            <point key="canvasLocation" x="-49" y="150"/>
+            <point key="canvasLocation" x="-123.2" y="62.968515742128943"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="CHAdeMO.png" width="800" height="800"/>
+        <image name="CHAdeMO" width="605" height="605"/>
     </resources>
 </document>
