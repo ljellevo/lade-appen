@@ -10,10 +10,22 @@ import Foundation
 
 class Algorithms {
 
-    //General (Run when fetching stations) -> Should be server side
-    func checkIfApplicable(station: Station, user: User) -> Bool{
+    func checkIfApplicable(station: Station, user: User) -> Bool {
+        //Må sjekke med parameterene i user for så i avgjøre om stasjonen skal vises
+        if !user.parkingFee {
+            if station.parkingFee {
+                return false
+            }
+        }
+        
         for connector in (user.connector) {
             for conn in station.conn {
+                if !user.fastCharge {
+                    if conn.chargerMode > 3 {
+                        return false
+                    }
+                }
+                
                 if conn.connector == connector {
                     return true
                 }

@@ -19,7 +19,7 @@ class App {
     var stations: [Station] = []
     var filteredStations: [Station] = []
     var connectorDescription: [Int: String] = [:]
-    var subscriptions: [String: [String: Int64]] = [:]
+    var subscriptions: [Subscription] = []
     
     /**
      Checks if data is available in cache, if not then it fetches from database before app i loaded.
@@ -82,10 +82,6 @@ class App {
             }
         }
  
-        
-        
-        
-        
         startDate = NSDate()
         group.notify(queue: .main) {
             print("All done")
@@ -369,7 +365,7 @@ extension DatabaseMethods {
         }
     }
     
-    private func findFilteredStations(){
+    func findFilteredStations(){
         DispatchQueue.global().async {
             self.filteredStations = self.algorithms.filterStations(stations: self.stations, user: self.user!)
             _ = self.setUserCache()
@@ -409,29 +405,30 @@ extension DatabaseMethods {
     }
     
     func subscribeToStation(station: Station, done: @escaping (_ code: Int)-> Void){
-        self.subscriptions.updateValue(["update": Date().getTimestamp(),
-                                        "from": Date().getTimestamp(),
-                                        "to": (Date().getTimestamp() + Int64(self.user!.notificationDuration * 60))],
-                                       forKey: getStationIdAsString(stationId: station.id))
-        
+        let newSubscription = Subscription(values: ["update": Date().getTimestamp(),
+                                                    "from": Date().getTimestamp(),
+                                                    "to": (Date().getTimestamp() + Int64(self.user!.notificationDuration * 60))],
+                                           key: getStationIdAsString(stationId: station.id))
+        self.subscriptions.append(newSubscription)
         database.subscribeToStation(stationId: getStationIdAsString(stationId: station.id), user: self.user!, done: { code in
             done(code)
         })
     }
     
     func unsubscribeToStation(station: Station, done: @escaping (_ code: Int)-> Void){
-        self.subscriptions.removeValue(forKey: getStationIdAsString(stationId: station.id))
+        for i in 0..<subscriptions.count {
+            if subscriptions[i].id == getStationIdAsString(stationId: station.id){
+                subscriptions.remove(at: i)
+            }
+        }
         database.unsubscribeToStation(stationId: getStationIdAsString(stationId: station.id), user: self.user!, done:{ code in
             done(code)
         })
     }
     
     func getSubscriptionsFromDatabase(done: @escaping ()-> Void){
-        //var subscriptions: [String: [String: Int64]] = [:]
         database.getSubscriptionsFromDatabase(user: self.user!){ subscriptions in
-            if subscriptions != nil {
-                self.subscriptions = subscriptions ?? [:]
-            }
+            self.subscriptions = subscriptions
             done()
         }
     }
@@ -502,5 +499,25 @@ extension AlgorithmsMethods {
     func getStationIdFromString(stationId: String) -> Int{
         let stationInt = Int(stationId.replacingOccurrences(of: "NOR_", with: ""))
         return stationInt!
+    }
+    
+    func isStationSubscribedTo(stationId: Int) -> Bool{
+        let id = getStationIdAsString(stationId: stationId)
+        for sub in subscriptions {
+            if sub.id == id {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func findSubscription(stationId: Int) -> Subscription?{
+        let id = getStationIdAsString(stationId: stationId)
+        for sub in subscriptions {
+            if sub.id == id {
+                return sub
+            }
+        }
+        return nil
     }
 }

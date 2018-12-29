@@ -125,6 +125,7 @@
 		B4203397216F910400CF692A /* Target-75.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203394216F910400CF692A /* Target-75.png */; };
 		B4203398216F910400CF692A /* Target-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203395216F910400CF692A /* Target-25.png */; };
 		B4203399216F910400CF692A /* Target-50.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203396216F910400CF692A /* Target-50.png */; };
+		B4EE4C1E21D708A3002D8E6D /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EE4C1D21D708A3002D8E6D /* Subscriptions.swift */; };
 		FAB7FB7CDBE77CFA9ECF188C /* Pods_ladeBilen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D4C07A805BF1A88148B92F /* Pods_ladeBilen.framework */; };
 /* End PBXBuildFile section */
 
@@ -260,6 +261,7 @@
 		B4203394216F910400CF692A /* Target-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-75.png"; sourceTree = "<group>"; };
 		B4203395216F910400CF692A /* Target-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-25.png"; sourceTree = "<group>"; };
 		B4203396216F910400CF692A /* Target-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-50.png"; sourceTree = "<group>"; };
+		B4EE4C1D21D708A3002D8E6D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
 		D7E05682F9A5E2509E969076 /* Pods_ladeBilenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -618,6 +620,7 @@
 				83562CD91FDCD1BE0017F1A7 /* User.swift */,
 				83F208261FC3A02A0075A2F0 /* Annotation.swift */,
 				832296341FEB3B8700401ECD /* Constants.swift */,
+				B4EE4C1D21D708A3002D8E6D /* Subscriptions.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -972,6 +975,7 @@
 				8362951B1FFFE85100D6C430 /* ChangeContact.swift in Sources */,
 				83A54F051FD09FC3002CB5B3 /* Profile.swift in Sources */,
 				83F208251FC370D70075A2F0 /* Connector.swift in Sources */,
+				B4EE4C1E21D708A3002D8E6D /* Subscriptions.swift in Sources */,
 				8331D2842067F57D00E1B4A7 /* Protocol.swift in Sources */,
 				833B143E1FEDAA8C008016BA /* AppDelegate.swift in Sources */,
 				832296351FEB3B8700401ECD /* Constants.swift in Sources */,

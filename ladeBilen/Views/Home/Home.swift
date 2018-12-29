@@ -258,7 +258,8 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
             }
             
-            if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
+            //if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
+            if app!.isStationSubscribedTo(stationId: station!.id){
                 //Bruker følger denne stasjonen skal få presentert teksten "Slutte å følge"
                 cell.subscribeButton.setTitle("Slutte å følge", for: .normal)
                 cell.subscribeButton.layer.backgroundColor = UIColor.appleYellow().cgColor
@@ -658,7 +659,8 @@ extension Protocols: CollectionViewCellDelegate  {
             
             
         case .subscribe:
-            if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
+            //if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
+            if app!.isStationSubscribedTo(stationId: station!.id){
                 let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                 app!.unsubscribeToStation(station: station!, done: { _ in
                     infoCell.subscribeButton.setTitle("Følg", for: .normal)

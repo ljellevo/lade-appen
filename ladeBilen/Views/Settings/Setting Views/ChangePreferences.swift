@@ -76,6 +76,7 @@ class ChangePreferences: UIViewController {
         app.user?.notifications = notificationSwitch.isOn
         app.user?.notificationDuration = notificationDuration
         app.setUserInDatabase(user: app!.user!, done: {_ in
+            self.app.findFilteredStations()
             if let navController = self.navigationController {
                 navController.popViewController(animated: true)
             }

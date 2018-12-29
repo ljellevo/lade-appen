@@ -234,13 +234,13 @@ class DatabaseApp {
         }))
     }
     
-    func getSubscriptionsFromDatabase(user: User, done: @escaping (_ subscriptions: [String: [String: Int64]]?)-> Void){
+    func getSubscriptionsFromDatabase(user: User, done: @escaping (_ subscriptions: [Subscription])-> Void){
         ref.child("User_Info").child(user.uid).child("subscriptions").observeSingleEvent(of: .value) { (snapshot) in
-            var subscriptions = [String: [String: Int64]]()
+            var subscriptions: [Subscription] = []
             for sub in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
                 let values = sub.value as! [String : Int64]
                 if NSNumber(value: (values["to"]!.subtractingReportingOverflow(Date().getTimestamp())).partialValue).intValue >= 0 {
-                    subscriptions.updateValue(sub.value as! [String : Int64], forKey: sub.key)
+                    subscriptions.append(Subscription(values: sub.value as! [String : Int64], key: sub.key))
                 }
             }
             done(subscriptions)

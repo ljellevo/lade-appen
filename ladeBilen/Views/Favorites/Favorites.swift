@@ -54,7 +54,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         if app!.subscriptions.count == 0 {
             app?.getSubscriptionsFromDatabase {
                 for sub in self.app!.subscriptions{
-                    let id = self.app!.getStationIdFromString(stationId: sub.key)
+                    let id = self.app!.getStationIdFromString(stationId: sub.id)
                     for station in self.app!.stations{
                         if station.id == id{
                             self.followingArray.append(station)
@@ -65,7 +65,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             }
         } else {
             for sub in self.app!.subscriptions{
-                let id = self.app!.getStationIdFromString(stationId: sub.key)
+                let id = self.app!.getStationIdFromString(stationId: sub.id)
                 for station in self.app!.stations{
                     if station.id == id{
                         self.followingArray.append(station)
@@ -176,7 +176,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         if app!.subscriptions.count == 0 {
             app?.getSubscriptionsFromDatabase {
                 for sub in self.app!.subscriptions{
-                    let id = self.app!.getStationIdFromString(stationId: sub.key)
+                    let id = self.app!.getStationIdFromString(stationId: sub.id)
                     for station in self.app!.stations{
                         if station.id == id{
                             self.followingArray.append(station)
@@ -187,7 +187,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             }
         } else {
             for sub in self.app!.subscriptions{
-                let id = self.app!.getStationIdFromString(stationId: sub.key)
+                let id = self.app!.getStationIdFromString(stationId: sub.id)
                 for station in self.app!.stations{
                     if station.id == id{
                         self.followingArray.append(station)
@@ -353,7 +353,8 @@ extension CollectionViewLayoutMethods {
                     isFavorite = false
                 }
                 
-                if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
+                //if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
+                if app!.isStationSubscribedTo(stationId: station!.id){
                     //Bruker følger denne stasjonen skal få presentert teksten "Slutte å følge"
                     cell.subscribeButton.setTitle("Slutte å følge", for: .normal)
                     cell.subscribeButton.layer.backgroundColor = UIColor.appleYellow().cgColor
@@ -405,7 +406,8 @@ extension CollectionViewLayoutMethods {
                 cell = addShadowSubscriptionCell(cell: cell)
                 print(followingArray[row].id)
 //              Må fikse denne, ikke sikkert at following array eksisterer
-                cell.timeTo = (app!.subscriptions[app!.getStationIdAsString(stationId: followingArray[row].id)]?["to"])!
+                //cell.timeTo = (app!.subscriptions[app!.getStationIdAsString(stationId: followingArray[row].id)]?["to"])!
+                cell.timeTo = app!.findSubscription(stationId: followingArray[row].id)!.to
                 cell.updateTimer()
                 return cell
             }  else {
@@ -574,7 +576,8 @@ extension Delegate: CollectionViewCellDelegate {
                 })
             }
         } else if action == .subscribe {
-            if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
+            //if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
+            if app!.isStationSubscribedTo(stationId: station!.id){
                 let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                 app!.unsubscribeToStation(station: station!, done: { _ in
                     infoCell.subscribeButton.setTitle("Følg", for: .normal)
