@@ -11,23 +11,7 @@ target 'ladeBilen' do
   pod 'Firebase/Database'
   pod 'Disk', '~> 0.4.0'
   pod 'NotificationBannerSwift'
+  pod 'BulletinBoard'
   
-  target 'ladeBilenTests' do
-    inherit! :search_paths
-    # Pods for testing
-    pod 'Firebase/Core'
-    pod 'Firebase/Auth'
-    pod 'Firebase/Database'
-    pod 'Disk', '~> 0.4.0'
-    pod 'NotificationBannerSwift'
-  end
-
-  target 'ladeBilenUITests' do
-    inherit! :search_paths
-    # Pods for testing
-    pod 'Firebase/Core'
-    pod 'Firebase/Auth'
-    pod 'Firebase/Database'
-  end
 
 end

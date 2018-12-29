@@ -12,6 +12,7 @@ import CoreLocation
 import Firebase
 import Disk
 import NotificationBannerSwift
+import BLTNBoard
 
 class Home: UIViewController{
 
@@ -36,6 +37,17 @@ class Home: UIViewController{
     var startPosition: Bool = true
     
     var willDeselectMarker: Bool = true
+    
+    lazy var bulletinManager: BLTNItemManager = {
+        let page = BLTNPageItem(title: "Fargekoder")
+        page.image = UIImage(named: "Marker-colors.png")
+        page.descriptionText = ""
+        page.actionButtonTitle = "Subscribe"
+        page.alternativeButtonTitle = "Not now"
+        page.requiresCloseButton = false
+        let rootItem: BLTNItem = page
+        return BLTNItemManager(rootItem: rootItem)
+    }()
 
 
     @IBOutlet weak var tableViewStack: UIStackView!
@@ -70,6 +82,9 @@ class Home: UIViewController{
         loadSearchElement()
         
         print(app!.stations.count)
+        if app!.user!.firstTime {
+            bulletinManager.showBulletin(above: self)
+        }
         
 
 

@@ -1,4 +1,5 @@
 PODS:
+  - BulletinBoard (2.0.2)
   - Disk (0.4.0)
   - Firebase/Auth (5.13.0):
     - Firebase/CoreOnly
@@ -73,6 +74,7 @@ PODS:
   - SnapKit (4.0.1)
 
 DEPENDENCIES:
+  - BulletinBoard
   - Disk (~> 0.4.0)
   - Firebase/Auth
   - Firebase/Core
@@ -81,6 +83,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BulletinBoard
     - Disk
     - Firebase
     - FirebaseAnalytics
@@ -99,6 +102,7 @@ SPEC REPOS:
     - SnapKit
 
 SPEC CHECKSUMS:
+  BulletinBoard: a4a3022789e5202167127c3231975313c1d76c51
   Disk: ef2956657d5bb56034b38b29b352170165226440
   Firebase: 6df9a6114bc9f106a98fe83d5438d4d9833c2019
   FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
@@ -116,6 +120,6 @@ SPEC CHECKSUMS:
   NotificationBannerSwift: 49fc4be7fabada55b189b50e72184c92edd5f7f7
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 4b0853f6cc9d02154cb6ce7c176fecfa30e30b31
+PODFILE CHECKSUM: 8d62a8003c39db9220a5be1037a1f0eb3c284033
 
 COCOAPODS: 1.6.0.beta.2

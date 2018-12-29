@@ -21,6 +21,7 @@ struct User: Codable {
     var connector: [Int] = []
     var timestamp: Int64 = -1
     var favorites: [String: Int64] = [:]
+    var firstTime: Bool = true
     
     var dictionary: [String: Any] {
         return ["uid": uid,
@@ -34,7 +35,8 @@ struct User: Codable {
                 "notificationsDuration": notificationDuration,
                 "connector": [connector],
                 "timestamp": timestamp,
-                "favorites": favorites
+                "favorites": favorites,
+                "firstTime": firstTime
         ]
     }
     

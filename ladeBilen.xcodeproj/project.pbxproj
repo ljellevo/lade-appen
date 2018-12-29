@@ -125,6 +125,7 @@
 		B4203397216F910400CF692A /* Target-75.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203394216F910400CF692A /* Target-75.png */; };
 		B4203398216F910400CF692A /* Target-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203395216F910400CF692A /* Target-25.png */; };
 		B4203399216F910400CF692A /* Target-50.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203396216F910400CF692A /* Target-50.png */; };
+		B4B626E521D720BE009B6BBB /* Marker-colors.png in Resources */ = {isa = PBXBuildFile; fileRef = B4B626E421D720BE009B6BBB /* Marker-colors.png */; };
 		B4EE4C1E21D708A3002D8E6D /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EE4C1D21D708A3002D8E6D /* Subscriptions.swift */; };
 		FAB7FB7CDBE77CFA9ECF188C /* Pods_ladeBilen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D4C07A805BF1A88148B92F /* Pods_ladeBilen.framework */; };
 /* End PBXBuildFile section */
@@ -261,6 +262,7 @@
 		B4203394216F910400CF692A /* Target-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-75.png"; sourceTree = "<group>"; };
 		B4203395216F910400CF692A /* Target-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-25.png"; sourceTree = "<group>"; };
 		B4203396216F910400CF692A /* Target-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-50.png"; sourceTree = "<group>"; };
+		B4B626E421D720BE009B6BBB /* Marker-colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Marker-colors.png"; path = "../../../../../../../LadeApp ressurser/Sketch/Prosjekter/App ikon/Ekportfiler/Icons/Cards/Marker-colors.png"; sourceTree = "<group>"; };
 		B4EE4C1D21D708A3002D8E6D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
 		D7E05682F9A5E2509E969076 /* Pods_ladeBilenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -471,6 +473,7 @@
 		8354134E1F82F0A6000A70CB /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				B4B626E421D720BE009B6BBB /* Marker-colors.png */,
 				835413671F82F548000A70CB /* CCS.png */,
 				835413641F82F547000A70CB /* CHAdeMO.png */,
 				835413681F82F548000A70CB /* IEC_60309_3-pin_type_1.png */,
@@ -896,6 +899,7 @@
 				836B7DDC1FCA286700B4B94E /* Comments-Icon-75.png in Resources */,
 				836B7DD51FCA27F300B4B94E /* Pictures-Icon-25.png in Resources */,
 				835413811F82F550000A70CB /* Schuko_CEE_7_4.png in Resources */,
+				B4B626E521D720BE009B6BBB /* Marker-colors.png in Resources */,
 				B4203397216F910400CF692A /* Target-75.png in Resources */,
 				831470A21FBE523300DCD0CD /* Profile-Icon-50.png in Resources */,
 			);
@@ -935,6 +939,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ladeBilen/Pods-ladeBilen-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BulletinBoard/BLTNBoard.framework",
 				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -948,6 +953,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BLTNBoard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
