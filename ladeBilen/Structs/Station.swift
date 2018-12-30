@@ -83,15 +83,17 @@ struct Station: Codable {
         self.id = dictionary["id"] as! Int
         self.name = dictionary["name"] as! String
         
-        addConnArray(connArray: dictionary["conn"] as! NSArray)
+        addConnArray(connArray: dictionary["conn"] as? NSArray ?? [])
     }
     
     
     
     mutating func addConnArray(connArray: NSArray){
-        for i in 1...(connArray.count - 1){
-            let connElement = Connector(dictionary: connArray[i] as! NSDictionary)
-            self.conn.append(connElement)
+        if connArray.count > 0 {
+            for i in 1...(connArray.count - 1){
+                let connElement = Connector(dictionary: connArray[i] as! NSDictionary)
+                self.conn.append(connElement)
+            }
         }
     }
 }

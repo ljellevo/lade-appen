@@ -39,13 +39,7 @@ class Home: UIViewController{
     var willDeselectMarker: Bool = true
     
     lazy var bulletinManager: BLTNItemManager = {
-        let page = BLTNPageItem(title: "Fargekoder")
-        page.image = UIImage(named: "Marker-colors.png")
-        page.descriptionText = ""
-        page.actionButtonTitle = "Subscribe"
-        page.alternativeButtonTitle = "Not now"
-        page.requiresCloseButton = false
-        let rootItem: BLTNItem = page
+        let rootItem: BLTNItem = cardStandard()
         return BLTNItemManager(rootItem: rootItem)
     }()
 
@@ -188,6 +182,102 @@ class Home: UIViewController{
             sender.setTranslation(CGPoint.zero, in: self.view)
         }
     }
+    
+    func cardStandard() -> BLTNPageItem {
+        let page = BLTNPageItem(title: "Stasjon")
+        page.image = UIImage(named: "Card-standard")
+        page.descriptionText = "Blå markører viser hvor det er plassert en stasjon som er kompatibel med din bil"
+        page.appearance.descriptionFontSize = 14.0
+        page.actionButtonTitle = "Neste"
+        page.appearance.actionButtonColor = UIColor.appTheme()
+        page.requiresCloseButton = false
+        page.isDismissable = false
+        page.next = cardRealtime()
+        page.actionHandler = { (item: BLTNActionItem) in
+                item.manager?.displayNextItem()
+            }
+        return page
+    }
+    
+    func cardRealtime() -> BLTNPageItem {
+        let page = BLTNPageItem(title: "Sanntid")
+        page.image = UIImage(named: "Card-realtime")
+        page.descriptionText = "Rød markør betyr at stasjonen tilbyr sanntidsinfromasjon. Du vil da kunne se statusen på kontaktene til stasjonen"
+        page.appearance.descriptionFontSize = 14.0
+        page.actionButtonTitle = "Neste"
+        page.appearance.actionButtonColor = UIColor.appTheme()
+        page.requiresCloseButton = false
+        page.isDismissable = false
+        page.next = iconCard()
+        page.actionHandler = { (item: BLTNActionItem) in
+            item.manager?.displayNextItem()
+        }
+        return page
+    }
+    
+    func iconCard() -> BLTNPageItem {
+        let page = BLTNPageItem(title: "Ikoner")
+        page.image = UIImage(named: "Card-fastcharge")
+        page.descriptionText = "Dersom en markør viser dette symbolet så tilbyr denne stasjonen hurtiglading"
+        page.actionButtonTitle = "Neste"
+        page.appearance.actionButtonColor = UIColor.appTheme()
+        page.appearance.descriptionFontSize = 14.0
+        page.requiresCloseButton = false
+        page.isDismissable = false
+        page.next = locationCard()
+        page.actionHandler = { (item: BLTNActionItem) in
+            item.manager?.displayNextItem()
+        }
+        return page
+    }
+    
+    func locationCard() -> BLTNPageItem {
+        let page = BLTNPageItem(title: "Lokasjon")
+        page.image = UIImage(named: "Card-location")
+        page.descriptionText = "Appen er avhenging av å vite lokasjonen din for å gi den beste brukeropplevelsen, vi lagrer ikke posisjonsdataen din"
+        page.actionButtonTitle = "Tillat"
+        page.appearance.actionButtonColor = UIColor.appTheme()
+        page.appearance.descriptionFontSize = 14.0
+        page.requiresCloseButton = false
+        page.isDismissable = false
+        page.next = pushNotificationsCard()
+        page.actionHandler = { (item: BLTNActionItem) in
+            self.locationManager.requestWhenInUseAuthorization()
+            item.manager?.displayNextItem()
+        }
+        return page
+    }
+    
+    func pushNotificationsCard() -> BLTNPageItem {
+        let page = BLTNPageItem(title: "Push notifikasjoner")
+        page.image = UIImage(named: "Card-push-notifications")
+        page.descriptionText = "Denne appen lar deg følge en stasjon, du vil da få en push notifikasjon dersom det er få ledige kontakter igjen."
+        page.actionButtonTitle = "Tillat"
+        page.appearance.actionButtonColor = UIColor.appTheme()
+        page.appearance.descriptionFontSize = 14.0
+        page.requiresCloseButton = false
+        page.isDismissable = false
+        page.next = setupConfiguredCard()
+        page.actionHandler = { (item: BLTNActionItem) in
+            item.manager?.displayNextItem()
+        }
+        return page
+    }
+    
+    func setupConfiguredCard() -> BLTNPageItem {
+        let page = BLTNPageItem(title: "Ferdig!")
+        page.image = UIImage(named: "Card-success")
+        page.descriptionText = "Da er alt satt opp"
+        page.actionButtonTitle = "Ferdig"
+        page.appearance.actionButtonColor = UIColor.appTheme()
+        page.appearance.descriptionFontSize = 14.0
+        page.requiresCloseButton = false
+        page.isDismissable = false
+        page.actionHandler = { (item: BLTNActionItem) in
+            item.manager?.dismissBulletin(animated: true)
+        }
+        return page
+    }
 }
 
 private typealias DetailsElement = Home
@@ -202,7 +292,6 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
         }
-        self.automaticallyAdjustsScrollViewInsets = false
         
         self.contentView.isHidden = true
         
@@ -349,7 +438,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
     func loadMapElement(){
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        //locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         mapWindow.showsUserLocation = true
         mapWindow.delegate = self
@@ -399,11 +488,11 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
                     dequeuedView.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
                 }
                 if app!.user!.favorites.keys.contains(annotation.id!.description) {
-                    dequeuedView.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
+                    dequeuedView.markerTintColor = UIColor.fruitSalad()
                 }
                 
                 if annotation.fastcharge! {
-                    dequeuedView.glyphImage = UIImage(named: "Station fast")
+                    dequeuedView.glyphImage = UIImage(named: "Fastcharge")
                 } else {
                   dequeuedView.glyphImage = UIImage(named: "Station")
                 }
@@ -417,11 +506,11 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
                     view.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
                 }
                 if app!.user!.favorites.keys.contains(annotation.id!.description) {
-                    view.markerTintColor = UIColor(red: 0.8314, green: 0.6863, blue: 0.2157, alpha: 1.0)
+                    view.markerTintColor = UIColor.fruitSalad()
                 }
                 
                 if annotation.fastcharge! {
-                    view.glyphImage = UIImage(named: "Station fast")
+                    view.glyphImage = UIImage(named: "Fastcharge")
                 } else {
                     view.glyphImage = UIImage(named: "Station")
                 }

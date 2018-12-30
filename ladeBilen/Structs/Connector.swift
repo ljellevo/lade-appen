@@ -24,19 +24,19 @@ struct Connector: Codable {
     var vehicle: String = ""
     
     init(dictionary: NSDictionary) {
-        self.accesibility = dictionary["Accessibility"] as! String
-        self.capasity = dictionary["Capacity"] as! Int
-        self.chargerMode = dictionary["ChargeMode"] as! Int
-        self.connector = dictionary["Connector"] as! Int
-        self.fixedCable = dictionary["FixedCable"] as! String
-        self.manufacturer = dictionary["Manufacturer"] as! String
-        self.error = dictionary["OperationStatus"] as! Int
-        self.paymentMethod = dictionary["PaymentMethod"] as! String
-        self.reservable = dictionary["Reservable"] as! String
-        self.sensorStatus = dictionary["SensorStatus"] as! String
-        self.isTaken = dictionary["Status"] as! Int
-        self.timestamp = dictionary["Timestamp"] as! Int64
-        self.vehicle = dictionary["Vehicle"] as! String
+        self.accesibility = dictionary["Accessibility"] as? String ?? ""
+        self.capasity = dictionary["Capacity"] as? Int ?? -1
+        self.chargerMode = dictionary["ChargeMode"] as? Int ?? -1
+        self.connector = dictionary["Connector"] as? Int ?? -1
+        self.fixedCable = dictionary["FixedCable"] as? String ?? ""
+        self.manufacturer = dictionary["Manufacturer"] as? String ?? ""
+        self.error = dictionary["OperationStatus"] as? Int ?? -1
+        self.paymentMethod = dictionary["PaymentMethod"] as? String ?? ""
+        self.reservable = dictionary["Reservable"] as? String ?? ""
+        self.sensorStatus = dictionary["SensorStatus"] as? String ?? ""
+        self.isTaken = dictionary["Status"] as? Int ?? -1
+        self.timestamp = dictionary["Timestamp"] as? Int64 ?? -1
+        self.vehicle = dictionary["Vehicle"] as? String ?? ""
     }
 }
 

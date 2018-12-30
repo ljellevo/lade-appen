@@ -119,6 +119,12 @@ extension UIColor {
         return UIColor(red:0.19, green:0.25, blue:0.36, alpha:1.0)
     }
     
+    static func fruitSalad() -> UIColor {
+        return UIColor(red:0.35, green:0.65, blue:0.30, alpha:1.0)
+    }
+    
+    
+    
     
     
     
