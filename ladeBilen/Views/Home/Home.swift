@@ -292,6 +292,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
         }
+        //self.automaticallyAdjustsScrollViewInsets = false
         
         self.contentView.isHidden = true
         
@@ -321,14 +322,6 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.connectorDescription = connectorDescription
             cell.delegate = self as CollectionViewCellDelegate
             cell.realtime = station!.realtimeInfo
-            if station!.realtimeInfo {
-                cell.animateRealtime()
-                var availableConnectors = app!.findAvailableContacts(station: station!)
-                cell.realtimeConnectorCounterLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
-            } else {
-                cell.realtimeConnectorCounterLabel.text = ""
-                cell.killAllAnimations()
-            }
             cell.nameLabel.text = station?.name
             cell.compatibleConntacts = countCompatible
             if station!.houseNumber != "" {
@@ -337,29 +330,20 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.streetLabel.text = station!.street + ", " + station!.city
             }
             
-            if station!.realtimeInfo{
-                cell.realtimeLabel.text = "Leverer sanntids informasjon"
-                cell.subscribeButton.isEnabled = true
-                cell.subscribeButton.layer.backgroundColor = UIColor.pictonBlue().cgColor
-            } else {
-                cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
-                cell.subscribeButton.isEnabled = false
-                cell.subscribeButton.layer.backgroundColor = UIColor.pictonBlueDisabled().cgColor
-
-            }
-            
             if station!.parkingFee {
                 cell.parkingFeeLabel.text = "Parkerings avgift"
             } else {
                 cell.parkingFeeLabel.text = "Gratis parkering"
             }
             
-            if isFavorite! {
+            if app!.user!.favorites.keys.contains(station!.id.description){
                 cell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
                 cell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
+                isFavorite = true
             } else {
                 cell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
                 cell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
+                isFavorite = false
             }
             
             //if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
@@ -367,7 +351,6 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                 //Bruker følger denne stasjonen skal få presentert teksten "Slutte å følge"
                 cell.subscribeButton.setTitle("Slutte å følge", for: .normal)
                 cell.subscribeButton.layer.backgroundColor = UIColor.appleYellow().cgColor
-
             } else {
                 //Bruker følger ikke denne stasjonen skal få presentert teksten "Følg"
                 cell.subscribeButton.setTitle("Følg", for: .normal)
@@ -375,7 +358,23 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             
             cell.userComment = station?.userComment
             cell.descriptionLabel.text = station?.descriptionOfLocation
-            cell.connectors = connectors!
+            cell.connectors = self.app!.sortConnectors(station: station!).conn
+            if station!.realtimeInfo{
+                cell.animateRealtime()
+                let compatibleConntacts: [Int] = self.app!.findAvailableContacts(station: station!)
+                cell.compatibleConntacts = compatibleConntacts[0]
+                cell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
+                cell.connectorCollectionView.reloadData()
+                cell.realtimeLabel.text = "Leverer sanntids informasjon"
+                cell.subscribeButton.isEnabled = true
+                cell.subscribeButton.layer.backgroundColor = UIColor.pictonBlue().cgColor
+            } else {
+                cell.realtimeLabel.text = "Leverer ikke sanntids informasjon"
+                cell.subscribeButton.isEnabled = false
+                cell.subscribeButton.layer.backgroundColor = UIColor.pictonBlueDisabled().cgColor
+                cell.realtimeConnectorCounterLabel.text = ""
+                cell.killAllAnimations()
+            }
             return cell
             
         }
@@ -450,6 +449,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
     
     func addAnnotationsToMap(){
         self.mapWindow.removeAnnotations(self.mapWindow.annotations)
+        print("Adding markers")
 
         DispatchQueue.global().async {
             for children in self.filteredStations!{

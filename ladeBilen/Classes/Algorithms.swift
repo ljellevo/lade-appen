@@ -12,6 +12,7 @@ class Algorithms {
 
     func checkIfApplicable(station: Station, user: User) -> Bool {
         //Må sjekke med parameterene i user for så i avgjøre om stasjonen skal vises
+        
         if !user.parkingFee {
             if station.parkingFee {
                 return false

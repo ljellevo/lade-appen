@@ -23,7 +23,7 @@ struct Connector: Codable {
     var timestamp: Int64 = -1
     var vehicle: String = ""
     
-    init(dictionary: NSDictionary) {
+    init(dictionary: [String: Any]) {
         self.accesibility = dictionary["Accessibility"] as? String ?? ""
         self.capasity = dictionary["Capacity"] as? Int ?? -1
         self.chargerMode = dictionary["ChargeMode"] as? Int ?? -1
