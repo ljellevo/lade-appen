@@ -12,8 +12,9 @@ import Disk
 
 class App {
     private let database = DatabaseApp()
-    private var algorithms = Algorithms()
+    private let algorithms = Algorithms()
     private let cacheManagement = CacheManagement()
+    private let imageManager = ImageManager()
     
     var user: User?
     var stations: [Station] = []
@@ -120,6 +121,7 @@ extension AuthenticationMethods {
             }
         }
     }
+    
     /**
      Tries to laod filtered stations from cache, if cache does noit exist or something went wrong it fetches from database.
      
@@ -209,121 +211,68 @@ extension AuthenticationMethods {
 
 private typealias CacheManagementMethods = App
 extension CacheManagementMethods {
-    /**
-     Calls getUserCache in cacheManagement.
-     
-     Parameters:
-     - None.
-     
-     Returns:
-     - User object if possible.
-     */
+    
+    //Need to guard against nil.
+
     func getUserCache() -> User?{
         return cacheManagement.getUserCache()
     }
     
-    /**
-     Calls setUserCache in cacheManagement.
-     
-     Parameters:
-     - User object.
-     
-     Returns:
-     - Bool.
-     */
     func setUserCache() -> Bool{
         return cacheManagement.setUserCache(user: self.user!)
     }
     
-    /**
-     Calls getStationCache in cacheManagement.
-     
-     Parameters:
-     - None.
-     
-     Returns:
-     - Array with station object if possible.
-     */
     func getStationCache() -> [Station]?{
         return cacheManagement.getStationCache()
     }
-    
-    /**
-     Calls setStationCache in cacheManagement.
-     
-     Parameters:
-     - Array with stations objects.
-     
-     Returns:
-     - Bool.
-     */
+
     func setStationCache() -> Bool{
         return cacheManagement.setStationCache(stations: self.stations)
     }
     
-    /**
-     Calls getFilteredStationsCache in cacheManagement.
-     
-     Parameters:
-     - None.
-     
-     Returns:
-     - Array with station object if possible.
-     */
     func getFilteredStationsCache() -> [Station]?{
         return cacheManagement.getFilteredStationsCache()
     }
-    
-    /**
-     Calls setFilteredStationsCache in cacheManagement.
-     
-     Parameters:
-     - Array with filtered station objects.
-     
-     Returns:
-     - Bool.
-     */
+
     func setFilteredStationsCache() -> Bool{
         return cacheManagement.setFilteredStationsCache(filteredStations: self.filteredStations)
     }
     
-    /**
-     Calls getConnectorDescriptionCache in cacheManagement.
-     
-     Parameters:
-     - None.
-     
-     Returns:
-     - Dictionary with connector id/connector name if possible.
-     */
     func getConnectorDescriptionCache() -> [Int:String]?{
         return cacheManagement.getConnectorDescriptionCache()
     }
     
-    /**
-     Calls setConnectorDescriptionCache in cacheManagement.
-     
-     Parameters:
-     - Dictionary with connectorDescriptions.
-     
-     Returns:
-     - Bool.
-     */
     func setConnectorDescriptionCache() -> Bool{
         return cacheManagement.setConnectorDescriptionCache(connectorDescription: self.connectorDescription)
     }
     
-    /**
-    Calls removeAllCache in cacheManagement.
-     
-     Parameters:
-     - None.
-     
-     Returns:
-     - Bool.
-     */
+    /*
+    func getImageUrlCache() -> [ImageURL] {
+        if let cachedImageURls = cacheManagement.getImageUrlCache() {
+            return cachedImageURls
+        }
+        return []
+    }
+    
+    
+    func setImageUrlCache() -> Bool {
+        return cacheManagement.setImageUrlCache(imageUrls: self.imageUrls)
+    }
+ */
+    
     func removeAllCache() -> Bool{
         return cacheManagement.removeAllCache()
+    }
+ 
+    func getImageFromCache(stationId: String) -> UIImage?{
+        if let image = cacheManagement.getImageFromCache(stationId: stationId) {
+            return image
+        }
+        return nil
+    }
+    
+    func setImageInCache(stationId: String, image: UIImage) -> Bool {
+        return cacheManagement.setImageInCache(stationId: stationId, image: image)
     }
 }
 
@@ -519,5 +468,61 @@ extension AlgorithmsMethods {
             }
         }
         return nil
+    }
+}
+
+private typealias ImageMethods = App
+extension ImageMethods {
+    /**
+     Checks if image is cached, if not then fetches from Firebase Storage.
+     
+     - Parameter station: The station object
+     - Parameter url: Returns a callback with url in local filetree
+     
+     - Returns: Callback when image url is ready. Return value is optional and must bechecked for nil.
+     */
+    func getImageForStation(station: Station, done: @escaping (_ image: UIImage?)-> Void){
+        //Check if image exists
+        /*
+        for imageUrl in imageUrls {
+            if imageUrl.id == station.id {
+                done(imageUrl.url)
+            }
+        }
+        
+        //Fetch and add url to object
+        imageManager.getImageForStation(stationId: getStationIdAsString(stationId: station.id)) { (url, code) in
+            if code == 0 {
+                let imageUrl = ImageURL(id: station.id, url: url!)
+                self.imageUrls.append(imageUrl)
+                _ = self.setImageUrlCache()
+                done(url!)
+            } else {
+                done(nil)
+            }
+        }
+ */
+        let stationId = getStationIdAsString(stationId: station.id)
+        //Check if image exists
+        if let image = getImageFromCache(stationId: stationId) {
+            print("Image found in cache")
+            done(image)
+            return
+        }
+        
+        //Fetch image, return and cache
+        
+        imageManager.getImageForStation(stationId: stationId) { (image, code) in
+            if code == 0 {
+                _ = self.setImageInCache(stationId: stationId, image: image!)
+                print("Image fetched from storage")
+                done(image)
+                return
+            } else {
+                done(nil)
+                return
+            }
+            
+        }
     }
 }

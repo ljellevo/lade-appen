@@ -86,7 +86,9 @@ struct Station: Codable {
         addConnArray(connArray: dictionary["conn"] as? [String: Any] ?? [:])
     }
     
-    
+    mutating func addImageUrl(imageUrl: URL){
+        self.image = imageUrl.absoluteString
+    }
     
     mutating func addConnArray(connArray: [String: Any]){
         for conn in connArray.values {

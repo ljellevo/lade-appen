@@ -78,7 +78,7 @@ class CacheManagement {
     
     func getConnectorDescriptionCache() -> [Int:String]?{
         do {
-            if Disk.exists(Constants.PATHS.FILTERED_STATION_CACHE, in: .caches) {
+            if Disk.exists(Constants.PATHS.CONNECTOR_DESCRIPTION_PATH, in: .caches) {
                 return try Disk.retrieve(Constants.PATHS.CONNECTOR_DESCRIPTION_PATH, from: .caches, as: [Int:String].self)
             }
         } catch {
@@ -96,6 +96,48 @@ class CacheManagement {
             return false
         }
     }
+    
+    /*
+    func getImageUrlCache() -> [ImageURL]? {
+        do {
+            if Disk.exists(Constants.PATHS.IMAGEURL_CACHE_PATH, in: .caches) {
+                return try Disk.retrieve(Constants.PATHS.IMAGEURL_CACHE_PATH, from: .caches, as: [ImageURL].self)
+            }
+        } catch {
+            print("Image URL not cached")
+        }
+        return nil
+    }
+    
+    func setImageUrlCache(imageUrls: [ImageURL]) -> Bool{
+        do {
+            try Disk.save(imageUrls, to: .caches, as: Constants.PATHS.IMAGEURL_CACHE_PATH)
+            return true
+        } catch {
+            print("Image URL not saved")
+            return false
+        }
+    }
+ */
+    
+    func getImageFromCache(stationId: String) -> UIImage? {
+        do {
+            return try Disk.retrieve("photos/station/" + stationId + "/station.jpg", from: .documents, as: UIImage.self)
+        } catch {
+            print("Image not found in cache")
+        }
+        return nil
+    }
+    
+    func setImageInCache(stationId: String, image: UIImage) -> Bool{
+        do {
+            try Disk.save(image, to: .documents, as: "photos/station/" + stationId + "/station.jpg")
+            return true
+        } catch {
+            print("Image not cached")
+            return false
+        }
+    }
 
     
     func removeAllCache() -> Bool{
@@ -103,6 +145,8 @@ class CacheManagement {
             try Disk.remove(Constants.PATHS.USER_CACHE_PATH, from: .caches)
             try Disk.remove(Constants.PATHS.STATION_CACHE_PATH, from: .caches)
             try Disk.remove(Constants.PATHS.FILTERED_STATION_CACHE, from: .caches)
+            try Disk.remove(Constants.PATHS.IMAGEURL_CACHE_PATH, from: .caches)
+            try Disk.remove(Constants.PATHS.CONNECTOR_DESCRIPTION_PATH, from: .caches)
             return true
         } catch {
             print("Cache not deleted")

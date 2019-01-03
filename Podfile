@@ -9,6 +9,7 @@ target 'ladeBilen' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   pod 'Disk', '~> 0.4.0'
   pod 'NotificationBannerSwift'
   pod 'BulletinBoard'

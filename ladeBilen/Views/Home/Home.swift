@@ -77,7 +77,7 @@ class Home: UIViewController{
         
         print(app!.stations.count)
         if app!.user!.firstTime {
-            bulletinManager.showBulletin(above: self)
+            //bulletinManager.showBulletin(above: self)
         }
         
 
@@ -375,6 +375,15 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.realtimeConnectorCounterLabel.text = ""
                 cell.killAllAnimations()
             }
+            
+            app!.getImageForStation(station: station!, done: { image in
+                if image != nil {
+                    print("Got new image")
+                    cell.stationImage.image = image
+                } else {
+                    cell.stationImage.image = UIImage(named: "Mangler Bilde")
+                }
+            })
             return cell
             
         }
