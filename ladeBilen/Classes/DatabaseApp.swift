@@ -131,6 +131,12 @@ class DatabaseApp {
         }, withCancel: nil)
     }
     
+    func getStationChecksumFromDatabase(done: @escaping (_ checksum: Checksum)-> Void) {
+        ref.child("checksum").child("nobil_data").child("value").observeSingleEvent(of: .value) { snapshot in
+            done(Checksum(value: snapshot.value as! String))
+        }
+    }
+    
     func getConnectorDescriptionFromDatabase(done: @escaping (_ stations: [Int:String])-> Void){
         var connectorDescription: [Int:String] = [:]
         ref.child("nobil_database_static").child("connectors").observeSingleEvent(of: .value, with: { (snapshot) in

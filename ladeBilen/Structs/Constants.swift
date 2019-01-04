@@ -21,6 +21,7 @@ struct Constants {
     struct PATHS {
         static let USER_CACHE_PATH: String = Auth.auth().currentUser!.uid + ".json"
         static let STATION_CACHE_PATH: String = "stations.json"
+        static let STATION_CHECKSUM_CACHE_PATH: String = "stations-checksum.json"
         static let IMAGEURL_CACHE_PATH: String = "imageurls.json"
         static let FILTERED_STATION_CACHE: String = Auth.auth().currentUser!.uid + "_stations.json"
             //Auth.auth().currentUser!.uid + "_stations.json"

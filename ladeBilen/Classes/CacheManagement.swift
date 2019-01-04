@@ -54,6 +54,28 @@ class CacheManagement {
         }
     }
     
+    func getStationChecksumCache() -> Checksum? {
+        do {
+            if Disk.exists(Constants.PATHS.STATION_CHECKSUM_CACHE_PATH, in: .caches) {
+                return try Disk.retrieve(Constants.PATHS.STATION_CHECKSUM_CACHE_PATH, from: .caches, as: Checksum.self)
+            }
+        } catch {
+            print("Checksum not cached")
+        }
+        return nil
+    }
+    
+    func setStationChecksumCache(checksum: Checksum) -> Bool{
+        do {
+            try Disk.save(checksum, to: .caches, as: Constants.PATHS.STATION_CHECKSUM_CACHE_PATH)
+            return true
+        } catch {
+            
+            print("Could not save checksum to cache")
+            return false
+        }
+    }
+    
     func getFilteredStationsCache() -> [Station]?{
         do {
             if Disk.exists(Constants.PATHS.FILTERED_STATION_CACHE, in: .caches) {
@@ -97,29 +119,6 @@ class CacheManagement {
         }
     }
     
-    /*
-    func getImageUrlCache() -> [ImageURL]? {
-        do {
-            if Disk.exists(Constants.PATHS.IMAGEURL_CACHE_PATH, in: .caches) {
-                return try Disk.retrieve(Constants.PATHS.IMAGEURL_CACHE_PATH, from: .caches, as: [ImageURL].self)
-            }
-        } catch {
-            print("Image URL not cached")
-        }
-        return nil
-    }
-    
-    func setImageUrlCache(imageUrls: [ImageURL]) -> Bool{
-        do {
-            try Disk.save(imageUrls, to: .caches, as: Constants.PATHS.IMAGEURL_CACHE_PATH)
-            return true
-        } catch {
-            print("Image URL not saved")
-            return false
-        }
-    }
- */
-    
     func getImageFromCache(stationId: String) -> UIImage? {
         do {
             return try Disk.retrieve("photos/station/" + stationId + "/station.jpg", from: .documents, as: UIImage.self)
@@ -145,8 +144,10 @@ class CacheManagement {
             try Disk.remove(Constants.PATHS.USER_CACHE_PATH, from: .caches)
             try Disk.remove(Constants.PATHS.STATION_CACHE_PATH, from: .caches)
             try Disk.remove(Constants.PATHS.FILTERED_STATION_CACHE, from: .caches)
-            try Disk.remove(Constants.PATHS.IMAGEURL_CACHE_PATH, from: .caches)
             try Disk.remove(Constants.PATHS.CONNECTOR_DESCRIPTION_PATH, from: .caches)
+            try Disk.remove(Constants.PATHS.STATION_CHECKSUM_CACHE_PATH, from: .caches)
+            try Disk.clear(.caches)
+            try Disk.clear(.documents)
             return true
         } catch {
             print("Cache not deleted")

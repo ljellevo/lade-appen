@@ -16,6 +16,7 @@ class App {
     private let cacheManagement = CacheManagement()
     private let imageManager = ImageManager()
     
+    var checksum: Checksum?
     var user: User?
     var stations: [Station] = []
     var filteredStations: [Station] = []
@@ -93,6 +94,8 @@ class App {
             timeInterval = endDate.timeIntervalSince(startDateTotal as Date)
             print("Done: seconds: \(timeInterval)")
             done(verificationCode)
+            self.getStationsFromDatabase{}
+            
         }
     }
     
@@ -111,6 +114,32 @@ extension AuthenticationMethods {
      - Void
      */
     func verifyStationCache(done: @escaping ()-> Void){
+        if let checksum = getStationCehcksumCache() {
+            getStationChecksumFromDatabase {
+                if checksum.value == self.checksum!.value {
+                    //Local checksum and remote checksum is equal
+                    if let stations = self.getStationCache(){
+                        self.stations = stations
+                        done()
+                    } else {
+                        print("Stations not cached, fetching from database")
+                        self.getStationsFromDatabase {
+                            done()
+                        }
+                    }
+                } else {
+                    self.getStationsFromDatabase {
+                        done()
+                    }
+                }
+            }
+        } else {
+            self.getStationsFromDatabase {
+                done()
+            }
+        }
+        
+        /*
         if let stations = getStationCache(){
             self.stations = stations
             done()
@@ -120,6 +149,7 @@ extension AuthenticationMethods {
                 done()
             }
         }
+ */
     }
     
     /**
@@ -230,6 +260,14 @@ extension CacheManagementMethods {
         return cacheManagement.setStationCache(stations: self.stations)
     }
     
+    func getStationCehcksumCache() -> Checksum? {
+        return cacheManagement.getStationChecksumCache()
+    }
+    
+    func setStationChecksumCache() -> Bool {
+        return cacheManagement.setStationChecksumCache(checksum: self.checksum!)
+    }
+    
     func getFilteredStationsCache() -> [Station]?{
         return cacheManagement.getFilteredStationsCache()
     }
@@ -279,9 +317,23 @@ extension CacheManagementMethods {
 private typealias DatabaseMethods = App
 extension DatabaseMethods {
     func getStationsFromDatabase(done: @escaping ()-> Void){
-        database.getStationsFromDatabase(done: { stations in
-            self.stations = stations
-            _ = self.setStationCache()
+        database.getStationChecksumFromDatabase(done: { checksum in
+            self.checksum = checksum
+            _ = self.setStationChecksumCache()
+            self.database.getStationsFromDatabase(done: { stations in
+                self.stations = stations
+                _ = self.setStationCache()
+                print("Got new stations")
+                done()
+            })
+        })
+        
+    }
+    
+    func getStationChecksumFromDatabase(done: @escaping ()-> Void) {
+        database.getStationChecksumFromDatabase(done: { checksum in
+            self.checksum = checksum
+            _ = self.setStationChecksumCache()
             done()
         })
     }

@@ -290,7 +290,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
         self.collectionView.register(UINib(nibName: "TopCell", bundle: nil), forCellWithReuseIdentifier: "ImageCellIdentifier")
         self.collectionView.register(UINib(nibName: "InfoCell", bundle: nil), forCellWithReuseIdentifier: "InfoCellIdentifier")
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
-            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+            flowLayout.estimatedItemSize = collectionView.bounds.size;
         }
         //self.automaticallyAdjustsScrollViewInsets = false
         
@@ -300,7 +300,6 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
         blurView.alpha = 0.0
         contentView.layer.cornerRadius = 20
         contentView.addShadow()
-        
         detailsDismissedPosition()
     }
     
@@ -317,8 +316,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             print("Details loaded")
             
             let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
-            cell.connectorCollectionView.reloadData()
-            cell.commentsView.reloadData()
+
             cell.connectorDescription = connectorDescription
             cell.delegate = self as CollectionViewCellDelegate
             cell.realtime = station!.realtimeInfo
@@ -375,7 +373,6 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.realtimeConnectorCounterLabel.text = ""
                 cell.killAllAnimations()
             }
-            
             app!.getImageForStation(station: station!, done: { image in
                 if image != nil {
                     print("Got new image")
@@ -384,6 +381,9 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                     cell.stationImage.image = UIImage(named: "Mangler Bilde")
                 }
             })
+            cell.connectorCollectionView.reloadData()
+            cell.commentsView.reloadData()
+            
             return cell
             
         }
@@ -401,6 +401,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             //Deretter må jeg finne høyden.
         }
     }
+ 
     
     
     func detailsStartPosition(withAnimation: Bool){
@@ -418,7 +419,6 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
         } else {
             self.blurView.alpha = 0.0
         }
-        
     }
     
     func detailsEngagedPosition(blur: CGFloat){
