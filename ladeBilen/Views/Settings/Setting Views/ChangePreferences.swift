@@ -21,8 +21,7 @@ class ChangePreferences: UIViewController {
     @IBOutlet weak var parkingFeeLabel: UILabel!
     @IBOutlet weak var parkingFeeSwitch: UISwitch!
     
-    @IBOutlet weak var cloudStorageLabel: UILabel!
-    @IBOutlet weak var cloudStorageSwitch: UISwitch!
+    @IBOutlet weak var reduceDataSwitch: UISwitch!
     
     @IBOutlet weak var notificationLabel: UILabel!
     @IBOutlet weak var notificationSwitch: UISwitch!
@@ -39,7 +38,7 @@ class ChangePreferences: UIViewController {
         saveButton.layer.cornerRadius = 20
         fastchargeSwitch.isOn = app.user!.fastCharge
         parkingFeeSwitch.isOn = app.user!.parkingFee
-        cloudStorageSwitch.isOn = app.user!.cloudStorage
+        reduceDataSwitch.isOn = app.user!.reduceData
         notificationSwitch.isOn = app.user!.notifications
         durationSlider.value = Float(app.user!.notificationDuration)
         let value = app.user!.notificationDuration
@@ -72,7 +71,7 @@ class ChangePreferences: UIViewController {
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         app.user?.fastCharge = fastchargeSwitch.isOn
         app.user?.parkingFee = parkingFeeSwitch.isOn
-        app.user?.cloudStorage = cloudStorageSwitch.isOn
+        app.user?.reduceData = reduceDataSwitch.isOn
         app.user?.notifications = notificationSwitch.isOn
         app.user?.notificationDuration = notificationDuration
         app.setUserInDatabase(user: app!.user!, done: {_ in

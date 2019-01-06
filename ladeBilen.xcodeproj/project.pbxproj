@@ -128,6 +128,7 @@
 		B4ACC78B21E02050005CC265 /* Checksum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ACC78A21E02050005CC265 /* Checksum.swift */; };
 		B4CABB8721DD8845000A3911 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CABB8621DD8845000A3911 /* ImageManager.swift */; };
 		B4EE4C1E21D708A3002D8E6D /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EE4C1D21D708A3002D8E6D /* Subscriptions.swift */; };
+		B4F4380A21E16EE300D39726 /* ResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F4380921E16EE300D39726 /* ResetPassword.swift */; };
 		FAB7FB7CDBE77CFA9ECF188C /* Pods_ladeBilen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D4C07A805BF1A88148B92F /* Pods_ladeBilen.framework */; };
 /* End PBXBuildFile section */
 
@@ -266,6 +267,7 @@
 		B4ACC78A21E02050005CC265 /* Checksum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checksum.swift; sourceTree = "<group>"; };
 		B4CABB8621DD8845000A3911 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		B4EE4C1D21D708A3002D8E6D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
+		B4F4380921E16EE300D39726 /* ResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassword.swift; sourceTree = "<group>"; };
 		D7E05682F9A5E2509E969076 /* Pods_ladeBilenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladeBilenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -611,6 +613,7 @@
 				83DD039B1FEDCD3E00AEF6C9 /* Register.swift */,
 				83FD2BE91FEE6DE9002B8EDF /* RegisterCont.swift */,
 				8365D9F01FEEB48E006510E9 /* RegisterFinished.swift */,
+				B4F4380921E16EE300D39726 /* ResetPassword.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -997,6 +1000,7 @@
 				8302AE2E1FC3EA8C007F693A /* Details.swift in Sources */,
 				83A926F1204207DB0013514F /* SubscriptionCell.swift in Sources */,
 				8312F7332059B832006671F1 /* Extentions.swift in Sources */,
+				B4F4380A21E16EE300D39726 /* ResetPassword.swift in Sources */,
 				83F9E440203C98DE009B3788 /* Initialization.swift in Sources */,
 				83498D1C1EEB0B8300C3D92A /* NavigationHome.swift in Sources */,
 				8300524D20818001008DAEEF /* Enums.swift in Sources */,

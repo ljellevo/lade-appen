@@ -23,8 +23,14 @@ class ImageManager {
      This callback block consists of <Optional image, status code>
      If status code is 0 then image is safe to unwrap.
      */
-    func getImageForStation(stationId: String, done: @escaping (_ image: UIImage?, _ code: Int)-> Void){
-        let stationImageRef = storage.reference().child("photos/stations/" + stationId + "/station.jpg")
+    func getImageForStation(stationId: String, user: User, done: @escaping (_ image: UIImage?, _ code: Int)-> Void){
+        let stationImageRef = storage.reference()
+        if user.reduceData {
+            stationImageRef.child("photos/stations/" + stationId + "/station_lowres.jpg")
+        } else {
+            stationImageRef.child("photos/stations/" + stationId + "/station.jpg")
+        }
+        
         
         stationImageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
             if error != nil {
@@ -34,27 +40,5 @@ class ImageManager {
                 done(image, 0)
             }
         }
- 
-        /*
-        let documentFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let destination = URL(fileURLWithPath: documentFolder).appendingPathComponent("photos/stations/" + stationId, isDirectory: true)
-        let fileManager = FileManager.default
-        do {
-            try fileManager.createDirectory(at: destination, withIntermediateDirectories: true, attributes: nil)
-        }
-        catch {
-            fatalError("Unable to create cache URL: \(error)")
-        }
-        
-        let localURL = URL(string: destination.absoluteString + "station.jpg")!
-        stationImageRef.write(toFile: localURL) { url, error in
-            if error != nil {
-                print(error)
-                done(nil, 1)
-            } else {
-                done(url, 0)
-            }
-        }
-        */
     }
 }

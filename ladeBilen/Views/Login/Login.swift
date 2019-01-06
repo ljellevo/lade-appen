@@ -100,6 +100,8 @@ class Login: UIViewController, UITextFieldDelegate {
         } else if let nextViewController = segue.destination as? NavigationHome {
             let home = nextViewController.viewControllers.first as! Home
             home.app = app
+        } else if let nextViewController = segue.destination as? ResetPassword {
+            nextViewController.app = app
         }
     }
     
@@ -143,6 +145,7 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     
     func navigateUser(){
+        print("Logging in")
         app?.verifyUserCache(){code in
             if code == 0 {
                 self.app!.initializeApplication(done: {_ in
@@ -157,7 +160,20 @@ class Login: UIViewController, UITextFieldDelegate {
     
     @IBAction func switchButtonClicked(_ sender: UIButton) {
         if(isViewActive == true){
-            print("Glemt passord")
+            if loginViewIsPresented {
+                print("Glemt passord")
+                self.performSegue(withIdentifier: "toResetPassword", sender: self)
+            } else {
+                print("Allerede bruker")
+                loginViewIsPresented = true
+                print("Logge inn")
+                loginButton.setTitle("Logg inn", for: .normal)
+                switchViewButton.setTitle("Glemt passord?", for: .normal)
+                inputOneTextField.placeholder = "E-Post"
+                inputTwoTextField.placeholder = "Passord"
+                inputThreeTextField.isHidden = true
+            }
+            
         } else {
             if(loginViewIsPresented){
                 loginViewIsPresented = false
@@ -290,6 +306,10 @@ class Login: UIViewController, UITextFieldDelegate {
             }
             sender.setTranslation(CGPoint.zero, in: self.view)
         }
+    }
+    
+    @IBAction func unwindToLogin(segue:UIStoryboardSegue) {
+        
     }
     
 }

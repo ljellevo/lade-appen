@@ -177,6 +177,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 try Auth.auth().signOut()
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "Login") as! Login
+                controller.app = App()
                 self.present(controller, animated: false, completion: { () -> Void in
                 })
             } catch {

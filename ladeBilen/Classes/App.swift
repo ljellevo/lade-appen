@@ -526,45 +526,22 @@ extension AlgorithmsMethods {
 private typealias ImageMethods = App
 extension ImageMethods {
     /**
-     Checks if image is cached, if not then fetches from Firebase Storage.
+     Checks if image is cached, if not then fetches from Firebase Storage. Caches newly fetched image.
      
      - Parameter station: The station object
      - Parameter url: Returns a callback with url in local filetree
      
      - Returns: Callback when image url is ready. Return value is optional and must bechecked for nil.
      */
-    func getImageForStation(station: Station, done: @escaping (_ image: UIImage?)-> Void){
-        //Check if image exists
-        /*
-        for imageUrl in imageUrls {
-            if imageUrl.id == station.id {
-                done(imageUrl.url)
-            }
-        }
-        
-        //Fetch and add url to object
-        imageManager.getImageForStation(stationId: getStationIdAsString(stationId: station.id)) { (url, code) in
-            if code == 0 {
-                let imageUrl = ImageURL(id: station.id, url: url!)
-                self.imageUrls.append(imageUrl)
-                _ = self.setImageUrlCache()
-                done(url!)
-            } else {
-                done(nil)
-            }
-        }
- */
+    func getImageForStation(station: Station, user: User, done: @escaping (_ image: UIImage?)-> Void){
         let stationId = getStationIdAsString(stationId: station.id)
-        //Check if image exists
         if let image = getImageFromCache(stationId: stationId) {
             print("Image found in cache")
             done(image)
             return
         }
         
-        //Fetch image, return and cache
-        
-        imageManager.getImageForStation(stationId: stationId) { (image, code) in
+        imageManager.getImageForStation(stationId: stationId, user: user) { (image, code) in
             if code == 0 {
                 _ = self.setImageInCache(stationId: stationId, image: image!)
                 print("Image fetched from storage")

@@ -43,8 +43,8 @@ class DatabaseApp {
                 if parkingfee == nil {
                     error = true
                 }
-                let cloudstorage = value["cloudStorage"] as? Bool
-                if cloudstorage == nil {
+                let reduceData = value["reduceData"] as? Bool
+                if reduceData == nil {
                     error = true
                 }
                 let notifications = value["notifications"] as? Bool
@@ -71,7 +71,7 @@ class DatabaseApp {
                 if error == false {
                     print("User found in database, caching and navigating to home: AppDelegate")
                     
-                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, cloudStorage: cloudstorage!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!, timestamp: timestamp!, favorites: favorites!)
+                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, reduceData: reduceData!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!, timestamp: timestamp!, favorites: favorites!)
                     done(user)
                 } else {
                     done(nil)
@@ -88,7 +88,7 @@ class DatabaseApp {
              "lastname": user.lastname as String,
              "fastCharge": user.fastCharge as Bool,
              "parkingFee": user.parkingFee as Bool,
-             "cloudStorage": user.cloudStorage as Bool,
+             "reduceData": user.reduceData as Bool,
              "notifications": user.notifications as Bool,
              "notificationsDuration": user.notificationDuration as Int,
              "connector": user.connector as [Int],

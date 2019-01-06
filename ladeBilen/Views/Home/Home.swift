@@ -373,9 +373,8 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.realtimeConnectorCounterLabel.text = ""
                 cell.killAllAnimations()
             }
-            app!.getImageForStation(station: station!, done: { image in
+            app!.getImageForStation(station: station!, user: app!.user!, done: { image in
                 if image != nil {
-                    print("Got new image")
                     cell.stationImage.image = image
                 } else {
                     cell.stationImage.image = UIImage(named: "Mangler Bilde")

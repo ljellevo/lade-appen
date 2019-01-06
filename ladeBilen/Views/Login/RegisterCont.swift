@@ -26,7 +26,7 @@ class RegisterCont: UIViewController {
     
     @IBOutlet weak var cloudStorageLabel: UILabel!
     
-    @IBOutlet weak var cloudStorageSwitch: UISwitch!
+    @IBOutlet weak var reduceDataSwitch: UISwitch!
     
     @IBOutlet weak var notificationLabel: UILabel!
     
@@ -73,7 +73,7 @@ class RegisterCont: UIViewController {
             registerFinished.lastname = lastname
             registerFinished.fastcharge = fastchargeSwitch.isOn
             registerFinished.parkingfee = parkingFeeSwitch.isOn
-            registerFinished.cloudStorage = cloudStorageSwitch.isOn
+            registerFinished.reduceData = reduceDataSwitch.isOn
             registerFinished.notifications = notificationSwitch.isOn
             registerFinished.notificationsDuration = notificationDuration
             registerFinished.app = app

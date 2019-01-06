@@ -15,7 +15,7 @@ struct User: Codable {
     var lastname: String = ""
     var fastCharge: Bool = false
     var parkingFee: Bool = false
-    var cloudStorage: Bool = false
+    var reduceData: Bool = false
     var notifications: Bool = false
     var notificationDuration: Int = -1
     var connector: [Int] = []
@@ -30,7 +30,7 @@ struct User: Codable {
                 "lastname": lastname,
                 "fastcharge": fastCharge,
                 "parkingFee": parkingFee,
-                "cloudStorage": cloudStorage,
+                "reduceData": reduceData,
                 "notifications": notifications,
                 "notificationsDuration": notificationDuration,
                 "connector": [connector],
@@ -45,14 +45,14 @@ struct User: Codable {
     }
 
     
-    init(uid: String, email: String, firstname: String, lastname: String, fastCharge: Bool, parkingFee: Bool, cloudStorage: Bool, notifications: Bool, notificationDuration: Int, connector: [Int], timestamp: Int64, favorites: [String:Int64]) {
+    init(uid: String, email: String, firstname: String, lastname: String, fastCharge: Bool, parkingFee: Bool, reduceData: Bool, notifications: Bool, notificationDuration: Int, connector: [Int], timestamp: Int64, favorites: [String:Int64]) {
         self.uid = uid
         self.email = email
         self.firstname = firstname
         self.lastname = lastname
         self.fastCharge = fastCharge
         self.parkingFee = parkingFee
-        self.cloudStorage = cloudStorage
+        self.reduceData = reduceData
         self.notifications = notifications
         self.notificationDuration = notificationDuration
         self.connector = connector
