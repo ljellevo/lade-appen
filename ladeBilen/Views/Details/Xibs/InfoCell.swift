@@ -33,6 +33,7 @@ class InfoCell: UICollectionViewCell{
     
     @IBOutlet weak var detailsStack: UIStackView!
         @IBOutlet weak var nameLabel: UILabel!
+        @IBOutlet weak var distanceLabel: UILabel!
         @IBOutlet weak var streetLabel: UILabel!
         @IBOutlet weak var realtimeLabel: UILabel!
         @IBOutlet weak var fastChargeLabel: UILabel!
@@ -184,8 +185,8 @@ extension DetailsElement {
     }
     
     func animateRealtime(){
-        var x = 5
-        let y = 10
+        var x = 0
+        let y = 4
         
         let firstDot = UIView(frame: CGRect(x: x, y: y, width: 10, height: 10))
         x += 15

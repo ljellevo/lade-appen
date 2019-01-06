@@ -378,6 +378,16 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             app.getImageForStation(station: station!, user: app.user!, done: { image in
                 cell.setImage(image: image)
             })
+            if locationManager.location != nil {
+                let distance = app!.findDistanceToStation(station: station!, location: locationManager.location!)
+                if distance < 1000.0 {
+                    cell.distanceLabel.text = String(format: "%.0f", distance) + " m"
+                } else {
+                    cell.distanceLabel.text = String(format: "%.1f", distance/1000) + " km"
+                }
+            } else {
+                cell.distanceLabel.text = ""
+            }
             cell.connectorCollectionView.reloadData()
             cell.commentsView.reloadData()
             
@@ -678,9 +688,9 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         } else {
             let distance = app!.findDistanceToStation(station: filteredStationsSearch[indexPath.row], location: locationManager.location!)
             if distance < 1000.0 {
-                cell.distanceLabel.text = String(format: "%.0f", distance) + "m"
+                cell.distanceLabel.text = String(format: "%.0f", distance) + " m"
             } else {
-                cell.distanceLabel.text = String(format: "%.1f", distance/1000) + "km"
+                cell.distanceLabel.text = String(format: "%.1f", distance/1000) + " km"
             }
         }
         return cell

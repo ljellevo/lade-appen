@@ -9,10 +9,13 @@
 import UIKit
 import Disk
 import NotificationBannerSwift
+import MapKit
 
 class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var app: App!
+    var locationManager: CLLocationManager = CLLocationManager()
+
     var favoriteArray: [Station] = []
     var realtimeArray: [Int] = []
     var followingArray: [Station] = []
@@ -385,6 +388,17 @@ extension CollectionViewLayoutMethods {
                 app.getImageForStation(station: station!, user: app.user!, done: { image in
                     cell.setImage(image: image)
                 })
+                
+                if locationManager.location != nil {
+                    let distance = app!.findDistanceToStation(station: station!, location: locationManager.location!)
+                    if distance < 1000.0 {
+                        cell.distanceLabel.text = String(format: "%.0f", distance) + " m"
+                    } else {
+                        cell.distanceLabel.text = String(format: "%.1f", distance/1000) + " km"
+                    }
+                } else {
+                    cell.distanceLabel.text = ""
+                }
                 
                 cell.connectorCollectionView.reloadData()
                 cell.commentsView.reloadData()
