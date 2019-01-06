@@ -21,7 +21,7 @@ struct User: Codable {
     var connector: [Int] = []
     var timestamp: Int64 = -1
     var favorites: [String: Int64] = [:]
-    var firstTime: Bool = true
+    var tutorial: Bool = true
     
     var dictionary: [String: Any] {
         return ["uid": uid,
@@ -36,7 +36,7 @@ struct User: Codable {
                 "connector": [connector],
                 "timestamp": timestamp,
                 "favorites": favorites,
-                "firstTime": firstTime
+                "tutorial": tutorial
         ]
     }
     
@@ -45,7 +45,7 @@ struct User: Codable {
     }
 
     
-    init(uid: String, email: String, firstname: String, lastname: String, fastCharge: Bool, parkingFee: Bool, reduceData: Bool, notifications: Bool, notificationDuration: Int, connector: [Int], timestamp: Int64, favorites: [String:Int64], firstTime: Bool) {
+    init(uid: String, email: String, firstname: String, lastname: String, fastCharge: Bool, parkingFee: Bool, reduceData: Bool, notifications: Bool, notificationDuration: Int, connector: [Int], timestamp: Int64, favorites: [String:Int64], tutorial: Bool) {
         self.uid = uid
         self.email = email
         self.firstname = firstname
@@ -58,6 +58,6 @@ struct User: Codable {
         self.connector = connector
         self.timestamp = timestamp
         self.favorites = favorites
-        self.firstTime = firstTime
+        self.tutorial = tutorial
     }
 }

@@ -76,7 +76,7 @@ class Home: UIViewController{
         loadSearchElement()
         
         print(app.stations.count)
-        if app.user!.firstTime {
+        if app.user!.tutorial {
             bulletinManager.showBulletin(above: self)
         }
         
@@ -274,7 +274,7 @@ class Home: UIViewController{
         page.requiresCloseButton = false
         page.isDismissable = false
         page.actionHandler = { (item: BLTNActionItem) in
-            self.app.user?.firstTime = false
+            self.app.user?.tutorial = false
             self.app.setUserInDatabase(user: self.app.user!, done: {_ in
                 item.manager?.dismissBulletin(animated: true)
             })

@@ -17,6 +17,9 @@ class DatabaseApp {
     
     func getUserFromDatabase(done: @escaping (_ user: User?)-> Void){
         ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+            print("Got value from db")
+
+            
             if let value = snapshot.value as? NSDictionary {
                 var error: Bool = false
                 let uid = value["uid"] as? String
@@ -68,21 +71,28 @@ class DatabaseApp {
                     favorites = [:]
                 }
                 
-                var firstTime = value["firstTime"] as? Bool
-                if firstTime == nil {
-                    firstTime = true
+                var tutorial = value["tutorial"] as? Bool
+                if tutorial == nil {
+                    tutorial = true
                 }
                 
                 if error == false {
                     print("User found in database, caching and navigating to home: AppDelegate")
                     
-                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, reduceData: reduceData!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!, timestamp: timestamp!, favorites: favorites!, firstTime: firstTime!)
+                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, reduceData: reduceData!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!, timestamp: timestamp!, favorites: favorites!, tutorial: tutorial!)
                     done(user)
                 } else {
+                    print("Got error missing values")
                     done(nil)
                 }
+            } else {
+                print("Value is empty")
+                done(nil)
             }
-        }, withCancel: nil)
+        }, withCancel: { error in
+            print("Got error")
+            done(nil)
+        })
     }
     
     func setUserInDatabase(user: User, done: @escaping (_ code: Int)-> Void){
@@ -99,7 +109,7 @@ class DatabaseApp {
              "connector": user.connector as [Int],
              "timestamp": user.timestamp as Int64,
              "favorites": user.favorites as [String:Int64],
-             "firstTime": user.firstTime as Bool
+             "tutorial": user.tutorial as Bool
             ]
         ){
             (error:Error?, ref:DatabaseReference) in

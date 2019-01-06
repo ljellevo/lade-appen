@@ -47,14 +47,6 @@ class App {
             print("User verified: seconds: \(timeInterval)")
             verificationCode = code!
             startDate = NSDate()
-//            self.getSubscriptionsFromDatabase(){
-//                let endDate: NSDate = NSDate()
-//                let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
-//                print("Subscriptions fetched in : \(timeInterval)")
-//                DispatchQueue.main.async {
-//                    group.leave()
-//                }
-//            }
             DispatchQueue.main.async {
                 group.leave()
             }
@@ -87,15 +79,16 @@ class App {
         startDate = NSDate()
         group.notify(queue: .main) {
             print("All done")
-            self.verifyFilteredStationsCache()
+            if verificationCode == 0 {
+                self.verifyFilteredStationsCache()
+                let endDate: NSDate = NSDate()
+                let timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
+                print("FilteredStations verified: seconds: \(timeInterval)")
+            }
             let endDate: NSDate = NSDate()
-            var timeInterval: Double = endDate.timeIntervalSince(startDate as Date)
-            print("FilteredStations verified: seconds: \(timeInterval)")
-            timeInterval = endDate.timeIntervalSince(startDateTotal as Date)
+            let timeInterval = endDate.timeIntervalSince(startDateTotal as Date)
             print("Done: seconds: \(timeInterval)")
             done(verificationCode)
-            self.getStationsFromDatabase{}
-            
         }
     }
     
@@ -138,18 +131,6 @@ extension AuthenticationMethods {
                 done()
             }
         }
-        
-        /*
-        if let stations = getStationCache(){
-            self.stations = stations
-            done()
-        } else {
-            print("Stations not cached, fetching from database")
-            getStationsFromDatabase {
-                done()
-            }
-        }
- */
     }
     
     /**
