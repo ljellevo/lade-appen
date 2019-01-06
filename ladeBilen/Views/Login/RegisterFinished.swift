@@ -14,8 +14,7 @@ import AudioToolbox
 class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var app: App!
 
-    var connectorString: [String] = []
-    var connectorIndex: [Int] = []
+    var connectorDescription: [ConnectorDescription] = []
     
     var uid: String?
     var email: String?
@@ -40,13 +39,15 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
         finishedButton.layer.cornerRadius = 20
         tableView.delegate = self
         tableView.dataSource = self
-        getConnectors()
+        for connDesc in app.connectorDescription{
+            self.connectorDescription.append(connDesc)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    /*
     func getConnectors(){
         //Må puttes i app klassen
         let ref = Database.database().reference()
@@ -59,17 +60,18 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.tableView.reloadData()
         }, withCancel: nil)
     }
+ */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return connectorIndex.count
+        return connectorDescription.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "connectorsCells", for: indexPath)
-        cell.textLabel?.text = connectorString[indexPath.row]
+        cell.textLabel?.text = connectorDescription[indexPath.row].desc
         cell.selectionStyle = .none
-        if connector.index(of: connectorIndex[indexPath.row]) != nil {
+        if connector.index(of: connectorDescription[indexPath.row].id) != nil {
             cell.accessoryType = UITableViewCell.AccessoryType.checkmark
         } else {
             cell.accessoryType = UITableViewCell.AccessoryType.none
@@ -82,14 +84,14 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
         if let cell = tableView.cellForRow(at: indexPath) {
             if cell.accessoryType == .none {
                 cell.accessoryType = .checkmark
-                connector.append(connectorIndex[indexPath.row])
+                connector.append(connectorDescription[indexPath.row].id)
             }
             print(connector)
         }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let index = connector.index(of: connectorIndex[indexPath.row]) {
+        if let index = connector.index(of: connectorDescription[indexPath.row].id) {
             connector.remove(at: index)
             if let cell = tableView.cellForRow(at: indexPath) {
                 if cell.accessoryType == .checkmark {

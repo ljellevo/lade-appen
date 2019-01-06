@@ -13,7 +13,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var app: App!
     
     
-    var connectorString: [ConnectorDescription] = []
+    var connectorDescription: [ConnectorDescription] = []
     var connector: [Int] = []
 
     @IBOutlet weak var tableView: UITableView!
@@ -23,7 +23,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
         tableView.delegate = self
         tableView.dataSource = self
         for connDesc in app.connectorDescription{
-            self.connectorString.append(connDesc)
+            self.connectorDescription.append(connDesc)
         }
     }
     
@@ -35,11 +35,11 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return connectorString.count
+        return connectorDescription.count
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if connector.index(of: connectorString[indexPath.row].id) != nil {
+        if connector.index(of: connectorDescription[indexPath.row].id) != nil {
             cell.accessoryType = .checkmark
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
         }
@@ -48,7 +48,7 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "connectorsCells", for: indexPath)
-        cell.textLabel?.text = connectorString[indexPath.row].desc
+        cell.textLabel?.text = connectorDescription[indexPath.row].desc
         cell.selectionStyle = .none
         return cell
     }
@@ -56,13 +56,13 @@ class ChangeContact: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
-            connector.append(connectorString[indexPath.row].id)
+            connector.append(connectorDescription[indexPath.row].id)
             app.setConnectorForUserInDatabase(connectors: connector, willFilterStations: false)
         }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let index = connector.index(of: connectorString[indexPath.row].id) {
+        if let index = connector.index(of: connectorDescription[indexPath.row].id) {
             connector.remove(at: index)
             if let cell = tableView.cellForRow(at: indexPath) {
                 cell.accessoryType = .none
