@@ -125,8 +125,6 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.section)
-        print(indexPath.row)
         switch (indexPath.section, indexPath.row){
             case (0,0):
                 rowIndex = indexPath.row

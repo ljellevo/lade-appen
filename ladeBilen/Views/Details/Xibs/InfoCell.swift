@@ -15,7 +15,7 @@ class InfoCell: UICollectionViewCell{
     var userComment: String?
     var connectors: [Connector]?
     var compatibleConntacts: Int?
-    var connectorDescription: [Int: String]?
+    var connectorDescription: [ConnectorDescription]?
     weak var delegate: CollectionViewCellDelegate?
 
     
@@ -298,7 +298,7 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
         
         //Endre fra description til int sammenligning
         //cell.typeLabel.text = connectors![indexPath.row].connector?.description //HEr
-        cell.typeLabel.text = connectorDescription![connectors![indexPath.row].connector]
+        cell.typeLabel.text = connectorDescription![connectors![indexPath.row].connector].desc
         cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode.description
         if connectors![indexPath.row].chargerMode == -1 {
             cell.chargeRateLabel.text = "Mangler"

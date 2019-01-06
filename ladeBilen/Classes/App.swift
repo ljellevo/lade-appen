@@ -20,7 +20,7 @@ class App {
     var user: User?
     var stations: [Station] = []
     var filteredStations: [Station] = []
-    var connectorDescription: [Int: String] = [:]
+    var connectorDescription: [ConnectorDescription] = []
     var subscriptions: [Subscription] = []
     
     /**
@@ -260,7 +260,7 @@ extension CacheManagementMethods {
         return cacheManagement.setFilteredStationsCache(filteredStations: self.filteredStations)
     }
     
-    func getConnectorDescriptionCache() -> [Int:String]?{
+    func getConnectorDescriptionCache() -> [ConnectorDescription]?{
         return cacheManagement.getConnectorDescriptionCache()
     }
     

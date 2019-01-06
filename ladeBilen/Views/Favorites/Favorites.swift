@@ -23,7 +23,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     var isFavorite: Bool?
     var connectors: [Connector]?
     var countCompatible: Int?
-    var connectorDescription: [Int:String]?
+    var connectorDescription: [ConnectorDescription]?
     
     @IBOutlet weak var collectionView: UICollectionView!
     

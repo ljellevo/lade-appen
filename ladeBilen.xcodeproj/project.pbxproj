@@ -116,6 +116,7 @@
 		B4203399216F910400CF692A /* Target-50.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203396216F910400CF692A /* Target-50.png */; };
 		B4ACC78B21E02050005CC265 /* Checksum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ACC78A21E02050005CC265 /* Checksum.swift */; };
 		B4CABB8721DD8845000A3911 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CABB8621DD8845000A3911 /* ImageManager.swift */; };
+		B4DB59FC21E190780036432C /* ConnectorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB59FB21E190780036432C /* ConnectorDescription.swift */; };
 		B4EE4C1E21D708A3002D8E6D /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EE4C1D21D708A3002D8E6D /* Subscriptions.swift */; };
 		B4F4380A21E16EE300D39726 /* ResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F4380921E16EE300D39726 /* ResetPassword.swift */; };
 		B4F4380D21E1826B00D39726 /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F4380B21E1826A00D39726 /* DefaultCell.swift */; };
@@ -246,6 +247,7 @@
 		B4203396216F910400CF692A /* Target-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-50.png"; sourceTree = "<group>"; };
 		B4ACC78A21E02050005CC265 /* Checksum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checksum.swift; sourceTree = "<group>"; };
 		B4CABB8621DD8845000A3911 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		B4DB59FB21E190780036432C /* ConnectorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectorDescription.swift; sourceTree = "<group>"; };
 		B4EE4C1D21D708A3002D8E6D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
 		B4F4380921E16EE300D39726 /* ResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassword.swift; sourceTree = "<group>"; };
 		B4F4380B21E1826A00D39726 /* DefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 				832296341FEB3B8700401ECD /* Constants.swift */,
 				B4EE4C1D21D708A3002D8E6D /* Subscriptions.swift */,
 				B4ACC78A21E02050005CC265 /* Checksum.swift */,
+				B4DB59FB21E190780036432C /* ConnectorDescription.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -937,6 +940,7 @@
 				8323D4281FC77A4F0049D349 /* ConnectorCell.swift in Sources */,
 				83469A881EEB0DF400D9AFC1 /* Home.swift in Sources */,
 				83F208271FC3A02A0075A2F0 /* Annotation.swift in Sources */,
+				B4DB59FC21E190780036432C /* ConnectorDescription.swift in Sources */,
 				83F208231FC370B60075A2F0 /* Station.swift in Sources */,
 				83DE760B1FFAC48B001EE4C6 /* ChangePreferences.swift in Sources */,
 				837E98D4204EF923007D01D6 /* App.swift in Sources */,

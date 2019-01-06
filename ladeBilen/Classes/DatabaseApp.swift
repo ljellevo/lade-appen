@@ -153,14 +153,17 @@ class DatabaseApp {
         }
     }
     
-    func getConnectorDescriptionFromDatabase(done: @escaping (_ stations: [Int:String])-> Void){
-        var connectorDescription: [Int:String] = [:]
+    func getConnectorDescriptionFromDatabase(done: @escaping (_ connectorDescriptions: [ConnectorDescription])-> Void){
+        var connectorDescription: [ConnectorDescription] = []
         ref.child("nobil_database_static").child("connectors").observeSingleEvent(of: .value, with: { (snapshot) in
             DispatchQueue.global().async {
                 print(snapshot)
                 for children in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
-                    connectorDescription.updateValue(children.value as! String, forKey: Int(children.key)!)
+                    connectorDescription.append(ConnectorDescription(id: Int(children.key)!, desc:children.value as! String))
                 }
+                connectorDescription.sort(by: { (a: ConnectorDescription, b: ConnectorDescription) -> Bool in
+                    return a.id < b.id
+                })
                 DispatchQueue.main.async {
                     done(connectorDescription)
                 }

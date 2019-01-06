@@ -25,7 +25,7 @@ class Home: UIViewController{
     let searchController = UISearchController(searchResultsController: nil)
     
     var filteredStations: [Station]?
-    var connectorDescription: [Int:String]?
+    var connectorDescription: [ConnectorDescription]?
     var selectedStationSearch: Station?
     var station: Station?
     var isFavorite: Bool?

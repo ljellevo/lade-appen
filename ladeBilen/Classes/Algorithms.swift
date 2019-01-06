@@ -9,8 +9,34 @@
 import Foundation
 
 class Algorithms {
+    
+    /**
+     Function that runs through all stations and checks each station individually
+     
+     - Parameter stations: Array with station objects
+     - Parameter user: User object that contains users preferences
+     
+     - Returns: Array with stations that is to be shown
+     */
+    func filterStations(stations: [Station], user: User) -> [Station]{
+        var filteredStations: [Station] = []
+        for station in stations {
+            if checkIfApplicable(station: station, user: user) {
+                filteredStations.append(station)
+            }
+        }
+        return filteredStations
+    }
 
-    func checkIfApplicable(station: Station, user: User) -> Bool {
+    /**
+     Determines if station should be shown on map based on users parameters.
+     
+     - Parameter station: The station that is to be checked
+     - Parameter user: User object that contains users prefrences
+     
+     - Returns: Bool if station is to be shown
+    */
+    private func checkIfApplicable(station: Station, user: User) -> Bool {
         //Må sjekke med parameterene i user for så i avgjøre om stasjonen skal vises
         
         if !user.parkingFee {
@@ -35,18 +61,6 @@ class Algorithms {
         return false
     }
     
-    func filterStations(stations: [Station], user: User) -> [Station]{
-        var filteredStations: [Station] = []
-        for station in stations {
-            if checkIfApplicable(station: station, user: user) {
-                filteredStations.append(station)
-            }
-        }
-        return filteredStations
-    }
-
-    
-    
     //Favorites/Details
     func findPopularityLevel(station: Station) -> Int{
         return -1
@@ -56,7 +70,14 @@ class Algorithms {
         return -1
     }
     
-    //Returns array with [Available, Applicable]
+    /**
+     Finds amount of connectors that is available and connectors that are applicable
+     
+     - Parameter station: Station object that contains the connectors
+     - Parameter user: User object that contains applicable contacts for the user
+     
+     - Returns: Array with [Available, Applicable]
+     */
     func findAvailableContacts(station: Station, user: User) -> [Int]{
         var counter: [Int] = [0, 0]
         for conn in station.conn {
@@ -72,6 +93,14 @@ class Algorithms {
         return counter
     }
     
+    /**
+     Checks if connector is applicable for user
+     
+     - Parameter conn: Connector object that contains the connector
+     - Parameter user: User object that contains users applicable conntacts
+     
+     - Returns: Bool that indicate if this connector is applicable for user
+     */
     func checkIfConntactIsAppliable(conn: Connector, user: User) -> Bool{
         for connector in user.connector{
             if conn.connector == connector {
@@ -80,6 +109,15 @@ class Algorithms {
         }
         return false
     }
+    
+    /**
+     Sorts connectors in so that applicable and vacant is first, then applicable and busy, then applicable and error and last not applicable connectors
+     
+     - Parameter station: Station object that contains all the stations connectors
+     - Parameter user: User object that contains the users preference
+     
+     - Returns: Array with sorted connectors
+     */
     
     //Sorts connectros applicable to user first in array
     func sortConnectors(station: Station, user: User) -> Station{
@@ -128,26 +166,6 @@ class Algorithms {
         sortedStation.conn = newArray
         return sortedStation
     }
-    /*
-    func sortConnectors(connectors: [Connector], user: User) -> [Connector]{
-        var newArray: [Connector] = []
-        
-        var found = false
-        for conn in connectors{
-            found = false
-            for connector in user.connector!{
-                if conn.connector == connector {
-                    newArray.insert(conn, at: 0)
-                    found = true
-                }
-            }
-            if !found {
-                newArray.append(conn)
-            }
-        }
-        return newArray
-    }
-    */
     
     /* Mangler */
     func checkIfAvailable(station: Station) -> Bool{
