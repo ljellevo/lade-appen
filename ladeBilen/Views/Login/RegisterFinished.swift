@@ -12,7 +12,7 @@ import Disk
 import AudioToolbox
 
 class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var app: App?
+    var app: App!
 
     var connectorString: [String] = []
     var connectorIndex: [Int] = []
@@ -111,10 +111,10 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
         if connector.count != 0 {
 
             
-            let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, reduceData: reduceData!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector, timestamp: Date().getTimestamp(), favorites: [:])
-            app!.user = user
-            app!.setUserInDatabase(user: user, done: {_ in})
-            app!.initializeApplication(done: {_ in
+            let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, reduceData: reduceData!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector, timestamp: Date().getTimestamp(), favorites: [:], firstTime: true)
+            app.user = user
+            app.setUserInDatabase(user: user, done: {_ in})
+            app.initializeApplication(done: {_ in
                 self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
             })
         } else {

@@ -68,10 +68,15 @@ class DatabaseApp {
                     favorites = [:]
                 }
                 
+                var firstTime = value["firstTime"] as? Bool
+                if firstTime == nil {
+                    firstTime = true
+                }
+                
                 if error == false {
                     print("User found in database, caching and navigating to home: AppDelegate")
                     
-                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, reduceData: reduceData!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!, timestamp: timestamp!, favorites: favorites!)
+                    let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, reduceData: reduceData!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector!, timestamp: timestamp!, favorites: favorites!, firstTime: firstTime!)
                     done(user)
                 } else {
                     done(nil)
@@ -93,7 +98,8 @@ class DatabaseApp {
              "notificationsDuration": user.notificationDuration as Int,
              "connector": user.connector as [Int],
              "timestamp": user.timestamp as Int64,
-             "favorites": user.favorites as [String:Int64]
+             "favorites": user.favorites as [String:Int64],
+             "firstTime": user.firstTime as Bool
             ]
         ){
             (error:Error?, ref:DatabaseReference) in

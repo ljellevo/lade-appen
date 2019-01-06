@@ -13,7 +13,7 @@ import AudioToolbox
 
 class Login: UIViewController, UITextFieldDelegate {
     
-    var app: App?
+    var app: App!
     
     var whitePanelLeadingOffset: CGFloat?
     var whitePanelTrailingOffset: CGFloat?
@@ -121,7 +121,7 @@ class Login: UIViewController, UITextFieldDelegate {
                     self.inputTwoTextField.setBottomBorderRed()
                     AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
                 } else {
-                    self.app?.verifyStationCache(){
+                    self.app.verifyStationCache(){
                         self.navigateUser()
                     }
                 }
@@ -146,9 +146,9 @@ class Login: UIViewController, UITextFieldDelegate {
     
     func navigateUser(){
         print("Logging in")
-        app?.verifyUserCache(){code in
+        app.verifyUserCache(){code in
             if code == 0 {
-                self.app!.initializeApplication(done: {_ in
+                self.app.initializeApplication(done: {_ in
                     self.performSegue(withIdentifier: "toHome", sender: self)
                 })
             } else {

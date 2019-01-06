@@ -11,7 +11,7 @@ import NotificationBannerSwift
 
 class ChangeUserInfo: UIViewController{
     
-    var app: App?
+    var app: App!
     
     
     @IBOutlet weak var textField: UITextField!
@@ -32,10 +32,10 @@ class ChangeUserInfo: UIViewController{
         whitePanel.layer.cornerRadius = 20
         saveButton.layer.cornerRadius = 20
         if rowIndex == 0 {
-            textField.text = app!.user!.firstname
+            textField.text = app.user!.firstname
             informationLabel.text = nameInfoLabel
         } else  {
-            textField.text = app!.user!.lastname
+            textField.text = app.user!.lastname
             informationLabel.text = nameInfoLabel
         }
     
@@ -45,8 +45,8 @@ class ChangeUserInfo: UIViewController{
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         if rowIndex == 0 {
-            app!.user!.firstname = textField.text!
-            app!.setUserInDatabase(user: app!.user!, done: {_ in
+            app.user!.firstname = textField.text!
+            app.setUserInDatabase(user: app.user!, done: {_ in
                 if let navController = self.navigationController {
                     navController.popViewController(animated: true)
                 }
@@ -54,8 +54,8 @@ class ChangeUserInfo: UIViewController{
                 banner.show()
             })
         } else {
-            app!.user!.lastname = textField.text!
-            app!.setUserInDatabase(user: app!.user!, done: {_ in
+            app.user!.lastname = textField.text!
+            app.setUserInDatabase(user: app.user!, done: {_ in
                 if let navController = self.navigationController {
                     navController.popViewController(animated: true)
                 }

@@ -12,7 +12,7 @@ import AudioToolbox
 class ReportBug: UIViewController, UITextViewDelegate {
     
     //Import app not database
-    var app: App?
+    var app: App!
     //let database = DatabaseApp()
     
     let placeholder = "Vennligst skriv utfyllende både hva som skjedde og hvilke handlinger som du utførte før feilen oppstod. Ved misbruk vil du risikere å bli utestengt."
@@ -53,7 +53,7 @@ class ReportBug: UIViewController, UITextViewDelegate {
             alert.addAction(UIAlertAction(title: "Send", style: UIAlertAction.Style.default, handler: { action in
                 AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
                 self.textViewDidEndEditing(self.textView)
-                self.app!.submitBugToDatabase(reportedText: self.textView.text)
+                self.app.submitBugToDatabase(reportedText: self.textView.text)
                 self.textView.text = "Takk for at du sendte en rapport, vi vil gjennomgå denne snarest. Dersom vi lurer på noe vil vi ta kontakt via email."
                 self.textView.textColor = UIColor.lightGray
                 

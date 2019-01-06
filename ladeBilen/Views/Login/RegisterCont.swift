@@ -9,7 +9,7 @@
 import UIKit
 
 class RegisterCont: UIViewController {
-    var app: App?
+    var app: App!
     var uid: String?
     var email: String?
     var firstname: String?

@@ -11,7 +11,7 @@ import Firebase
 import AudioToolbox
 
 class Register: UIViewController {
-    var app: App?
+    var app: App!
     
     var uid: String?
     var email: String?

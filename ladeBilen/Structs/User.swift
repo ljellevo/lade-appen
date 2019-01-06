@@ -45,7 +45,7 @@ struct User: Codable {
     }
 
     
-    init(uid: String, email: String, firstname: String, lastname: String, fastCharge: Bool, parkingFee: Bool, reduceData: Bool, notifications: Bool, notificationDuration: Int, connector: [Int], timestamp: Int64, favorites: [String:Int64]) {
+    init(uid: String, email: String, firstname: String, lastname: String, fastCharge: Bool, parkingFee: Bool, reduceData: Bool, notifications: Bool, notificationDuration: Int, connector: [Int], timestamp: Int64, favorites: [String:Int64], firstTime: Bool) {
         self.uid = uid
         self.email = email
         self.firstname = firstname
@@ -58,5 +58,6 @@ struct User: Codable {
         self.connector = connector
         self.timestamp = timestamp
         self.favorites = favorites
+        self.firstTime = firstTime
     }
 }

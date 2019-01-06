@@ -16,7 +16,7 @@ import BLTNBoard
 
 class Home: UIViewController{
 
-    var app: App?
+    var app: App!
     
     var locationManager: CLLocationManager = CLLocationManager()
     var isInitial: Bool = true
@@ -68,15 +68,15 @@ class Home: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        filteredStations = app!.filteredStations
-        connectorDescription = app!.connectorDescription
+        filteredStations = app.filteredStations
+        connectorDescription = app.connectorDescription
         
         loadDetailsElement()
         loadMapElement()
         loadSearchElement()
         
-        print(app!.stations.count)
-        if app!.user!.firstTime {
+        print(app.stations.count)
+        if app.user!.firstTime {
             bulletinManager.showBulletin(above: self)
         }
         
@@ -94,7 +94,7 @@ class Home: UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        filteredStations = app!.filteredStations
+        filteredStations = app.filteredStations
         self.addAnnotationsToMap()
         searchController.searchBar.sizeToFit()
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapElement.handleTapOnMap(_:)))
@@ -274,7 +274,10 @@ class Home: UIViewController{
         page.requiresCloseButton = false
         page.isDismissable = false
         page.actionHandler = { (item: BLTNActionItem) in
-            item.manager?.dismissBulletin(animated: true)
+            self.app.user?.firstTime = false
+            self.app.setUserInDatabase(user: self.app.user!, done: {_ in
+                item.manager?.dismissBulletin(animated: true)
+            })
         }
         return page
     }
@@ -334,7 +337,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.parkingFeeLabel.text = "Gratis parkering"
             }
             
-            if app!.user!.favorites.keys.contains(station!.id.description){
+            if app.user!.favorites.keys.contains(station!.id.description){
                 cell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
                 cell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
                 isFavorite = true
@@ -345,7 +348,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             }
             
             //if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
-            if app!.isStationSubscribedTo(stationId: station!.id){
+            if app.isStationSubscribedTo(stationId: station!.id){
                 //Bruker følger denne stasjonen skal få presentert teksten "Slutte å følge"
                 cell.subscribeButton.setTitle("Slutte å følge", for: .normal)
                 cell.subscribeButton.layer.backgroundColor = UIColor.appleYellow().cgColor
@@ -356,10 +359,10 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             
             cell.userComment = station?.userComment
             cell.descriptionLabel.text = station?.descriptionOfLocation
-            cell.connectors = self.app!.sortConnectors(station: station!).conn
+            cell.connectors = app.sortConnectors(station: station!).conn
             if station!.realtimeInfo{
                 cell.animateRealtime()
-                let compatibleConntacts: [Int] = self.app!.findAvailableContacts(station: station!)
+                let compatibleConntacts: [Int] = app.findAvailableContacts(station: station!)
                 cell.compatibleConntacts = compatibleConntacts[0]
                 cell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
                 cell.connectorCollectionView.reloadData()
@@ -373,7 +376,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.realtimeConnectorCounterLabel.text = ""
                 cell.killAllAnimations()
             }
-            app!.getImageForStation(station: station!, user: app!.user!, done: { image in
+            app.getImageForStation(station: station!, user: app.user!, done: { image in
                 if image != nil {
                     cell.stationImage.image = image
                 } else {
@@ -495,7 +498,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
                 if annotation.realtime! {
                     dequeuedView.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
                 }
-                if app!.user!.favorites.keys.contains(annotation.id!.description) {
+                if app.user!.favorites.keys.contains(annotation.id!.description) {
                     dequeuedView.markerTintColor = UIColor.fruitSalad()
                 }
                 
@@ -513,7 +516,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
                 if annotation.realtime! {
                     view.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
                 }
-                if app!.user!.favorites.keys.contains(annotation.id!.description) {
+                if app.user!.favorites.keys.contains(annotation.id!.description) {
                     view.markerTintColor = UIColor.fruitSalad()
                 }
                 
@@ -554,15 +557,15 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
 
             listenOnStation()
             
-            if app!.user!.favorites.keys.contains(station!.id.description){
+            if app.user!.favorites.keys.contains(station!.id.description){
                 isFavorite = true
             } else {
                 isFavorite = false
             }
-            if let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? InfoCell {
+            if let infoCell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? InfoCell {
                 infoCell.setActiveViewFor(element: .InfoElement)
             }
-            self.connectors = self.app!.sortConnectors(station: station!).conn
+            connectors = app.sortConnectors(station: station!).conn
             collectionView.reloadData()
             
         } else {
@@ -652,7 +655,7 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
             }
         } else {
             tableViewStack.isHidden = true
-            filteredStations = app?.filteredStations
+            filteredStations = app.filteredStations
         }
         tableView.reloadData()
     }
@@ -679,7 +682,7 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         station = filteredStations![indexPath.row]
         listenOnStation()
         
-        if app!.user!.favorites.keys.contains(station!.id.description){
+        if app.user!.favorites.keys.contains(station!.id.description){
             isFavorite = true
         } else {
             isFavorite = false
@@ -687,7 +690,7 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         if let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? InfoCell {
             infoCell.setActiveViewFor(element: .InfoElement)
         }
-        self.connectors = self.app!.sortConnectors(station: station!).conn
+        connectors = app.sortConnectors(station: station!).conn
         collectionView.reloadData()
         tableViewStack.isHidden = true
         //Move map to correct position
@@ -742,8 +745,8 @@ extension Protocols: CollectionViewCellDelegate  {
             }
         case .favorite:
             if isFavorite! {
-                app!.user?.favorites.removeValue(forKey: station!.id.description)
-                app?.setUserInDatabase(user: app!.user!, done: { code in
+                app.user?.favorites.removeValue(forKey: station!.id.description)
+                app.setUserInDatabase(user: app.user!, done: { code in
                     let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                     infoCell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
                     infoCell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
@@ -755,8 +758,8 @@ extension Protocols: CollectionViewCellDelegate  {
                 })
                 
             } else {
-                app!.user?.favorites.updateValue(Date().getTimestamp(), forKey: station!.id.description)
-                app?.setUserInDatabase(user: app!.user!, done: { code in
+                app.user?.favorites.updateValue(Date().getTimestamp(), forKey: station!.id.description)
+                app.setUserInDatabase(user: app.user!, done: { code in
                     let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                     infoCell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
                     infoCell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
@@ -772,9 +775,9 @@ extension Protocols: CollectionViewCellDelegate  {
             
         case .subscribe:
             //if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
-            if app!.isStationSubscribedTo(stationId: station!.id){
+            if app.isStationSubscribedTo(stationId: station!.id){
                 let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
-                app!.unsubscribeToStation(station: station!, done: { _ in
+                app.unsubscribeToStation(station: station!, done: { _ in
                     infoCell.subscribeButton.setTitle("Følg", for: .normal)
                     infoCell.subscribeButton.layer.backgroundColor = UIColor.pictonBlue().cgColor
                     let banner = StatusBarNotificationBanner(title: "Du følger ikke lenger denne stasjonen", style: .warning)
@@ -782,7 +785,7 @@ extension Protocols: CollectionViewCellDelegate  {
                 })
             } else {
                 let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
-                app!.subscribeToStation(station: station!, done: { _ in
+                app.subscribeToStation(station: station!, done: { _ in
                     infoCell.subscribeButton.setTitle("Slutt å følg", for: .normal)
                     infoCell.subscribeButton.layer.backgroundColor = UIColor.appleYellow().cgColor
                     let banner = StatusBarNotificationBanner(title: "Du følger nå denne stasjonen", style: .warning)
@@ -796,10 +799,10 @@ extension Protocols: CollectionViewCellDelegate  {
 private typealias Service = Home
 extension Service {
     func listenOnStation(){
-        app?.listenOnStation(stationId: station!.id, done: { station in
+        app.listenOnStation(stationId: station!.id, done: { station in
             print("Listening")
             self.station = station
-            self.connectors = self.app!.sortConnectors(station: station).conn
+            self.connectors = self.app.sortConnectors(station: station).conn
             
             
             DispatchQueue.main.async {
@@ -807,12 +810,12 @@ extension Service {
                 var availableConntacts: Int = 0
                 
                 for conn in station.conn {
-                    if conn.error == 0 && conn.isTaken == 0 && self.app!.checkIfConntactIsAppliable(connector: conn) {
+                    if conn.error == 0 && conn.isTaken == 0 && self.app.checkIfConntactIsAppliable(connector: conn) {
                         availableConntacts += 1
                     }
                 }
                 
-                let compatibleConntacts: [Int] = self.app!.findAvailableContacts(station: station)
+                let compatibleConntacts: [Int] = self.app.findAvailableContacts(station: station)
                 //Available/Applicable contacts for station label.
                 _ = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
                 
@@ -829,6 +832,6 @@ extension Service {
     
     func detachListenerOnStation(){
         print("Detatch")
-        app?.detachListenerOnStation(stationId: station!.id)
+        app.detachListenerOnStation(stationId: station!.id)
     }
 }

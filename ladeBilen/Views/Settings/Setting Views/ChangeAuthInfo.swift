@@ -15,7 +15,7 @@ import NotificationBannerSwift
 
 class ChangeAuthInfo: UIViewController {
     
-    var app: App?
+    var app: App!
     var rowIndex: Int?
 
     @IBOutlet weak var firstTextField: UITextField!
@@ -87,7 +87,7 @@ class ChangeAuthInfo: UIViewController {
             
             let user = Auth.auth().currentUser
             //let credentialTest = credential(withEmail: , password: )
-            let credential = EmailAuthProvider.credential(withEmail: app!.user!.email, password: thirdTextField.text!)
+            let credential = EmailAuthProvider.credential(withEmail: app.user!.email, password: thirdTextField.text!)
             
             user?.reauthenticate(with: credential) { error in
                 if error != nil {
@@ -102,8 +102,8 @@ class ChangeAuthInfo: UIViewController {
                             self.infoLabel.text = "E-post er tatt"
                             AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
                         } else {
-                            self.app!.user!.email = self.firstTextField.text!
-                            self.app!.setUserInDatabase(user: self.app!.user!, done: {_ in
+                            self.app.user!.email = self.firstTextField.text!
+                            self.app.setUserInDatabase(user: self.app.user!, done: {_ in
                                 if let navController = self.navigationController {
                                     navController.popViewController(animated: true)
                                 }
@@ -124,7 +124,7 @@ class ChangeAuthInfo: UIViewController {
                 return
             }
             let user = Auth.auth().currentUser
-            let credential = EmailAuthProvider.credential(withEmail: app!.user!.email, password: thirdTextField.text!)
+            let credential = EmailAuthProvider.credential(withEmail: app.user!.email, password: thirdTextField.text!)
             
             user?.reauthenticate(with: credential) { error in
                 if error != nil {

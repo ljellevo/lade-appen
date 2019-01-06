@@ -13,7 +13,7 @@ import AudioToolbox
 
 class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var app: App?
+    var app: App!
     
     let cacheManagement = CacheManagement()
     var window: UIWindow?
@@ -33,7 +33,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        user = app?.user
+        user = app.user
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = UIView()
@@ -49,7 +49,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let index = self.tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: index, animated: true)
         }
-        user = app?.user
+        user = app.user
         userInfo = []
         userInfo.append(user?.nsDictionary["firstname"] as! String)
         userInfo.append(user?.nsDictionary["lastname"] as! String)
@@ -160,7 +160,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let alert = UIAlertController(title: "Sletting av lagrede data", message: "Sikker på at du vil slette den lagrede dataen? Dette vil ikke logge deg ut.", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ja", style: UIAlertAction.Style.default, handler: { action in
             AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
-            _ = self.app!.removeAllCache()
+            _ = self.app.removeAllCache()
         }))
         alert.addAction(UIAlertAction(title: "Nei", style: UIAlertAction.Style.cancel, handler: nil))
         

@@ -12,7 +12,7 @@ import NotificationBannerSwift
 
 class ResetPassword: UIViewController {
     
-    var app: App?
+    var app: App!
 
     @IBOutlet weak var whitePannel: UIView!
     @IBOutlet weak var emailTextField: UITextField!
