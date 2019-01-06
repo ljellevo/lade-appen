@@ -869,18 +869,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fHQ-m9-XD3" userLabel="Buttons Stack">
-                                <rect key="frame" x="234" y="490" width="70" height="70"/>
-                                <subviews>
-                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCO-2u-frz">
-                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                        <color key="backgroundColor" red="1" green="0.99662552849999997" blue="0.96030583290000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" image="Location_Icon_2x.png">
-                                            <color key="titleColor" red="1" green="0.76924965680000001" blue="0.32095245729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6uL-Kc-sva" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="404" width="320" height="100"/>
                                 <subviews>
@@ -984,8 +972,6 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="iYL-Hw-tZv" firstAttribute="top" secondItem="bcT-jA-b1i" secondAttribute="bottom" id="7pO-TI-5d0"/>
-                            <constraint firstItem="fHQ-m9-XD3" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="7wM-qv-5Zk"/>
-                            <constraint firstItem="fHQ-m9-XD3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="KEs-6v-AnL"/>
                             <constraint firstAttribute="trailing" secondItem="bDK-wx-8YK" secondAttribute="trailing" id="Lwj-gF-iTo"/>
                             <constraint firstItem="bDK-wx-8YK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Lzy-2l-1P2"/>
                             <constraint firstItem="iYL-Hw-tZv" firstAttribute="top" secondItem="6uL-Kc-sva" secondAttribute="bottom" id="Ofc-tN-BES"/>
@@ -994,7 +980,6 @@
                             <constraint firstItem="bcT-jA-b1i" firstAttribute="top" secondItem="02A-yD-k2M" secondAttribute="bottom" id="Rdi-Am-ZzW"/>
                             <constraint firstItem="jL9-jX-usB" firstAttribute="top" secondItem="02A-yD-k2M" secondAttribute="bottom" id="Sdm-jT-fZ7"/>
                             <constraint firstItem="iYL-Hw-tZv" firstAttribute="top" secondItem="jL9-jX-usB" secondAttribute="bottom" id="WIh-eg-VCv"/>
-                            <constraint firstItem="iYL-Hw-tZv" firstAttribute="top" secondItem="fHQ-m9-XD3" secondAttribute="bottom" constant="8" id="YDB-vL-KXf"/>
                             <constraint firstAttribute="trailing" secondItem="jL9-jX-usB" secondAttribute="trailing" id="a8l-tI-jcd"/>
                             <constraint firstAttribute="bottom" secondItem="bDK-wx-8YK" secondAttribute="bottom" id="aSj-Ng-B56"/>
                             <constraint firstItem="eNl-6i-5mL" firstAttribute="top" secondItem="02A-yD-k2M" secondAttribute="bottom" constant="30" id="aZi-lA-DKy"/>
@@ -1004,14 +989,6 @@
                             <constraint firstAttribute="trailing" secondItem="bcT-jA-b1i" secondAttribute="trailing" id="qyO-fM-FcQ"/>
                             <constraint firstItem="bcT-jA-b1i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yZL-pe-Z5P"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="fHQ-m9-XD3"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="KEs-6v-AnL"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Ladestasjoner" id="vwX-8P-S8t">
                         <barButtonItem key="backBarButtonItem" title="Kart" id="nHy-K6-z2I"/>
@@ -1030,9 +1007,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="blurView" destination="jL9-jX-usB" id="IlE-2M-23o"/>
-                        <outlet property="buttonStackConstraintLeading" destination="KEs-6v-AnL" id="PUZ-xK-9Im"/>
-                        <outlet property="buttonStackConstraintTrailing" destination="7wM-qv-5Zk" id="Z4w-Js-YVF"/>
-                        <outlet property="buttonsStack" destination="fHQ-m9-XD3" id="62c-gv-JOa"/>
                         <outlet property="centerMapButton" destination="eNl-6i-5mL" id="qAv-jH-erN"/>
                         <outlet property="collectionView" destination="RA1-OK-qc8" id="0aJ-S1-zJo"/>
                         <outlet property="contentView" destination="6uL-Kc-sva" id="vMH-0w-Tre"/>
@@ -1040,7 +1014,6 @@
                         <outlet property="detailsStack" destination="9FY-W3-F5v" id="3LT-QB-O3M"/>
                         <outlet property="greyDraggingIndicator" destination="USW-Pj-pfC" id="5fz-Sw-ZLN"/>
                         <outlet property="mapWindow" destination="1OD-l0-du2" id="BPu-Cb-JTh"/>
-                        <outlet property="nearestButton" destination="FCO-2u-frz" id="XlY-Fy-q1T"/>
                         <outlet property="tableView" destination="Rzb-4I-5yn" id="Jfg-BW-yWk"/>
                         <outlet property="tableViewStack" destination="bcT-jA-b1i" id="4qm-yB-Kmf"/>
                         <outlet property="tableViewStackBottomConstraint" destination="7pO-TI-5d0" id="eXG-he-H5J"/>
@@ -2106,7 +2079,6 @@
     </scenes>
     <resources>
         <image name="FavoriteSet" width="40" height="40"/>
-        <image name="Location_Icon_2x.png" width="70" height="70"/>
         <image name="MarkerSet" width="40" height="40"/>
         <image name="ProfileSet" width="40" height="40"/>
         <image name="TargetSet" width="37.5" height="37.5"/>

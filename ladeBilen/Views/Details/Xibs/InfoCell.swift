@@ -52,6 +52,7 @@ class InfoCell: UICollectionViewCell{
     
     @IBOutlet weak var imageStack: UIStackView!
         @IBOutlet weak var stationImage: UIImageView!
+        @IBOutlet weak var imageViewStackHeightConstraint: NSLayoutConstraint!
     
     
     override func awakeFromNib() {
@@ -295,10 +296,12 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ConnectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectorCellIdentifier", for: indexPath as IndexPath) as! ConnectorCell
-        
-        //Endre fra description til int sammenligning
-        //cell.typeLabel.text = connectors![indexPath.row].connector?.description //HEr
-        cell.typeLabel.text = connectorDescription![connectors![indexPath.row].connector].desc
+        for connDesc in connectorDescription! {
+            if connDesc.id == connectors![indexPath.row].connector {
+                cell.typeLabel.text = connDesc.desc
+                break
+            }
+        }
         cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode.description
         if connectors![indexPath.row].chargerMode == -1 {
             cell.chargeRateLabel.text = "Mangler"
@@ -363,6 +366,25 @@ extension ImageElement {
     func loadImageElement(){
         stationImage.layer.masksToBounds = true
         stationImage.layer.cornerRadius = 10
+        //Hansteensgate
+    }
+    
+    func setImage(image: UIImage?) {
+        layoutIfNeeded()
+        if let newImage = image {
+            stationImage.contentMode = UIView.ContentMode.redraw
+            stationImage.image = newImage
+            let imageWidth = newImage.size.width
+            let imageHeight = newImage.size.height
+            let frameWidth = stationImage.frame.width
+            let ratio = frameWidth / imageWidth
+            let frameHeigh = imageHeight * ratio
+            imageViewStackHeightConstraint.constant = frameHeigh
+            layoutIfNeeded()
+        } else {
+            stationImage.image = UIImage(named: "Mangler Bilde")
+            stationImage.contentMode = UIView.ContentMode.center
+        }
     }
 }
 

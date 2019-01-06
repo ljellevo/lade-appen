@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 class Algorithms {
     
@@ -174,6 +175,19 @@ class Algorithms {
     
     func populateFavoritesArray(){
 
+    }
+    
+    func getDistanceToStation(station: Station, location: CLLocation) -> Double{
+        var position = station.position
+        position = position.replacingOccurrences(of: "(", with: "")
+        position = position.replacingOccurrences(of: ")", with: "")
+        let positionArray = position.components(separatedBy: ",")
+        let lat = Double(positionArray[0])! - 0.007
+        let lon = Double(positionArray[1])
+        let stationCoordinate = CLLocationCoordinate2D(latitude:lat, longitude:lon!)
+        let stationLocation = CLLocation(latitude: stationCoordinate.latitude, longitude: stationCoordinate.longitude)
+        let distance = stationLocation.distance(from: location)
+        return distance
     }
     
     

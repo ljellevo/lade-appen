@@ -47,20 +47,6 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    /*
-    func getConnectors(){
-        //Må puttes i app klassen
-        let ref = Database.database().reference()
-        ref.child("nobil_database_static").child("connectors").observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot)
-            for children in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
-                self.connectorIndex.append(Int(children.key)!)
-                self.connectorString.append(children.value as! String)
-            }
-            self.tableView.reloadData()
-        }, withCancel: nil)
-    }
- */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return connectorDescription.count

@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import Disk
+import MapKit
 
 class App {
     private let database = DatabaseApp()
@@ -504,6 +505,10 @@ extension AlgorithmsMethods {
             }
         }
         return nil
+    }
+    
+    func findDistanceToStation(station: Station, location: CLLocation) -> Double {
+        return algorithms.getDistanceToStation(station: station, location: location)
     }
 }
 

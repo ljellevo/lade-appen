@@ -118,6 +118,8 @@
 		B4CABB8721DD8845000A3911 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CABB8621DD8845000A3911 /* ImageManager.swift */; };
 		B4DB59FC21E190780036432C /* ConnectorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB59FB21E190780036432C /* ConnectorDescription.swift */; };
 		B4EE4C1E21D708A3002D8E6D /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EE4C1D21D708A3002D8E6D /* Subscriptions.swift */; };
+		B4F27F4421E2A83F00E46DC7 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F27F4221E2A83F00E46DC7 /* SearchResultCell.swift */; };
+		B4F27F4521E2A83F00E46DC7 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F27F4321E2A83F00E46DC7 /* SearchResultCell.xib */; };
 		B4F4380A21E16EE300D39726 /* ResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F4380921E16EE300D39726 /* ResetPassword.swift */; };
 		B4F4380D21E1826B00D39726 /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F4380B21E1826A00D39726 /* DefaultCell.swift */; };
 		B4F4380E21E1826B00D39726 /* DefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F4380C21E1826B00D39726 /* DefaultCell.xib */; };
@@ -249,6 +251,8 @@
 		B4CABB8621DD8845000A3911 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		B4DB59FB21E190780036432C /* ConnectorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectorDescription.swift; sourceTree = "<group>"; };
 		B4EE4C1D21D708A3002D8E6D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
+		B4F27F4221E2A83F00E46DC7 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		B4F27F4321E2A83F00E46DC7 /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		B4F4380921E16EE300D39726 /* ResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassword.swift; sourceTree = "<group>"; };
 		B4F4380B21E1826A00D39726 /* DefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		B4F4380C21E1826B00D39726 /* DefaultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DefaultCell.xib; sourceTree = "<group>"; };
@@ -393,6 +397,7 @@
 		8340595A203F2B0700ECFF99 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B4F27F4121E2A81A00E46DC7 /* Xibs */,
 				83469A871EEB0DF400D9AFC1 /* Home.swift */,
 				83498D1B1EEB0B8300C3D92A /* NavigationHome.swift */,
 			);
@@ -692,6 +697,15 @@
 			path = Target;
 			sourceTree = "<group>";
 		};
+		B4F27F4121E2A81A00E46DC7 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				B4F27F4221E2A83F00E46DC7 /* SearchResultCell.swift */,
+				B4F27F4321E2A83F00E46DC7 /* SearchResultCell.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
 		C261FEA92027189C2CD74AA9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +792,7 @@
 				835413821F82F550000A70CB /* Type_2.png in Resources */,
 				83A926EE204207380013514F /* LabelCell.xib in Resources */,
 				831470AB1FBE531400DCD0CD /* Favorite-Icon-25.png in Resources */,
+				B4F27F4521E2A83F00E46DC7 /* SearchResultCell.xib in Resources */,
 				836D8ECF207D1CA600D93510 /* StartCell.xib in Resources */,
 				83868F9420803B730058C771 /* Cancel-Icon-50.png in Resources */,
 				8314709D1FBE518500DCD0CD /* Search-Icon-50.png in Resources */,
@@ -926,6 +941,7 @@
 				83A926ED204207380013514F /* LabelCell.swift in Sources */,
 				833132E12040F2F800747FB1 /* FavoritesCell.swift in Sources */,
 				83562CDA1FDCD1BE0017F1A7 /* User.swift in Sources */,
+				B4F27F4421E2A83F00E46DC7 /* SearchResultCell.swift in Sources */,
 				8314E2321EF44DA300F98E3F /* Styles.swift in Sources */,
 				B4F4380D21E1826B00D39726 /* DefaultCell.swift in Sources */,
 				8323D4201FC77A1C0049D349 /* TopCell.swift in Sources */,

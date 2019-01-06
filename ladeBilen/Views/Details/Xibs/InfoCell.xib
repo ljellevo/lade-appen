@@ -293,12 +293,15 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N6X-ZR-EO2">
-                                        <rect key="frame" x="8" y="0.0" width="398" height="150"/>
+                                        <rect key="frame" x="8" y="0.0" width="398" height="200"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mangler Bilde" translatesAutoresizingMaskIntoConstraints="NO" id="YKP-oq-mef">
-                                                <rect key="frame" x="0.0" y="0.0" width="398" height="150"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mangler Bilde" translatesAutoresizingMaskIntoConstraints="NO" id="YKP-oq-mef">
+                                                <rect key="frame" x="0.0" y="0.0" width="398" height="200"/>
                                             </imageView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="zJw-hU-0jN"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -359,6 +362,7 @@
                 <outlet property="favoriteButton" destination="sum-Pg-7HQ" id="eNS-84-giZ"/>
                 <outlet property="imageButton" destination="J54-LE-kX9" id="djz-qC-WAn"/>
                 <outlet property="imageStack" destination="N6X-ZR-EO2" id="89y-mv-Vlc"/>
+                <outlet property="imageViewStackHeightConstraint" destination="zJw-hU-0jN" id="dEl-c4-Nim"/>
                 <outlet property="nameLabel" destination="DUi-fg-nGY" id="Dp9-f1-MHd"/>
                 <outlet property="panelView" destination="mBL-MQ-LsN" id="J3s-KY-QIC"/>
                 <outlet property="parkingFeeLabel" destination="fzv-sj-BoY" id="xNO-Rx-8JP"/>

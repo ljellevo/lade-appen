@@ -31,7 +31,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var detailsStack: UIStackView!
-    @IBOutlet weak var detailsCollectionView: UICollectionView!
+    @IBOutlet var detailsCollectionView: UICollectionView!
     
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var greyDraggingIndicator: UIView!
@@ -324,8 +324,7 @@ extension CollectionViewLayoutMethods {
                 print("Building details collectionview")
                 
                 let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
-                cell.connectorCollectionView.reloadData()
-                cell.commentsView.reloadData()
+
                 cell.connectorDescription = connectorDescription
                 cell.delegate = self as CollectionViewCellDelegate
                 cell.realtime = station!.realtimeInfo
@@ -382,6 +381,14 @@ extension CollectionViewLayoutMethods {
                     cell.realtimeConnectorCounterLabel.text = ""
                     cell.killAllAnimations()
                 }
+                
+                app.getImageForStation(station: station!, user: app.user!, done: { image in
+                    cell.setImage(image: image)
+                })
+                
+                cell.connectorCollectionView.reloadData()
+                cell.commentsView.reloadData()
+                
                 return cell
             }
             let cell: TopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCellIdentifier", for: indexPath as IndexPath) as! TopCell

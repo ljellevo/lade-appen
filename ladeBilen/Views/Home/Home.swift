@@ -25,6 +25,7 @@ class Home: UIViewController{
     let searchController = UISearchController(searchResultsController: nil)
     
     var filteredStations: [Station]?
+    var filteredStationsSearch: [Station] = []
     var connectorDescription: [ConnectorDescription]?
     var selectedStationSearch: Station?
     var station: Station?
@@ -49,16 +50,13 @@ class Home: UIViewController{
     @IBOutlet var tableView: UITableView!
     
     @IBOutlet weak var mapWindow: MKMapView!
-    @IBOutlet weak var nearestButton: UIButton!
-    @IBOutlet weak var buttonStackConstraintTrailing: NSLayoutConstraint!
-    @IBOutlet weak var buttonStackConstraintLeading: NSLayoutConstraint!
-    @IBOutlet weak var buttonsStack: UIStackView!
+
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var detailsStack: UIStackView!
-        @IBOutlet weak var collectionView: UICollectionView!
+        @IBOutlet var collectionView: UICollectionView!
     
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var greyDraggingIndicator: UIView!
@@ -376,12 +374,9 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.realtimeConnectorCounterLabel.text = ""
                 cell.killAllAnimations()
             }
+            
             app.getImageForStation(station: station!, user: app.user!, done: { image in
-                if image != nil {
-                    cell.stationImage.image = image
-                } else {
-                    cell.stationImage.image = UIImage(named: "Mangler Bilde")
-                }
+                cell.setImage(image: image)
             })
             cell.connectorCollectionView.reloadData()
             cell.commentsView.reloadData()
@@ -575,12 +570,14 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        if willDeselectMarker {
-            detailsDismissedPosition()
-            detachListenerOnStation()
-            UIView.animate(withDuration: 0.5, animations: {
-                self.blurView.alpha = 0.0
-            })
+        if (view.annotation as? Annotation) != nil {
+            if willDeselectMarker {
+                detailsDismissedPosition()
+                detachListenerOnStation()
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.blurView.alpha = 0.0
+                })
+            }
         }
     }
     
@@ -630,6 +627,7 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Søk"
+        tableView.register(UINib(nibName: "SearchResultCell", bundle: nil), forCellReuseIdentifier: "SearchResultCell")
         let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.backgroundColor = UIColor.appThemeDark()
         textFieldInsideSearchBar?.textColor = UIColor.white
@@ -650,36 +648,47 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
             tableViewStack.isHidden = false
-            filteredStations = filteredStations!.filter { filteredStations in
+            filteredStationsSearch = filteredStations!.filter { filteredStations in
                 return (filteredStations.name.lowercased().contains(searchText.lowercased()))
             }
+            if locationManager.location != nil {
+                filteredStationsSearch.sort(by: { (this: Station, that: Station) -> Bool in
+                    return app!.findDistanceToStation(station: this, location: locationManager.location!) < app!.findDistanceToStation(station: that, location: locationManager.location!)
+                })
+            }
+            
         } else {
             tableViewStack.isHidden = true
-            filteredStations = app.filteredStations
+            filteredStationsSearch = app.filteredStations
         }
         tableView.reloadData()
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredStations!.count
+        return filteredStationsSearch.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        if let result = filteredStations {
-            cell.textLabel?.text = result[indexPath.row].name
-            cell.detailTextLabel?.text = result[indexPath.row].city + " " + result[indexPath.row].street + " " + result[indexPath.row].houseNumber
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as! SearchResultCell
+        cell.nameLabel?.text = filteredStationsSearch[indexPath.row].name
+        cell.adressLabel?.text = filteredStationsSearch[indexPath.row].city + " " + filteredStationsSearch[indexPath.row].street + " " + filteredStationsSearch[indexPath.row].houseNumber
+        if locationManager.location == nil {
+            cell.distanceLabel.text = ""
         } else {
-            cell.textLabel!.text = filteredStations![indexPath.row].name
+            let distance = app!.findDistanceToStation(station: filteredStationsSearch[indexPath.row], location: locationManager.location!)
+            if distance < 1000.0 {
+                cell.distanceLabel.text = String(format: "%.0f", distance) + "m"
+            } else {
+                cell.distanceLabel.text = String(format: "%.1f", distance/1000) + "km"
+            }
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        id = filteredStations![indexPath.row].id
-        station = filteredStations![indexPath.row]
+        id = filteredStationsSearch[indexPath.row].id
+        station = filteredStationsSearch[indexPath.row]
         listenOnStation()
         
         if app.user!.favorites.keys.contains(station!.id.description){
@@ -820,12 +829,13 @@ extension Service {
                 _ = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
                 
                 //self.collectionView.reloadData()
-                let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
-                infoCell.connectors = self.connectors
-                infoCell.compatibleConntacts = compatibleConntacts[0]
-                infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
-                infoCell.connectorCollectionView.reloadData()
-                
+                if self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) != nil {
+                    let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                    infoCell.connectors = self.connectors
+                    infoCell.compatibleConntacts = compatibleConntacts[0]
+                    infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
+                    infoCell.connectorCollectionView.reloadData()
+                }
             }
         })
     }
