@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		8300524D20818001008DAEEF /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8300524C20818001008DAEEF /* Enums.swift */; };
 		8302AE2B1FC3D074007F693A /* Pastebin.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8302AE2A1FC3D074007F693A /* Pastebin.txt */; };
-		8302AE2E1FC3EA8C007F693A /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302AE2D1FC3EA8C007F693A /* Details.swift */; };
 		8312F7332059B832006671F1 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312F7322059B832006671F1 /* Extentions.swift */; };
-		831470861FBE465500DCD0CD /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831470851FBE465500DCD0CD /* Tab.swift */; };
 		8314708A1FBE4D7200DCD0CD /* Marker-Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 831470881FBE4D7000DCD0CD /* Marker-Icon-50.png */; };
 		8314708C1FBE4DBC00DCD0CD /* Marker-Icon-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 8314708B1FBE4DBA00DCD0CD /* Marker-Icon-25.png */; };
 		8314708E1FBE4ED600DCD0CD /* Marker-Icon-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 8314708D1FBE4ED600DCD0CD /* Marker-Icon-75.png */; };
@@ -142,9 +140,7 @@
 		6A6BA573D3C4BAE4E3977D39 /* Pods-ladeBilen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladeBilen.debug.xcconfig"; path = "Target Support Files/Pods-ladeBilen/Pods-ladeBilen.debug.xcconfig"; sourceTree = "<group>"; };
 		8300524C20818001008DAEEF /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		8302AE2A1FC3D074007F693A /* Pastebin.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pastebin.txt; sourceTree = "<group>"; };
-		8302AE2D1FC3EA8C007F693A /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 		8312F7322059B832006671F1 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
-		831470851FBE465500DCD0CD /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		831470881FBE4D7000DCD0CD /* Marker-Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Marker-Icon-50.png"; sourceTree = "<group>"; };
 		8314708B1FBE4DBA00DCD0CD /* Marker-Icon-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Marker-Icon-25.png"; sourceTree = "<group>"; };
 		8314708D1FBE4ED600DCD0CD /* Marker-Icon-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Marker-Icon-75.png"; sourceTree = "<group>"; };
@@ -295,7 +291,6 @@
 			isa = PBXGroup;
 			children = (
 				833132DE2040F28F00747FB1 /* Xibs */,
-				8302AE2D1FC3EA8C007F693A /* Details.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -401,7 +396,6 @@
 				83A352F41FB7C17300742085 /* Login */,
 				8354134D1F82F04A000A70CB /* Settings */,
 				8340595F203F2B6900ECFF99 /* Welcome (Old) */,
-				8340595D203F2B1B00ECFF99 /* Tab (Old) */,
 				8340595C203F2B1400ECFF99 /* Search (Unused) */,
 				8340595B203F2B0C00ECFF99 /* Favorites */,
 				8340595A203F2B0700ECFF99 /* Home */,
@@ -434,14 +428,6 @@
 				8342E17F1EED87170079888F /* Search.swift */,
 			);
 			path = "Search (Unused)";
-			sourceTree = "<group>";
-		};
-		8340595D203F2B1B00ECFF99 /* Tab (Old) */ = {
-			isa = PBXGroup;
-			children = (
-				831470851FBE465500DCD0CD /* Tab.swift */,
-			);
-			path = "Tab (Old)";
 			sourceTree = "<group>";
 		};
 		8340595F203F2B6900ECFF99 /* Welcome (Old) */ = {
@@ -997,7 +983,6 @@
 				8314E2321EF44DA300F98E3F /* Styles.swift in Sources */,
 				8323D4201FC77A1C0049D349 /* TopCell.swift in Sources */,
 				8314E2351EF44E3400F98E3F /* Welcome.swift in Sources */,
-				8302AE2E1FC3EA8C007F693A /* Details.swift in Sources */,
 				83A926F1204207DB0013514F /* SubscriptionCell.swift in Sources */,
 				8312F7332059B832006671F1 /* Extentions.swift in Sources */,
 				B4F4380A21E16EE300D39726 /* ResetPassword.swift in Sources */,
@@ -1012,7 +997,6 @@
 				83F208231FC370B60075A2F0 /* Station.swift in Sources */,
 				8365D9F41FEEE6F8006510E9 /* RegisterFinishedConnectorCell.swift in Sources */,
 				83DE760B1FFAC48B001EE4C6 /* ChangePreferences.swift in Sources */,
-				831470861FBE465500DCD0CD /* Tab.swift in Sources */,
 				837E98D4204EF923007D01D6 /* App.swift in Sources */,
 				83C83A7D1FF1B6D40088C10C /* GlobalResources.swift in Sources */,
 				83FD2BEA1FEE6DE9002B8EDF /* RegisterCont.swift in Sources */,

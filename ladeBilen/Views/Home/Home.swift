@@ -77,7 +77,7 @@ class Home: UIViewController{
         
         print(app!.stations.count)
         if app!.user!.firstTime {
-            //bulletinManager.showBulletin(above: self)
+            bulletinManager.showBulletin(above: self)
         }
         
 

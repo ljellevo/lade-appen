@@ -662,8 +662,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cloudStorageLabel" destination="yzt-wA-Li9" id="KJx-Py-0jH"/>
-                        <outlet property="cloudStorageSwitch" destination="xhi-Q3-Dkq" id="wQ7-XZ-Bse"/>
                         <outlet property="durationLabel" destination="U3L-qC-7SC" id="P4K-GA-txl"/>
                         <outlet property="durationSlider" destination="MHc-bW-Gm2" id="Ljv-bs-3OE"/>
                         <outlet property="durationTimeLabel" destination="auv-FK-re3" id="9ge-Uo-JiK"/>
@@ -1826,7 +1824,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cloudStorageLabel" destination="cuj-7g-dh9" id="vdL-fM-rDb"/>
                         <outlet property="durationLabel" destination="lLn-fJ-LyV" id="mry-vo-MTD"/>
                         <outlet property="durationSlider" destination="pS9-KP-KSt" id="1gn-fd-Sbs"/>
                         <outlet property="durationTimeLabel" destination="xad-V2-JEi" id="TPx-4F-ZsF"/>

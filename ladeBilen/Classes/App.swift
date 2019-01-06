@@ -206,8 +206,10 @@ extension AuthenticationMethods {
     
     func verifyUserCache(done: @escaping (_ code: Int) -> Void){
         if let user = getUserCache(){
+            print("Getting user cache")
             self.user = user
             getUserTimestampFromDatabase(done: { timestampReturned in
+                print("Getting user timestamp from db")
                 let timestamp = timestampReturned
                 if user.timestamp == timestamp {
                     done(0)
@@ -225,8 +227,9 @@ extension AuthenticationMethods {
                 }
             })
         } else {
-            print("User not cached")
+            print("User not cached, gettting user from db")
             database.getUserFromDatabase(){user in
+                print("Got user from db")
                 if user != nil {
                     self.user = user
                     _ = self.setUserCache()

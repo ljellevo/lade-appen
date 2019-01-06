@@ -23,9 +23,7 @@ class RegisterCont: UIViewController {
     
     @IBOutlet weak var parkingFeeLabel: UILabel!
     @IBOutlet weak var parkingFeeSwitch: UISwitch!
-    
-    @IBOutlet weak var cloudStorageLabel: UILabel!
-    
+        
     @IBOutlet weak var reduceDataSwitch: UISwitch!
     
     @IBOutlet weak var notificationLabel: UILabel!

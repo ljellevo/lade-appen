@@ -24,11 +24,11 @@ class ImageManager {
      If status code is 0 then image is safe to unwrap.
      */
     func getImageForStation(stationId: String, user: User, done: @escaping (_ image: UIImage?, _ code: Int)-> Void){
-        let stationImageRef = storage.reference()
+        var stationImageRef = storage.reference()
         if user.reduceData {
-            stationImageRef.child("photos/stations/" + stationId + "/station_lowres.jpg")
+            stationImageRef = stationImageRef.child("photos/stations/" + stationId + "/station_lowres.jpg")
         } else {
-            stationImageRef.child("photos/stations/" + stationId + "/station.jpg")
+            stationImageRef = stationImageRef.child("photos/stations/" + stationId + "/station.jpg")
         }
         
         
