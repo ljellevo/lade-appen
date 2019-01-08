@@ -87,8 +87,8 @@ class Algorithms {
                     if conn.isTaken == 0 {
                         counter[0] += 1
                     }
-                    counter[1] += 1
                 }
+                counter[1] += 1
             }
         }
         return counter

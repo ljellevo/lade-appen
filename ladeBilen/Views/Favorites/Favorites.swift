@@ -107,6 +107,13 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                         }
                     }
                 })
+                listenOnSubscription(station: station) { count in
+                    let position = self.realtimeArray.firstIndex(of: station.id)!
+                    let indexPath = IndexPath(row: position + self.followingArray.count + 2, section: 0)
+                    if let cell: FavoritesCell = self.collectionView.cellForItem(at: indexPath) as? FavoritesCell {
+                       cell.subscriberAmountLabel.text = count.description
+                    }
+                }
             }
         }
     }
@@ -115,6 +122,8 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         for station in realtimeArray {
             print("Removed listener on station: " + station.description)
             detachListenerOnStation(stationId: station)
+            detachListenerOnSubscription(stationId: station)
+            
         }
     }
     
@@ -436,7 +445,6 @@ extension CollectionViewLayoutMethods {
                 let row = indexPath.row - (followingArray.count + 2)
                 var cell: FavoritesCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCell", for: indexPath as IndexPath) as! FavoritesCell
                 cell.activityLabel.text = "-Høy-"
-                cell.subscriberAmountLabel.text = "-20-"
                 cell.stationNameLabel.text = favoriteArray[row].name
                 cell.stationStreetLabel.text = favoriteArray[row].street + " " + favoriteArray[row].houseNumber
                 cell.stationCityLabel.text = favoriteArray[row].city
@@ -633,8 +641,17 @@ extension Service {
         })
     }
     
+    func listenOnSubscription(station: Station, done: @escaping (_ count: Int)-> Void){
+        app.listenOnSubscription(stationId: station.id) { count in
+            done(count)
+        }
+    }
+    
     func detachListenerOnStation(stationId: Int){
-        print("Detached listener on: " + stationId.description)
         app.detachListenerOnStation(stationId: stationId)
+    }
+    
+    func detachListenerOnSubscription(stationId: Int){
+        app.detatchListenerOnSubscription(stationId: stationId)
     }
 }

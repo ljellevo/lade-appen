@@ -390,6 +390,12 @@ extension DatabaseMethods {
         }
     }
     
+    func listenOnSubscription(stationId: Int, done: @escaping (_ count: Int)-> Void){
+        database.listenOnSubscription(stationId: getStationIdAsString(stationId: stationId)) { count in
+            done(count)
+        }
+    }
+    
     func subscribeToStation(station: Station, done: @escaping (_ code: Int)-> Void){
         let newSubscription = Subscription(values: ["update": Date().getTimestamp(),
                                                     "from": Date().getTimestamp(),
@@ -421,6 +427,10 @@ extension DatabaseMethods {
     
     func detachListenerOnStation(stationId: Int){
         database.detatchListenerOnStation(stationId: getStationIdAsString(stationId: stationId))
+    }
+    
+    func detatchListenerOnSubscription(stationId: Int){
+        database.detachListenerOnSubscription(stationId: getStationIdAsString(stationId: stationId))
     }
     
     func detatchAllListeners(){

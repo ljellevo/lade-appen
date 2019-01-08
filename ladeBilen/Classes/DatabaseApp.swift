@@ -13,7 +13,7 @@ import Disk
 
 class DatabaseApp {
     let ref = Database.database().reference()
-    var stationListenerHandle: DatabaseHandle?
+    //var stationListenerHandle: DatabaseHandle?
     
     func getUserFromDatabase(done: @escaping (_ user: User?)-> Void){
         ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -183,7 +183,7 @@ class DatabaseApp {
     }
     
     func listenOnStation(stationId: String, done: @escaping (_ conn: NSArray)-> Void){
-        stationListenerHandle = ref.child("Realtime").child(stationId).observe(.value) { (snapshot) in
+        ref.child("Realtime").child(stationId).observe(.value) { (snapshot) in
             DispatchQueue.global().async {
                 if let dict = snapshot.value as? [String : AnyObject] {
                     let conn = dict["conn"] as? NSArray
@@ -191,6 +191,19 @@ class DatabaseApp {
                     print(conn![1])
                     DispatchQueue.main.async {
                         done(conn!)
+                    }
+                }
+            }
+        }
+    }
+    
+    func listenOnSubscription(stationId: String, done: @escaping (_ conn: Int) -> Void){
+        ref.child("subscriptions").child(stationId).child("members_subscriptions").observe(.value) { (snapshot) in
+            DispatchQueue.global().async {
+                if let dict = snapshot.value as? [String: AnyObject] {
+                    let count = dict.count
+                    DispatchQueue.main.async {
+                        done(count)
                     }
                 }
             }
@@ -276,6 +289,9 @@ class DatabaseApp {
         ref.child("Realtime").child(stationId).removeAllObservers()
     }
     
+    func detachListenerOnSubscription(stationId: String){
+        ref.child("subscriptions").child(stationId).child("members_subscriptions").removeAllObservers()
+    }
     
     func detatchAllListeners(){
         ref.child("Realtime").removeAllObservers()
