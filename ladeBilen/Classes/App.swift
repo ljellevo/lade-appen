@@ -27,12 +27,18 @@ class App {
     /**
      Checks if data is available in cache, if not then it fetches from database before app i loaded.
      
+     - Author:
+    Ludvig Ellevold
      
-     Parameter:
-     - done: Callback(Status code).
+     - parameters:
+        - done: Callback
+        - code: Status code
      
-     Returns
-     - Void.
+     - returns:
+     Void (Callback with status code)
+     
+     This method is the authentication of the app. It checks all the data that is cached and makes sure that it is updated.
+     If cache does not exists or is corrupted then it fetches new data from the database.
      */
     func initializeApplication(done: @escaping (_ code: Int)-> Void){
         let group = DispatchGroup()
@@ -101,11 +107,11 @@ extension AuthenticationMethods {
     /**
      Tries to load stations from cache, if stations is not cached or something went wron then it fetches from database.
      
-     Parameters:
-     - done: Callback(Void)
+     - parameters:
+        - done: Callback(Void)
      
-     Returns:
-     - Void
+     - returns:
+     Void
      */
     func verifyStationCache(done: @escaping ()-> Void){
         if let checksum = getStationCehcksumCache() {
@@ -519,6 +525,10 @@ extension AlgorithmsMethods {
     
     func findDistanceToStation(station: Station, location: CLLocation) -> Double {
         return algorithms.getDistanceToStation(station: station, location: location)
+    }
+    
+    func findPopularityLevel(count: Int, ammountOfConnectors: Int, amountOfApplicableConnectors: Int) -> String{
+        return algorithms.findPopularityLevel(count: count, ammountOfConnectors: ammountOfConnectors, amountOfApplicableConnectors: amountOfApplicableConnectors)
     }
 }
 

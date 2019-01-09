@@ -362,7 +362,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
                 cell.animateRealtime()
                 let compatibleConntacts: [Int] = app.findAvailableContacts(station: station!)
                 cell.compatibleConntacts = compatibleConntacts[0]
-                cell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
+                cell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
                 cell.connectorCollectionView.reloadData()
                 cell.realtimeLabel.text = "Leverer sanntids informasjon"
                 cell.subscribeButton.isEnabled = true
@@ -843,7 +843,7 @@ extension Service {
                     let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                     infoCell.connectors = self.connectors
                     infoCell.compatibleConntacts = compatibleConntacts[0]
-                    infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
+                    infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
                     infoCell.connectorCollectionView.reloadData()
                 }
             }

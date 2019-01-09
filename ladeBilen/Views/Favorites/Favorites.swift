@@ -18,6 +18,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 
     var favoriteArray: [Station] = []
     var realtimeArray: [Int] = []
+    var countArray: [Int] = []
     var followingArray: [Station] = []
     var station: Station?
     var isDetailsAFavoriteStation: Bool = false
@@ -28,7 +29,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     var countCompatible: Int?
     var connectorDescription: [ConnectorDescription]?
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var collectionView: UICollectionView!
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
@@ -81,10 +82,9 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             if app.user!.favorites.keys.contains(station.id.description) {
                 self.favoriteArray.append(station)
                 self.realtimeArray.append(station.id)
-                print("Setting up listener on: " + station.id.description)
+                self.countArray.append(0)
                 listenOnStation(station: station, done: { updatedStation in
                     if updatedStation.id == self.station?.id{
-                        print("Matching stations")
                         self.station = updatedStation
                         for i in 0 ..< self.favoriteArray.count {
                             if self.favoriteArray[i].id == updatedStation.id {
@@ -96,7 +96,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                         let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                         infoCell.connectors = self.connectors
                         infoCell.compatibleConntacts = compatibleConntacts[0]
-                        infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
+                        infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
                         infoCell.connectorCollectionView.reloadData()
                     }
                     for i in 0..<self.favoriteArray.count {
@@ -109,10 +109,8 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                 })
                 listenOnSubscription(station: station) { count in
                     let position = self.realtimeArray.firstIndex(of: station.id)!
-                    let indexPath = IndexPath(row: position + self.followingArray.count + 2, section: 0)
-                    if let cell: FavoritesCell = self.collectionView.cellForItem(at: indexPath) as? FavoritesCell {
-                       cell.subscriberAmountLabel.text = count.description
-                    }
+                    self.countArray[position] = count
+                    self.collectionView.reloadData()
                 }
             }
         }
@@ -120,10 +118,8 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     override func viewWillDisappear(_ animated: Bool) {
         for station in realtimeArray {
-            print("Removed listener on station: " + station.description)
             detachListenerOnStation(stationId: station)
             detachListenerOnSubscription(stationId: station)
-            
         }
     }
     
@@ -208,7 +204,6 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             }
         }
         self.favoriteArray = []
-        print("Refreshing collectionviews")
         for station in app.stations{
             if app.user!.favorites.keys.contains(station.id.description) {
                 self.favoriteArray.append(station)
@@ -273,7 +268,6 @@ extension DetailsElement {
         
         
         contentViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.15
-        print(UIScreen.main.bounds.height * 0.15)
         height = contentViewHeightConstraint.constant
         contentView.isHidden = false
         
@@ -314,10 +308,14 @@ private typealias CollectionViewLayoutMethods = Favorites
 extension CollectionViewLayoutMethods {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        if collectionView == detailsCollectionView {
+            return 1
+        }
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        /*
         if collectionView == detailsCollectionView {
             return 1
         } else {
@@ -327,13 +325,27 @@ extension CollectionViewLayoutMethods {
                 return favoriteArray.count + 2
             }
         }
+ */
+        if collectionView == detailsCollectionView {
+            return 1
+        }
+        
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return followingArray.count
+        } else if section == 2 {
+            return 1
+        } else {
+            return favoriteArray.count
+        }
+        
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == detailsCollectionView {
             if station != nil {
-                print("Building details collectionview")
                 
                 let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
 
@@ -381,7 +393,7 @@ extension CollectionViewLayoutMethods {
                     cell.animateRealtime()
                     let compatibleConntacts: [Int] = self.app.findAvailableContacts(station: station!)
                     cell.compatibleConntacts = compatibleConntacts[0]
-                    cell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
+                    cell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
                     cell.connectorCollectionView.reloadData()
                     cell.realtimeLabel.text = "Leverer sanntids informasjon"
                     cell.subscribeButton.isEnabled = true
@@ -417,48 +429,45 @@ extension CollectionViewLayoutMethods {
             let cell: TopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCellIdentifier", for: indexPath as IndexPath) as! TopCell
             return cell
         } else {
-            if indexPath.row == 0{
-                //Følger label cell
+            if indexPath.section == 0 {
                 let cell: LabelCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCell", for: indexPath as IndexPath) as! LabelCell
                 cell.label.text = "Følger"
                 return cell
-            } else if indexPath.row == followingArray.count + 1{
-                //Favoritter label cell
-                let cell: LabelCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCell", for: indexPath as IndexPath) as! LabelCell
-                cell.label.text = "Favoritter"
-                return cell
-            } else if indexPath.row <= followingArray.count{
-                //subscription cell
-                let row = indexPath.row - 1
+            } else if indexPath.section == 1 {
+                let row = indexPath.row
                 var cell: SubscriptionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SubscriptionCell", for: indexPath as IndexPath) as! SubscriptionCell
                 cell.delegate = self as CollectionViewCellDelegate
                 cell.stationNameLabel.text = followingArray[row].name
                 cell = addShadowSubscriptionCell(cell: cell)
-                print(followingArray[row].id)
-//              Må fikse denne, ikke sikkert at following array eksisterer
-                //cell.timeTo = (app!.subscriptions[app!.getStationIdAsString(stationId: followingArray[row].id)]?["to"])!
-                cell.timeTo = app.findSubscription(stationId: followingArray[row].id)!.to
-                cell.updateTimer()
+                //Må fikse denne, ikke sikkert at following array eksisterer
+                if let timeTo = app.findSubscription(stationId: followingArray[row].id)?.to {
+                    cell.timeTo = timeTo
+                    cell.updateTimer()
+                }
                 return cell
-            }  else {
-                //Favoritter cell
-                let row = indexPath.row - (followingArray.count + 2)
+            } else if indexPath.section == 2 {
+                let cell: LabelCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCell", for: indexPath as IndexPath) as! LabelCell
+                cell.label.text = "Favoritter"
+                return cell
+            } else {
                 var cell: FavoritesCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCell", for: indexPath as IndexPath) as! FavoritesCell
-                cell.activityLabel.text = "-Høy-"
-                cell.stationNameLabel.text = favoriteArray[row].name
-                cell.stationStreetLabel.text = favoriteArray[row].street + " " + favoriteArray[row].houseNumber
-                cell.stationCityLabel.text = favoriteArray[row].city
-                var availableConnectors = app.findAvailableContacts(station: favoriteArray[row])
-                cell.isRealtime(realtime: favoriteArray[row].realtimeInfo)
-                if favoriteArray[row].realtimeInfo {
+                
+                cell.stationNameLabel.text = favoriteArray[indexPath.row].name
+                cell.stationStreetLabel.text = favoriteArray[indexPath.row].street + " " + favoriteArray[indexPath.row].houseNumber
+                cell.stationCityLabel.text = favoriteArray[indexPath.row].city
+                var availableConnectors = app.findAvailableContacts(station: favoriteArray[indexPath.row])
+                cell.activityLabel.text = app.findPopularityLevel(count: countArray[indexPath.row], ammountOfConnectors: availableConnectors[2], amountOfApplicableConnectors: availableConnectors[1])
+                cell.isRealtime(realtime: favoriteArray[indexPath.row].realtimeInfo)
+                if favoriteArray[indexPath.row].realtimeInfo {
                     cell.availableConntactsLabelMessage.text = "Kontakter"
-                    cell.availableContactsLabel.text = availableConnectors[0].description + "/" + availableConnectors[1].description
+                    cell.availableContactsLabel.text = availableConnectors[0].description + "/" + availableConnectors[2].description
                 } else {
                     cell.availableConntactsLabelMessage.text = ""
                     cell.availableContactsLabel.text = ""
                 }
-                cell.station = favoriteArray[row]
+                cell.station = favoriteArray[indexPath.row]
                 cell = addShadowFavoritesCell(cell: cell)
+                cell.subscriberAmountLabel.text = countArray[indexPath.row].description
                 cell.isAvailableLabel.text = "-Mangler-"
                 return cell
             }
@@ -468,24 +477,19 @@ extension CollectionViewLayoutMethods {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == detailsCollectionView {
-            if indexPath.row == 0 {
-                return CGSize(width: self.view.bounds.size.width, height: 94.0)
-            } else {
-                return CGSize(width: self.view.bounds.size.width, height: (UIScreen.main.bounds.height - 94))
-                //Må ta teksten i station?.descriptionofLocation og regne ut hvor stor den blir mtp høyden når fonten er en spesiell størelse.
-                //Deretter må jeg finne høyden.
-            }
+            return CGSize(width: self.view.bounds.size.width, height: 94.0)
+
         } else {
             var height = self.view.frame.size.width * 0.35
             let width  = self.view.frame.size.width * 0.9
-            if indexPath.row == 0{
+            if indexPath.section == 0 {
                 height = 25
-            } else if indexPath.row == followingArray.count + 1{
-                height = 25
-            } else if indexPath.row <= followingArray.count {
+            } else if indexPath.section == 1 {
                 height = 39
+            } else if indexPath.section == 2 {
+                height = 25
             } else {
-                if favoriteArray[indexPath.row - (2 + followingArray.count)].realtimeInfo {
+                if favoriteArray[indexPath.row].realtimeInfo {
                     height = self.view.frame.size.width * 0.35
                 } else {
                     height = self.view.frame.size.width * 0.20
@@ -497,26 +501,14 @@ extension CollectionViewLayoutMethods {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
-            if indexPath.row >= followingArray.count + 2 {
-                isDetailsAFavoriteStation = true
-                print("selected 1")
-                let row = indexPath.row - (followingArray.count + 2)
-                station = favoriteArray[row]
-                self.connectors = self.app.sortConnectors(station: station!).conn
-                detailsStartPosition(withAnimation: true)
-                detailsCollectionView.reloadData()
-                
-            } else if indexPath.row != 0 && indexPath.row <= followingArray.count{
+            if indexPath.section == 1 {
                 isDetailsAFavoriteStation = false
-                print("selected 2")
-                let row = indexPath.row - 1
-                station = followingArray[row]
+                station = followingArray[indexPath.row]
                 self.connectors = self.app.sortConnectors(station: station!).conn
                 detailsStartPosition(withAnimation: true)
                 detailsCollectionView.reloadData()
                 listenOnStation(station: station!, done: { uStation in
                     if uStation.id == self.station?.id{
-                        print("Matching stations")
                         let updatedStation = uStation
                         self.connectors = self.app.sortConnectors(station: updatedStation).conn
                         let compatibleConntacts: [Int] = self.app.findAvailableContacts(station: updatedStation)
@@ -529,8 +521,13 @@ extension CollectionViewLayoutMethods {
                         }
                     }
                 })
+            } else if indexPath.section == 3 {
+                isDetailsAFavoriteStation = true
+                station = favoriteArray[indexPath.row]
+                self.connectors = self.app.sortConnectors(station: station!).conn
+                detailsStartPosition(withAnimation: true)
+                detailsCollectionView.reloadData()
             }
-            
         }
     }
     
@@ -549,9 +546,8 @@ extension Delegate: CollectionViewCellDelegate {
             if !skipConfirmation {
                 let alert = UIAlertController(title: "Slutte å følge?", message: "Du vil ikke lenger få oppdateringer angående denne stasjonen.", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "Ja", style: UIAlertAction.Style.default, handler: { action in
-                    print("Unsubbing")
                     var indexPath = self.collectionView.indexPath(for: cell)
-                    self.app.unsubscribeToStation(station: self.followingArray[indexPath!.row - 1], done: {_ in
+                    self.app.unsubscribeToStation(station: self.followingArray[indexPath!.row], done: {_ in
                         self.populateFavoritesArray()
                         self.detailsCollectionView.reloadData()
                         let banner = StatusBarNotificationBanner(title: "Du følger ikke lenger denne stasjonen", style: .warning)
@@ -562,7 +558,7 @@ extension Delegate: CollectionViewCellDelegate {
                 self.present(alert, animated: true, completion: nil)
             } else {
                 var indexPath = self.collectionView.indexPath(for: cell)
-                self.app.unsubscribeToStation(station: self.followingArray[indexPath!.row - 1], done: {_ in
+                self.app.unsubscribeToStation(station: self.followingArray[indexPath!.row], done: {_ in
                     self.populateFavoritesArray()
                     self.detailsCollectionView.reloadData()
                 })
@@ -634,7 +630,6 @@ extension Service {
     
     func listenOnStation(station: Station, done: @escaping (_ updatedStation: Station)-> Void){
         app.listenOnStation(stationId: station.id, done: { station in
-            print("Update on: " + station.id.description)
             DispatchQueue.main.async {
                 done(station)
             }
