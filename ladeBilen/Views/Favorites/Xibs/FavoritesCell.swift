@@ -55,7 +55,7 @@ class FavoritesCell: UICollectionViewCell {
             realtimeActivityStackView.isHidden = true
             realtimeSeperatorStackView.isHidden = true
             contactsStackView.isHidden = true
-            indicatorColor.backgroundColor = UIColor.pictonBlue()
+            indicatorColor.backgroundColor = UIColor.appTheme()
             return
         }
         realtimeActivityStackView.isHidden = false
