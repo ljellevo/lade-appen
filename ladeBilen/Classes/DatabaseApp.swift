@@ -213,6 +213,13 @@ class DatabaseApp {
         var errorCode = 1
         let susbscribeTask = DispatchGroup()
         susbscribeTask.enter()
+        Auth.auth().currentUser?.getIDToken(completion: { (token, error) in
+            if error == nil {
+                print(token)
+            } else {
+                print(error)
+            }
+        })
         
         ref.child("User_Info").child(user.uid).child("subscriptions").child(stationId).setValue(
             ["update": Date().getTimestamp(),
