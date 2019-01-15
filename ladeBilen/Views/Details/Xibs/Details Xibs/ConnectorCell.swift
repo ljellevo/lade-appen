@@ -14,8 +14,7 @@ class ConnectorCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var chargeRateLabel: UILabel!
-    @IBOutlet weak var isTakenLabel: UILabel!
-    @IBOutlet weak var isOperationalLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     
     override func awakeFromNib() { 
         super.awakeFromNib()
@@ -24,6 +23,10 @@ class ConnectorCell: UICollectionViewCell {
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.cornerRadius = 20
         view.layer.masksToBounds = true
+    }
+    
+    func setImage(image: UIImage) {
+        imageView.image = image.resizeImage(image: image, newSize: imageView.frame.size)
     }
     
     /*

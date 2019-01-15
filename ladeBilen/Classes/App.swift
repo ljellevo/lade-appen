@@ -24,6 +24,7 @@ class App {
     var connectorDescription: [ConnectorDescription] = []
     var subscriptions: [Subscription] = []
     
+    
     /**
      Checks if data is available in cache, if not then it fetches from database before app i loaded.
      

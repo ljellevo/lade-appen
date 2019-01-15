@@ -11,11 +11,11 @@ import UIKit
 class InfoCell: UICollectionViewCell{
     
     var run: Bool = false
-    var realtime: Bool?
+    var realtime: Bool = false
     var userComment: String?
-    var connectors: [Connector]?
-    var compatibleConntacts: Int?
-    var connectorDescription: [ConnectorDescription]?
+    var connectors: [Connector] = []
+    var connectorDescription: [ConnectorDescription] = []
+    var userCompatibleConntacts: [Int] = []
     weak var delegate: CollectionViewCellDelegate?
 
     
@@ -215,7 +215,7 @@ extension DetailsElement {
     }
     
     func animation(dots: [UIView]){
-        if realtime! {
+        if realtime {
             UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
                 dots[0].alpha = 1.0
             }) { (completion) in
@@ -291,66 +291,79 @@ extension ConnectorElement: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //Kan være nil.
-        print("Count", connectors!.count)
-        return connectors!.count
+        print("Count", connectors.count)
+        return connectors.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ConnectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectorCellIdentifier", for: indexPath as IndexPath) as! ConnectorCell
-        for connDesc in connectorDescription! {
-            if connDesc.id == connectors![indexPath.row].connector {
+        for connDesc in connectorDescription {
+            if connDesc.id == connectors[indexPath.row].connector {
                 cell.typeLabel.text = connDesc.desc
                 break
             }
         }
-        cell.chargeRateLabel.text = connectors![indexPath.row].chargerMode.description
-        if connectors![indexPath.row].chargerMode == -1 {
+        cell.chargeRateLabel.text = connectors[indexPath.row].chargerMode.description
+        if connectors[indexPath.row].chargerMode == -1 {
             cell.chargeRateLabel.text = "Mangler"
-        } else if connectors![indexPath.row].chargerMode == 1{
+        } else if connectors[indexPath.row].chargerMode == 1{
             cell.chargeRateLabel.text = "Normal"
-        } else if connectors![indexPath.row].chargerMode == 2 {
+        } else if connectors[indexPath.row].chargerMode == 2 {
             cell.chargeRateLabel.text = "Semi-Hurtig"
-        } else if connectors![indexPath.row].chargerMode == 3 {
+        } else if connectors[indexPath.row].chargerMode == 3 {
             cell.chargeRateLabel.text = "Semi-Hurtig"
         } else {
             cell.chargeRateLabel.text = "Hurtig"
         }
         
-        if realtime! {
-            if connectors![indexPath.row].isTaken == 0{
-                cell.isTakenLabel.text = "Ledig"
-            } else {
-                cell.isTakenLabel.text = "Opptatt"
+        if realtime {
+            if connectors[indexPath.row].isTaken == 0 {
+                cell.statusLabel.text = "Ledig"
+            } else if connectors[indexPath.row].isTaken == 1 {
+                cell.statusLabel.text = "Opptatt"
+            } else if connectors[indexPath.row].isTaken == -1 {
+                cell.statusLabel.text = "Ukjent status"
             }
             
-            if connectors![indexPath.row].error == 0 {
-                cell.isOperationalLabel.text = ""
-            } else {
-                cell.isOperationalLabel.text = "Ute av drift"
-                cell.isTakenLabel.text = ""
+            if connectors[indexPath.row].error != 0 {
+                cell.statusLabel.text = "Ute av drift"
             }
         } else {
-            cell.isTakenLabel.text = ""
-            cell.isOperationalLabel.text = ""
+            cell.statusLabel.text = ""
         }
         
-        
-        
-        if compatibleConntacts != nil && realtime! {
-            if compatibleConntacts! > indexPath.row {
-                cell.view.layer.borderColor = UIColor.red.cgColor
+        cell.view.alpha = 1.0
+        if realtime {
+            if userCompatibleConntacts.firstIndex(of: connectors[indexPath.row].connector) != nil{
+                if connectors[indexPath.row].isTaken == 0 {
+                    cell.view.layer.borderColor = UIColor.darkGreen().cgColor
+                } else if connectors[indexPath.row].isTaken == 1 {
+                    cell.view.layer.borderColor = UIColor.darkYellow().cgColor
+                } else if connectors[indexPath.row].isTaken == -1 {
+                    cell.view.layer.borderColor = UIColor.appTheme().cgColor
+                }
+                if connectors[indexPath.row].error != 0 {
+                    cell.view.layer.borderColor = UIColor.red.cgColor
+                }
             } else {
                 cell.view.layer.borderColor = UIColor.lightGray.cgColor
-            }
-            
-            if compatibleConntacts! > indexPath.row && connectors![indexPath.row].isTaken == 0 && connectors![indexPath.row].error == 0 {
-                cell.view.layer.borderColor = UIColor.darkGreen().cgColor
-            } else if compatibleConntacts! > indexPath.row && connectors![indexPath.row].isTaken == 1 && connectors![indexPath.row].error == 0 {
-                cell.view.layer.borderColor = UIColor.darkYellow().cgColor
+                cell.view.alpha = 0.3
             }
         } else {
+            if userCompatibleConntacts.firstIndex(of: connectors[indexPath.row].connector) == nil{
+                cell.view.alpha = 0.3
+            }
             cell.view.layer.borderColor = UIColor.lightGray.cgColor
         }
+        
+        if let image = UIImage(named: connAssetLink[connectors[indexPath.row].connector]!){
+            cell.setImage(image: image)
+        } else {
+            cell.setImage(image: UIImage(named: "Mangler Bilde")!)
+        }
+        
+        
+        
         
         return cell
     }

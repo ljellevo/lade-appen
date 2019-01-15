@@ -22,4 +22,21 @@ enum action {
     case unsubscribe
 }
 
+let connAssetLink = [
+    0 : "Unspecified",
+    14: "Schuko",
+    29: "Tesla",
+    30: "CHAdeMO",
+    31: "Type 1",
+    32: "Type 2",
+    34: "3-pin",
+    35: "4-pin",
+    36: "5-pin",
+    39: "CCS",
+    40: "Tesla",
+    41: "Combo + CHAdeMO",
+    50: "Type 2 + Schuko",
+    60: "Type1/Type2",
+]
+
 

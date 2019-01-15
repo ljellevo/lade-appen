@@ -47,6 +47,7 @@ extension UITextField {
 }
 
 extension UIColor {
+    //Used for buttons in details view
     static func themeBlue() -> UIColor {
         return UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
     }

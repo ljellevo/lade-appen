@@ -24,15 +24,14 @@ class Home: UIViewController{
     var stations:[Station] = []
     let searchController = UISearchController(searchResultsController: nil)
     
-    var filteredStations: [Station]?
+    var filteredStations: [Station] = []
     var filteredStationsSearch: [Station] = []
-    var connectorDescription: [ConnectorDescription]?
+    var connectorDescription: [ConnectorDescription] = []
     var selectedStationSearch: Station?
     var station: Station?
     var isFavorite: Bool?
 
-    var countCompatible: Int?
-    var connectors: [Connector]?
+    var connectors: [Connector] = []
     
     var height: CGFloat = 0.0
     var startPosition: Bool = true
@@ -322,7 +321,6 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.delegate = self as CollectionViewCellDelegate
             cell.realtime = station!.realtimeInfo
             cell.nameLabel.text = station?.name
-            cell.compatibleConntacts = countCompatible
             if station!.houseNumber != "" {
                 cell.streetLabel.text = station!.street + " " + station!.houseNumber + ", " + station!.city
             } else {
@@ -358,10 +356,10 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.userComment = station?.userComment
             cell.descriptionLabel.text = station?.descriptionOfLocation
             cell.connectors = app.sortConnectors(station: station!).conn
+            cell.userCompatibleConntacts = app.user!.connector
             if station!.realtimeInfo{
                 cell.animateRealtime()
                 let compatibleConntacts: [Int] = app.findAvailableContacts(station: station!)
-                cell.compatibleConntacts = compatibleConntacts[0]
                 cell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
                 cell.connectorCollectionView.reloadData()
                 cell.realtimeLabel.text = "Leverer sanntids informasjon"
@@ -468,7 +466,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
         print("Adding markers")
 
         DispatchQueue.global().async {
-            for children in self.filteredStations!{
+            for children in self.filteredStations{
                 var position = children.position
                 position = position.replacingOccurrences(of: "(", with: "")
                 position = position.replacingOccurrences(of: ")", with: "")
@@ -552,7 +550,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
             
 
             
-            for filteredStation in filteredStations!{
+            for filteredStation in filteredStations{
                 if filteredStation.id == id {
                     station = filteredStation
                     break
@@ -658,7 +656,7 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
             tableViewStack.isHidden = false
-            filteredStationsSearch = filteredStations!.filter { filteredStations in
+            filteredStationsSearch = filteredStations.filter { filteredStations in
                 return (filteredStations.name.lowercased().contains(searchText.lowercased()))
             }
             if locationManager.location != nil {
@@ -842,7 +840,6 @@ extension Service {
                 if self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) != nil {
                     let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                     infoCell.connectors = self.connectors
-                    infoCell.compatibleConntacts = compatibleConntacts[0]
                     infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
                     infoCell.connectorCollectionView.reloadData()
                 }

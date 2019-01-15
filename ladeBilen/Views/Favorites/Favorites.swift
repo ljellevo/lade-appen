@@ -24,10 +24,10 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     var isDetailsAFavoriteStation: Bool = false
     var height: CGFloat = 0.0
     var startPosition: Bool = true
-    var isFavorite: Bool?
-    var connectors: [Connector]?
-    var countCompatible: Int?
-    var connectorDescription: [ConnectorDescription]?
+    var isFavorite: Bool = false
+    var connectors: [Connector] = []
+    var countCompatible: Int = -1
+    var connectorDescription: [ConnectorDescription] = []
     
     @IBOutlet var collectionView: UICollectionView!
     
@@ -95,7 +95,6 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                         let compatibleConntacts: [Int] = self.app.findAvailableContacts(station: updatedStation)
                         let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                         infoCell.connectors = self.connectors
-                        infoCell.compatibleConntacts = compatibleConntacts[0]
                         infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
                         infoCell.connectorCollectionView.reloadData()
                     }
@@ -353,7 +352,6 @@ extension CollectionViewLayoutMethods {
                 cell.delegate = self as CollectionViewCellDelegate
                 cell.realtime = station!.realtimeInfo
                 cell.nameLabel.text = station?.name
-                cell.compatibleConntacts = countCompatible
                 if station!.houseNumber != "" {
                     cell.streetLabel.text = station!.street + " " + station!.houseNumber + ", " + station!.city
                 } else {
@@ -389,10 +387,10 @@ extension CollectionViewLayoutMethods {
                 cell.userComment = station?.userComment
                 cell.descriptionLabel.text = station?.descriptionOfLocation
                 cell.connectors = self.app.sortConnectors(station: station!).conn
+                cell.userCompatibleConntacts = app.user!.connector
                 if station!.realtimeInfo{
                     cell.animateRealtime()
                     let compatibleConntacts: [Int] = self.app.findAvailableContacts(station: station!)
-                    cell.compatibleConntacts = compatibleConntacts[0]
                     cell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
                     cell.connectorCollectionView.reloadData()
                     cell.realtimeLabel.text = "Leverer sanntids informasjon"
@@ -515,7 +513,6 @@ extension CollectionViewLayoutMethods {
                         DispatchQueue.main.async {
                             let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
                             infoCell.connectors = self.connectors
-                            infoCell.compatibleConntacts = compatibleConntacts[0]
                             infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[1].description
                             infoCell.connectorCollectionView.reloadData()
                         }
@@ -524,6 +521,7 @@ extension CollectionViewLayoutMethods {
             } else if indexPath.section == 3 {
                 isDetailsAFavoriteStation = true
                 station = favoriteArray[indexPath.row]
+                print(station?.id)
                 self.connectors = self.app.sortConnectors(station: station!).conn
                 detailsStartPosition(withAnimation: true)
                 detailsCollectionView.reloadData()
@@ -577,7 +575,7 @@ extension Delegate: CollectionViewCellDelegate {
                 }
             }
         } else if action == .favorite {
-            if isFavorite! {
+            if isFavorite {
                 app.user?.favorites.removeValue(forKey: station!.id.description)
                 app.setUserInDatabase(user: app.user!, done: { code in
                     let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell

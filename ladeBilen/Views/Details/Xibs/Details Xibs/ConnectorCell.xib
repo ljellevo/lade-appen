@@ -21,34 +21,30 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPO-7U-cRT">
                         <rect key="frame" x="0.0" y="0.0" width="180" height="84"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CHAdeMO" translatesAutoresizingMaskIntoConstraints="NO" id="oVE-86-TXH">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Type 2" translatesAutoresizingMaskIntoConstraints="NO" id="oVE-86-TXH">
                                 <rect key="frame" x="8" y="13" width="58" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="oVE-86-TXH" secondAttribute="height" multiplier="1:1" id="UIg-Ic-SvR"/>
+                                </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="jHu-iQ-f0d">
-                                <rect key="frame" x="8" y="5" width="164" height="74"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="jHu-iQ-f0d">
+                                <rect key="frame" x="66" y="5" width="106" height="74"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="ChaDeMo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycI-6h-qcd">
-                                        <rect key="frame" x="100" y="0.0" width="64" height="23"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="ChaDeMo" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycI-6h-qcd">
+                                        <rect key="frame" x="50.5" y="0.0" width="55.5" height="24.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hurtig" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-1K-PgI">
-                                        <rect key="frame" x="123.5" y="23" width="40.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="70.5" y="24.5" width="35.5" height="25"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fungerer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o67-qd-wqx">
-                                        <rect key="frame" x="105.5" y="40" width="58.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opptatt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qS1-tw-D4K">
-                                        <rect key="frame" x="114" y="57" width="50" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="55" y="49.5" width="51" height="24.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -60,7 +56,10 @@
                             <constraint firstAttribute="bottom" secondItem="jHu-iQ-f0d" secondAttribute="bottom" constant="5" id="Ags-wb-Hcr"/>
                             <constraint firstAttribute="trailing" secondItem="jHu-iQ-f0d" secondAttribute="trailing" constant="8" id="Gnn-N3-LLT"/>
                             <constraint firstItem="jHu-iQ-f0d" firstAttribute="top" secondItem="zPO-7U-cRT" secondAttribute="top" constant="5" id="OPQ-2S-x1J"/>
-                            <constraint firstItem="jHu-iQ-f0d" firstAttribute="leading" secondItem="zPO-7U-cRT" secondAttribute="leading" constant="8" id="mJY-BB-zWZ"/>
+                            <constraint firstItem="oVE-86-TXH" firstAttribute="top" secondItem="zPO-7U-cRT" secondAttribute="top" constant="13" id="Zxd-Pm-8sD"/>
+                            <constraint firstAttribute="bottom" secondItem="oVE-86-TXH" secondAttribute="bottom" constant="13" id="dlk-Bs-JiY"/>
+                            <constraint firstItem="oVE-86-TXH" firstAttribute="leading" secondItem="zPO-7U-cRT" secondAttribute="leading" constant="8" id="mnJ-71-hRi"/>
+                            <constraint firstItem="jHu-iQ-f0d" firstAttribute="leading" secondItem="oVE-86-TXH" secondAttribute="trailing" id="oQM-K6-fYc"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -76,8 +75,7 @@
             <connections>
                 <outlet property="chargeRateLabel" destination="YcU-1K-PgI" id="mig-nC-8VE"/>
                 <outlet property="imageView" destination="oVE-86-TXH" id="K56-Pn-AsW"/>
-                <outlet property="isOperationalLabel" destination="qS1-tw-D4K" id="bc1-9K-sto"/>
-                <outlet property="isTakenLabel" destination="o67-qd-wqx" id="w5z-3A-raG"/>
+                <outlet property="statusLabel" destination="o67-qd-wqx" id="DUM-tN-Zvt"/>
                 <outlet property="typeLabel" destination="ycI-6h-qcd" id="TEP-eH-n0B"/>
                 <outlet property="view" destination="zPO-7U-cRT" id="N9T-eB-ghZ"/>
             </connections>
@@ -85,6 +83,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="CHAdeMO" width="605" height="605"/>
+        <image name="Type 2" width="605" height="547"/>
     </resources>
 </document>

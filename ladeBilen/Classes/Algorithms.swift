@@ -109,8 +109,8 @@ class Algorithms {
                     }
                     counter[1] += 1
                 }
-                counter[2] += 1
             }
+            counter[2] += 1
         }
         return counter
     }
@@ -150,6 +150,7 @@ class Algorithms {
         var newArray: [Connector] = []
         var vacantConn: [Connector] = []
         var busyConn: [Connector] = []
+        var statusUnknownConn: [Connector] = []
         var errorConn: [Connector] = []
         
         var found = false
@@ -158,12 +159,16 @@ class Algorithms {
                 found = false
                 for connector in user.connector{
                     if conn.connector == connector {
-                        if conn.isTaken == 0 {
-                            vacantConn.append(conn)
-                        } else if conn.isTaken == 1 {
-                            busyConn.append(conn)
-                        } else {
+                        if conn.error != 0 {
                             errorConn.append(conn)
+                        } else {
+                            if conn.isTaken == 0 {
+                                vacantConn.append(conn)
+                            } else if conn.isTaken == 1{
+                                busyConn.append(conn)
+                            } else {
+                                statusUnknownConn.append(conn)
+                            }
                         }
                         found = true
                     }
@@ -172,7 +177,7 @@ class Algorithms {
                     newArray.append(conn)
                 }
             }
-            newArray = vacantConn + busyConn + errorConn + newArray
+            newArray = vacantConn + busyConn + statusUnknownConn + errorConn + newArray
         } else {
             for conn in station.conn{
                 found = false
