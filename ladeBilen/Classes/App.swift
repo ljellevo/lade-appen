@@ -528,7 +528,7 @@ extension AlgorithmsMethods {
         return algorithms.getDistanceToStation(station: station, location: location)
     }
     
-    func findPopularityLevel(count: Int, ammountOfConnectors: Int, amountOfApplicableConnectors: Int) -> String{
+    func findPopularityLevel(count: Int, ammountOfConnectors: Int, amountOfApplicableConnectors: Int) -> popularity{
         return algorithms.findPopularityLevel(count: count, ammountOfConnectors: ammountOfConnectors, amountOfApplicableConnectors: amountOfApplicableConnectors)
     }
 }

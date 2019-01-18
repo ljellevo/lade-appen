@@ -449,12 +449,24 @@ extension CollectionViewLayoutMethods {
                 return cell
             } else {
                 var cell: FavoritesCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCell", for: indexPath as IndexPath) as! FavoritesCell
-                
+                cell.delegate = self as FavoritesCellDelegate
                 cell.stationNameLabel.text = favoriteArray[indexPath.row].name
                 cell.stationStreetLabel.text = favoriteArray[indexPath.row].street + " " + favoriteArray[indexPath.row].houseNumber
                 cell.stationCityLabel.text = favoriteArray[indexPath.row].city
                 var availableConnectors = app.findAvailableContacts(station: favoriteArray[indexPath.row])
-                cell.activityLabel.text = app.findPopularityLevel(count: countArray[indexPath.row], ammountOfConnectors: availableConnectors[2], amountOfApplicableConnectors: availableConnectors[1])
+                let popularity = app.findPopularityLevel(count: countArray[indexPath.row], ammountOfConnectors: availableConnectors[2], amountOfApplicableConnectors: availableConnectors[1])
+                switch popularity {
+                    case .low:
+                        cell.activityLabel.text = "Lav"
+                        cell.indicatorColor.backgroundColor = UIColor.fruitSalad()
+                    case .medium:
+                        cell.activityLabel.text = "Med"
+                        cell.indicatorColor.backgroundColor = UIColor.appleYellow()
+                    case .high:
+                        cell.activityLabel.text = "Høy"
+                        cell.indicatorColor.backgroundColor = UIColor.faluRed()
+                }
+                
                 cell.isRealtime(realtime: favoriteArray[indexPath.row].realtimeInfo)
                 if favoriteArray[indexPath.row].realtimeInfo {
                     cell.availableConntactsLabelMessage.text = "Kontakter"
@@ -521,7 +533,6 @@ extension CollectionViewLayoutMethods {
             } else if indexPath.section == 3 {
                 isDetailsAFavoriteStation = true
                 station = favoriteArray[indexPath.row]
-                print(station?.id)
                 self.connectors = self.app.sortConnectors(station: station!).conn
                 detailsStartPosition(withAnimation: true)
                 detailsCollectionView.reloadData()
@@ -537,7 +548,19 @@ extension CollectionViewLayoutMethods {
 }
 
 private typealias Delegate = Favorites
-extension Delegate: CollectionViewCellDelegate {
+extension Delegate: CollectionViewCellDelegate, FavoritesCellDelegate {
+    
+    func favoriteShowOnMap(_ cell: UICollectionViewCell, buttonTapped: UIButton, station: Station) {
+        print("Vis på kart")
+        if let view = self.navigationController?.viewControllers[0] as? Home {
+            view.station = station
+            view.startPosition = true
+            view.moveMapToMarker(selectedStation: station)
+            self.navigationController?.popToViewController(view, animated: true)
+        }
+        return
+    }
+    
     
     func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action, skipConfirmation: Bool) {
         if action == .unsubscribe {

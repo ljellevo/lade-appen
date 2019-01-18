@@ -90,6 +90,10 @@ class Home: UIViewController{
  
     }
     
+    override func didReceiveMemoryWarning() {
+        print("memory")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         filteredStations = app.filteredStations
         self.addAnnotationsToMap()
@@ -499,7 +503,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
                 dequeuedView.markerTintColor = UIColor.pictonBlue()
                 
                 if annotation.realtime! {
-                    dequeuedView.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
+                    dequeuedView.markerTintColor = UIColor.markerRed()
                 }
                 if app.user!.favorites.keys.contains(annotation.id!.description) {
                     dequeuedView.markerTintColor = UIColor.fruitSalad()
@@ -517,7 +521,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
                 view.markerTintColor = UIColor.pictonBlue()
                 
                 if annotation.realtime! {
-                    view.markerTintColor = UIColor(red: 1, green: 0.3529, blue: 0.302, alpha: 1.0)
+                    view.markerTintColor = UIColor.markerRed()
                 }
                 if app.user!.favorites.keys.contains(annotation.id!.description) {
                     view.markerTintColor = UIColor.fruitSalad()
@@ -695,8 +699,12 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        id = filteredStationsSearch[indexPath.row].id
-        station = filteredStationsSearch[indexPath.row]
+        moveMapToMarker(selectedStation: filteredStations[indexPath.row])
+    }
+    
+    func moveMapToMarker(selectedStation: Station){
+        id = selectedStation.id
+        station = selectedStation
         listenOnStation()
         
         if app.user!.favorites.keys.contains(station!.id.description){

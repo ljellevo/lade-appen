@@ -17,3 +17,7 @@ protocol stationConntactWasUpdated {
 protocol CollectionViewCellDelegate: class {
     func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action, skipConfirmation: Bool)
 }
+
+protocol FavoritesCellDelegate: class {
+    func favoriteShowOnMap(_ cell: UICollectionViewCell, buttonTapped: UIButton, station: Station)
+}

@@ -76,16 +76,16 @@ class Algorithms {
      String with popularity (Høy, medium, lav)
      
      */
-    func findPopularityLevel(count: Int, ammountOfConnectors: Int, amountOfApplicableConnectors: Int) -> String {
+    func findPopularityLevel(count: Int, ammountOfConnectors: Int, amountOfApplicableConnectors: Int) -> popularity {
         //10-2 = 8
         //8 >= 10 * 0,25
         let freeConnectors = ammountOfConnectors - count
         if freeConnectors >= Int((Double(ammountOfConnectors) * 0.75).rounded()) {
-            return "Lav"
+            return popularity.low
         } else if freeConnectors <= Int((Double(ammountOfConnectors) * 0.25).rounded()){
-           return "Høy"
+           return popularity.high
         }
-        return "Med"
+        return popularity.medium
     }
 
     

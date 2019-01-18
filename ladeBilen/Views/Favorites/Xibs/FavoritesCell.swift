@@ -10,7 +10,8 @@ import UIKit
 
 class FavoritesCell: UICollectionViewCell {
     
-    var station: Station?
+    var station: Station!
+    weak var delegate: FavoritesCellDelegate?
 
     
     @IBOutlet weak var indicatorColor: UIView!
@@ -36,6 +37,7 @@ class FavoritesCell: UICollectionViewCell {
     @IBOutlet weak var cellHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var contactsStackView: UIStackView!
+    @IBOutlet weak var showOnMapButton: UIButton!
     
     
     override func awakeFromNib() {
@@ -48,6 +50,7 @@ class FavoritesCell: UICollectionViewCell {
         //indicatorColor.layer.cornerRadius = 10
         whitePanel.layer.cornerRadius = 0
         separatorLine.layer.cornerRadius = 1
+        showOnMapButton.tintColor = UIColor.markerRed()
     }
     
     func isRealtime(realtime: Bool){
@@ -61,11 +64,13 @@ class FavoritesCell: UICollectionViewCell {
         realtimeActivityStackView.isHidden = false
         realtimeSeperatorStackView.isHidden = false
         contactsStackView.isHidden = false
-        indicatorColor.backgroundColor = UIColor.faluRed()
     }
     
     
-
+    @IBAction func showOnMap(_ sender: UIButton) {
+        delegate?.favoriteShowOnMap(self, buttonTapped: showOnMapButton, station: station!)
+    }
+    
     @IBAction func toDetailsButton(_ sender: UIButton) {
         
     }

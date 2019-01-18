@@ -22,6 +22,12 @@ enum action {
     case unsubscribe
 }
 
+enum popularity {
+    case low
+    case medium
+    case high
+}
+
 let connAssetLink = [
     0 : "Unspecified",
     14: "Schuko",
@@ -36,7 +42,7 @@ let connAssetLink = [
     40: "Tesla",
     41: "Combo + CHAdeMO",
     50: "Type 2 + Schuko",
-    60: "Type1/Type2",
+    60: "Type1Type2",
 ]
 
 
