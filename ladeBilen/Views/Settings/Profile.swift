@@ -57,6 +57,16 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.reloadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParent {
+            if let view = self.navigationController?.viewControllers[0] as? Home {
+                view.addAnnotationsToMap()
+                self.navigationController?.popToViewController(view, animated: true)
+            }
+        }
+    }
+    
 
 
     override func didReceiveMemoryWarning() {

@@ -95,8 +95,8 @@ class Home: UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         filteredStations = app.filteredStations
-        self.addAnnotationsToMap()
         searchController.searchBar.sizeToFit()
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapElement.handleTapOnMap(_:)))
         mapWindow.addGestureRecognizer(gestureRecognizer)
@@ -294,12 +294,15 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
         self.collectionView.register(UINib(nibName: "TopCell", bundle: nil), forCellWithReuseIdentifier: "ImageCellIdentifier")
         self.collectionView.register(UINib(nibName: "InfoCell", bundle: nil), forCellWithReuseIdentifier: "InfoCellIdentifier")
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
-            flowLayout.estimatedItemSize = collectionView.bounds.size;
+            //flowLayout.estimatedItemSize = self.view.bounds.size;
+            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
         }
-        //self.automaticallyAdjustsScrollViewInsets = false
+        
+        self.automaticallyAdjustsScrollViewInsets = false
         
         self.contentView.isHidden = true
-        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
         greyDraggingIndicator.layer.cornerRadius = 2
         blurView.alpha = 0.0
         contentView.layer.cornerRadius = 20
@@ -402,6 +405,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        /*
         if indexPath.row == 0 {
             return CGSize(width: self.view.bounds.size.width, height: 94.0)
         } else {
@@ -409,6 +413,8 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             //Må ta teksten i station?.descriptionofLocation og regne ut hvor stor den blir mtp høyden når fonten er en spesiell størelse.
             //Deretter må jeg finne høyden.
         }
+        */
+        return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.15)
     }
  
     
@@ -462,6 +468,8 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
         isInitial = true
         centerMapButton.layer.cornerRadius = 10
         centerMapButton.addShadow()
+        self.addAnnotationsToMap()
+        
         
     }
     
@@ -648,6 +656,7 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         self.definesPresentationContext = true
         
         setupNavigationBar()
+        
     }
     
     func setupNavigationBar() {

@@ -68,8 +68,8 @@ class InfoCell: UICollectionViewCell{
         NSLayoutConstraint.activate([leftConstraint, rightConstraint, topConstraint, bottomConstraint])
         print("Loading nib")
         
-        screenWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
-        commentStackWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
+        //screenWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
+        //commentStackWidthConstraint.constant = (UIScreen.main.bounds.width - 40)
         
         loadDetailsElement()
         loadCommentsElement()

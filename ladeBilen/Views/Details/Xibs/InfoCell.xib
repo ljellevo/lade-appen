@@ -278,6 +278,9 @@
                                                 <exclude reference="sBw-F1-vE1"/>
                                                 <exclude reference="BcC-CE-Zck"/>
                                             </mask>
+                                            <mask key="constraints">
+                                                <exclude reference="HlI-yu-Ia5"/>
+                                            </mask>
                                         </variation>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="t1E-k3-wbq" userLabel="Comments Stack">
@@ -292,6 +295,11 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="374" id="61V-s7-MPG"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="61V-s7-MPG"/>
+                                            </mask>
+                                        </variation>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="P6h-J1-kzN">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="379"/>

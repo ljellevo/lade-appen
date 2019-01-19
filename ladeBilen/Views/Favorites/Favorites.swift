@@ -53,6 +53,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.followingArray = []
         self.favoriteArray = []
         if app.subscriptions.count == 0 {
@@ -83,12 +84,34 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                 self.favoriteArray.append(station)
                 self.realtimeArray.append(station.id)
                 self.countArray.append(0)
+                
                 listenOnStation(station: station, done: { updatedStation in
+                    
+                    for i in 0..<self.favoriteArray.count {
+                        if self.favoriteArray[i].id == updatedStation.id {
+                            self.favoriteArray[i] = updatedStation
+                            //self.collectionView.reloadItems(at: [IndexPath(row: i, section: 3)])
+                            break
+                        }
+                    }
+                    if updatedStation.id == self.station?.id {
+                        self.station = updatedStation
+                        self.connectors = self.app.sortConnectors(station: updatedStation).conn
+                        let compatibleConntacts: [Int] = self.app.findAvailableContacts(station: updatedStation)
+                        let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                        infoCell.connectors = self.connectors
+                        infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
+                        infoCell.connectorCollectionView.reloadData()
+                    }
+                    self.collectionView.reloadData()
+                    /*
                     if updatedStation.id == self.station?.id{
+                        print("Feil")
                         self.station = updatedStation
                         for i in 0 ..< self.favoriteArray.count {
                             if self.favoriteArray[i].id == updatedStation.id {
                                 self.favoriteArray[i] = updatedStation
+                                break
                             }
                         }
                         self.connectors = self.app.sortConnectors(station: updatedStation).conn
@@ -97,25 +120,33 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                         infoCell.connectors = self.connectors
                         infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
                         infoCell.connectorCollectionView.reloadData()
+                        
                     }
+                    print("Updates")
                     for i in 0..<self.favoriteArray.count {
                         if self.favoriteArray[i].id == updatedStation.id {
                             self.favoriteArray[i] = updatedStation
-                            self.collectionView.reloadData()
+                            
+                            //self.collectionView.reloadItems(at: [IndexPath(row: i, section: 3)])
                             break
                         }
                     }
+                    self.collectionView.reloadData()
+ */
                 })
                 listenOnSubscription(station: station) { count in
                     let position = self.realtimeArray.firstIndex(of: station.id)!
                     self.countArray[position] = count
                     self.collectionView.reloadData()
                 }
+ 
+ 
             }
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         for station in realtimeArray {
             detachListenerOnStation(stationId: station)
             detachListenerOnSubscription(stationId: station)
@@ -314,17 +345,6 @@ extension CollectionViewLayoutMethods {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        /*
-        if collectionView == detailsCollectionView {
-            return 1
-        } else {
-            if followingArray.count != 0{
-                return favoriteArray.count + followingArray.count + 2
-            } else {
-                return favoriteArray.count + 2
-            }
-        }
- */
         if collectionView == detailsCollectionView {
             return 1
         }
@@ -554,7 +574,6 @@ extension Delegate: CollectionViewCellDelegate, FavoritesCellDelegate {
         print("Vis på kart")
         if let view = self.navigationController?.viewControllers[0] as? Home {
             view.station = station
-            view.startPosition = true
             view.moveMapToMarker(selectedStation: station)
             self.navigationController?.popToViewController(view, animated: true)
         }
