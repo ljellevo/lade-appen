@@ -220,6 +220,7 @@
                         <segue destination="EYt-UJ-mP1" kind="show" identifier="toReportBug" id="NOV-gx-54B"/>
                         <segue destination="ypy-3c-FZW" kind="show" identifier="toChangeUserInfo" id="KsY-UK-J0t"/>
                         <segue destination="Wel-ij-dGa" kind="show" identifier="toChangeContact" id="j1U-WB-64A"/>
+                        <segue destination="VEH-MT-qPr" kind="show" identifier="toPrivacy" id="2Aa-9c-g5W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z5c-fD-Y1V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -752,36 +753,90 @@
                                 <rect key="frame" x="0.0" y="0.0" width="305" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQU-YE-eFR">
-                                <rect key="frame" x="0.0" y="0.0" width="120" height="504"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5kv-8C-eN5">
-                                <rect key="frame" x="36" y="20" width="248" height="284"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="304"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CK3-nJ-jU3">
-                                        <rect key="frame" x="0.0" y="0.0" width="248" height="284"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="304"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQU-YE-eFR">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gdt-9P-ctD">
+                                        <rect key="frame" x="10" y="142.5" width="300" height="169.5"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bug" translatesAutoresizingMaskIntoConstraints="NO" id="6yt-fk-z5N">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="75"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="75" id="yls-CJ-bEC"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3mA-Av-Zg4">
+                                                <rect key="frame" x="0.0" y="75" width="300" height="20"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="JF7-gL-uue"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heisann, har noe gått galt?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZ2-ak-hnU">
+                                                <rect key="frame" x="0.0" y="95" width="300" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prøv å skriv så detaljert som mulig" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3D-Nh-J7V">
+                                                <rect key="frame" x="0.0" y="119" width="300" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lx4-kO-HJh">
+                                                <rect key="frame" x="0.0" y="135" width="300" height="20"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="EcX-Uv-4h0"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Trykk på meg for å skrive en rapport)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDC-v1-AiD">
+                                                <rect key="frame" x="0.0" y="155" width="300" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.28115430474281311" green="0.36080104112625122" blue="0.5215875506401062" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="gdt-9P-ctD" secondAttribute="trailing" constant="10" id="1Aj-TQ-jcj"/>
+                                    <constraint firstItem="gdt-9P-ctD" firstAttribute="leading" secondItem="sQU-YE-eFR" secondAttribute="leading" constant="10" id="NXo-gi-dwW"/>
+                                    <constraint firstItem="gdt-9P-ctD" firstAttribute="centerY" secondItem="sQU-YE-eFR" secondAttribute="centerY" constant="-25" id="xhB-dx-9kE"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="6SI-JL-2pC" appends="YES" id="44q-4g-y3c"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6nq-bn-djd" firstAttribute="top" secondItem="bwM-J4-iMz" secondAttribute="bottom" identifier="801" id="AFy-d4-x4Z"/>
                             <constraint firstItem="sQU-YE-eFR" firstAttribute="top" secondItem="bwM-J4-iMz" secondAttribute="bottom" identifier="804" id="Faw-XR-xjQ"/>
                             <constraint firstItem="sQU-YE-eFR" firstAttribute="leading" secondItem="JJd-U2-dKL" secondAttribute="leading" identifier="805" id="My8-E8-Tnk"/>
-                            <constraint firstItem="5kv-8C-eN5" firstAttribute="top" secondItem="bwM-J4-iMz" secondAttribute="bottom" constant="20" identifier="807" id="Q0w-uN-PGH"/>
+                            <constraint firstItem="5kv-8C-eN5" firstAttribute="top" secondItem="bwM-J4-iMz" secondAttribute="bottom" identifier="807" id="Q0w-uN-PGH"/>
                             <constraint firstItem="Jkb-mv-u7m" firstAttribute="top" secondItem="sQU-YE-eFR" secondAttribute="bottom" identifier="810" id="Tps-Sd-EI5"/>
                             <constraint firstItem="Jkb-mv-u7m" firstAttribute="top" secondItem="6nq-bn-djd" secondAttribute="bottom" identifier="811" id="VAt-23-1VO"/>
                             <constraint firstItem="Jkb-mv-u7m" firstAttribute="top" secondItem="5kv-8C-eN5" secondAttribute="bottom" constant="200" identifier="812" id="edx-bm-9aM"/>
                             <constraint firstAttribute="trailing" secondItem="6nq-bn-djd" secondAttribute="trailing" constant="15" identifier="802" id="f8g-Ym-l3l"/>
-                            <constraint firstItem="5kv-8C-eN5" firstAttribute="leading" secondItem="JJd-U2-dKL" secondAttribute="leading" constant="36" identifier="808" id="kIA-n0-1gg"/>
-                            <constraint firstAttribute="trailing" secondItem="sQU-YE-eFR" secondAttribute="trailing" constant="200" identifier="806" id="lpW-g6-hZc"/>
+                            <constraint firstItem="5kv-8C-eN5" firstAttribute="leading" secondItem="JJd-U2-dKL" secondAttribute="leading" identifier="808" id="kIA-n0-1gg"/>
+                            <constraint firstAttribute="trailing" secondItem="sQU-YE-eFR" secondAttribute="trailing" identifier="806" id="lpW-g6-hZc"/>
                             <constraint firstItem="6nq-bn-djd" firstAttribute="leading" secondItem="JJd-U2-dKL" secondAttribute="leading" identifier="803" id="mHd-Nx-o2z"/>
-                            <constraint firstAttribute="trailing" secondItem="5kv-8C-eN5" secondAttribute="trailing" constant="36" identifier="809" id="n9X-ys-thb"/>
+                            <constraint firstAttribute="trailing" secondItem="5kv-8C-eN5" secondAttribute="trailing" identifier="809" id="n9X-ys-thb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Rapporter Feil" id="vu2-Hz-7Sa">
@@ -792,14 +847,188 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backgroundView" destination="sQU-YE-eFR" id="uWC-Xs-Nc0"/>
+                        <outlet property="bottomConstraint" destination="edx-bm-9aM" id="19N-8W-DWL"/>
                         <outlet property="sendButton" destination="8Ak-QS-HWY" id="xEV-b9-0gD"/>
                         <outlet property="textView" destination="CK3-nJ-jU3" id="vn3-Kn-jt3"/>
-                        <outlet property="whitePanel" destination="6nq-bn-djd" id="6V2-c5-Rum"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKD-La-bfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="6SI-JL-2pC">
+                    <connections>
+                        <action selector="backgroundWasTapped:" destination="EYt-UJ-mP1" id="hhD-D3-6gq"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="169" y="1410"/>
+        </scene>
+        <!--Personvern-->
+        <scene sceneID="Ls2-ky-6RY">
+            <objects>
+                <viewController storyboardIdentifier="Privacy" id="VEH-MT-qPr" customClass="Privacy" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6o9-Y4-0S6"/>
+                        <viewControllerLayoutGuide type="bottom" id="dFn-hF-0YN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8j1-6A-U5n">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hwf-bf-bJj">
+                                <rect key="frame" x="20" y="20" width="280" height="416.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For oss er personvern veldig viktig. Vi lager derfor minimalt med data om brukerene våre." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PR4-5S-RRF">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iaj-Ss-PLp">
+                                        <rect key="frame" x="0.0" y="29" width="280" height="10"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="Q1M-OE-hwM"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Det vi lagrer som er knyttet til deg er:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rej-AA-qCu">
+                                        <rect key="frame" x="0.0" y="39" width="280" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Fornavn og etternavn" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkj-nX-3qT">
+                                        <rect key="frame" x="0.0" y="53.5" width="280" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- E-post" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ij9-9m-3Qd">
+                                        <rect key="frame" x="0.0" y="68" width="280" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Kompatible kontakter" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCZ-2e-pos">
+                                        <rect key="frame" x="0.0" y="82.5" width="280" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Favoritter" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llT-h9-kjf">
+                                        <rect key="frame" x="0.0" y="97" width="280" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Følger" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLh-UF-VeR">
+                                        <rect key="frame" x="0.0" y="111.5" width="280" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfe-y8-bKP">
+                                        <rect key="frame" x="0.0" y="126" width="280" height="10"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="ZWr-eb-gkh"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vi lagrer også instillingene dine." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKE-Xg-cHn">
+                                        <rect key="frame" x="0.0" y="136" width="280" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tcW-K1-pa6">
+                                        <rect key="frame" x="0.0" y="150.5" width="280" height="10"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="pxs-gk-9JZ"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvY-pt-Gq2">
+                                        <rect key="frame" x="0.0" y="160.5" width="280" height="72"/>
+                                        <string key="text">Når du legger til en favoritt eller følger en stasjon så vil det bli satt opp en knytning mellom deg og stasjonen. Under noen omstendigheter så kan denne dataen bli lagret i en lengere periode, men den vil kun leve internt i systemet.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZ9-aR-jV2">
+                                        <rect key="frame" x="0.0" y="232.5" width="280" height="10"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="NaB-2D-WN3"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39v-IH-iSw">
+                                        <rect key="frame" x="0.0" y="242.5" width="280" height="57.5"/>
+                                        <string key="text">Når du følger en stasjon så lagrer vi noen opplysninger for å kunne gi en god prediksjon av popularitet. Denne dataen har ingen identifiserbare parametere.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQz-9n-cCj">
+                                        <rect key="frame" x="0.0" y="300" width="280" height="10"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="ucC-vX-eG7"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRt-AB-g6u">
+                                        <rect key="frame" x="0.0" y="310" width="280" height="57.5"/>
+                                        <string key="text">Dette betyr at når du ber om dataen vi har om deg så kan vi ikke levere dataen i prediksjonssystemet da vi ikke kan vite hilken data som er din.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fO-5K-RTJ">
+                                        <rect key="frame" x="0.0" y="367.5" width="280" height="10"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="f5E-oa-hmU"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vi hverken selger eller kommer til å selge dataen vi har." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bs6-P7-TFG">
+                                        <rect key="frame" x="0.0" y="377.5" width="280" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J9F-6e-GZy">
+                                        <rect key="frame" x="0.0" y="406.5" width="280" height="10"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="i89-2f-rhP"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="utH-5j-dM4">
+                                <rect key="frame" x="36" y="434" width="248" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlA-xr-RsA">
+                                        <rect key="frame" x="0.0" y="0.0" width="248" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="VS2-ap-XLF"/>
+                                        </constraints>
+                                        <state key="normal" title="Send meg opplysningene dere har">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendDataButton:" destination="VEH-MT-qPr" eventType="touchUpInside" id="Lr4-8a-L56"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hwf-bf-bJj" firstAttribute="leading" secondItem="8j1-6A-U5n" secondAttribute="leading" constant="20" id="6je-JD-QAy"/>
+                            <constraint firstItem="hwf-bf-bJj" firstAttribute="top" secondItem="6o9-Y4-0S6" secondAttribute="bottom" constant="20" id="E6k-a8-CnU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="utH-5j-dM4" secondAttribute="trailing" constant="20" id="OmZ-Kw-nXb"/>
+                            <constraint firstAttribute="trailing" secondItem="hwf-bf-bJj" secondAttribute="trailing" constant="20" id="Q4D-0B-e60"/>
+                            <constraint firstItem="dFn-hF-0YN" firstAttribute="top" secondItem="utH-5j-dM4" secondAttribute="bottom" constant="30" id="QF7-J0-oWV"/>
+                            <constraint firstItem="utH-5j-dM4" firstAttribute="leading" secondItem="8j1-6A-U5n" secondAttribute="leadingMargin" constant="20" id="c8W-Ud-YKY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Personvern" id="m7k-Fp-qtB"/>
+                    <connections>
+                        <outlet property="sendDataButton" destination="MlA-xr-RsA" id="Q9w-W5-53K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XD3-GU-s20" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="879" y="1409"/>
         </scene>
         <!--Ladestasjoner-->
         <scene sceneID="tne-QT-ifu">
@@ -2078,6 +2307,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Bug" width="188" height="220"/>
         <image name="FavoriteSet" width="40" height="40"/>
         <image name="MarkerSet" width="40" height="40"/>
         <image name="ProfileSet" width="40" height="40"/>

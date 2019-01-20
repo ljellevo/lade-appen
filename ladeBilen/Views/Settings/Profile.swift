@@ -24,7 +24,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let items = [
         ["Fornavn", "Etternavn", "E-post", "Endre Passord"],
         ["Endre Kontakt", "Innstillinger"],
-        ["Om oss", "Rapporter feil"],
+        ["Om oss", "Rapporter feil", "Personvern"],
         ["Slett lagret data", "Log ut"]
     ]
 
@@ -156,6 +156,8 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 performSegue(withIdentifier: "toAbout", sender: self)
             case (2,1):
                 performSegue(withIdentifier: "toReportBug", sender: self)
+            case (2,2):
+                performSegue(withIdentifier: "toPrivacy", sender: self)
             case (3,0):
                 deleteCache()
             case (3,1):

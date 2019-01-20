@@ -11,26 +11,48 @@ import AudioToolbox
 
 class ReportBug: UIViewController, UITextViewDelegate {
     
-    //Import app not database
     var app: App!
-    //let database = DatabaseApp()
     
-    let placeholder = "Vennligst skriv utfyllende både hva som skjedde og hvilke handlinger som du utførte før feilen oppstod. Ved misbruk vil du risikere å bli utestengt."
+    let placeholder = "Prøv å skriv hva som skjedde, og hvordan man kan gjenskape feilen"
 
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var sendButton: UIBarButtonItem!
-    @IBOutlet weak var whitePanel: UIView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var backgroundView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.delegate = self
-        whitePanel.layer.cornerRadius = 20
+        //whitePanel.layer.cornerRadius = 20
         
-        textView.text = placeholder
-        textView.textColor = UIColor.lightGray
+        
+        textView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight : Int = Int(keyboardSize.height)
+            bottomConstraint.constant = CGFloat(keyboardHeight)
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    
+    @IBAction func backgroundWasTapped(_ sender: UITapGestureRecognizer) {
+        backgroundView.removeFromSuperview()
+        textView.becomeFirstResponder()
+    }
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
@@ -39,10 +61,6 @@ class ReportBug: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = placeholder
-            textView.textColor = UIColor.lightGray
-        }
         textView.resignFirstResponder()
     }
 
@@ -58,9 +76,7 @@ class ReportBug: UIViewController, UITextViewDelegate {
                 self.textView.textColor = UIColor.lightGray
                 
             }))
-            alert.addAction(UIAlertAction(title: "Tilbake", style: UIAlertAction.Style.cancel, handler: nil))
-            
-
+            alert.addAction(UIAlertAction(title: "Avbryt", style: UIAlertAction.Style.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }

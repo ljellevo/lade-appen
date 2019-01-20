@@ -105,6 +105,7 @@
 		B4203397216F910400CF692A /* Target-75.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203394216F910400CF692A /* Target-75.png */; };
 		B4203398216F910400CF692A /* Target-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203395216F910400CF692A /* Target-25.png */; };
 		B4203399216F910400CF692A /* Target-50.png in Resources */ = {isa = PBXBuildFile; fileRef = B4203396216F910400CF692A /* Target-50.png */; };
+		B471012821F4CB2100880847 /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B471012721F4CB2100880847 /* Privacy.swift */; };
 		B4ACC78B21E02050005CC265 /* Checksum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ACC78A21E02050005CC265 /* Checksum.swift */; };
 		B4CABB8721DD8845000A3911 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CABB8621DD8845000A3911 /* ImageManager.swift */; };
 		B4DB59FC21E190780036432C /* ConnectorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB59FB21E190780036432C /* ConnectorDescription.swift */; };
@@ -229,6 +230,7 @@
 		B4203394216F910400CF692A /* Target-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-75.png"; sourceTree = "<group>"; };
 		B4203395216F910400CF692A /* Target-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-25.png"; sourceTree = "<group>"; };
 		B4203396216F910400CF692A /* Target-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Target-50.png"; sourceTree = "<group>"; };
+		B471012721F4CB2100880847 /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
 		B4ACC78A21E02050005CC265 /* Checksum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checksum.swift; sourceTree = "<group>"; };
 		B4CABB8621DD8845000A3911 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		B4DB59FB21E190780036432C /* ConnectorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectorDescription.swift; sourceTree = "<group>"; };
@@ -594,6 +596,7 @@
 				83DE760E1FFAC4AA001EE4C6 /* ReportBug.swift */,
 				B4F4380B21E1826A00D39726 /* DefaultCell.swift */,
 				B4F4380C21E1826B00D39726 /* DefaultCell.xib */,
+				B471012721F4CB2100880847 /* Privacy.swift */,
 			);
 			path = "Setting Views";
 			sourceTree = "<group>";
@@ -912,6 +915,7 @@
 				83A926F1204207DB0013514F /* SubscriptionCell.swift in Sources */,
 				8312F7332059B832006671F1 /* Extentions.swift in Sources */,
 				B4F4380A21E16EE300D39726 /* ResetPassword.swift in Sources */,
+				B471012821F4CB2100880847 /* Privacy.swift in Sources */,
 				83F9E440203C98DE009B3788 /* Initialization.swift in Sources */,
 				83498D1C1EEB0B8300C3D92A /* NavigationHome.swift in Sources */,
 				8300524D20818001008DAEEF /* Enums.swift in Sources */,
