@@ -17,6 +17,7 @@ class InfoCell: UICollectionViewCell{
     var connectorDescription: [ConnectorDescription] = []
     var userCompatibleConntacts: [Int] = []
     weak var delegate: CollectionViewCellDelegate?
+    var timer: Timer?
 
     
     @IBOutlet weak var xibHeightConstraint: NSLayoutConstraint!
@@ -181,7 +182,7 @@ extension DetailsElement {
     }
     
     func killAllAnimations(){
-        run = false
+        timer?.invalidate()
     }
     
     func animateRealtime(){
@@ -216,27 +217,56 @@ extension DetailsElement {
     
     func animation(dots: [UIView]){
         if realtime {
-            UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
-                dots[0].alpha = 1.0
-            }) { (completion) in
+            timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (_) in
                 UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
-                    dots[1].alpha = 1.0
+                    dots[0].alpha = 1.0
                 }, completion: { (completed) in
                     UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
-                        dots[2].alpha = 1.0
-                    }, completion: { (com) in
+                        dots[1].alpha = 1.0
+                    }, completion: { (completed) in
                         UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
-                            dots[0].alpha = 0.0
-                            dots[1].alpha = 0.0
-                            dots[2].alpha = 0.0
-                        }, completion: { (c) in
-                            self.animation(dots: dots)
+                            dots[2].alpha = 1.0
+                        }, completion: { (completed) in
+                            UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
+                                dots[0].alpha = 0.0
+                                dots[1].alpha = 0.0
+                                dots[2].alpha = 0.0
+                            }, completion: { (completed) in
+                                //self.animation(dots: dots)
+                            })
                         })
-                        
                     })
                 })
             }
+            timer!.fire()
         }
+        /*
+        if realtime {
+            UIView.animate(withDuration: 0.0, delay: 0.0, options: [.allowUserInteraction, .repeat], animations: {
+                UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
+                    dots[0].alpha = 1.0
+                }, completion: { (completed) in
+                    UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
+                        dots[1].alpha = 1.0
+                    }, completion: { (completed) in
+                        UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
+                            dots[2].alpha = 1.0
+                        }, completion: { (completed) in
+                            UIView.animate(withDuration: 0.25, delay: 0.5, options: [.allowUserInteraction], animations: {
+                                dots[0].alpha = 0.0
+                                dots[1].alpha = 0.0
+                                dots[2].alpha = 0.0
+                            }, completion: { (completed) in
+                                //self.animation(dots: dots)
+                            })
+                        })
+                    })
+                })
+ 
+                print("repeating")
+            })
+        }
+ */
     }
 }
 

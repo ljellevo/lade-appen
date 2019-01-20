@@ -1,0 +1,47 @@
+
+Info:
+View key-value for constraint debugging
+
+100 - Favoritter Main
+200 - Profil Main
+300 - Change User Info Main
+400 - Change Auth Info Main
+500 - Change Contact Main
+600 - Change Prefrences Main
+700 - About Main
+800 - Rapporter Feil Main
+900 - Ladestasjoner Main
+1000 - Login Main
+1100 - Registrer Main
+1200 - Register Cont Main
+1300 - Register Finished Main
+1400 - Reset Password Main
+1500 - Default cell
+1600 - Favorites cell
+1700 - Label cell
+1800 - Subscription cell
+1900 - Search Result cell
+2000 - Comment cell
+2100 - Connector cell
+2200 - Info cell
+2300 -
+2400 -
+2500 -
+2600 -
+2700 -
+2800 -
+2900 -
+3000
+
+
+Kilder:
+    https://github.com/futurice/ios-good-practices
+    https://github.com/github/swift-style-guide
+    https://github.com/raywenderlich/swift-style-guide
+    https://swift.org/documentation/api-design-guidelines/
+
+
+
+
+
+

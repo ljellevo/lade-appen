@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,13 +19,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvq-yp-kSd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="134.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lof-If-ys1">
-                                <rect key="frame" x="10" y="5" width="300" height="125"/>
+                                <rect key="frame" x="10" y="5" width="300" height="124.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzd-X5-gCC">
-                                        <rect key="frame" x="10" y="5" width="280" height="115"/>
+                                        <rect key="frame" x="10" y="5" width="280" height="114.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -34,26 +33,26 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="jzd-X5-gCC" firstAttribute="leading" secondItem="Lof-If-ys1" secondAttribute="leading" constant="10" id="DcF-5r-BUv"/>
-                                    <constraint firstAttribute="bottom" secondItem="jzd-X5-gCC" secondAttribute="bottom" constant="5" id="RjE-wo-q0d"/>
-                                    <constraint firstItem="jzd-X5-gCC" firstAttribute="top" secondItem="Lof-If-ys1" secondAttribute="top" constant="5" id="cTj-ht-L0B"/>
-                                    <constraint firstAttribute="trailing" secondItem="jzd-X5-gCC" secondAttribute="trailing" constant="10" id="saz-fS-w5k"/>
+                                    <constraint firstItem="jzd-X5-gCC" firstAttribute="leading" secondItem="Lof-If-ys1" secondAttribute="leading" constant="10" identifier="2001" id="DcF-5r-BUv"/>
+                                    <constraint firstAttribute="bottom" secondItem="jzd-X5-gCC" secondAttribute="bottom" constant="5" identifier="2002" id="RjE-wo-q0d"/>
+                                    <constraint firstItem="jzd-X5-gCC" firstAttribute="top" secondItem="Lof-If-ys1" secondAttribute="top" constant="5" identifier="2003" id="cTj-ht-L0B"/>
+                                    <constraint firstAttribute="trailing" secondItem="jzd-X5-gCC" secondAttribute="trailing" constant="10" identifier="2004" id="saz-fS-w5k"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Lof-If-ys1" secondAttribute="bottom" constant="5" id="8DB-0r-TIk"/>
-                            <constraint firstAttribute="trailing" secondItem="Lof-If-ys1" secondAttribute="trailing" constant="10" id="blR-gY-mMr"/>
-                            <constraint firstItem="Lof-If-ys1" firstAttribute="leading" secondItem="mvq-yp-kSd" secondAttribute="leading" constant="10" id="g4L-nQ-ipe"/>
-                            <constraint firstItem="Lof-If-ys1" firstAttribute="top" secondItem="mvq-yp-kSd" secondAttribute="top" constant="5" id="nr7-Xc-mmK"/>
+                            <constraint firstAttribute="bottom" secondItem="Lof-If-ys1" secondAttribute="bottom" constant="5" identifier="2005" id="8DB-0r-TIk"/>
+                            <constraint firstAttribute="trailing" secondItem="Lof-If-ys1" secondAttribute="trailing" constant="10" identifier="2006" id="blR-gY-mMr"/>
+                            <constraint firstItem="Lof-If-ys1" firstAttribute="leading" secondItem="mvq-yp-kSd" secondAttribute="leading" constant="10" identifier="2007" id="g4L-nQ-ipe"/>
+                            <constraint firstItem="Lof-If-ys1" firstAttribute="top" secondItem="mvq-yp-kSd" secondAttribute="top" constant="5" identifier="2008" id="nr7-Xc-mmK"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="mvq-yp-kSd" secondAttribute="bottom" id="3eO-3B-eHC"/>
-                    <constraint firstItem="mvq-yp-kSd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9J0-Bm-vTn"/>
-                    <constraint firstItem="mvq-yp-kSd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="LcO-IO-3J5"/>
-                    <constraint firstAttribute="trailing" secondItem="mvq-yp-kSd" secondAttribute="trailing" id="c5E-Sj-Mg9"/>
+                    <constraint firstAttribute="bottom" secondItem="mvq-yp-kSd" secondAttribute="bottom" identifier="2009" id="3eO-3B-eHC"/>
+                    <constraint firstItem="mvq-yp-kSd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" identifier="2010" id="9J0-Bm-vTn"/>
+                    <constraint firstItem="mvq-yp-kSd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" identifier="2011" id="LcO-IO-3J5"/>
+                    <constraint firstAttribute="trailing" secondItem="mvq-yp-kSd" secondAttribute="trailing" identifier="2012" id="c5E-Sj-Mg9"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

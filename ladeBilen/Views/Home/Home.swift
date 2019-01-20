@@ -64,6 +64,7 @@ class Home: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        extendedLayoutIncludesOpaqueBars = true
         
         filteredStations = app.filteredStations
         connectorDescription = app.connectorDescription
@@ -294,8 +295,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
         self.collectionView.register(UINib(nibName: "TopCell", bundle: nil), forCellWithReuseIdentifier: "ImageCellIdentifier")
         self.collectionView.register(UINib(nibName: "InfoCell", bundle: nil), forCellWithReuseIdentifier: "InfoCellIdentifier")
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
-            //flowLayout.estimatedItemSize = self.view.bounds.size;
-            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+            flowLayout.estimatedItemSize = self.view.bounds.size;
         }
         
         self.automaticallyAdjustsScrollViewInsets = false
@@ -414,7 +414,7 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
             //Deretter må jeg finne høyden.
         }
         */
-        return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.15)
+        return CGSize(width: self.view.bounds.size.width, height: UIScreen.main.bounds.height * 0.15)
     }
  
     
@@ -449,6 +449,9 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func detailsDismissedPosition(){
         detailsStartPosition(withAnimation: true)
+        if let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? InfoCell{
+            infoCell.killAllAnimations()
+        }
         contentView.isHidden = true
     }
     
@@ -612,7 +615,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
         if isInitial == true {
             let regionRadius = CLLocationDistance(1500)
             let coordinateRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-            mapView.setRegion( coordinateRegion, animated: true)
+            mapView.setRegion(coordinateRegion, animated: true)
             isInitial = false
         } else {
             return
@@ -708,7 +711,7 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        moveMapToMarker(selectedStation: filteredStations[indexPath.row])
+        moveMapToMarker(selectedStation: filteredStationsSearch[indexPath.row])
     }
     
     func moveMapToMarker(selectedStation: Station){
@@ -735,7 +738,12 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
         let lat = Double(positionArray[0])! - 0.007
         let lon = Double(positionArray[1])
         let coordinates = CLLocationCoordinate2D(latitude:lat, longitude:lon!)
-        mapWindow.setCenter(coordinates, animated: true)
+        
+        let regionRadius = CLLocationDistance(1500)
+        let coordinateRegion = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        mapWindow.setRegion(coordinateRegion, animated: true)
+        
+        //mapWindow.setCenter(coordinates, animated: true)
         
         if startPosition {
             detailsStartPosition(withAnimation: false)

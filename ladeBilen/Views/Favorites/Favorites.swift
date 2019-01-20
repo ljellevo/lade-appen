@@ -86,61 +86,36 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                 self.countArray.append(0)
                 
                 listenOnStation(station: station, done: { updatedStation in
-                    
-                    for i in 0..<self.favoriteArray.count {
-                        if self.favoriteArray[i].id == updatedStation.id {
-                            self.favoriteArray[i] = updatedStation
-                            //self.collectionView.reloadItems(at: [IndexPath(row: i, section: 3)])
-                            break
-                        }
-                    }
-                    if updatedStation.id == self.station?.id {
-                        self.station = updatedStation
-                        self.connectors = self.app.sortConnectors(station: updatedStation).conn
-                        let compatibleConntacts: [Int] = self.app.findAvailableContacts(station: updatedStation)
-                        let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
-                        infoCell.connectors = self.connectors
-                        infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
-                        infoCell.connectorCollectionView.reloadData()
-                    }
-                    self.collectionView.reloadData()
-                    /*
-                    if updatedStation.id == self.station?.id{
-                        print("Feil")
-                        self.station = updatedStation
-                        for i in 0 ..< self.favoriteArray.count {
+                    print("Update")
+                    DispatchQueue.global().async {
+                        for i in 0..<self.favoriteArray.count {
                             if self.favoriteArray[i].id == updatedStation.id {
                                 self.favoriteArray[i] = updatedStation
+                                //self.collectionView.reloadItems(at: [IndexPath(row: i, section: 3)])
                                 break
                             }
                         }
-                        self.connectors = self.app.sortConnectors(station: updatedStation).conn
-                        let compatibleConntacts: [Int] = self.app.findAvailableContacts(station: updatedStation)
-                        let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
-                        infoCell.connectors = self.connectors
-                        infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
-                        infoCell.connectorCollectionView.reloadData()
-                        
-                    }
-                    print("Updates")
-                    for i in 0..<self.favoriteArray.count {
-                        if self.favoriteArray[i].id == updatedStation.id {
-                            self.favoriteArray[i] = updatedStation
-                            
-                            //self.collectionView.reloadItems(at: [IndexPath(row: i, section: 3)])
-                            break
+                        if updatedStation.id == self.station?.id {
+                            self.station = updatedStation
+                            self.connectors = self.app.sortConnectors(station: updatedStation).conn
+                            let compatibleConntacts: [Int] = self.app.findAvailableContacts(station: updatedStation)
+                            DispatchQueue.main.async {
+                                let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                                infoCell.connectors = self.connectors
+                                infoCell.realtimeConnectorCounterLabel.text = compatibleConntacts[0].description + "/" + compatibleConntacts[2].description
+                                infoCell.connectorCollectionView.reloadData()
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
                         }
                     }
-                    self.collectionView.reloadData()
- */
                 })
                 listenOnSubscription(station: station) { count in
                     let position = self.realtimeArray.firstIndex(of: station.id)!
                     self.countArray[position] = count
                     self.collectionView.reloadData()
                 }
- 
- 
             }
         }
     }
@@ -329,7 +304,6 @@ extension DetailsElement {
         if let infoCell = self.detailsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? InfoCell{
             infoCell.killAllAnimations()
         }
-        
         contentView.isHidden = true
     }
 }
@@ -520,9 +494,9 @@ extension CollectionViewLayoutMethods {
                 height = 25
             } else {
                 if favoriteArray[indexPath.row].realtimeInfo {
-                    height = self.view.frame.size.width * 0.35
+                    height = 131
                 } else {
-                    height = self.view.frame.size.width * 0.20
+                    height = 75
                 }
             }
             return CGSize(width: width, height: height)

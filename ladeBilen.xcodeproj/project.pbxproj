@@ -78,7 +78,7 @@
 		83A463AA1FCB1659001A5916 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A463A81FCB1659001A5916 /* CommentCell.swift */; };
 		83A463AB1FCB1659001A5916 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A463A91FCB1659001A5916 /* CommentCell.xib */; };
 		83A54F051FD09FC3002CB5B3 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A54F041FD09FC3002CB5B3 /* Profile.swift */; };
-		83A570CF1FFC577300B98E9F /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83A570CE1FFC577300B98E9F /* TODO.txt */; };
+		83A570CF1FFC577300B98E9F /* Info.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83A570CE1FFC577300B98E9F /* Info.txt */; };
 		83A926ED204207380013514F /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A926EB204207380013514F /* LabelCell.swift */; };
 		83A926EE204207380013514F /* LabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A926EC204207380013514F /* LabelCell.xib */; };
 		83A926F1204207DB0013514F /* SubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A926EF204207DB0013514F /* SubscriptionCell.swift */; };
@@ -194,7 +194,7 @@
 		83A463A81FCB1659001A5916 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		83A463A91FCB1659001A5916 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		83A54F041FD09FC3002CB5B3 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		83A570CE1FFC577300B98E9F /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
+		83A570CE1FFC577300B98E9F /* Info.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Info.txt; sourceTree = "<group>"; };
 		83A926EB204207380013514F /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		83A926EC204207380013514F /* LabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelCell.xib; sourceTree = "<group>"; };
 		83A926EF204207DB0013514F /* SubscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCell.swift; sourceTree = "<group>"; };
@@ -631,7 +631,7 @@
 				83F3547F1EEB0696001A278A /* LaunchScreen.storyboard */,
 				83F354821EEB0696001A278A /* Info.plist */,
 				8314E22F1EF435CF00F98E3F /* GoogleService-Info.plist */,
-				83A570CE1FFC577300B98E9F /* TODO.txt */,
+				83A570CE1FFC577300B98E9F /* Info.txt */,
 				838A82802056DD4A00E6AF1D /* .travis.yml */,
 			);
 			path = ladeBilen;
@@ -809,7 +809,7 @@
 				833132E22040F2F800747FB1 /* FavoritesCell.xib in Resources */,
 				8323D4211FC77A1C0049D349 /* TopCell.xib in Resources */,
 				8373B86E206AF7960085EA89 /* Online-Icon-25.png in Resources */,
-				83A570CF1FFC577300B98E9F /* TODO.txt in Resources */,
+				83A570CF1FFC577300B98E9F /* Info.txt in Resources */,
 				8314708C1FBE4DBC00DCD0CD /* Marker-Icon-25.png in Resources */,
 				831470AA1FBE531400DCD0CD /* Favorite-Icon-75.png in Resources */,
 				8373B86C206AF7960085EA89 /* Online-Icon-50.png in Resources */,

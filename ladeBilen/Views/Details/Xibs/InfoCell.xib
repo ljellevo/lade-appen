@@ -65,13 +65,13 @@
                                         </subviews>
                                         <color key="tintColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="bH8-d3-2Ga" firstAttribute="top" secondItem="wH7-z5-IGV" secondAttribute="top" id="2jA-tK-hLE"/>
-                                            <constraint firstItem="xZq-iY-CEU" firstAttribute="leading" secondItem="bH8-d3-2Ga" secondAttribute="trailing" id="aPQ-Eu-TbK"/>
-                                            <constraint firstAttribute="height" constant="34" id="jRw-am-KpH"/>
-                                            <constraint firstAttribute="bottom" secondItem="xZq-iY-CEU" secondAttribute="bottom" id="mT0-lg-qgV"/>
-                                            <constraint firstItem="xZq-iY-CEU" firstAttribute="top" secondItem="wH7-z5-IGV" secondAttribute="top" id="t7v-wG-rhi"/>
-                                            <constraint firstAttribute="bottom" secondItem="bH8-d3-2Ga" secondAttribute="bottom" id="vp2-AZ-jS4"/>
-                                            <constraint firstItem="bH8-d3-2Ga" firstAttribute="leading" secondItem="wH7-z5-IGV" secondAttribute="leading" id="zqM-3w-81g"/>
+                                            <constraint firstItem="bH8-d3-2Ga" firstAttribute="top" secondItem="wH7-z5-IGV" secondAttribute="top" identifier="2202" id="2jA-tK-hLE"/>
+                                            <constraint firstItem="xZq-iY-CEU" firstAttribute="leading" secondItem="bH8-d3-2Ga" secondAttribute="trailing" identifier="2205" id="aPQ-Eu-TbK"/>
+                                            <constraint firstAttribute="height" constant="34" identifier="2201" id="jRw-am-KpH"/>
+                                            <constraint firstAttribute="bottom" secondItem="xZq-iY-CEU" secondAttribute="bottom" identifier="2206" id="mT0-lg-qgV"/>
+                                            <constraint firstItem="xZq-iY-CEU" firstAttribute="top" secondItem="wH7-z5-IGV" secondAttribute="top" identifier="2207" id="t7v-wG-rhi"/>
+                                            <constraint firstAttribute="bottom" secondItem="bH8-d3-2Ga" secondAttribute="bottom" identifier="2203" id="vp2-AZ-jS4"/>
+                                            <constraint firstItem="bH8-d3-2Ga" firstAttribute="leading" secondItem="wH7-z5-IGV" secondAttribute="leading" identifier="2204" id="zqM-3w-81g"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y7Q-Cf-gx6">
@@ -81,28 +81,28 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="1"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" id="1Ha-ub-VXR"/>
+                                                    <constraint firstAttribute="width" identifier="2208" id="1Ha-ub-VXR"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVf-qd-HBk">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="1" id="Y0L-kA-goc"/>
+                                                    <constraint firstAttribute="height" constant="1" identifier="2209" id="Y0L-kA-goc"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pzt-BW-AMF">
                                                 <rect key="frame" x="414" y="0.0" width="0.0" height="1"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" id="umN-WS-Gli"/>
+                                                    <constraint firstAttribute="width" identifier="2210" id="umN-WS-Gli"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="8LJ-a7-ZEn"/>
+                                    <constraint firstAttribute="height" constant="35" identifier="2211" id="8LJ-a7-ZEn"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBL-MQ-LsN">
@@ -154,7 +154,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="45"/>
                                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="50" id="iEZ-eU-qqc"/>
+                                                                    <constraint firstAttribute="width" constant="50" identifier="2212" id="iEZ-eU-qqc"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -175,7 +175,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q14-8P-Yf3">
                                                 <rect key="frame" x="0.0" y="68" width="374" height="10"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="999" constant="10" id="dVF-XR-cTS"/>
+                                                    <constraint firstAttribute="height" priority="999" constant="10" identifier="2213" id="dVF-XR-cTS"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7RN-om-OjC">
@@ -205,7 +205,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vzq-0O-pWb">
                                                 <rect key="frame" x="0.0" y="114" width="374" height="10"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="998" constant="10" id="LMW-8V-eK0"/>
+                                                    <constraint firstAttribute="height" priority="998" constant="10" identifier="2214" id="LMW-8V-eK0"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Beskrivelse av lokasjonen:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BcC-CE-Zck">
@@ -224,7 +224,7 @@
                                                 <rect key="frame" x="0.0" y="142" width="374" height="5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="997" constant="5" id="lAN-Oj-Y5a"/>
+                                                    <constraint firstAttribute="height" priority="997" constant="5" identifier="2215" id="lAN-Oj-Y5a"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="qDA-Cr-Cxi">
@@ -256,22 +256,22 @@
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="996" constant="40" id="w0L-0K-g1g"/>
+                                                    <constraint firstAttribute="height" priority="996" constant="40" identifier="2216" id="w0L-0K-g1g"/>
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IF3-De-wod">
                                                 <rect key="frame" x="0.0" y="344" width="374" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="995" constant="30" id="akb-Ko-MNc"/>
+                                                    <constraint firstAttribute="height" priority="995" constant="30" identifier="2217" id="akb-Ko-MNc"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="Gy4-nq-Mbk" firstAttribute="leading" secondItem="CZS-nt-SiJ" secondAttribute="leading" id="AqD-gy-eDC"/>
-                                            <constraint firstAttribute="width" constant="374" id="HlI-yu-Ia5"/>
-                                            <constraint firstItem="Gy4-nq-Mbk" firstAttribute="top" secondItem="BcC-CE-Zck" secondAttribute="bottom" id="Imz-Ee-bbJ"/>
-                                            <constraint firstAttribute="trailing" secondItem="Gy4-nq-Mbk" secondAttribute="trailing" id="qNM-N5-ljh"/>
+                                            <constraint firstItem="Gy4-nq-Mbk" firstAttribute="leading" secondItem="CZS-nt-SiJ" secondAttribute="leading" identifier="2219" id="AqD-gy-eDC"/>
+                                            <constraint firstAttribute="width" constant="374" identifier="2218" id="HlI-yu-Ia5"/>
+                                            <constraint firstItem="Gy4-nq-Mbk" firstAttribute="top" secondItem="BcC-CE-Zck" secondAttribute="bottom" identifier="2220" id="Imz-Ee-bbJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="Gy4-nq-Mbk" secondAttribute="trailing" identifier="2221" id="qNM-N5-ljh"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
@@ -293,7 +293,7 @@
                                             </tableView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="374" id="61V-s7-MPG"/>
+                                            <constraint firstAttribute="width" constant="374" identifier="2222" id="61V-s7-MPG"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -316,10 +316,10 @@
                                             </collectionView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="Wsp-CU-hKE" firstAttribute="leading" secondItem="P6h-J1-kzN" secondAttribute="leading" id="OI0-AC-j1r"/>
-                                            <constraint firstAttribute="bottom" secondItem="Wsp-CU-hKE" secondAttribute="bottom" id="k1e-gc-9RA"/>
-                                            <constraint firstItem="Wsp-CU-hKE" firstAttribute="top" secondItem="P6h-J1-kzN" secondAttribute="top" id="qA5-qT-hKJ"/>
-                                            <constraint firstAttribute="trailing" secondItem="Wsp-CU-hKE" secondAttribute="trailing" id="rwW-Yr-hLf"/>
+                                            <constraint firstItem="Wsp-CU-hKE" firstAttribute="leading" secondItem="P6h-J1-kzN" secondAttribute="leading" identifier="2223" id="OI0-AC-j1r"/>
+                                            <constraint firstAttribute="bottom" secondItem="Wsp-CU-hKE" secondAttribute="bottom" identifier="2224" id="k1e-gc-9RA"/>
+                                            <constraint firstItem="Wsp-CU-hKE" firstAttribute="top" secondItem="P6h-J1-kzN" secondAttribute="top" identifier="2225" id="qA5-qT-hKJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="Wsp-CU-hKE" secondAttribute="trailing" identifier="2226" id="rwW-Yr-hLf"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N6X-ZR-EO2">
@@ -330,49 +330,49 @@
                                             </imageView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="zJw-hU-0jN"/>
+                                            <constraint firstAttribute="height" constant="200" identifier="2227" id="zJw-hU-0jN"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="P6h-J1-kzN" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" id="6WW-A0-u9b"/>
-                                    <constraint firstItem="t1E-k3-wbq" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="20" id="7S3-Jp-bll"/>
-                                    <constraint firstAttribute="trailing" secondItem="N6X-ZR-EO2" secondAttribute="trailing" constant="8" id="99q-V3-ceZ"/>
-                                    <constraint firstItem="CZS-nt-SiJ" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="20" id="C1S-hI-vJe"/>
-                                    <constraint firstAttribute="bottom" secondItem="P6h-J1-kzN" secondAttribute="bottom" id="IXG-67-F5K"/>
-                                    <constraint firstAttribute="bottom" secondItem="t1E-k3-wbq" secondAttribute="bottom" id="J3F-MF-NT5"/>
-                                    <constraint firstItem="P6h-J1-kzN" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" id="Ly8-kS-pPT"/>
-                                    <constraint firstAttribute="trailing" secondItem="CZS-nt-SiJ" secondAttribute="trailing" constant="20" id="PtR-WS-8GP"/>
-                                    <constraint firstAttribute="trailing" secondItem="P6h-J1-kzN" secondAttribute="trailing" id="R9A-cJ-f7H"/>
-                                    <constraint firstItem="t1E-k3-wbq" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" id="TnT-cq-raX"/>
-                                    <constraint firstItem="N6X-ZR-EO2" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" id="arb-oj-3Tq"/>
-                                    <constraint firstAttribute="trailing" secondItem="t1E-k3-wbq" secondAttribute="trailing" constant="20" id="c31-hT-XLa"/>
-                                    <constraint firstItem="CZS-nt-SiJ" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" constant="5" id="ddI-OL-EkO"/>
-                                    <constraint firstAttribute="bottom" secondItem="CZS-nt-SiJ" secondAttribute="bottom" id="oj1-X5-SQe"/>
-                                    <constraint firstItem="N6X-ZR-EO2" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="8" id="pxJ-0h-xWG"/>
+                                    <constraint firstItem="P6h-J1-kzN" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" identifier="2228" id="6WW-A0-u9b"/>
+                                    <constraint firstItem="t1E-k3-wbq" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="20" identifier="2235" id="7S3-Jp-bll"/>
+                                    <constraint firstAttribute="trailing" secondItem="N6X-ZR-EO2" secondAttribute="trailing" constant="8" identifier="2232" id="99q-V3-ceZ"/>
+                                    <constraint firstItem="CZS-nt-SiJ" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="20" identifier="2239" id="C1S-hI-vJe"/>
+                                    <constraint firstAttribute="bottom" secondItem="P6h-J1-kzN" secondAttribute="bottom" identifier="2229" id="IXG-67-F5K"/>
+                                    <constraint firstAttribute="bottom" secondItem="t1E-k3-wbq" secondAttribute="bottom" identifier="2236" id="J3F-MF-NT5"/>
+                                    <constraint firstItem="P6h-J1-kzN" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" identifier="2230" id="Ly8-kS-pPT"/>
+                                    <constraint firstAttribute="trailing" secondItem="CZS-nt-SiJ" secondAttribute="trailing" constant="20" identifier="2240" id="PtR-WS-8GP"/>
+                                    <constraint firstAttribute="trailing" secondItem="P6h-J1-kzN" secondAttribute="trailing" identifier="2231" id="R9A-cJ-f7H"/>
+                                    <constraint firstItem="t1E-k3-wbq" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" identifier="2237" id="TnT-cq-raX"/>
+                                    <constraint firstItem="N6X-ZR-EO2" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" identifier="2233" id="arb-oj-3Tq"/>
+                                    <constraint firstAttribute="trailing" secondItem="t1E-k3-wbq" secondAttribute="trailing" constant="20" identifier="2238" id="c31-hT-XLa"/>
+                                    <constraint firstItem="CZS-nt-SiJ" firstAttribute="top" secondItem="mBL-MQ-LsN" secondAttribute="top" constant="5" identifier="2241" id="ddI-OL-EkO"/>
+                                    <constraint firstAttribute="bottom" secondItem="CZS-nt-SiJ" secondAttribute="bottom" identifier="2242" id="oj1-X5-SQe"/>
+                                    <constraint firstItem="N6X-ZR-EO2" firstAttribute="leading" secondItem="mBL-MQ-LsN" secondAttribute="leading" constant="8" identifier="2234" id="pxJ-0h-xWG"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" priority="999" constant="424" id="3Ly-HQ-AqL"/>
-                            <constraint firstAttribute="trailing" secondItem="mBL-MQ-LsN" secondAttribute="trailing" id="4q9-Sg-0Zl"/>
-                            <constraint firstAttribute="width" constant="414" id="72Z-CG-uBQ"/>
-                            <constraint firstItem="aIC-zZ-qmd" firstAttribute="top" secondItem="qlv-df-6SJ" secondAttribute="top" constant="10" id="H4x-VB-Xx4"/>
-                            <constraint firstItem="mBL-MQ-LsN" firstAttribute="leading" secondItem="qlv-df-6SJ" secondAttribute="leading" id="Lz3-Z5-pmT"/>
-                            <constraint firstAttribute="trailing" secondItem="aIC-zZ-qmd" secondAttribute="trailing" id="NPJ-vK-Tle"/>
-                            <constraint firstItem="aIC-zZ-qmd" firstAttribute="leading" secondItem="qlv-df-6SJ" secondAttribute="leading" id="c24-Sv-iXu"/>
-                            <constraint firstAttribute="bottom" secondItem="mBL-MQ-LsN" secondAttribute="bottom" id="hnA-s8-9rm"/>
-                            <constraint firstItem="mBL-MQ-LsN" firstAttribute="top" secondItem="aIC-zZ-qmd" secondAttribute="bottom" id="pwT-ni-8vX"/>
+                            <constraint firstAttribute="height" priority="999" constant="424" identifier="2243" id="3Ly-HQ-AqL"/>
+                            <constraint firstAttribute="trailing" secondItem="mBL-MQ-LsN" secondAttribute="trailing" identifier="2248" id="4q9-Sg-0Zl"/>
+                            <constraint firstAttribute="width" constant="414" identifier="2244" id="72Z-CG-uBQ"/>
+                            <constraint firstItem="aIC-zZ-qmd" firstAttribute="top" secondItem="qlv-df-6SJ" secondAttribute="top" constant="10" identifier="2245" id="H4x-VB-Xx4"/>
+                            <constraint firstItem="mBL-MQ-LsN" firstAttribute="leading" secondItem="qlv-df-6SJ" secondAttribute="leading" identifier="2249" id="Lz3-Z5-pmT"/>
+                            <constraint firstAttribute="trailing" secondItem="aIC-zZ-qmd" secondAttribute="trailing" identifier="2246" id="NPJ-vK-Tle"/>
+                            <constraint firstItem="aIC-zZ-qmd" firstAttribute="leading" secondItem="qlv-df-6SJ" secondAttribute="leading" identifier="2247" id="c24-Sv-iXu"/>
+                            <constraint firstAttribute="bottom" secondItem="mBL-MQ-LsN" secondAttribute="bottom" identifier="2250" id="hnA-s8-9rm"/>
+                            <constraint firstItem="mBL-MQ-LsN" firstAttribute="top" secondItem="aIC-zZ-qmd" secondAttribute="bottom" identifier="2251" id="pwT-ni-8vX"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="qlv-df-6SJ" secondAttribute="bottom" id="QVI-eV-exw"/>
-                <constraint firstItem="qlv-df-6SJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="TX6-MD-RO3"/>
-                <constraint firstItem="qlv-df-6SJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bJQ-PE-m4b"/>
+                <constraint firstAttribute="bottom" secondItem="qlv-df-6SJ" secondAttribute="bottom" identifier="2252" id="QVI-eV-exw"/>
+                <constraint firstItem="qlv-df-6SJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" identifier="2253" id="TX6-MD-RO3"/>
+                <constraint firstItem="qlv-df-6SJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" identifier="2254" id="bJQ-PE-m4b"/>
                 <constraint firstAttribute="trailing" secondItem="qlv-df-6SJ" secondAttribute="trailing" id="cKi-JC-ncn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
