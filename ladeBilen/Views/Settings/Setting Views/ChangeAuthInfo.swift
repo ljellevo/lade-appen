@@ -103,12 +103,19 @@ class ChangeAuthInfo: UIViewController {
                             AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
                         } else {
                             self.app.user!.email = self.firstTextField.text!
-                            self.app.setUserInDatabase(user: self.app.user!, done: {_ in
-                                if let navController = self.navigationController {
-                                    navController.popViewController(animated: true)
+                            self.app.setUserInDatabase(user: self.app.user!, done: { error in
+                                if error != nil {
+                                    let banner = StatusBarNotificationBanner(title: "Noe gikk galt", style: .danger)
+                                    banner.duration = 2
+                                    banner.show()
+                                } else {
+                                    if let navController = self.navigationController {
+                                        navController.popViewController(animated: true)
+                                    }
+                                    let banner = StatusBarNotificationBanner(title: "E-post er oppdatert", style: .success)
+                                    banner.duration = 2
+                                    banner.show()
                                 }
-                                let banner = StatusBarNotificationBanner(title: "E-post er oppdatert", style: .success)
-                                banner.show()
                             })
                             
                         }
@@ -143,6 +150,7 @@ class ChangeAuthInfo: UIViewController {
                                 navController.popViewController(animated: true)
                             }
                             let banner = StatusBarNotificationBanner(title: "Passord er oppdatert", style: .success)
+                            banner.duration = 2
                             banner.show()
                         }
                     }

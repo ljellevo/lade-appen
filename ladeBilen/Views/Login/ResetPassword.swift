@@ -36,6 +36,7 @@ class ResetPassword: UIViewController {
         Auth.auth().sendPasswordReset(withEmail: emailTextField.text!) { (error) in
             if error != nil {
                 let banner = StatusBarNotificationBanner(title: "Noe gikk galt", style: .danger)
+                banner.duration = 2
                 banner.show()
             } else {
                 self.performSegue(withIdentifier: "unwindToLogin", sender: nil)

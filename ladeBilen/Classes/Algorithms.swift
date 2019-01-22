@@ -104,10 +104,11 @@ class Algorithms {
         for conn in station.conn {
             for connector in user.connector{
                 if conn.connector == connector {
-                    if conn.isTaken == 0 {
+                    if conn.isTaken == 0 && conn.error == 0 {
                         counter[0] += 1
+                    } else if conn.error == 0 {
+                        counter[1] += 1
                     }
-                    counter[1] += 1
                 }
             }
             counter[2] += 1

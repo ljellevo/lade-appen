@@ -108,7 +108,7 @@ class InfoCell: UICollectionViewCell{
     }
     
     @IBAction func cancelButton(_ sender: UIButton) {
-        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .cancel, skipConfirmation: false)
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .cancel)
     }
     
     func setActiveViewFor(element: elements) {
@@ -163,11 +163,11 @@ class InfoCell: UICollectionViewCell{
     }
 
     @IBAction func favoriteButton(_ sender: UIButton) {
-        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .favorite, skipConfirmation: false)
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .favorite)
     }
     
     @IBAction func subscribeButton(_ sender: UIButton) {
-        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .subscribe, skipConfirmation: false)
+        self.delegate?.collectionViewCell(self, buttonTapped: cancelButton, action: .subscribe)
     }
 }
 

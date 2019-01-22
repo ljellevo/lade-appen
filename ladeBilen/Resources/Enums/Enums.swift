@@ -45,4 +45,9 @@ let connAssetLink = [
     60: "Type1Type2",
 ]
 
+enum appError: Error {
+    case connectionError
+
+}
+
 

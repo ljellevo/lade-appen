@@ -277,8 +277,14 @@ class Home: UIViewController{
         page.isDismissable = false
         page.actionHandler = { (item: BLTNActionItem) in
             self.app.user?.tutorial = false
-            self.app.setUserInDatabase(user: self.app.user!, done: {_ in
-                item.manager?.dismissBulletin(animated: true)
+            self.app.setUserInDatabase(user: self.app.user!, done: { error in
+                if error != nil {
+                    let banner = StatusBarNotificationBanner(title: "Noe gikk galt", style: .danger)
+                    banner.duration = 2
+                    banner.show()
+                } else {
+                    item.manager?.dismissBulletin(animated: true)
+                }
             })
         }
         return page
@@ -767,7 +773,7 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
 
 private typealias Protocols = Home
 extension Protocols: CollectionViewCellDelegate  {
-    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action, skipConfirmation: Bool) {
+    func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action) {
         switch action {
         case .unsubscribe:
             print("Unsubscibe")
@@ -788,28 +794,43 @@ extension Protocols: CollectionViewCellDelegate  {
         case .favorite:
             if isFavorite! {
                 app.user?.favorites.removeValue(forKey: station!.id.description)
-                app.setUserInDatabase(user: app.user!, done: { code in
-                    let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
-                    infoCell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
-                    infoCell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
-                    self.isFavorite = false
-                    let banner = StatusBarNotificationBanner(title: "Fjernet fra favoritter", style: .success)
-                    banner.show()
-                    self.willDeselectMarker = false
-                    self.addAnnotationsToMap()
+                app.setUserInDatabase(user: app.user!, done: { error in
+                    if error != nil {
+                        // Error
+                        let banner = StatusBarNotificationBanner(title: "Noe gikk galt", style: .danger)
+                        banner.duration = 2
+                        banner.show()
+                    } else {
+                        let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                        infoCell.favoriteButton.setTitle("Legg til favoritter", for: .normal)
+                        infoCell.favoriteButton.layer.backgroundColor = UIColor.appleGreen().cgColor
+                        self.isFavorite = false
+                        let banner = StatusBarNotificationBanner(title: "Fjernet fra favoritter", style: .success)
+                        banner.duration = 2
+                        banner.show()
+                        self.willDeselectMarker = false
+                        self.addAnnotationsToMap()
+                    }
                 })
-                
             } else {
                 app.user?.favorites.updateValue(Date().getTimestamp(), forKey: station!.id.description)
-                app.setUserInDatabase(user: app.user!, done: { code in
-                    let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
-                    infoCell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
-                    infoCell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
-                    self.isFavorite = true
-                    let banner = StatusBarNotificationBanner(title: "Lagt til favoritter", style: .success)
-                    banner.show()
-                    self.willDeselectMarker = false
-                    self.addAnnotationsToMap()
+                app.setUserInDatabase(user: app.user!, done: { error in
+                    if error != nil {
+                        // Error
+                        let banner = StatusBarNotificationBanner(title: "Noe gikk galt", style: .danger)
+                        banner.duration = 2
+                        banner.show()
+                    } else {
+                        let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
+                        infoCell.favoriteButton.setTitle("Fjern fra favoritter", for: .normal)
+                        infoCell.favoriteButton.layer.backgroundColor = UIColor.appleOrange().cgColor
+                        self.isFavorite = true
+                        let banner = StatusBarNotificationBanner(title: "Lagt til favoritter", style: .success)
+                        banner.duration = 2
+                        banner.show()
+                        self.willDeselectMarker = false
+                        self.addAnnotationsToMap()
+                    }
                 })
             }
 
@@ -819,19 +840,36 @@ extension Protocols: CollectionViewCellDelegate  {
             //if app!.subscriptions[app!.getStationIdAsString(stationId: station!.id)] != nil {
             if app.isStationSubscribedTo(stationId: station!.id){
                 let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
-                app.unsubscribeToStation(station: station!, done: { _ in
-                    infoCell.subscribeButton.setTitle("Følg", for: .normal)
-                    infoCell.subscribeButton.layer.backgroundColor = UIColor.pictonBlue().cgColor
-                    let banner = StatusBarNotificationBanner(title: "Du følger ikke lenger denne stasjonen", style: .warning)
-                    banner.show()
+                app.unsubscribeToStation(station: station!, done: { error in
+                    if error != nil {
+                        //Error
+                        let banner = StatusBarNotificationBanner(title: "Noe gikk galt", style: .danger)
+                        banner.duration = 2
+                        banner.show()
+                    } else {
+                        infoCell.subscribeButton.setTitle("Følg", for: .normal)
+                        infoCell.subscribeButton.layer.backgroundColor = UIColor.pictonBlue().cgColor
+                        let banner = StatusBarNotificationBanner(title: "Du følger ikke lenger denne stasjonen", style: .warning)
+                        banner.duration = 2
+                        banner.show()
+                    }
+                    
                 })
             } else {
                 let infoCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! InfoCell
-                app.subscribeToStation(station: station!, done: { _ in
-                    infoCell.subscribeButton.setTitle("Slutt å følg", for: .normal)
-                    infoCell.subscribeButton.layer.backgroundColor = UIColor.appleYellow().cgColor
-                    let banner = StatusBarNotificationBanner(title: "Du følger nå denne stasjonen", style: .warning)
-                    banner.show()
+                app.subscribeToStation(station: station!, done: { error in
+                    if error != nil {
+                        //Error
+                        let banner = StatusBarNotificationBanner(title: "Noe gikk galt", style: .danger)
+                        banner.duration = 2
+                        banner.show()
+                    } else {
+                        infoCell.subscribeButton.setTitle("Slutt å følg", for: .normal)
+                        infoCell.subscribeButton.layer.backgroundColor = UIColor.appleYellow().cgColor
+                        let banner = StatusBarNotificationBanner(title: "Du følger nå denne stasjonen", style: .warning)
+                        banner.duration = 2
+                        banner.show()
+                    }
                 })
             }
         }

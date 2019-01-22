@@ -74,13 +74,20 @@ class ChangePreferences: UIViewController {
         app.user?.reduceData = reduceDataSwitch.isOn
         app.user?.notifications = notificationSwitch.isOn
         app.user?.notificationDuration = notificationDuration
-        app.setUserInDatabase(user: app!.user!, done: {_ in
-            self.app.findFilteredStations()
-            if let navController = self.navigationController {
-                navController.popViewController(animated: true)
+        app.setUserInDatabase(user: app!.user!, done: { error in
+            if error != nil {
+                let banner = StatusBarNotificationBanner(title: "Noe gikk galt", style: .danger)
+                banner.duration = 2
+                banner.show()
+            } else {
+                self.app.findFilteredStations()
+                if let navController = self.navigationController {
+                    navController.popViewController(animated: true)
+                }
+                let banner = StatusBarNotificationBanner(title: "Instillinger er oppdatert", style: .success)
+                banner.duration = 2
+                banner.show()
             }
-            let banner = StatusBarNotificationBanner(title: "Instillinger er oppdatert", style: .success)
-            banner.show()
         })
         
     }

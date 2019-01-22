@@ -966,7 +966,7 @@
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRt-AB-g6u">
                                         <rect key="frame" x="0.0" y="310" width="280" height="57.5"/>
-                                        <string key="text">Dette betyr at når du ber om dataen vi har om deg så kan vi ikke levere dataen i prediksjonssystemet da vi ikke kan vite hilken data som er din.</string>
+                                        <string key="text">Dette betyr at når du ber om dataen vi har om deg så kan vi ikke levere dataen i prediksjonssystemet da vi ikke kan vite hvilken data som er din.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>

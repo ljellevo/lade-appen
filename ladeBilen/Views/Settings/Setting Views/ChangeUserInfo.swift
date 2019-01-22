@@ -46,21 +46,37 @@ class ChangeUserInfo: UIViewController{
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         if rowIndex == 0 {
             app.user!.firstname = textField.text!
-            app.setUserInDatabase(user: app.user!, done: {_ in
-                if let navController = self.navigationController {
-                    navController.popViewController(animated: true)
+            app.setUserInDatabase(user: app.user!, done: { error in
+                if error != nil {
+                    let banner = StatusBarNotificationBanner(title: "Noe gikk galt", style: .danger)
+                    banner.duration = 2
+                    banner.show()
+                } else {
+                    if let navController = self.navigationController {
+                        navController.popViewController(animated: true)
+                    }
+                    let banner = StatusBarNotificationBanner(title: "Fornavn er oppdatert", style: .success)
+                    banner.duration = 2
+                    banner.show()
                 }
-                let banner = StatusBarNotificationBanner(title: "Fornavn er oppdatert", style: .success)
-                banner.show()
+                
             })
         } else {
             app.user!.lastname = textField.text!
-            app.setUserInDatabase(user: app.user!, done: {_ in
-                if let navController = self.navigationController {
-                    navController.popViewController(animated: true)
+            app.setUserInDatabase(user: app.user!, done: { error in
+                if error != nil {
+                    let banner = StatusBarNotificationBanner(title: "Noe gikk galt", style: .danger)
+                    banner.duration = 2
+                    banner.show()
+                } else {
+                    if let navController = self.navigationController {
+                        navController.popViewController(animated: true)
+                    }
+                    let banner = StatusBarNotificationBanner(title: "Etternavn er oppdatert", style: .success)
+                    banner.duration = 2
+                    banner.show()
                 }
-                let banner = StatusBarNotificationBanner(title: "Etternavn er oppdatert", style: .success)
-                banner.show()
+                
             })
         }
     }

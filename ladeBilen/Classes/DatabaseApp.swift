@@ -95,7 +95,7 @@ class DatabaseApp {
         })
     }
     
-    func setUserInDatabase(user: User, done: @escaping (_ code: Int)-> Void){
+    func setUserInDatabase(user: User, done: @escaping (_ error: Error?)-> Void){
         ref.child("User_Info").child((Auth.auth().currentUser?.uid)!).updateChildValues(
             ["uid": user.uid as String,
              "email": user.email as String,
@@ -114,9 +114,9 @@ class DatabaseApp {
         ){
             (error:Error?, ref:DatabaseReference) in
             if error != nil {
-                done(0)
+                done(appError.connectionError)
             } else {
-                done(1)
+                done(nil)
             }
         }
     }
@@ -182,13 +182,20 @@ class DatabaseApp {
         }
     }
     
-    func listenOnStation(stationId: String, done: @escaping (_ conn: NSArray)-> Void){
+    func listenOnStation(stationId: String, done: @escaping (_ conn: NSDictionary)-> Void){
         ref.child("Realtime").child(stationId).observe(.value) { (snapshot) in
             DispatchQueue.global().async {
                 if let dict = snapshot.value as? [String : AnyObject] {
-                    let conn = dict["conn"] as? NSArray
+                    let conns = dict["conn"] as! NSDictionary
+                    var sortedConns: [Int:AnyObject] = [:]
+                    for conn in conns {
+                        let id = conn.key as! String
+                        let sanId = Int(id.replacingOccurrences(of: "_", with: ""))!
+                        let value = conn.value
+                        sortedConns.updateValue(value as AnyObject, forKey: sanId)
+                    }
                     DispatchQueue.main.async {
-                        done(conn!)
+                        done(sortedConns as NSDictionary)
                     }
                 }
             }
@@ -209,7 +216,38 @@ class DatabaseApp {
     }
     
     
-    func subscribeToStation(stationId: String, user: User, done: @escaping (_ code: Int)-> Void){
+    func subscribeToStation(stationId: String, user: User, done: @escaping (_ error: Error?)-> Void){
+        DispatchQueue.global().async {
+            let currentUser = Auth.auth().currentUser
+            currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+                if let error = error {
+                    print(error)
+                    DispatchQueue.main.async {
+                        done(appError.connectionError)
+                    }
+                }
+                var request = URLRequest(url: URL(string: "https://popularity-service.herokuapp.com/api/subscription/for/" + stationId + "/with/" + user.notificationDuration.description)!)
+                request.httpMethod = "POST"
+                request.setValue(idToken!, forHTTPHeaderField: "X-Firebase-ID-Token")
+                
+                let session = URLSession.shared
+                let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+                    DispatchQueue.main.async {
+                        let response = response! as! HTTPURLResponse
+                        if response.statusCode != 200 {
+                            done(appError.connectionError)
+                        }
+                        done(nil)
+                    }
+                })
+                task.resume()
+            }
+        }
+        
+        
+        
+        
+        /*
         var errorCode = 1
         let susbscribeTask = DispatchGroup()
         susbscribeTask.enter()
@@ -248,9 +286,10 @@ class DatabaseApp {
         susbscribeTask.notify(queue: DispatchQueue.main, work: DispatchWorkItem(block: {
             done(errorCode)
         }))
+         */
     }
     
-    func unsubscribeToStation(stationId: String, user: User, done: @escaping (_ code: Int)-> Void){
+    func unsubscribeToStation(stationId: String, user: User, done: @escaping (_ error: Error?)-> Void){
         var errorCode = 1
         let unsusbscribeTask = DispatchGroup()
         unsusbscribeTask.enter()
@@ -273,7 +312,11 @@ class DatabaseApp {
             }
         }
         unsusbscribeTask.notify(queue: DispatchQueue.main, work: DispatchWorkItem(block: {
-            done(errorCode)
+            if errorCode == 0 {
+                done(appError.connectionError)
+            }
+            done(nil)
+            
         }))
     }
     
@@ -282,9 +325,13 @@ class DatabaseApp {
             var subscriptions: [Subscription] = []
             for sub in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
                 let values = sub.value as! [String : Int64]
+                /*
                 if NSNumber(value: (values["to"]!.subtractingReportingOverflow(Date().getTimestamp())).partialValue).intValue >= 0 {
                     subscriptions.append(Subscription(values: sub.value as! [String : Int64], key: sub.key))
                 }
+ */
+                
+                subscriptions.append(Subscription(values: sub.value as! [String : Int64], key: sub.key))
             }
             done(subscriptions)
         }

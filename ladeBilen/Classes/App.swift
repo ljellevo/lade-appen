@@ -338,11 +338,11 @@ extension DatabaseMethods {
         })
     }
     
-    func setUserInDatabase(user: User, done: @escaping (_ code: Int)-> Void){
+    func setUserInDatabase(user: User, done: @escaping (_ error: Error?)-> Void){
         self.user = user
         self.user!.timestamp = Date().getTimestamp()
-        database.setUserInDatabase(user: self.user!, done: { code in
-            done(code)
+        database.setUserInDatabase(user: self.user!, done: { error in
+            done(error)
         })
         _ = setUserCache()
     }
@@ -403,25 +403,26 @@ extension DatabaseMethods {
         }
     }
     
-    func subscribeToStation(station: Station, done: @escaping (_ code: Int)-> Void){
+    func subscribeToStation(station: Station, done: @escaping (_ error: Error?)-> Void){
         let newSubscription = Subscription(values: ["update": Date().getTimestamp(),
                                                     "from": Date().getTimestamp(),
                                                     "to": (Date().getTimestamp() + Int64(self.user!.notificationDuration * 60))],
                                            key: getStationIdAsString(stationId: station.id))
         self.subscriptions.append(newSubscription)
-        database.subscribeToStation(stationId: getStationIdAsString(stationId: station.id), user: self.user!, done: { code in
-            done(code)
+        database.subscribeToStation(stationId: getStationIdAsString(stationId: station.id), user: self.user!, done: { error in
+            done(error)
         })
     }
     
-    func unsubscribeToStation(station: Station, done: @escaping (_ code: Int)-> Void){
+    func unsubscribeToStation(station: Station, done: @escaping (_ error: Error?)-> Void){
         for i in 0..<subscriptions.count {
             if subscriptions[i].id == getStationIdAsString(stationId: station.id){
                 subscriptions.remove(at: i)
+                break
             }
         }
-        database.unsubscribeToStation(stationId: getStationIdAsString(stationId: station.id), user: self.user!, done:{ code in
-            done(code)
+        database.unsubscribeToStation(stationId: getStationIdAsString(stationId: station.id), user: self.user!, done:{ error in
+            done(error)
         })
     }
     
