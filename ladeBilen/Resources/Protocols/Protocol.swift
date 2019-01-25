@@ -19,5 +19,5 @@ protocol CollectionViewCellDelegate: class {
 }
 
 protocol FavoritesCellDelegate: class {
-    func favoriteShowOnMap(_ cell: UICollectionViewCell, buttonTapped: UIButton, station: Station)
+    func favoriteShowOnMap(_ cell: UICollectionViewCell, buttonTapped: UIStackView, station: Station)
 }

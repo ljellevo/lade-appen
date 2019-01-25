@@ -544,15 +544,59 @@ extension CollectionViewLayoutMethods {
 private typealias Delegate = Favorites
 extension Delegate: CollectionViewCellDelegate, FavoritesCellDelegate {
     
-    func favoriteShowOnMap(_ cell: UICollectionViewCell, buttonTapped: UIButton, station: Station) {
+    func favoriteShowOnMap(_ cell: UICollectionViewCell, buttonTapped: UIStackView, station: Station) {
+        /*
         print("Vis på kart")
-        if let view = self.navigationController?.viewControllers[0] as? Home {
-            view.station = station
-            view.moveMapToMarker(selectedStation: station)
-            self.navigationController?.popToViewController(view, animated: true)
+        
+        */
+        func printActionTitle(_ action: UIAlertAction) {
+            print("You tapped \(action.title!)")
         }
-        return
+        
+        func showOnMap(_ action: UIAlertAction){
+            if let view = self.navigationController?.viewControllers[0] as? Home {
+                view.station = station
+                view.moveMapToMarker(selectedStation: station)
+                self.navigationController?.popToViewController(view, animated: true)
+            }
+            return
+        }
+        
+        func appleMaps(_ action: UIAlertAction){
+            var position = station.position
+            position = position.replacingOccurrences(of: "(", with: "")
+            position = position.replacingOccurrences(of: ")", with: "")
+            let positionArray = position.components(separatedBy: ",")
+            if let lat = Double(positionArray[0])?.description, let lon = Double(positionArray[1])?.description {
+                let url = "http://maps.apple.com/?q=" + lat + "," + lon + "&dirflg=d"
+                UIApplication.shared.open(URL(string:url)!, options: [:]) { _ in
+                    return
+                }
+            }
+        }
+        
+        func googleMaps(_ action: UIAlertAction){
+            var position = station.position
+            position = position.replacingOccurrences(of: "(", with: "")
+            position = position.replacingOccurrences(of: ")", with: "")
+            let positionArray = position.components(separatedBy: ",")
+            if let lat = Double(positionArray[0])?.description, let lon = Double(positionArray[1])?.description {
+                let url = "comgooglemaps://?daddr=" + lat + "," + lon + "&directionsmode=driving"
+                UIApplication.shared.open(URL(string:url)!, options: [:]) { _ in
+                    return
+                }
+            }
+        }
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Vis på kartet", style: .default, handler: showOnMap))
+        alertController.addAction(UIAlertAction(title: "Åpne i Apple Maps", style: .default, handler: appleMaps))
+        alertController.addAction(UIAlertAction(title: "Åpne i Google Maps", style: .default, handler: googleMaps))
+        alertController.addAction(UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
+    
+    
     
     
     func collectionViewCell(_ cell: UICollectionViewCell, buttonTapped: UIButton, action: action) {

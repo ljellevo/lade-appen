@@ -37,7 +37,7 @@ class FavoritesCell: UICollectionViewCell {
     @IBOutlet weak var cellHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var contactsStackView: UIStackView!
-    @IBOutlet weak var showOnMapButton: UIButton!
+    @IBOutlet weak var moreInfoStack: UIStackView!
     
     
     override func awakeFromNib() {
@@ -50,7 +50,14 @@ class FavoritesCell: UICollectionViewCell {
         //indicatorColor.layer.cornerRadius = 10
         whitePanel.layer.cornerRadius = 0
         separatorLine.layer.cornerRadius = 1
-        showOnMapButton.tintColor = UIColor.markerRed()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(connected(_:)))
+        
+        moreInfoStack.isUserInteractionEnabled = true
+        moreInfoStack.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func connected(_ sender:AnyObject){
+        delegate?.favoriteShowOnMap(self, buttonTapped: moreInfoStack, station: station!)
     }
     
     func isRealtime(realtime: Bool){
@@ -64,11 +71,6 @@ class FavoritesCell: UICollectionViewCell {
         realtimeActivityStackView.isHidden = false
         realtimeSeperatorStackView.isHidden = false
         contactsStackView.isHidden = false
-    }
-    
-    
-    @IBAction func showOnMap(_ sender: UIButton) {
-        delegate?.favoriteShowOnMap(self, buttonTapped: showOnMapButton, station: station!)
     }
     
     @IBAction func toDetailsButton(_ sender: UIButton) {
