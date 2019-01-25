@@ -478,6 +478,7 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
         centerMapButton.layer.cornerRadius = 10
         centerMapButton.addShadow()
         self.addAnnotationsToMap()
+        mapWindow.userLocation.title = "Min lokasjon"
         
         
     }

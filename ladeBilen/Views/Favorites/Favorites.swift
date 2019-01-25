@@ -545,14 +545,6 @@ private typealias Delegate = Favorites
 extension Delegate: CollectionViewCellDelegate, FavoritesCellDelegate {
     
     func favoriteShowOnMap(_ cell: UICollectionViewCell, buttonTapped: UIStackView, station: Station) {
-        /*
-        print("Vis på kart")
-        
-        */
-        func printActionTitle(_ action: UIAlertAction) {
-            print("You tapped \(action.title!)")
-        }
-        
         func showOnMap(_ action: UIAlertAction){
             if let view = self.navigationController?.viewControllers[0] as? Home {
                 view.station = station

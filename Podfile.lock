@@ -68,6 +68,7 @@ PODS:
   - GoogleUtilities/UserDefaults (5.3.6):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
+  - HGPlaceholders (0.3.0)
   - leveldb-library (1.20)
   - MarqueeLabel/Swift (3.2.0)
   - nanopb (0.3.901):
@@ -87,6 +88,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - HGPlaceholders
   - NotificationBannerSwift
 
 SPEC REPOS:
@@ -104,6 +106,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - GTMSessionFetcher
+    - HGPlaceholders
     - leveldb-library
     - MarqueeLabel
     - nanopb
@@ -124,12 +127,13 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  HGPlaceholders: 2df01c51b04a30acd0b8c9c7161c7cdde4541109
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   MarqueeLabel: 440a502b91a9179bd98f9fff00ba1150650a1c0e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NotificationBannerSwift: 49fc4be7fabada55b189b50e72184c92edd5f7f7
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 60285b4163195745c809efdcdc626178b165df54
+PODFILE CHECKSUM: d9e03c11b0775c648e28f14d49756f0c8fba622b
 
 COCOAPODS: 1.6.0.beta.2
