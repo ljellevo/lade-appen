@@ -13,7 +13,6 @@ target 'ladeBilen' do
   pod 'Disk', '~> 0.4.0'
   pod 'NotificationBannerSwift'
   pod 'BulletinBoard'
-  pod 'HGPlaceholders'
   
 
 end
