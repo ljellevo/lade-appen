@@ -678,25 +678,31 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
     //Søkealgoritmen
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            tableViewStack.isHidden = false
-            filteredStationsSearch = filteredStations.filter { filteredStations in
-                return (filteredStations.name.lowercased().contains(searchText.lowercased()))
+            self.tableViewStack.isHidden = false
+            DispatchQueue.global().async {
+                var temp = self.filteredStations.filter { filteredStations in
+                    return (filteredStations.name.lowercased().contains(searchText.lowercased()))
+                }
+                if self.locationManager.location != nil {
+                    temp.sort(by: { (this: Station, that: Station) -> Bool in
+                        return self.app!.findDistanceToStation(station: this, location: self.locationManager.location!) < self.app!.findDistanceToStation(station: that, location: self.locationManager.location!)
+                    })
+                }
+                DispatchQueue.main.async {
+                    self.filteredStationsSearch = temp
+                    self.tableView.reloadData()
+                }
             }
-            if locationManager.location != nil {
-                filteredStationsSearch.sort(by: { (this: Station, that: Station) -> Bool in
-                    return app!.findDistanceToStation(station: this, location: locationManager.location!) < app!.findDistanceToStation(station: that, location: locationManager.location!)
-                })
-            }
-            
         } else {
             tableViewStack.isHidden = true
             filteredStationsSearch = app.filteredStations
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(filteredStationsSearch.count)
         return filteredStationsSearch.count
     }
     
