@@ -217,18 +217,18 @@ class Login: UIViewController, UITextFieldDelegate {
         isViewActive = false
         bannerStackTopConstraint.isActive = true
         bannerStackTopConstraint.constant = 40
-        bannerStackTopOffset = bannerStackTopConstraint.constant
+        bannerStackTopOffset = bannerStackTopConstraint.constant + 15
         
-        whitePanelStackTopConstraint.constant = UIScreen.main.bounds.height * 0.45
+        whitePanelStackTopConstraint.constant = UIScreen.main.bounds.height * 0.50
         whitePanelStackLeadingConstraint.constant = 16
         whitePanelStackTrailingConstraint.constant = 16
         whitePanelStackBottomConstraint.constant = -17
-        whitePanelLeadingOffset = whitePanelStackLeadingConstraint.constant
-        whitePanelTrailingOffset = whitePanelStackTrailingConstraint.constant
+        whitePanelLeadingOffset = whitePanelStackLeadingConstraint.constant + UIScreen.main.bounds.width * 0.03
+        whitePanelTrailingOffset = whitePanelStackTrailingConstraint.constant + UIScreen.main.bounds.width * 0.03
         
         loginInputStackLeadingConstraint.constant = 36
         loginInputStackTrailingConstraint.constant = 36
-        loginInputStackTopConstraint.constant = UIScreen.main.bounds.height * 0.50
+        loginInputStackTopConstraint.constant = UIScreen.main.bounds.height * 0.50 + 20
     }
 
     
@@ -269,9 +269,13 @@ class Login: UIViewController, UITextFieldDelegate {
         gestureBanner = (gesture.y/bannerStackTopOffset!)*4
         
         if(isViewActive == false){
-            whitePanelStackTopConstraint.constant = gesture.y + UIScreen.main.bounds.height * 0.50
+            if (gesture.y + UIScreen.main.bounds.height * 0.50) < UIScreen.main.bounds.height * 0.65 {
+                whitePanelStackTopConstraint.constant = gesture.y + UIScreen.main.bounds.height * 0.50
+            }
         } else {
-            whitePanelStackTopConstraint.constant = gesture.y
+            if gesture.y < UIScreen.main.bounds.height * 0.65 {
+                whitePanelStackTopConstraint.constant = gesture.y
+            }
         }
         
         if(whitePanelStackTopConstraint.constant < UIScreen.main.bounds.height * 0.50){

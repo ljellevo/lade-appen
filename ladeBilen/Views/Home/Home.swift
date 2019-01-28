@@ -158,7 +158,7 @@ class Home: UIViewController{
             if velocity < -800 {
                 detailsEngagedPosition(blur: 0.26)
                 UIView.animate(withDuration: TimeInterval(UIScreen.main.bounds.height/velocity), delay: 0.0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
-                    self.view.layoutIfNeeded()
+                    self.contentView.superview?.layoutIfNeeded()
                 })
             } else if velocity > 800 {
                 detailsStartPosition(withAnimation: true)
@@ -170,7 +170,7 @@ class Home: UIViewController{
                 if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.25 {
                     detailsEngagedPosition(blur: 0.26)
                     UIView.animate(withDuration: 0.5, delay: 0.0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
-                        self.view.layoutIfNeeded()
+                        self.contentView.superview?.layoutIfNeeded()
                     })
                     
                 } else {
