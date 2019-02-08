@@ -11,7 +11,7 @@ import Disk
 import NotificationBannerSwift
 import MapKit
 
-class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITabBarControllerDelegate {
     
     var app: App!
     var locationManager: CLLocationManager = CLLocationManager()
@@ -46,6 +46,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        self.tabBarController!.delegate = self
         collectionView.register(UINib(nibName: "FavoritesCell", bundle: nil), forCellWithReuseIdentifier: "FavoritesCell")
         collectionView.register(UINib(nibName: "LabelCell", bundle: nil), forCellWithReuseIdentifier: "LabelCell")
         collectionView.register(UINib(nibName: "SubscriptionCell", bundle: nil), forCellWithReuseIdentifier: "SubscriptionCell")
@@ -118,6 +119,19 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                     self.collectionView.reloadData()
                 }
             }
+        }
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let tabBarIndex = tabBarController.selectedIndex
+        if tabBarIndex == 1 {
+            let vc = tabBarController.viewControllers![1] as! UINavigationController
+            let home = vc.viewControllers.first as! Home
+            home.app = app
+        } else if tabBarIndex == 2 {
+            let vc = tabBarController.viewControllers![2] as! UINavigationController
+            let profile = vc.viewControllers.first as! Profile
+            profile.app = app
         }
     }
     

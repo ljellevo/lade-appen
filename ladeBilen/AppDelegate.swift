@@ -73,10 +73,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func toHome(_ app: App){
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "NavigationHome") as! NavigationHome
+        let tabVC = storyBoard.instantiateViewController(withIdentifier: "TabHome") as! UITabBarController
+        let vc = tabVC.viewControllers![1] as! UINavigationController
         let homeVC = vc.viewControllers.first as! Home
+        
         homeVC.app = app
-        self.window?.rootViewController = vc
+        self.window?.rootViewController = tabVC
         self.window?.makeKeyAndVisible()
     }
     

@@ -11,7 +11,7 @@ import Firebase
 import Disk
 import AudioToolbox
 
-class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate {
     
     var app: App!
     
@@ -36,6 +36,7 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
         user = app.user
         tableView.delegate = self
         tableView.dataSource = self
+        self.tabBarController!.delegate = self
         tableView.tableHeaderView = UIView()
         tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "EntryCell", bundle: nil), forCellReuseIdentifier: "EntryCell")
@@ -64,6 +65,21 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 view.addAnnotationsToMap()
                 self.navigationController?.popToViewController(view, animated: true)
             }
+        }
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print("Segue")
+        let tabBarIndex = tabBarController.selectedIndex
+        if tabBarIndex == 0 {
+            let vc = tabBarController.viewControllers![0] as! UINavigationController
+            let favorites = vc.viewControllers.first as! Favorites
+            favorites.app = app
+        } else if tabBarIndex == 1 {
+            let vc = tabBarController.viewControllers![1] as! UINavigationController
+            let home = vc.viewControllers.first as! Home
+            home.app = app
+            home.addAnnotationsToMap()
         }
     }
     

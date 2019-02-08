@@ -14,7 +14,7 @@ import Disk
 import NotificationBannerSwift
 import BLTNBoard
 
-class Home: UIViewController{
+class Home: UIViewController, UITabBarControllerDelegate{
 
     var app: App!
     
@@ -70,6 +70,7 @@ class Home: UIViewController{
         
         filteredStations = app.filteredStations
         connectorDescription = app.connectorDescription
+        self.tabBarController!.delegate = self
         
         loadDetailsElement()
         loadMapElement()
@@ -100,6 +101,19 @@ class Home: UIViewController{
         bottomBarHeightConstraint.constant = self.view.safeAreaInsets.bottom
     }
     
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let tabBarIndex = tabBarController.selectedIndex
+        if tabBarIndex == 0 {
+            let vc = tabBarController.viewControllers![0] as! UINavigationController
+            let favorites = vc.viewControllers.first as! Favorites
+            favorites.app = app
+        } else if tabBarIndex == 2 {
+            let vc = tabBarController.viewControllers![2] as! UINavigationController
+            let profile = vc.viewControllers.first as! Profile
+            profile.app = app
+        }
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -117,12 +131,14 @@ class Home: UIViewController{
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /*
         if let nextViewController = segue.destination as? Profile{
             nextViewController.app = app
         }
         if let nextViewController = segue.destination as? Favorites{
             nextViewController.app = app
         }
+ */
     }
     
     @IBAction func toProfile(_ sender: UIBarButtonItem) {
