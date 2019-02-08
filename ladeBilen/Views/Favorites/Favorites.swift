@@ -36,6 +36,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     @IBOutlet weak var detailsStack: UIStackView!
     @IBOutlet var detailsCollectionView: UICollectionView!
+    @IBOutlet weak var bottomBarHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var greyDraggingIndicator: UIView!
@@ -128,6 +129,10 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        bottomBarHeightConstraint.constant = self.view.safeAreaInsets.bottom
+    }
+    
     @IBAction func contentViewIsTapped(_ sender: UITapGestureRecognizer) {
         detailsEngagedPosition(blur: 0.26)
         height = contentViewHeightConstraint.constant
@@ -145,7 +150,9 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             height = contentViewHeightConstraint.constant
         }
         
-        contentViewHeightConstraint.constant = -(gesture.y - height)
+        if -(gesture.y - height) <= UIScreen.main.bounds.height * 0.80 && -(gesture.y - height) >= UIScreen.main.bounds.height * 0.10 {
+            contentViewHeightConstraint.constant = -(gesture.y - height)
+        }
         
         if contentViewHeightConstraint.constant < UIScreen.main.bounds.height * 0.6 {
             blurView.alpha = (contentViewHeightConstraint.constant/UIScreen.main.bounds.height * 0.45)
@@ -153,6 +160,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         
         if sender.state == UIGestureRecognizer.State.ended {
             if velocity < -800 {
+                self.view.layoutIfNeeded()
                 detailsEngagedPosition(blur: 0.26)
                 UIView.animate(withDuration: TimeInterval(UIScreen.main.bounds.height/velocity), delay: 0.0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
                     self.view.layoutIfNeeded()
@@ -165,7 +173,9 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                 
             } else {
                 if contentViewHeightConstraint.constant > UIScreen.main.bounds.height * 0.25 {
+                    self.view.layoutIfNeeded()
                     detailsEngagedPosition(blur: 0.26)
+                    
                     UIView.animate(withDuration: 0.5, delay: 0.0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
                         self.view.layoutIfNeeded()
                     })

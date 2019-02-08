@@ -54,6 +54,8 @@ class Home: UIViewController{
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var bottomBarHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var detailsStack: UIStackView!
         @IBOutlet var collectionView: UICollectionView!
     
@@ -73,7 +75,6 @@ class Home: UIViewController{
         loadMapElement()
         loadSearchElement()
         
-        print(app.stations.count)
         if app.user!.tutorial {
             bulletinManager.showBulletin(above: self)
         }
@@ -91,9 +92,14 @@ class Home: UIViewController{
  
     }
     
-    override func didReceiveMemoryWarning() {
-        print("memory")
+    override func viewSafeAreaInsetsDidChange() {
+        self.view.layoutIfNeeded()
     }
+    
+    override func viewDidLayoutSubviews() {
+        bottomBarHeightConstraint.constant = self.view.safeAreaInsets.bottom
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -148,7 +154,11 @@ class Home: UIViewController{
             height = contentViewHeightConstraint.constant
         }
         
-        contentViewHeightConstraint.constant = -(gesture.y - height)
+        if -(gesture.y - height) <= UIScreen.main.bounds.height * 0.80 && -(gesture.y - height) >= UIScreen.main.bounds.height * 0.10 {
+            contentViewHeightConstraint.constant = -(gesture.y - height)
+        }
+
+        //contentViewHeightConstraint.constant = -(gesture.y - height)
         
         if contentViewHeightConstraint.constant < UIScreen.main.bounds.height * 0.6 {
             blurView.alpha = (contentViewHeightConstraint.constant/UIScreen.main.bounds.height * 0.45)
@@ -308,7 +318,8 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
         
         self.contentView.isHidden = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-
+        //bottomBarHeightConstraint.constant = self.view.safeAreaInsets.bottom
+        
         greyDraggingIndicator.layer.cornerRadius = 2
         blurView.alpha = 0.0
         contentView.layer.cornerRadius = 20
@@ -326,7 +337,6 @@ extension DetailsElement: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if station != nil {
-            print("Details loaded")
             
             let cell: InfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCellIdentifier", for: indexPath as IndexPath) as! InfoCell
 
@@ -485,7 +495,6 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
     
     func addAnnotationsToMap(){
         self.mapWindow.removeAnnotations(self.mapWindow.annotations)
-        print("Adding markers")
 
         DispatchQueue.global().async {
             for children in self.filteredStations{
@@ -563,8 +572,6 @@ extension MapElement: CLLocationManagerDelegate, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let anno = view.annotation as? Annotation {
             id = anno.id!
-            print(id!)
-            print("----------Selected, setting up listener----------")
             
             if willDeselectMarker {
                 detailsStartPosition(withAnimation: true)
@@ -702,7 +709,6 @@ extension SearchElement: UISearchResultsUpdating, UITableViewDelegate, UITableVi
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(filteredStationsSearch.count)
         return filteredStationsSearch.count
     }
     
@@ -887,7 +893,6 @@ private typealias Service = Home
 extension Service {
     func listenOnStation(){
         app.listenOnStation(stationId: station!.id, done: { station in
-            print("Listening")
             self.station = station
             self.connectors = self.app.sortConnectors(station: station).conn
             
@@ -918,7 +923,6 @@ extension Service {
     }
     
     func detachListenerOnStation(){
-        print("Detatch")
         app.detachListenerOnStation(stationId: station!.id)
     }
 }
