@@ -126,13 +126,6 @@
                                     <outletCollection property="gestureRecognizers" destination="Y3n-pR-Ktj" appends="YES" id="Wap-3T-Rg4"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBr-49-Vad">
-                                <rect key="frame" x="0.0" y="692" width="375" height="32"/>
-                                <color key="backgroundColor" red="0.28115430470000002" green="0.3608010411" blue="0.52158755059999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="XcS-5Z-oxF"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -142,13 +135,10 @@
                             <constraint firstItem="I0U-CG-WqB" firstAttribute="top" secondItem="AyJ-jP-FjV" secondAttribute="bottom" identifier="118" id="Drg-pt-Nk1"/>
                             <constraint firstItem="7VM-gK-coX" firstAttribute="top" secondItem="aGZ-VN-jqy" secondAttribute="top" identifier="116" id="JXt-ns-cgY"/>
                             <constraint firstItem="2Sx-zC-Fbu" firstAttribute="leading" secondItem="aGZ-VN-jqy" secondAttribute="leading" identifier="121" id="Lzd-Q3-Pk8"/>
-                            <constraint firstItem="JBr-49-Vad" firstAttribute="leading" secondItem="aGZ-VN-jqy" secondAttribute="leading" id="M3d-cI-IWA"/>
                             <constraint firstAttribute="trailing" secondItem="2Sx-zC-Fbu" secondAttribute="trailing" identifier="122" id="U1L-fQ-6HU"/>
                             <constraint firstItem="7VM-gK-coX" firstAttribute="leading" secondItem="aGZ-VN-jqy" secondAttribute="leading" identifier="117" id="Zum-Ik-eQR"/>
                             <constraint firstItem="pFk-kW-drV" firstAttribute="top" secondItem="2Sx-zC-Fbu" secondAttribute="bottom" identifier="125" id="ncK-T3-x2Y"/>
                             <constraint firstItem="I0U-CG-WqB" firstAttribute="leading" secondItem="aGZ-VN-jqy" secondAttribute="leading" identifier="119" id="seD-tP-duf"/>
-                            <constraint firstAttribute="trailing" secondItem="JBr-49-Vad" secondAttribute="trailing" id="sy5-rt-8d3"/>
-                            <constraint firstAttribute="bottom" secondItem="JBr-49-Vad" secondAttribute="bottom" id="xYs-pp-JOR"/>
                             <constraint firstAttribute="trailing" secondItem="I0U-CG-WqB" secondAttribute="trailing" identifier="120" id="xn9-RL-Wa0"/>
                         </constraints>
                     </view>
@@ -156,7 +146,6 @@
                     <navigationItem key="navigationItem" title="Favoritter" id="mVF-L0-W0s"/>
                     <connections>
                         <outlet property="blurView" destination="7VM-gK-coX" id="kRF-xE-fLf"/>
-                        <outlet property="bottomBarHeightConstraint" destination="XcS-5Z-oxF" id="sau-QF-UHH"/>
                         <outlet property="collectionView" destination="rAQ-ck-95O" id="qQW-tC-k3o"/>
                         <outlet property="contentView" destination="2Sx-zC-Fbu" id="Hsw-Qr-OyY"/>
                         <outlet property="contentViewHeightConstraint" destination="VTG-Qf-6FV" id="HBK-di-o4l"/>
@@ -285,7 +274,7 @@
         <!--Change User Info-->
         <scene sceneID="QJe-c8-u76">
             <objects>
-                <viewController storyboardIdentifier="ChangeUserInfo" id="ypy-3c-FZW" customClass="ChangeUserInfo" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangeUserInfo" hidesBottomBarWhenPushed="YES" id="ypy-3c-FZW" customClass="ChangeUserInfo" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E49-cQ-YCC"/>
                         <viewControllerLayoutGuide type="bottom" id="ki0-Vr-bh0"/>
@@ -295,11 +284,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGz-oe-cfT">
-                                <rect key="frame" x="0.0" y="0.0" width="360" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="360" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nbb-0c-AE7">
-                                <rect key="frame" x="0.0" y="0.0" width="159" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="159" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Wqb-PP-IMg">
@@ -384,7 +373,7 @@
         <!--Change Auth Info-->
         <scene sceneID="4Pu-wF-7IE">
             <objects>
-                <viewController storyboardIdentifier="ChangePassword" id="dAw-Mp-djm" customClass="ChangeAuthInfo" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangePassword" hidesBottomBarWhenPushed="YES" id="dAw-Mp-djm" customClass="ChangeAuthInfo" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r4s-YK-pb5"/>
                         <viewControllerLayoutGuide type="bottom" id="cyn-sj-yZh"/>
@@ -394,11 +383,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBw-Yk-bS7">
-                                <rect key="frame" x="0.0" y="0.0" width="360" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="360" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZC-rW-wgB">
-                                <rect key="frame" x="0.0" y="0.0" width="175" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="175" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ukG-Rr-pHd">
@@ -508,7 +497,7 @@
         <!--Change Contact-->
         <scene sceneID="OIE-Cn-cLy">
             <objects>
-                <viewController id="Wel-ij-dGa" customClass="ChangeContact" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Wel-ij-dGa" customClass="ChangeContact" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ILc-Cp-9n2"/>
                         <viewControllerLayoutGuide type="bottom" id="gqV-tR-LHv"/>
@@ -556,7 +545,7 @@
         <!--Change Preferences-->
         <scene sceneID="7in-yA-nVC">
             <objects>
-                <viewController storyboardIdentifier="ChangePreferences" id="MYZ-zz-Sov" customClass="ChangePreferences" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangePreferences" hidesBottomBarWhenPushed="YES" id="MYZ-zz-Sov" customClass="ChangePreferences" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FKj-DZ-UHi"/>
                         <viewControllerLayoutGuide type="bottom" id="xCh-6J-68T"/>
@@ -566,11 +555,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQQ-Dd-fzP">
-                                <rect key="frame" x="0.0" y="0.0" width="360" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="360" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIZ-p7-CrM">
-                                <rect key="frame" x="0.0" y="0.0" width="175" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="175" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="84d-gu-2Fa">
@@ -739,7 +728,7 @@
         <!--About-->
         <scene sceneID="trC-ZQ-apU">
             <objects>
-                <viewController storyboardIdentifier="About" id="j8x-ww-oDR" customClass="About" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="About" hidesBottomBarWhenPushed="YES" id="j8x-ww-oDR" customClass="About" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lM0-RF-uVu"/>
                         <viewControllerLayoutGuide type="bottom" id="nHP-m3-aD8"/>
@@ -749,11 +738,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJB-GZ-xsi">
-                                <rect key="frame" x="0.0" y="0.0" width="360" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="360" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdk-gt-8IF">
-                                <rect key="frame" x="0.0" y="0.0" width="175" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="175" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RQb-FP-0rI">
@@ -795,7 +784,7 @@
         <!--Rapporter Feil-->
         <scene sceneID="JV4-a0-Zbf">
             <objects>
-                <viewController storyboardIdentifier="ReportBug" id="EYt-UJ-mP1" customClass="ReportBug" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReportBug" hidesBottomBarWhenPushed="YES" id="EYt-UJ-mP1" customClass="ReportBug" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bwM-J4-iMz"/>
                         <viewControllerLayoutGuide type="bottom" id="Jkb-mv-u7m"/>
@@ -805,14 +794,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6nq-bn-djd">
-                                <rect key="frame" x="0.0" y="0.0" width="360" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="360" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5kv-8C-eN5">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="441"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="490"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CK3-nJ-jU3">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="441"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="490"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -920,7 +909,7 @@
         <!--Personvern-->
         <scene sceneID="Ls2-ky-6RY">
             <objects>
-                <viewController storyboardIdentifier="Privacy" id="VEH-MT-qPr" customClass="Privacy" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Privacy" hidesBottomBarWhenPushed="YES" id="VEH-MT-qPr" customClass="Privacy" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6o9-Y4-0S6"/>
                         <viewControllerLayoutGuide type="bottom" id="dFn-hF-0YN"/>
@@ -1048,7 +1037,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="utH-5j-dM4">
-                                <rect key="frame" x="36" y="571" width="303" height="40"/>
+                                <rect key="frame" x="36" y="620" width="303" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlA-xr-RsA">
                                         <rect key="frame" x="0.0" y="0.0" width="303" height="40"/>
@@ -1277,17 +1266,9 @@
                                     <outletCollection property="gestureRecognizers" destination="ndM-eb-sgC" appends="YES" id="5M1-2Q-qyp"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1JQ-Ol-teA">
-                                <rect key="frame" x="0.0" y="692" width="375" height="32"/>
-                                <color key="backgroundColor" red="0.28115430474281311" green="0.36080104112625122" blue="0.5215875506401062" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="TLq-k5-dgy"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="1JQ-Ol-teA" secondAttribute="bottom" id="2EP-Wy-AfV"/>
                             <constraint firstItem="iYL-Hw-tZv" firstAttribute="top" secondItem="bcT-jA-b1i" secondAttribute="bottom" identifier="935" id="7pO-TI-5d0"/>
                             <constraint firstAttribute="trailing" secondItem="bDK-wx-8YK" secondAttribute="trailing" identifier="921" id="Lwj-gF-iTo"/>
                             <constraint firstItem="bDK-wx-8YK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" identifier="922" id="Lzy-2l-1P2"/>
@@ -1302,9 +1283,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="eNl-6i-5mL" secondAttribute="trailing" constant="5" identifier="932" id="g5e-JG-M3o"/>
                             <constraint firstItem="bDK-wx-8YK" firstAttribute="top" secondItem="02A-yD-k2M" secondAttribute="bottom" identifier="924" id="geO-gc-UT7"/>
                             <constraint firstAttribute="trailing" secondItem="6uL-Kc-sva" secondAttribute="trailing" identifier="934" id="ih2-ix-ffW"/>
-                            <constraint firstItem="1JQ-Ol-teA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pXc-7j-hMQ"/>
                             <constraint firstItem="iYL-Hw-tZv" firstAttribute="top" secondItem="6uL-Kc-sva" secondAttribute="bottom" id="q7k-aU-beq"/>
-                            <constraint firstAttribute="trailing" secondItem="1JQ-Ol-teA" secondAttribute="trailing" id="q83-uk-duL"/>
                             <constraint firstAttribute="trailing" secondItem="bcT-jA-b1i" secondAttribute="trailing" identifier="926" id="qyO-fM-FcQ"/>
                             <constraint firstItem="bcT-jA-b1i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" identifier="927" id="yZL-pe-Z5P"/>
                         </constraints>
@@ -1315,7 +1294,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="blurView" destination="jL9-jX-usB" id="IlE-2M-23o"/>
-                        <outlet property="bottomBarHeightConstraint" destination="TLq-k5-dgy" id="onA-ze-SaX"/>
                         <outlet property="centerMapButton" destination="eNl-6i-5mL" id="qAv-jH-erN"/>
                         <outlet property="collectionView" destination="RA1-OK-qc8" id="0aJ-S1-zJo"/>
                         <outlet property="contentView" destination="6uL-Kc-sva" id="vMH-0w-Tre"/>
@@ -2170,7 +2148,6 @@
         <!--Kart-->
         <scene sceneID="kDh-qe-Vi4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ptp-UA-2H2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="NavigationHome" id="XCX-Ed-eow" customClass="NavigationHome" customModule="ladeBilen" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Kart" image="MarkerSet" id="pzi-fZ-niD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Hjp-FY-YWZ">
@@ -2189,6 +2166,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="L01-pr-aiW"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ptp-UA-2H2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-5930" y="494"/>
         </scene>

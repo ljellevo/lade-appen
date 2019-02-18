@@ -144,7 +144,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
     
     override func viewDidLayoutSubviews() {
-        bottomBarHeightConstraint.constant = self.view.safeAreaInsets.bottom
+        //bottomBarHeightConstraint.constant = self.view.safeAreaInsets.bottom
     }
     
     @IBAction func contentViewIsTapped(_ sender: UITapGestureRecognizer) {
@@ -752,6 +752,7 @@ extension Service {
     }
     
     func detachListenerOnStation(stationId: Int){
+        print("detaching")
         app.detachListenerOnStation(stationId: stationId)
     }
     

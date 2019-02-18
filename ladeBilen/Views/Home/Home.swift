@@ -98,7 +98,7 @@ class Home: UIViewController, UITabBarControllerDelegate{
     }
     
     override func viewDidLayoutSubviews() {
-        bottomBarHeightConstraint.constant = self.view.safeAreaInsets.bottom
+        //bottomBarHeightConstraint.constant = self.view.safeAreaInsets.bottom
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
