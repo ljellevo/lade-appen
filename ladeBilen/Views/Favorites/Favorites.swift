@@ -141,6 +141,7 @@ class Favorites: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             detachListenerOnStation(stationId: station)
             detachListenerOnSubscription(stationId: station)
         }
+        self.realtimeArray = []
     }
     
     override func viewDidLayoutSubviews() {
@@ -570,11 +571,13 @@ extension Delegate: CollectionViewCellDelegate, FavoritesCellDelegate {
     
     func favoriteShowOnMap(_ cell: UICollectionViewCell, buttonTapped: UIStackView, station: Station) {
         func showOnMap(_ action: UIAlertAction){
-            if let view = self.navigationController?.viewControllers[0] as? Home {
-                view.station = station
-                view.moveMapToMarker(selectedStation: station)
-                self.navigationController?.popToViewController(view, animated: true)
-            }
+            let vc = self.tabBarController!.viewControllers![1] as! UINavigationController
+            let view = vc.viewControllers.first as! Home
+            view.station = station
+            view.moveMapToMarker(selectedStation: station)
+            //self.navigationController?.popToViewController(view, animated: true)
+            self.tabBarController?.selectedIndex = 1
+            
             return
         }
         
