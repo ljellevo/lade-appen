@@ -30,7 +30,7 @@ class InfoCell: UICollectionViewCell{
     @IBOutlet weak var commentsButton: UIButton!
     @IBOutlet weak var stationButton: UIButton!
     @IBOutlet weak var imageButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var cancelButton: LoadingUIButton!
     
     @IBOutlet weak var detailsStack: UIStackView!
         @IBOutlet weak var nameLabel: UILabel!
@@ -39,8 +39,8 @@ class InfoCell: UICollectionViewCell{
         @IBOutlet weak var realtimeLabel: UILabel!
         @IBOutlet weak var fastChargeLabel: UILabel!
         @IBOutlet weak var parkingFeeLabel: UILabel!
-        @IBOutlet weak var favoriteButton: UIButton!
-        @IBOutlet weak var subscribeButton: UIButton!
+        @IBOutlet weak var favoriteButton: LoadingUIButton!
+        @IBOutlet weak var subscribeButton: LoadingUIButton!
         @IBOutlet weak var realtimeView: UIView!
         @IBOutlet weak var descriptionLabel: UILabel!
         @IBOutlet weak var realtimeConnectorCounterLabel: UILabel!

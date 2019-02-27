@@ -30,7 +30,7 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
     var connectorSelected: Bool = false
         
     @IBOutlet weak var whitePannel: UIView!
-    @IBOutlet weak var finishedButton: UIButton!
+    @IBOutlet weak var finishedButton: LoadingUIButton!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -89,20 +89,22 @@ class RegisterFinished: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let nextViewController = segue.destination as? NavigationHome {
-            let home = nextViewController.viewControllers.first as! Home
+        if let nextViewController = segue.destination as? UITabBarController {
+            let vc = nextViewController.viewControllers![1] as! UINavigationController
+            let home = vc.viewControllers.first as! Home
             home.app = app
         }
     }
     
     @IBAction func finishedButton(_ sender: UIButton) {
         if connector.count != 0 {
-
+            finishedButton.showLoading()
             
             let user = User(uid: uid!, email: email!, firstname: firstname!, lastname: lastname!, fastCharge: fastcharge!, parkingFee: parkingfee!, reduceData: reduceData!, notifications: notifications!, notificationDuration: notificationsDuration!, connector: connector, timestamp: Date().getTimestamp(), favorites: [:], tutorial: true)
             app.user = user
             app.setUserInDatabase(user: user, done: {_ in})
             app.initializeApplication(done: {_ in
+                self.finishedButton.hideLoading(clearTitle: false)
                 self.performSegue(withIdentifier: "toHomeFromRegister", sender: self)
             })
         } else {

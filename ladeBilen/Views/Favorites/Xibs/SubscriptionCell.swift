@@ -16,7 +16,7 @@ class SubscriptionCell: UICollectionViewCell {
     var timer = Timer()
     
     @IBOutlet weak var view: UIView!
-    @IBOutlet weak var cancelSubscriptionButton: UIButton!
+    @IBOutlet weak var cancelSubscriptionButton: LoadingUIButton!
     weak var delegate: CollectionViewCellDelegate?
 
     @IBOutlet weak var firstSeparator: UIView!

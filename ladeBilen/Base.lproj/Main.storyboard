@@ -316,7 +316,7 @@
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYN-PA-Gki">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYN-PA-Gki" customClass="LoadingUIButton" customModule="ladeBilen" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="142" width="303" height="50"/>
                                         <color key="backgroundColor" red="0.28115430470000002" green="0.3608010411" blue="0.52158755059999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -433,7 +433,7 @@
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHu-c5-gwV">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHu-c5-gwV" customClass="LoadingUIButton" customModule="ladeBilen" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="200" width="303" height="50"/>
                                         <color key="backgroundColor" red="0.28115430470000002" green="0.3608010411" blue="0.52158755059999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -670,7 +670,7 @@
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbO-fL-XwP">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbO-fL-XwP" customClass="LoadingUIButton" customModule="ladeBilen" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="364.66666666666669" width="303" height="50"/>
                                         <color key="backgroundColor" red="0.28115430470000002" green="0.3608010411" blue="0.52158755059999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -1039,7 +1039,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="utH-5j-dM4">
                                 <rect key="frame" x="36" y="620" width="303" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlA-xr-RsA">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlA-xr-RsA" customClass="LoadingUIButton" customModule="ladeBilen" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="303" height="40"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -1559,7 +1559,27 @@
                     <view key="view" contentMode="scaleToFill" id="Gf0-h9-P11">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OhM-Be-Piw">
+                                <rect key="frame" x="16" y="44" width="343" height="734"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LDf-fR-Mcg">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="734"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="76"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="2" height="-3"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.28115430474281311" green="0.36080104112625122" blue="0.5215875506401062" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="OhM-Be-Piw" secondAttribute="trailing" id="7Mp-i6-2fR"/>
+                            <constraint firstItem="OhM-Be-Piw" firstAttribute="leading" secondItem="Gf0-h9-P11" secondAttribute="leadingMargin" id="Wfs-UT-SUt"/>
+                            <constraint firstItem="PkG-Ba-QdA" firstAttribute="top" secondItem="OhM-Be-Piw" secondAttribute="bottom" id="kL6-9Z-pTs"/>
+                            <constraint firstItem="OhM-Be-Piw" firstAttribute="top" secondItem="yGM-Yc-owN" secondAttribute="bottom" id="xhb-Zj-U6m"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8FY-9q-qGB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1630,7 +1650,7 @@
                                             <constraint firstAttribute="height" constant="10" identifier="1008" id="GmG-84-qoy"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxu-iS-2MX">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxu-iS-2MX" customClass="LoadingUIButton" customModule="ladeBilen" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="155" width="303" height="50"/>
                                         <color key="backgroundColor" red="0.28115430470000002" green="0.3608010411" blue="0.52158755059999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -2065,7 +2085,7 @@
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hT-Sl-6Cx">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hT-Sl-6Cx" customClass="LoadingUIButton" customModule="ladeBilen" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="34" width="303" height="50"/>
                                         <color key="backgroundColor" red="0.28115430470000002" green="0.3608010411" blue="0.52158755059999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -2304,6 +2324,6 @@
         <image name="TargetSet" width="56.25" height="56.25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BR4-Z9-cn3"/>
+        <segue reference="iwF-wO-9oJ"/>
     </inferredMetricsTieBreakers>
 </document>

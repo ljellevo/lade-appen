@@ -15,7 +15,7 @@ class ChangeUserInfo: UIViewController{
     
     
     @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: LoadingUIButton!
     @IBOutlet weak var informationLabel: UILabel!
     @IBOutlet weak var whitePanel: UIView!
     @IBOutlet weak var whitePanelCorner: UIView!
@@ -44,6 +44,7 @@ class ChangeUserInfo: UIViewController{
     
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
+        saveButton.showLoading()
         if rowIndex == 0 {
             app.user!.firstname = textField.text!
             app.setUserInDatabase(user: app.user!, done: { error in
@@ -59,7 +60,7 @@ class ChangeUserInfo: UIViewController{
                     banner.duration = 2
                     banner.show()
                 }
-                
+                self.saveButton.hideLoading(clearTitle: false)
             })
         } else {
             app.user!.lastname = textField.text!
@@ -76,7 +77,7 @@ class ChangeUserInfo: UIViewController{
                     banner.duration = 2
                     banner.show()
                 }
-                
+                self.saveButton.hideLoading(clearTitle: false)
             })
         }
     }

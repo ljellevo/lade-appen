@@ -34,7 +34,7 @@
                                                     <constraint firstAttribute="width" constant="4" identifier="1801" id="Lah-Ck-jt7"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9KY-Z9-J6c">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9KY-Z9-J6c" customClass="LoadingUIButton" customModule="ladeBilen" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="0.0" width="40" height="39"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" identifier="1802" id="Ds5-1R-USk"/>

@@ -48,7 +48,7 @@ class Login: UIViewController, UITextFieldDelegate {
         @IBOutlet var inputTwoTextField: UITextField!
         @IBOutlet var inputThreeTextField: UITextField!
     
-    @IBOutlet var loginButton: UIButton!
+    @IBOutlet var loginButton: LoadingUIButton!
         @IBOutlet var switchViewButton: UIButton!
 
     override func viewDidLoad() {
@@ -97,8 +97,9 @@ class Login: UIViewController, UITextFieldDelegate {
             nextViewController.uid = Auth.auth().currentUser?.uid
             nextViewController.email = self.inputOneTextField.text
             nextViewController.app = app
-        } else if let nextViewController = segue.destination as? NavigationHome {
-            let home = nextViewController.viewControllers.first as! Home
+        } else if let nextViewController = segue.destination as? UITabBarController {
+            let vc = nextViewController.viewControllers![1] as! UINavigationController
+            let home = vc.viewControllers.first as! Home
             home.app = app
         } else if let nextViewController = segue.destination as? ResetPassword {
             nextViewController.app = app
@@ -115,8 +116,10 @@ class Login: UIViewController, UITextFieldDelegate {
             AudioServicesPlaySystemSound(Constants.VIBRATION_STRONG)
             
         } else if(loginViewIsPresented){
+            self.loginButton.showLoading()
             Auth.auth().signIn(withEmail: inputOneTextField.text!, password: inputTwoTextField.text!, completion: { (user, error) in
                 if (error != nil) {
+                    self.loginButton.hideLoading(clearTitle: false)
                     self.inputOneTextField.setBottomBorderRed()
                     self.inputTwoTextField.setBottomBorderRed()
                     AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
@@ -127,12 +130,15 @@ class Login: UIViewController, UITextFieldDelegate {
                 }
             })
         } else {
+            self.loginButton.showLoading()
             if(inputTwoTextField.text == inputThreeTextField.text){
                 Auth.auth().createUser(withEmail: inputOneTextField.text!, password: inputTwoTextField.text!) { (user, error) in
                     if (error != nil){
+                        self.loginButton.hideLoading(clearTitle: false)
                         self.inputOneTextField.setBottomBorderRed()
                         AudioServicesPlaySystemSound(Constants.VIBRATION_WEAK)
                     } else {
+                        self.loginButton.hideLoading(clearTitle: false)
                         self.performSegue(withIdentifier: "toRegister", sender: self)
                     }
                 }
@@ -149,9 +155,11 @@ class Login: UIViewController, UITextFieldDelegate {
         app.verifyUserCache(){code in
             if code == 0 {
                 self.app.initializeApplication(done: {_ in
+                    self.loginButton.hideLoading(clearTitle: false)
                     self.performSegue(withIdentifier: "toHome", sender: self)
                 })
             } else {
+                self.loginButton.hideLoading(clearTitle: false)
                 self.performSegue(withIdentifier: "toRegister", sender: self)
             }
         }

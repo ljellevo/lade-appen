@@ -24,7 +24,7 @@ class ChangeAuthInfo: UIViewController {
     
     @IBOutlet weak var thirdTextField: UITextField!
     
-    @IBOutlet weak var changeButton: UIButton!
+    @IBOutlet weak var changeButton: LoadingUIButton!
     @IBOutlet weak var whitePanel: UIView!
     @IBOutlet weak var whitePanelCorner: UIView!
     @IBOutlet weak var infoLabel: UILabel!
@@ -84,7 +84,7 @@ class ChangeAuthInfo: UIViewController {
                 AudioServicesPlaySystemSound(Constants.VIBRATION_WEAK)
                 return
             }
-            
+            changeButton.showLoading()
             let user = Auth.auth().currentUser
             //let credentialTest = credential(withEmail: , password: )
             let credential = EmailAuthProvider.credential(withEmail: app.user!.email, password: thirdTextField.text!)
@@ -101,6 +101,7 @@ class ChangeAuthInfo: UIViewController {
                             self.secondTextField.setBottomBorderRed()
                             self.infoLabel.text = "E-post er tatt"
                             AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
+                            self.changeButton.hideLoading(clearTitle: false)
                         } else {
                             self.app.user!.email = self.firstTextField.text!
                             self.app.setUserInDatabase(user: self.app.user!, done: { error in
@@ -116,12 +117,14 @@ class ChangeAuthInfo: UIViewController {
                                     banner.duration = 2
                                     banner.show()
                                 }
+                                self.changeButton.hideLoading(clearTitle: false)
                             })
                             
                         }
                     }
                 }
             }
+            
         } else {
             if firstTextField.text != secondTextField.text {
                 firstTextField.setBottomBorderRed()
@@ -130,6 +133,8 @@ class ChangeAuthInfo: UIViewController {
                 AudioServicesPlaySystemSound(Constants.VIBRATION_WEAK)
                 return
             }
+            
+            changeButton.showLoading()
             let user = Auth.auth().currentUser
             let credential = EmailAuthProvider.credential(withEmail: app.user!.email, password: thirdTextField.text!)
             
@@ -138,6 +143,7 @@ class ChangeAuthInfo: UIViewController {
                     self.thirdTextField.setBottomBorderRed()
                     self.infoLabel.text = "Passord er feil"
                     AudioServicesPlaySystemSound(Constants.VIBRATION_ERROR)
+                    self.changeButton.hideLoading(clearTitle: false)
                 } else {
                     Auth.auth().currentUser?.updatePassword(to: self.firstTextField.text!) { (error) in
                         if error != nil {
@@ -153,6 +159,7 @@ class ChangeAuthInfo: UIViewController {
                             banner.duration = 2
                             banner.show()
                         }
+                        self.changeButton.hideLoading(clearTitle: false)
                     }
                 }
             }

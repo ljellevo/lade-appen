@@ -30,7 +30,7 @@ class ChangePreferences: UIViewController {
     @IBOutlet weak var durationSlider: UISlider!
     @IBOutlet weak var durationTimeLabel: UILabel!
     
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: LoadingUIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +74,7 @@ class ChangePreferences: UIViewController {
         app.user?.reduceData = reduceDataSwitch.isOn
         app.user?.notifications = notificationSwitch.isOn
         app.user?.notificationDuration = notificationDuration
+        saveButton.showLoading()
         app.setUserInDatabase(user: app!.user!, done: { error in
             if error != nil {
                 let banner = StatusBarNotificationBanner(title: "Noe gikk galt", style: .danger)
@@ -88,7 +89,7 @@ class ChangePreferences: UIViewController {
                 banner.duration = 2
                 banner.show()
             }
+            self.saveButton.hideLoading(clearTitle: false)
         })
-        
     }
 }

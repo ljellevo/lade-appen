@@ -10,7 +10,7 @@ import UIKit
 
 class Privacy: UIViewController {
 
-    @IBOutlet weak var sendDataButton: UIButton!
+    @IBOutlet weak var sendDataButton: LoadingUIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +18,7 @@ class Privacy: UIViewController {
     }
     
     @IBAction func sendDataButton(_ sender: UIButton) {
-        
+        sendDataButton.showLoading()
+        sendDataButton.hideLoading(clearTitle: false)
     }
 }
