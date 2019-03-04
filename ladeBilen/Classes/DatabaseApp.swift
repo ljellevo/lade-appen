@@ -215,6 +215,64 @@ class DatabaseApp {
         }
     }
     
+    func sendAllData(done: @escaping (_ error: Error?)-> Void){
+        DispatchQueue.global().async {
+            let currentUser = Auth.auth().currentUser
+            currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+                if let error = error {
+                    print(error)
+                    DispatchQueue.main.async {
+                        done(appError.connectionError)
+                    }
+                }
+                var request = URLRequest(url: URL(string: "https://popularity-service.herokuapp.com/api/privacy/send")!)
+                request.httpMethod = "POST"
+                request.setValue(idToken!, forHTTPHeaderField: "X-Firebase-ID-Token")
+                
+                let session = URLSession.shared
+                let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+                    DispatchQueue.main.async {
+                        let response = response! as! HTTPURLResponse
+                        if response.statusCode != 200 {
+                            done(appError.connectionError)
+                        }
+                        done(nil)
+                    }
+                })
+                task.resume()
+            }
+        }
+    }
+    
+    func deleteUser(done: @escaping (_ error: Error?)-> Void){
+        DispatchQueue.global().async {
+            let currentUser = Auth.auth().currentUser
+            currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+                if let error = error {
+                    print(error)
+                    DispatchQueue.main.async {
+                        done(appError.connectionError)
+                    }
+                }
+                var request = URLRequest(url: URL(string: "https://popularity-service.herokuapp.com/api/privacy/delete")!)
+                request.httpMethod = "POST"
+                request.setValue(idToken!, forHTTPHeaderField: "X-Firebase-ID-Token")
+                
+                let session = URLSession.shared
+                let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+                    DispatchQueue.main.async {
+                        let response = response! as! HTTPURLResponse
+                        if response.statusCode != 200 {
+                            done(appError.connectionError)
+                        }
+                        done(nil)
+                    }
+                })
+                task.resume()
+            }
+        }
+    }
+    
     
     func subscribeToStation(stationId: String, user: User, done: @escaping (_ error: Error?)-> Void){
         DispatchQueue.global().async {

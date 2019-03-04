@@ -148,6 +148,9 @@ class Profile: UIViewController, UITableViewDelegate, UITableViewDataSource, UIT
         if let nextViewController = segue.destination as? ReportBug {
             nextViewController.app = app
         }
+        if let nextViewController = segue.destination as? Privacy {
+            nextViewController.app = app
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

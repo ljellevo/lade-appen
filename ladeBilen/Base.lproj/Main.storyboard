@@ -1036,12 +1036,12 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="utH-5j-dM4">
-                                <rect key="frame" x="36" y="620" width="303" height="40"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="utH-5j-dM4">
+                                <rect key="frame" x="36" y="560" width="303" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlA-xr-RsA" customClass="LoadingUIButton" customModule="ladeBilen" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="303" height="40"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.28115430474281311" green="0.36080104112625122" blue="0.5215875506401062" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="VS2-ap-XLF"/>
                                         </constraints>
@@ -1050,6 +1050,19 @@
                                         </state>
                                         <connections>
                                             <action selector="sendDataButton:" destination="VEH-MT-qPr" eventType="touchUpInside" id="Lr4-8a-L56"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zL-xA-Sf3" customClass="LoadingUIButton" customModule="ladeBilen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="60" width="303" height="40"/>
+                                        <color key="backgroundColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="2IK-c9-gbU"/>
+                                        </constraints>
+                                        <state key="normal" title="Slett meg">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteUserButton:" destination="VEH-MT-qPr" eventType="touchUpInside" id="OtD-Sc-AN9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1067,6 +1080,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Personvern" id="m7k-Fp-qtB"/>
                     <connections>
+                        <outlet property="deleteUserButton" destination="5zL-xA-Sf3" id="Shj-B1-szi"/>
                         <outlet property="sendDataButton" destination="MlA-xr-RsA" id="Q9w-W5-53K"/>
                     </connections>
                 </viewController>

@@ -403,7 +403,7 @@ extension DatabaseMethods {
         }
     }
     
-    func subscribeToStation(station: Station, done: @escaping (_ error: Error?)-> Void){
+    func subscribeToStation(station: Station, done: @escaping (_ error: Error?) -> Void){
         let newSubscription = Subscription(values: ["update": Date().getTimestamp(),
                                                     "from": Date().getTimestamp(),
                                                     "to": (Date().getTimestamp() + Int64(self.user!.notificationDuration * 60))],
@@ -414,7 +414,7 @@ extension DatabaseMethods {
         })
     }
     
-    func unsubscribeToStation(station: Station, done: @escaping (_ error: Error?)-> Void){
+    func unsubscribeToStation(station: Station, done: @escaping (_ error: Error?) -> Void){
         for i in 0..<subscriptions.count {
             if subscriptions[i].id == getStationIdAsString(stationId: station.id){
                 subscriptions.remove(at: i)
@@ -431,6 +431,18 @@ extension DatabaseMethods {
             self.subscriptions = subscriptions
             done()
         }
+    }
+    
+    func sendAllData(done: @escaping (_ error: Error?) -> Void){
+        database.sendAllData(done: { error in
+            done(error)
+        })
+    }
+    
+    func deleteUser(done: @escaping (_ error: Error?) -> Void){
+        database.deleteUser(done: { error in
+            done(error)
+        })
     }
     
     func detachListenerOnStation(stationId: Int){
